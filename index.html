@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Monitoring CCMS & Administrasi Kontrak | Divisi Infrastruktur 1</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Google Stitch Custom Aesthetics */
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(156, 163, 175, 0.3); border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(156, 163, 175, 0.5); }
+
+    .stitch-glass {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen antialiased transition-colors duration-200">
+
+  <!-- Top Navigation Bar -->
+  <nav class="sticky top-0 z-40 bg-slate-900/80 border-b border-slate-800 stitch-glass">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        
+        <!-- Logo / Brand -->
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-blue-500/20 text-white font-black text-lg">
+            C
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-base font-bold tracking-tight text-white">CCMS & ADKON Monitor</span>
+              <span class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                Divisi 1
+              </span>
+            </div>
+            <p class="text-[11px] text-slate-400">Monitoring Contract Management & Variation Order</p>
+          </div>
+        </div>
+
+        <!-- Right Controls: Live Sync Indicator, Refresh, GSheet Link, Theme Toggle -->
+        <div class="flex items-center gap-2.5">
+          
+          <!-- Live Status Pulse -->
+          <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/80 border border-slate-700 text-xs">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span class="text-slate-300 text-[11px]" id="sync-status">Google Sheets Terhubung</span>
+          </div>
+
+          <!-- Refresh Button -->
+          <button onclick="fetchSheetData()" title="Segarkan Data Sekarang" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition-all flex items-center gap-1.5 text-xs">
+            <svg id="refresh-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+            </svg>
+            <span class="hidden md:inline">Sync</span>
+          </button>
+
+          <!-- External Google Sheet Link -->
+          <a href="https://docs.google.com/spreadsheets/d/139JB1xkZd9jp44Xrb6FrT4vgamycWJAvxVwnjCskzzg/edit" target="_blank" 
+             class="px-3 py-1.5 rounded-xl bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 border border-blue-500/30 transition-all text-xs font-semibold flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+            </svg>
+            <span class="hidden md:inline">Buka Spreadsheet</span>
+          </a>
+
+          <!-- Theme Toggle -->
+          <button onclick="toggleTheme()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all" title="Ganti Tema">
+            <svg id="theme-sun" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+            <svg id="theme-moon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+    <!-- Hero / Headline Bar -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-5 rounded-2xl bg-gradient-to-r from-blue-900/40 via-indigo-900/30 to-slate-900 border border-blue-800/30 shadow-xl">
+      <div>
+        <h2 class="text-xl md:text-2xl font-bold tracking-tight text-white flex items-center gap-2">
+          Dashboard Monitoring Kepatuhan Kontrak
+        </h2>
+        <p class="text-xs md:text-sm text-slate-300 mt-1">
+          Memantau 51 Proyek Infrastruktur secara langsung (*Live Sync*) dari Google Spreadsheet.
+        </p>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="text-right">
+          <span class="text-[11px] text-slate-400 block">Kepatuhan Total Divisi</span>
+          <span class="text-2xl font-extrabold text-emerald-400" id="hero-compliance">0%</span>
+        </div>
+        <div class="h-10 w-[1px] bg-slate-700"></div>
+        <div class="text-right">
+          <span class="text-[11px] text-slate-400 block">Data Sinkronisasi</span>
+          <span class="text-xs font-semibold text-slate-200" id="last-updated-text">Memuat...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- KPI Metric Cards Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5">
+      
+      <!-- KPI 1: Total Projects -->
+      <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-4 shadow-sm">
+        <span class="text-[11px] font-semibold text-slate-400 block uppercase tracking-wider">Total Proyek</span>
+        <div class="flex items-baseline justify-between mt-2">
+          <span class="text-2xl font-extrabold text-white" id="kpi-total">51</span>
+          <span class="text-[10px] text-slate-400">3 Dept</span>
+        </div>
+        <div class="w-full bg-slate-700/60 rounded-full h-1.5 mt-3">
+          <div class="bg-blue-500 h-1.5 rounded-full" style="width: 100%"></div>
+        </div>
+      </div>
+
+      <!-- KPI 2: 100% Compliant -->
+      <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-4 shadow-sm">
+        <span class="text-[11px] font-semibold text-emerald-400 block uppercase tracking-wider">Lengkap 100%</span>
+        <div class="flex items-baseline justify-between mt-2">
+          <span class="text-2xl font-extrabold text-emerald-400" id="kpi-lengkap">0</span>
+          <span class="text-[11px] font-bold text-emerald-400" id="kpi-lengkap-pct">0%</span>
+        </div>
+        <div class="w-full bg-slate-700/60 rounded-full h-1.5 mt-3">
+          <div class="bg-emerald-500 h-1.5 rounded-full" id="kpi-lengkap-bar" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- KPI 3: Need Follow-up -->
+      <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-4 shadow-sm">
+        <span class="text-[11px] font-semibold text-amber-400 block uppercase tracking-wider">Perlu Tindak Lanjut</span>
+        <div class="flex items-baseline justify-between mt-2">
+          <span class="text-2xl font-extrabold text-amber-400" id="kpi-perlu">0</span>
+          <span class="text-[11px] font-bold text-amber-400" id="kpi-perlu-pct">0%</span>
+        </div>
+        <div class="w-full bg-slate-700/60 rounded-full h-1.5 mt-3">
+          <div class="bg-amber-500 h-1.5 rounded-full" id="kpi-perlu-bar" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- KPI 4: Critical -->
+      <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-4 shadow-sm">
+        <span class="text-[11px] font-semibold text-rose-400 block uppercase tracking-wider">Zona Kritis (&lt;50%)</span>
+        <div class="flex items-baseline justify-between mt-2">
+          <span class="text-2xl font-extrabold text-rose-400" id="kpi-kritis">0</span>
+          <span class="text-[11px] font-bold text-rose-400" id="kpi-kritis-pct">0%</span>
+        </div>
+        <div class="w-full bg-slate-700/60 rounded-full h-1.5 mt-3">
+          <div class="bg-rose-500 h-1.5 rounded-full" id="kpi-kritis-bar" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- KPI 5: Contract Management Score -->
+      <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-4 shadow-sm">
+        <span class="text-[11px] font-semibold text-blue-400 block uppercase tracking-wider">Rata-Rata CM (14)</span>
+        <div class="flex items-baseline justify-between mt-2">
+          <span class="text-2xl font-extrabold text-blue-400" id="kpi-cm-avg">0</span>
+          <span class="text-[11px] font-bold text-blue-400" id="kpi-cm-pct">0%</span>
+        </div>
+        <div class="w-full bg-slate-700/60 rounded-full h-1.5 mt-3">
+          <div class="bg-blue-500 h-1.5 rounded-full" id="kpi-cm-bar" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- KPI 6: Variation Order Score -->
+      <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-4 shadow-sm">
+        <span class="text-[11px] font-semibold text-indigo-400 block uppercase tracking-wider">Rata-Rata VO (6)</span>
+        <div class="flex items-baseline justify-between mt-2">
+          <span class="text-2xl font-extrabold text-indigo-400" id="kpi-vo-avg">0</span>
+          <span class="text-[11px] font-bold text-indigo-400" id="kpi-vo-pct">0%</span>
+        </div>
+        <div class="w-full bg-slate-700/60 rounded-full h-1.5 mt-3">
+          <div class="bg-indigo-500 h-1.5 rounded-full" id="kpi-vo-bar" style="width: 0%"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Interactive Charts Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      
+      <!-- Chart 1: Department Performance Comparison -->
+      <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-5 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-300">Performa Departemen Operasi</h3>
+            <span class="text-xs text-blue-400 font-semibold">Tingkat Kepatuhan</span>
+          </div>
+          <div class="relative h-56">
+            <canvas id="deptChart"></canvas>
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-slate-700/60 text-center">
+          <div class="cursor-pointer hover:bg-slate-700/40 p-1.5 rounded-lg transition" onclick="setDeptFilter('DO 1')">
+            <span class="text-[10px] text-slate-400 block">DO 1 (Air)</span>
+            <span class="text-xs font-bold text-blue-400" id="stat-do1">77.6%</span>
+          </div>
+          <div class="cursor-pointer hover:bg-slate-700/40 p-1.5 rounded-lg transition" onclick="setDeptFilter('DO 2')">
+            <span class="text-[10px] text-slate-400 block">DO 2 (Tol)</span>
+            <span class="text-xs font-bold text-emerald-400" id="stat-do2">84.4%</span>
+          </div>
+          <div class="cursor-pointer hover:bg-slate-700/40 p-1.5 rounded-lg transition" onclick="setDeptFilter('DO 3')">
+            <span class="text-[10px] text-slate-400 block">DO 3 (IKN)</span>
+            <span class="text-xs font-bold text-rose-400" id="stat-do3">60.0%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chart 2: Top Missing Documents (Bottleneck) -->
+      <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-5 shadow-sm lg:col-span-2 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-300">Analisis Bottleneck Dokumen</h3>
+            <span class="text-xs text-rose-400 font-semibold">Jumlah Proyek yang Belum Melengkapi</span>
+          </div>
+          <p class="text-xs text-slate-400 mb-3">Dokumen yang paling sering menjadi hambatan kepatuhan 100%.</p>
+          <div class="relative h-60">
+            <canvas id="bottleneckChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Alert Banner: 18 Proyek Pertanyaan Addendum 1 -->
+    <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-start gap-3.5">
+      <div class="text-2xl mt-0.5">⚠️</div>
+      <div class="flex-1 text-xs">
+        <h4 class="font-bold text-amber-300 text-sm">Peringatan Manajemen Risiko Kontrak: Catatan Addendum 1 (18 Proyek)</h4>
+        <p class="text-slate-300 mt-1 leading-relaxed">
+          Terdapat 18 proyek yang memiliki catatan khusus dari tim ADKON: 
+          <em class="text-amber-200">"Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"</em>.
+          Hal ini mengindikasikan bahwa pekerjaan fisik/tambah-kurang di lapangan kemungkinan sudah dieksekusi, namun dokumen administrasinya belum diinput ke modul VO CCMS.
+        </p>
+        <div class="mt-2.5 flex items-center gap-3">
+          <button onclick="filterAddendum1Projects()" class="px-3 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 font-semibold transition border border-amber-500/40">
+            Lihat 18 Proyek Ini &rarr;
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Filtering & Search Bar -->
+    <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-4 shadow-sm flex flex-col lg:flex-row gap-3 items-stretch lg:items-center justify-between">
+      
+      <!-- Dept Tabs -->
+      <div class="flex flex-wrap items-center gap-1.5 p-1 bg-slate-900/60 rounded-xl border border-slate-700/60">
+        <button onclick="setDeptFilter('ALL')" id="tab-all" class="dept-btn px-3 py-1.5 text-xs font-bold rounded-lg bg-blue-600 text-white shadow-xs">
+          Semua Dept (<span id="count-all">51</span>)
+        </button>
+        <button onclick="setDeptFilter('DO 1')" id="tab-do1" class="dept-btn px-3 py-1.5 text-xs font-medium rounded-lg text-slate-300 hover:text-white">
+          DO 1 (<span id="count-do1">19</span>)
+        </button>
+        <button onclick="setDeptFilter('DO 2')" id="tab-do2" class="dept-btn px-3 py-1.5 text-xs font-medium rounded-lg text-slate-300 hover:text-white">
+          DO 2 (<span id="count-do2">18</span>)
+        </button>
+        <button onclick="setDeptFilter('DO 3')" id="tab-do3" class="dept-btn px-3 py-1.5 text-xs font-medium rounded-lg text-slate-300 hover:text-white">
+          DO 3 (<span id="count-do3">14</span>)
+        </button>
+      </div>
+
+      <!-- Status Dropdown & Search Bar -->
+      <div class="flex flex-wrap items-center gap-2.5">
+        
+        <select id="status-filter" onchange="applyFilters()" class="text-xs bg-slate-900/80 border border-slate-700 rounded-xl px-3 py-2 text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="ALL">Semua Kategori Status</option>
+          <option value="Lengkap 100%">Lengkap 100%</option>
+          <option value="Perlu Tindak Lanjut">Perlu Tindak Lanjut</option>
+          <option value="Kritis (<50%)">Kritis (&lt; 50%)</option>
+          <option value="Kritis 0%">Kritis 0% / Belum Diisi</option>
+          <option value="HAS_NOTES">Memiliki Catatan ADKON</option>
+        </select>
+
+        <div class="relative flex-1 sm:w-64">
+          <input type="text" id="search-input" onkeyup="applyFilters()" placeholder="Cari nama proyek..." 
+                 class="w-full text-xs bg-slate-900/80 border border-slate-700 rounded-xl pl-8 pr-3 py-2 text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <svg class="w-3.5 h-3.5 absolute left-2.5 top-2.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
+
+        <button onclick="resetAllFilters()" class="px-3 py-2 text-xs font-semibold rounded-xl bg-slate-700 hover:bg-slate-600 text-slate-200 transition">
+          Reset
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- Data Table Container -->
+    <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl overflow-hidden shadow-sm">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-slate-900/90 border-b border-slate-700 text-slate-400 uppercase tracking-wider font-semibold">
+            <tr>
+              <th class="py-3 px-3.5 w-12 text-center">No</th>
+              <th class="py-3 px-3.5 min-w-[260px]">Nama Proyek</th>
+              <th class="py-3 px-3.5 w-24">Dept</th>
+              <th class="py-3 px-3.5 w-32">Skor CM (14)</th>
+              <th class="py-3 px-3.5 w-32">Skor VO (6)</th>
+              <th class="py-3 px-3.5 w-36">Kepatuhan Total</th>
+              <th class="py-3 px-3.5 w-36">Kategori</th>
+              <th class="py-3 px-3.5 text-center w-24">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="projects-table-body" class="divide-y divide-slate-700/60">
+            <!-- Loading placeholder -->
+            <tr>
+              <td colspan="8" class="text-center py-12 text-slate-400">
+                <div class="flex items-center justify-center gap-2">
+                  <div class="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                  <span>Sedang mengambil data live dari Google Sheets...</span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Table Footer -->
+      <div class="py-3 px-4 border-t border-slate-700/80 bg-slate-900/60 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-2">
+        <span id="filtered-count">Memuat data...</span>
+        <span class="text-slate-500 text-[11px]">Klik <strong>Detail Audit</strong> untuk melihat centang 20 dokumen per proyek</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Detail Modal Dialog -->
+  <div id="detail-modal" class="fixed inset-0 z-50 hidden bg-black/70 stitch-glass flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-3xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
+      
+      <!-- Modal Header -->
+      <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-slate-900/90">
+        <div>
+          <span id="modal-dept" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">DO 1</span>
+          <h3 id="modal-title" class="text-lg font-bold text-white mt-1.5">Nama Proyek</h3>
+        </div>
+        <button onclick="closeModal()" class="text-slate-400 hover:text-white p-1.5 rounded-xl hover:bg-slate-800 transition text-2xl leading-none">&times;</button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 overflow-y-auto space-y-5 text-xs">
+        
+        <!-- Score Bar Matrix -->
+        <div class="grid grid-cols-3 gap-3 p-4 rounded-2xl bg-slate-800/80 border border-slate-700">
+          <div>
+            <span class="text-slate-400 block text-[11px]">Contract Management (CM)</span>
+            <span id="modal-cm-score" class="text-base font-bold text-blue-400 mt-0.5 block">14 / 14</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block text-[11px]">Klaim, VO & Asuransi (VO)</span>
+            <span id="modal-vo-score" class="text-base font-bold text-indigo-400 mt-0.5 block">6 / 6</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block text-[11px]">Total Kepatuhan</span>
+            <span id="modal-total-score" class="text-base font-bold text-emerald-400 mt-0.5 block">100%</span>
+          </div>
+        </div>
+
+        <!-- Notes Alert Box -->
+        <div id="modal-notes-box" class="p-4 rounded-2xl border border-amber-500/30 bg-amber-500/10 text-amber-300 hidden">
+          <span class="font-bold block text-xs mb-1">📌 Catatan Khusus Tim ADKON:</span>
+          <p id="modal-notes-text" class="text-xs leading-relaxed text-slate-200"></p>
+        </div>
+
+        <!-- CM 14 Documents -->
+        <div>
+          <h4 class="font-bold text-xs uppercase tracking-wider text-slate-400 mb-2.5">
+            Kelengkapan Dokumen Contract Management (14 Dokumen)
+          </h4>
+          <div id="modal-cm-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
+        </div>
+
+        <!-- VO 6 Documents -->
+        <div>
+          <h4 class="font-bold text-xs uppercase tracking-wider text-slate-400 mb-2.5">
+            Kelengkapan Dokumen Perubahan, Klaim & Asuransi (6 Dokumen)
+          </h4>
+          <div id="modal-vo-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 border-t border-slate-800 bg-slate-900/90 flex justify-end">
+        <button onclick="closeModal()" class="px-5 py-2 text-xs font-semibold rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition">
+          Tutup
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JavaScript Logic: Live Google Sheets Connector & Stitch UI Interaction -->
+  <script>
+    // Live Google Spreadsheet ID (Tab: Cheklist_20_Dokumen)
+    const SPREADSHEET_ID = "139JB1xkZd9jp44Xrb6FrT4vgamycWJAvxVwnjCskzzg";
+    const SHEET_TAB_NAME = "Cheklist_20_Dokumen";
+    const GVIZ_URL = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_TAB_NAME}`;
+
+    const CM_DOCS = [
+      "CCMS", "Do. Kontrak (SSUK/SSKK)+Amandemen", "SPP", "SPMK", "BASTL",
+      "Jaminan UM", "Jaminan Pelaksanaan", "Polis Asuransi", "TDK",
+      "RKP Bab 12", "Cheklist Progress", "Executive Summary", "EoT", "MoM Ekst."
+    ];
+
+    const VO_DOCS = [
+      "Input CCMS (Update Status)", "Notis", "Claim Waktu (Terdampak)",
+      "Proposal Perubahan", "BAK", "Amandemen Kontrak"
+    ];
+
+    let projects = [];
+    let currentDept = 'ALL';
+    let currentStatus = 'ALL';
+    let searchQuery = '';
+    let deptChart = null;
+    let bottleneckChart = null;
+
+    // Fetch live data directly from Google Sheets
+    async function fetchSheetData() {
+      const icon = document.getElementById('refresh-icon');
+      if (icon) icon.classList.add('animate-spin');
+      document.getElementById('sync-status').textContent = "Menghubungkan ke Google Sheets...";
+
+      try {
+        const response = await fetch(GVIZ_URL);
+        const text = await response.text();
+        const jsonStr = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
+        const data = JSON.parse(jsonStr);
+
+        parseSheetData(data.table);
+        
+        document.getElementById('sync-status').textContent = "Google Sheets Terhubung (Live)";
+        document.getElementById('last-updated-text').textContent = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' }) + " WIB";
+      } catch (err) {
+        console.error("Gagal menarik data Google Sheets:", err);
+        document.getElementById('sync-status').textContent = "Gagal Sync (Cek Koneksi)";
+        document.getElementById('projects-table-body').innerHTML = `
+          <tr><td colspan="8" class="text-center py-8 text-rose-400">
+            Gagal mengambil data dari Google Sheets. Pastikan izin akses dibagikan ke Publik atau Periksa ID Spreadsheet.
+          </td></tr>`;
+      } finally {
+        if (icon) icon.classList.remove('animate-spin');
+      }
+    }
+
+    function parseSheetData(table) {
+      const rows = table.rows;
+      projects = [];
+
+      rows.forEach((r, idx) => {
+        const c = r.c.map(cell => cell ? (cell.v !== undefined ? cell.v : cell.f) : '');
+        
+        const no = parseInt(c[0]) || (idx + 1);
+        const name = String(c[1] || '').trim();
+        const dept = String(c[2] || '').trim();
+        const deptCode = String(c[3] || '').trim();
+
+        // 14 CM docs: indices 4..17
+        const cmChecks = {};
+        CM_DOCS.forEach((doc, i) => {
+          const val = c[4 + i];
+          cmChecks[doc] = (val === '✓' || val === 'P' || val === 1 || val === true);
+        });
+
+        const cmScore = parseInt(c[18]) || 0;
+        const cmStatus = String(c[19] || 'Belum Lengkap').trim();
+
+        // 6 VO docs: indices 20..25
+        const voChecks = {};
+        VO_DOCS.forEach((doc, i) => {
+          const val = c[20 + i];
+          voChecks[doc] = (val === '✓' || val === 'P' || val === 1 || val === true);
+        });
+
+        const voScore = parseInt(c[26]) || 0;
+        const voStatus = String(c[27] || 'Belum Diisi').trim();
+
+        const totScore = parseInt(c[28]) || 0;
+        let totProgStr = String(c[29] || '0').replace('%', '').trim();
+        let totProg = parseFloat(totProgStr) || 0;
+        if (totProg > 100) totProg = 100; // fix anomaly
+
+        const statusCat = String(c[30] || 'Perlu Tindak Lanjut').trim();
+        const notes = String(c[31] || '').trim();
+
+        projects.push({
+          no,
+          name,
+          dept,
+          deptCode: deptCode || ("DO " + (dept.includes('1') ? '1' : (dept.includes('2') ? '2' : '3'))),
+          cmChecks,
+          cmScore,
+          cmProg: Math.round((cmScore / 14) * 100),
+          cmStatus,
+          voChecks,
+          voScore,
+          voProg: Math.round((voScore / 6) * 100),
+          voStatus,
+          totScore,
+          totProg: Math.round(totProg),
+          statusCat: totProg >= 100 ? "Lengkap 100%" : (totScore === 0 ? "Kritis 0%" : (totProg < 50 ? "Kritis (<50%)" : "Perlu Tindak Lanjut")),
+          notes
+        });
+      });
+
+      updateKPIs();
+      renderCharts();
+      renderTable();
+    }
+
+    function updateKPIs() {
+      const total = projects.length;
+      if (total === 0) return;
+
+      const lengkap = projects.filter(p => p.totProg >= 100).length;
+      const perlu = projects.filter(p => p.totProg >= 50 && p.totProg < 100).length;
+      const kritis = projects.filter(p => p.totProg < 50).length;
+
+      const avgTotProg = Math.round(projects.reduce((acc, p) => acc + p.totProg, 0) / total);
+      const avgCmScore = (projects.reduce((acc, p) => acc + p.cmScore, 0) / total).toFixed(1);
+      const avgCmProg = Math.round((avgCmScore / 14) * 100);
+      const avgVoScore = (projects.reduce((acc, p) => acc + p.voScore, 0) / total).toFixed(1);
+      const avgVoProg = Math.round((avgVoScore / 6) * 100);
+
+      document.getElementById('hero-compliance').textContent = avgTotProg + '%';
+      document.getElementById('kpi-total').textContent = total;
+
+      document.getElementById('kpi-lengkap').textContent = lengkap;
+      document.getElementById('kpi-lengkap-pct').textContent = Math.round((lengkap / total) * 100) + '%';
+      document.getElementById('kpi-lengkap-bar').style.width = Math.round((lengkap / total) * 100) + '%';
+
+      document.getElementById('kpi-perlu').textContent = perlu;
+      document.getElementById('kpi-perlu-pct').textContent = Math.round((perlu / total) * 100) + '%';
+      document.getElementById('kpi-perlu-bar').style.width = Math.round((perlu / total) * 100) + '%';
+
+      document.getElementById('kpi-kritis').textContent = kritis;
+      document.getElementById('kpi-kritis-pct').textContent = Math.round((kritis / total) * 100) + '%';
+      document.getElementById('kpi-kritis-bar').style.width = Math.round((kritis / total) * 100) + '%';
+
+      document.getElementById('kpi-cm-avg').textContent = avgCmScore;
+      document.getElementById('kpi-cm-pct').textContent = avgCmProg + '%';
+      document.getElementById('kpi-cm-bar').style.width = avgCmProg + '%';
+
+      document.getElementById('kpi-vo-avg').textContent = avgVoScore;
+      document.getElementById('kpi-vo-pct').textContent = avgVoProg + '%';
+      document.getElementById('kpi-vo-bar').style.width = avgVoProg + '%';
+
+      // Counts per dept
+      document.getElementById('count-all').textContent = total;
+      document.getElementById('count-do1').textContent = projects.filter(p => p.deptCode === 'DO 1').length;
+      document.getElementById('count-do2').textContent = projects.filter(p => p.deptCode === 'DO 2').length;
+      document.getElementById('count-do3').textContent = projects.filter(p => p.deptCode === 'DO 3').length;
+    }
+
+    function renderCharts() {
+      // Dept Stats
+      const do1Projects = projects.filter(p => p.deptCode === 'DO 1');
+      const do2Projects = projects.filter(p => p.deptCode === 'DO 2');
+      const do3Projects = projects.filter(p => p.deptCode === 'DO 3');
+
+      const do1Avg = do1Projects.length ? Math.round(do1Projects.reduce((a, b) => a + b.totProg, 0) / do1Projects.length) : 0;
+      const do2Avg = do2Projects.length ? Math.round(do2Projects.reduce((a, b) => a + b.totProg, 0) / do2Projects.length) : 0;
+      const do3Avg = do3Projects.length ? Math.round(do3Projects.reduce((a, b) => a + b.totProg, 0) / do3Projects.length) : 0;
+
+      document.getElementById('stat-do1').textContent = do1Avg + '%';
+      document.getElementById('stat-do2').textContent = do2Avg + '%';
+      document.getElementById('stat-do3').textContent = do3Avg + '%';
+
+      // Dept Bar Chart
+      const ctxDept = document.getElementById('deptChart').getContext('2d');
+      if (deptChart) deptChart.destroy();
+
+      deptChart = new Chart(ctxDept, {
+        type: 'bar',
+        data: {
+          labels: ['DO 1 (Air)', 'DO 2 (Tol & MRT)', 'DO 3 (IKN)'],
+          datasets: [{
+            label: 'Kepatuhan (%)',
+            data: [do1Avg, do2Avg, do3Avg],
+            backgroundColor: ['#3b82f6', '#10b981', '#f43f5e'],
+            borderRadius: 8,
+            borderSkipped: false
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              grid: { color: 'rgba(255, 255, 255, 0.06)' },
+              ticks: { color: '#94a3b8', callback: v => v + '%' }
+            },
+            x: {
+              grid: { display: false },
+              ticks: { color: '#cbd5e1', font: { weight: '600' } }
+            }
+          }
+        }
+      });
+
+      // Bottleneck missing counts
+      const missingCounts = {};
+      [...CM_DOCS, ...VO_DOCS].forEach(d => missingCounts[d] = 0);
+
+      projects.forEach(p => {
+        CM_DOCS.forEach(d => { if (!p.cmChecks[d]) missingCounts[d]++; });
+        VO_DOCS.forEach(d => { if (!p.voChecks[d]) missingCounts[d]++; });
+      });
+
+      const sortedDocs = Object.entries(missingCounts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 7); // top 7 bottlenecks
+
+      const ctxBottleneck = document.getElementById('bottleneckChart').getContext('2d');
+      if (bottleneckChart) bottleneckChart.destroy();
+
+      bottleneckChart = new Chart(ctxBottleneck, {
+        type: 'bar',
+        indexAxis: 'y',
+        data: {
+          labels: sortedDocs.map(d => d[0]),
+          datasets: [{
+            label: 'Proyek Belum Melengkapi',
+            data: sortedDocs.map(d => d[1]),
+            backgroundColor: '#f43f5e',
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: ctx => `${ctx.raw} dari ${projects.length} proyek (${Math.round(ctx.raw/projects.length*100)}%)`
+              }
+            }
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              max: projects.length,
+              grid: { color: 'rgba(255, 255, 255, 0.06)' },
+              ticks: { color: '#94a3b8' }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: '#cbd5e1', font: { size: 11 } }
+            }
+          }
+        }
+      });
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('projects-table-body');
+      tbody.innerHTML = '';
+
+      const filtered = projects.filter(p => {
+        if (currentDept !== 'ALL' && p.deptCode !== currentDept) return false;
+        
+        if (currentStatus === 'HAS_NOTES') {
+          if (!p.notes) return false;
+        } else if (currentStatus !== 'ALL') {
+          if (p.statusCat !== currentStatus) return false;
+        }
+
+        if (searchQuery.trim() !== '') {
+          const q = searchQuery.toLowerCase();
+          if (!p.name.toLowerCase().includes(q)) return false;
+        }
+
+        return true;
+      });
+
+      document.getElementById('filtered-count').textContent = `Menampilkan ${filtered.length} dari ${projects.length} proyek`;
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" class="text-center py-8 text-slate-400">Tidak ada proyek yang sesuai dengan filter.</td></tr>`;
+        return;
+      }
+
+      filtered.forEach((p) => {
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-slate-700/30 transition-colors";
+
+        let badgeClass = "bg-emerald-500/10 text-emerald-400 border-emerald-500/30";
+        if (p.statusCat === "Perlu Tindak Lanjut") badgeClass = "bg-amber-500/10 text-amber-400 border-amber-500/30";
+        if (p.statusCat === "Kritis (<50%)") badgeClass = "bg-rose-500/10 text-rose-400 border-rose-500/30";
+        if (p.statusCat === "Kritis 0%") badgeClass = "bg-red-600/20 text-red-400 border-red-500/50 font-bold";
+
+        const noteBadge = p.notes ? `<span title="${p.notes.replace(/"/g, '&quot;')}" class="cursor-pointer text-amber-400 text-sm">⚠️</span>` : '';
+
+        tr.innerHTML = `
+          <td class="py-3 px-3.5 text-center text-slate-400">${p.no}</td>
+          <td class="py-3 px-3.5 font-medium text-slate-100">
+            <div class="flex items-center gap-1.5">
+              <span>${p.name}</span>
+              ${noteBadge}
+            </div>
+            ${p.notes ? `<div class="text-[11px] text-amber-300/80 line-clamp-1 mt-0.5">${p.notes}</div>` : ''}
+          </td>
+          <td class="py-3 px-3.5">
+            <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-900 border border-slate-700 text-slate-300">
+              ${p.deptCode}
+            </span>
+          </td>
+          <td class="py-3 px-3.5">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-slate-200">${p.cmScore}/14</span>
+              <div class="w-12 bg-slate-700 rounded-full h-1.5">
+                <div class="bg-blue-500 h-1.5 rounded-full" style="width: ${p.cmProg}%"></div>
+              </div>
+            </div>
+          </td>
+          <td class="py-3 px-3.5">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-slate-200">${p.voScore}/6</span>
+              <div class="w-10 bg-slate-700 rounded-full h-1.5">
+                <div class="bg-indigo-500 h-1.5 rounded-full" style="width: ${p.voProg}%"></div>
+              </div>
+            </div>
+          </td>
+          <td class="py-3 px-3.5">
+            <div class="flex items-center gap-2">
+              <span class="font-bold ${p.totProg >= 100 ? 'text-emerald-400' : (p.totProg < 50 ? 'text-rose-400' : 'text-amber-400')}">
+                ${p.totProg}%
+              </span>
+              <div class="w-16 bg-slate-700 rounded-full h-1.5">
+                <div class="${p.totProg >= 100 ? 'bg-emerald-500' : (p.totProg < 50 ? 'bg-rose-500' : 'bg-amber-500')} h-1.5 rounded-full" style="width: ${p.totProg}%"></div>
+              </div>
+            </div>
+          </td>
+          <td class="py-3 px-3.5">
+            <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] border ${badgeClass}">
+              ${p.statusCat}
+            </span>
+          </td>
+          <td class="py-3 px-3.5 text-center">
+            <button onclick="openModal(${p.no})" class="px-2.5 py-1 text-[11px] font-semibold rounded-lg bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 border border-blue-500/30 transition">
+              Detail Audit
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function setDeptFilter(dept) {
+      currentDept = dept;
+      document.querySelectorAll('.dept-btn').forEach(b => {
+        b.className = "dept-btn px-3 py-1.5 text-xs font-medium rounded-lg text-slate-300 hover:text-white";
+      });
+      if (dept === 'ALL') document.getElementById('tab-all').className = "dept-btn px-3 py-1.5 text-xs font-bold rounded-lg bg-blue-600 text-white shadow-xs";
+      if (dept === 'DO 1') document.getElementById('tab-do1').className = "dept-btn px-3 py-1.5 text-xs font-bold rounded-lg bg-blue-600 text-white shadow-xs";
+      if (dept === 'DO 2') document.getElementById('tab-do2').className = "dept-btn px-3 py-1.5 text-xs font-bold rounded-lg bg-blue-600 text-white shadow-xs";
+      if (dept === 'DO 3') document.getElementById('tab-do3').className = "dept-btn px-3 py-1.5 text-xs font-bold rounded-lg bg-blue-600 text-white shadow-xs";
+      applyFilters();
+    }
+
+    function applyFilters() {
+      currentStatus = document.getElementById('status-filter').value;
+      searchQuery = document.getElementById('search-input').value;
+      renderTable();
+    }
+
+    function resetAllFilters() {
+      currentDept = 'ALL';
+      document.getElementById('status-filter').value = 'ALL';
+      document.getElementById('search-input').value = '';
+      setDeptFilter('ALL');
+    }
+
+    function filterAddendum1Projects() {
+      document.getElementById('status-filter').value = 'HAS_NOTES';
+      document.getElementById('search-input').value = 'Addendum 1';
+      setDeptFilter('ALL');
+    }
+
+    function openModal(projectNo) {
+      const p = projects.find(item => item.no === projectNo);
+      if (!p) return;
+
+      document.getElementById('modal-title').textContent = p.name;
+      document.getElementById('modal-dept').textContent = `${p.dept} (${p.deptCode})`;
+      document.getElementById('modal-cm-score').textContent = `${p.cmScore} / 14 (${p.cmProg}%)`;
+      document.getElementById('modal-vo-score').textContent = `${p.voScore} / 6 (${p.voProg}%)`;
+      document.getElementById('modal-total-score').textContent = `${p.totScore} / 20 (${p.totProg}%)`;
+
+      const notesBox = document.getElementById('modal-notes-box');
+      if (p.notes) {
+        document.getElementById('modal-notes-text').textContent = p.notes;
+        notesBox.classList.remove('hidden');
+      } else {
+        notesBox.classList.add('hidden');
+      }
+
+      // Render CM Checklist Grid
+      const cmGrid = document.getElementById('modal-cm-grid');
+      cmGrid.innerHTML = '';
+      CM_DOCS.forEach(doc => {
+        const checked = p.cmChecks[doc];
+        const div = document.createElement('div');
+        div.className = `p-2.5 rounded-xl border flex items-center justify-between ${checked ? 'bg-emerald-500/5 border-emerald-500/20 text-slate-200' : 'bg-rose-500/5 border-rose-500/20 text-slate-400'}`;
+        div.innerHTML = `
+          <span class="font-medium text-xs">${doc}</span>
+          <span class="text-xs font-bold ${checked ? 'text-emerald-400' : 'text-rose-400'}">
+            ${checked ? '✓ Lengkap' : '✗ Belum Ada'}
+          </span>
+        `;
+        cmGrid.appendChild(div);
+      });
+
+      // Render VO Checklist Grid
+      const voGrid = document.getElementById('modal-vo-grid');
+      voGrid.innerHTML = '';
+      VO_DOCS.forEach(doc => {
+        const checked = p.voChecks[doc];
+        const div = document.createElement('div');
+        div.className = `p-2.5 rounded-xl border flex items-center justify-between ${checked ? 'bg-emerald-500/5 border-emerald-500/20 text-slate-200' : 'bg-rose-500/5 border-rose-500/20 text-slate-400'}`;
+        div.innerHTML = `
+          <span class="font-medium text-xs">${doc}</span>
+          <span class="text-xs font-bold ${checked ? 'text-emerald-400' : 'text-rose-400'}">
+            ${checked ? '✓ Lengkap' : '✗ Belum Ada'}
+          </span>
+        `;
+        voGrid.appendChild(div);
+      });
+
+      document.getElementById('detail-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('detail-modal').classList.add('hidden');
+    }
+
+    document.getElementById('detail-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'detail-modal') closeModal();
+    });
+
+    // Dark/Light Mode Toggle
+    function toggleTheme() {
+      const html = document.documentElement;
+      const sun = document.getElementById('theme-sun');
+      const moon = document.getElementById('theme-moon');
+
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        document.body.classList.remove('bg-slate-900', 'text-slate-100');
+        document.body.classList.add('bg-slate-50', 'text-slate-900');
+        sun.classList.remove('hidden');
+        moon.classList.add('hidden');
+      } else {
+        html.classList.add('dark');
+        document.body.classList.remove('bg-slate-50', 'text-slate-900');
+        document.body.classList.add('bg-slate-900', 'text-slate-100');
+        sun.classList.add('hidden');
+        moon.classList.remove('hidden');
+      }
+    }
+
+    // Auto-fetch data every 60 seconds for live updates
+    setInterval(fetchSheetData, 60000);
+
+    // Initial Fetch on load
+    fetchSheetData();
+  </script>
+</body>
+</html>
