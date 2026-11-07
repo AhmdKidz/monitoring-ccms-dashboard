@@ -149,7 +149,68 @@
       animation: pulse-subtle 2s infinite ease-in-out;
     }
   </style>
+
+  <style>
+    /* Executive Light Theme overrides */
+    html:not(.dark) body {
+      background-color: #f1f5f9 !important;
+      color: #0f172a !important;
+    }
+    html:not(.dark) .bg-surface-glass {
+      background-color: rgba(255, 255, 255, 0.9) !important;
+      border-color: rgba(203, 213, 225, 0.8) !important;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+    }
+    html:not(.dark) .bg-surface-container {
+      background-color: #e2e8f0 !important;
+      border-color: #cbd5e1 !important;
+    }
+    html:not(.dark) .bg-surface-container-high {
+      background-color: #cbd5e1 !important;
+    }
+    html:not(.dark) .bg-surface-container-low {
+      background-color: #ffffff !important;
+      border-color: #e2e8f0 !important;
+    }
+    html:not(.dark) .bg-surface-container-lowest {
+      background-color: #f8fafc !important;
+    }
+    html:not(.dark) .text-on-surface {
+      color: #0f172a !important;
+    }
+    html:not(.dark) .text-text-muted {
+      color: #475569 !important;
+    }
+    html:not(.dark) aside {
+      background-color: #ffffff !important;
+      border-color: #e2e8f0 !important;
+    }
+    html:not(.dark) header {
+      background-color: rgba(255, 255, 255, 0.95) !important;
+      border-color: #e2e8f0 !important;
+    }
+    html:not(.dark) .border-border-glass {
+      border-color: #e2e8f0 !important;
+    }
+    html:not(.dark) input, html:not(.dark) select {
+      background-color: #ffffff !important;
+      color: #0f172a !important;
+      border-color: #cbd5e1 !important;
+    }
+    html:not(.dark) .custom-scrollbar::-webkit-scrollbar-thumb {
+      background-color: #cbd5e1;
+    }
+    /* Modal smooth entrance */
+    .modal-enter {
+      animation: modalFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.96) translateY(8px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+  </style>
 </head>
+
 <body class="bg-background text-on-surface min-h-screen antialiased flex flex-col font-body-md select-none overflow-x-hidden">
 <!-- Side Navigation Bar (Command Drawer Anchor from JSON) -->
 <aside class="h-screen w-64 fixed left-0 top-0 hidden xl:flex flex-col z-30 bg-surface-container-low dark:bg-surface-container-low border-r border-border-glass dark:border-border-glass shadow-xl backdrop-blur-lg">
@@ -171,23 +232,23 @@
 <div class="h-px bg-border-glass w-full"></div>
 <!-- Main Navigation Links -->
 <nav class="space-y-1">
-<a class="bg-surface-container-highest dark:bg-surface-container-highest text-primary dark:text-primary border-l-2 border-primary dark:border-primary font-label-md text-label-md px-space-md py-space-sm flex items-center gap-space-sm rounded-r-lg transition-colors" href="#dashboard">
+<a class="bg-surface-container-highest dark:bg-surface-container-highest text-primary dark:text-primary border-l-2 border-primary dark:border-primary font-label-md text-label-md px-space-md py-space-sm flex items-center gap-space-sm rounded-r-lg transition-colors" href="javascript:void(0)" onclick="navigateTo('all')">
 <span class="material-symbols-outlined" data-icon="dashboard" style="font-variation-settings: 'FILL' 1;">dashboard</span>
 <span>Dashboard &amp; KPIs</span>
 </a>
-<a class="text-text-muted dark:text-text-muted hover:bg-surface-container dark:hover:bg-surface-container hover:text-on-surface dark:hover:text-on-surface font-label-md text-label-md px-space-md py-space-sm flex items-center gap-space-sm rounded-lg transition-colors duration-150" href="#do1">
+<a class="text-text-muted dark:text-text-muted hover:bg-surface-container dark:hover:bg-surface-container hover:text-on-surface dark:hover:text-on-surface font-label-md text-label-md px-space-md py-space-sm flex items-center gap-space-sm rounded-lg transition-colors duration-150" href="javascript:void(0)" onclick="navigateTo('DO 1')">
 <span class="material-symbols-outlined" data-icon="domain">domain</span>
 <span>Divisi DO 1 (Primary)</span>
 </a>
-<a class="text-text-muted dark:text-text-muted hover:bg-surface-container dark:hover:bg-surface-container hover:text-on-surface dark:hover:text-on-surface font-label-md text-label-md px-space-md py-space-sm flex items-center gap-space-sm rounded-lg transition-colors duration-150" href="#do2">
+<a class="text-text-muted dark:text-text-muted hover:bg-surface-container dark:hover:bg-surface-container hover:text-on-surface dark:hover:text-on-surface font-label-md text-label-md px-space-md py-space-sm flex items-center gap-space-sm rounded-lg transition-colors duration-150" href="javascript:void(0)" onclick="navigateTo('DO 2')">
 <span class="material-symbols-outlined" data-icon="foundation">foundation</span>
 <span>Divisi DO 2 (Regional)</span>
 </a>
-<a class="text-text-muted dark:text-text-muted hover:bg-surface-container dark:hover:bg-surface-container hover:text-on-surface dark:hover:text-on-surface font-label-md text-label-md px-space-md py-space-sm flex items-center gap-space-sm rounded-lg transition-colors duration-150" href="#do3">
+<a class="text-text-muted dark:text-text-muted hover:bg-surface-container dark:hover:bg-surface-container hover:text-on-surface dark:hover:text-on-surface font-label-md text-label-md px-space-md py-space-sm flex items-center gap-space-sm rounded-lg transition-colors duration-150" href="javascript:void(0)" onclick="navigateTo('DO 3')">
 <span class="material-symbols-outlined" data-icon="engineering">engineering</span>
 <span>Divisi DO 3 (Special Works)</span>
 </a>
-<a class="text-text-muted dark:text-text-muted hover:bg-surface-container dark:hover:bg-surface-container hover:text-on-surface dark:hover:text-on-surface font-label-md text-label-md px-space-md py-space-sm flex items-center gap-space-sm rounded-lg transition-colors duration-150" href="#compliance">
+<a class="text-text-muted dark:text-text-muted hover:bg-surface-container dark:hover:bg-surface-container hover:text-on-surface dark:hover:text-on-surface font-label-md text-label-md px-space-md py-space-sm flex items-center gap-space-sm rounded-lg transition-colors duration-150" href="javascript:void(0)" onclick="openParametersModal()">
 <span class="material-symbols-outlined" data-icon="rule">rule</span>
 <span>20-Param Compliance</span>
 </a>
@@ -196,16 +257,16 @@
 <!-- Drawer Bottom / Footer Call to Action -->
 <div class="space-y-space-md pt-space-md border-t border-border-glass">
 <!-- CTA button from JSON -->
-<button class="w-full bg-primary-container text-on-primary-container hover:brightness-110 active:scale-98 font-label-md text-label-md py-2.5 px-3 rounded-lg shadow-lg flex items-center justify-center gap-2 transition-all" onclick="triggerAuditToast()">
+<button class="w-full bg-primary-container text-on-primary-container hover:brightness-110 active:scale-98 font-label-md text-label-md py-2.5 px-3 rounded-lg shadow-lg flex items-center justify-center gap-2 transition-all" onclick="openAuditReportModal()">
 <span class="material-symbols-outlined text-sm" data-icon="description">description</span>
           Generate Full Audit Report
         </button>
 <nav class="space-y-1">
-<a class="text-text-muted dark:text-text-muted hover:bg-surface-container dark:hover:bg-surface-container hover:text-on-surface dark:hover:text-on-surface font-label-md text-label-md px-space-md py-2 flex items-center gap-space-sm rounded-lg transition-colors" href="#adkon-guidelines">
+<a class="text-text-muted dark:text-text-muted hover:bg-surface-container dark:hover:bg-surface-container hover:text-on-surface dark:hover:text-on-surface font-label-md text-label-md px-space-md py-2 flex items-center gap-space-sm rounded-lg transition-colors" href="javascript:void(0)" onclick="openAdkonGuidelinesModal()">
 <span class="material-symbols-outlined text-base" data-icon="menu_book">menu_book</span>
 <span>ADKON Guidelines</span>
 </a>
-<a class="text-text-muted dark:text-text-muted hover:bg-surface-container dark:hover:bg-surface-container hover:text-on-surface dark:hover:text-on-surface font-label-md text-label-md px-space-md py-2 flex items-center gap-space-sm rounded-lg transition-colors" href="#diagnostics">
+<a class="text-text-muted dark:text-text-muted hover:bg-surface-container dark:hover:bg-surface-container hover:text-on-surface dark:hover:text-on-surface font-label-md text-label-md px-space-md py-2 flex items-center gap-space-sm rounded-lg transition-colors" href="javascript:void(0)" onclick="openDiagnosticsModal()">
 <span class="material-symbols-outlined text-base" data-icon="settings">settings</span>
 <span>System Diagnostics</span>
 </a>
@@ -246,7 +307,7 @@
 <div class="hidden 2xl:flex items-center gap-space-lg">
 <a class="border-b-2 border-primary dark:border-primary text-primary dark:text-primary font-label-md text-label-md pb-1" href="#executive">Executive Overview</a>
 <a class="text-text-muted dark:text-text-muted hover:text-on-surface dark:hover:text-on-surface font-label-md text-label-md pb-1 transition-colors duration-150" href="#matrix">DO Division Matrix</a>
-<a class="text-text-muted dark:text-text-muted hover:text-on-surface dark:hover:text-on-surface font-label-md text-label-md pb-1 transition-colors duration-150" href="#compliance">Compliance Audit</a>
+<a class="text-text-muted dark:text-text-muted hover:text-on-surface dark:hover:text-on-surface font-label-md text-label-md pb-1 transition-colors duration-150" href="javascript:void(0)" onclick="openParametersModal()">Compliance Audit</a>
 <a class="text-text-muted dark:text-text-muted hover:text-on-surface dark:hover:text-on-surface font-label-md text-label-md pb-1 transition-colors duration-150" href="#risk">Risk Registry</a>
 </div>
 <!-- Trailing Action Cluster (Search, Sync, Bell, Contrast, Export) -->
@@ -261,12 +322,12 @@
 <span class="material-symbols-outlined text-lg" data-icon="sync">sync</span>
 </button>
 <!-- Notification Bell with Badge -->
-<button class="relative p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-text-muted hover:text-status-critical active:scale-95 transition-all border border-border-glass" title="18 Critical Alerts">
+<button class="relative p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-text-muted hover:text-status-critical active:scale-95 transition-all border border-border-glass" title="18 Critical Alerts" onclick="openAlertsModal()">
 <span class="material-symbols-outlined text-lg" data-icon="notifications">notifications</span>
 <span class="absolute -top-1 -right-1 bg-status-critical text-surface-container-lowest font-label-sm text-label-sm px-1.5 py-0.2 rounded-full font-bold shadow-[0_0_8px_rgba(244,63,94,0.6)]">18</span>
 </button>
 <!-- Contrast Toggle -->
-<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-text-muted hover:text-on-surface active:scale-95 transition-all border border-border-glass" title="Toggle Mode">
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-text-muted hover:text-on-surface active:scale-95 transition-all border border-border-glass" title="Toggle Mode" onclick="toggleTheme()">
 <span class="material-symbols-outlined text-lg" data-icon="contrast">contrast</span>
 </button>
 <!-- Trailing Secondary: Export Audit Button -->
@@ -471,7 +532,7 @@
 <span class="flex items-center gap-1">
 <span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Garis vertikal biru = Target Divisi (80%)
             </span>
-<button class="text-primary hover:underline font-label-md text-label-md">Detail DO Matrix →</button>
+<button class="text-primary hover:underline font-label-md text-label-md" onclick="openDOMatrixModal()">Detail DO Matrix →</button>
 </div>
 </div>
 <!-- Column 2: Pareto Bottleneck Dokumen -->
@@ -572,7 +633,7 @@
 </div>
 </div>
 <div class="mt-4 pt-3 border-t border-border-glass flex flex-col sm:flex-row gap-2">
-<button class="flex-1 bg-status-critical text-surface-container-lowest font-label-md text-label-md py-2 px-3 rounded-lg font-bold flex items-center justify-center gap-1.5 hover:brightness-110 active:scale-98 shadow-[0_0_12px_rgba(244,63,94,0.35)] transition-all" onclick="triggerDispatchNotice()">
+<button class="flex-1 bg-status-critical text-surface-container-lowest font-label-md text-label-md py-2 px-3 rounded-lg font-bold flex items-center justify-center gap-1.5 hover:brightness-110 active:scale-98 shadow-[0_0_12px_rgba(244,63,94,0.35)] transition-all" onclick="openDispatchNoticeModal()">
 <span class="material-symbols-outlined text-sm" data-icon="send">send</span>
               Kirim Surat Teguran Otomatis (18 PPK)
             </button>
@@ -1213,42 +1274,44 @@
 <!-- JavaScript Micro-Interactions -->
 <script>
     // ==========================================
-    // CCMS & ADKON LIVE SPREADSHEET ENGINE
+    // CCMS & ADKON ENTERPRISE DASHBOARD ENGINE
     // ==========================================
     const GOOGLE_SHEET_GVIZ_URL = "https://docs.google.com/spreadsheets/d/139JB1xkZd9jp44Xrb6FrT4vgamycWJAvxVwnjCskzzg/gviz/tq?tqx=out:json&sheet=Cheklist_20_Dokumen";
     
-    // Initial Snapshot of 51 Projects from Google Sheets
+    // Initial Snapshot of 51 Projects
     let allProjects = [{"No": 1.0, "Nama Proyek": "Pemb. Bendungan Lau Simeme Paket 1", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 2.0, "Nama Proyek": "Pemb. Bendungan Lau Simeme Lanj", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 13.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 13.0, "Persen Kepatuhan": "65.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 3.0, "Nama Proyek": "Pemb. Bendungan Komering II/3 Dihaji Paket VI", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 4.0, "Nama Proyek": "JSS 1", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 5.0, "Nama Proyek": "JSS 2", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 6.0, "Nama Proyek": "JSS 3", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 7.0, "Nama Proyek": "Bendungan Cijurey Paket III", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 8.0, "Nama Proyek": "Bendungan Karangnongko Paket 1", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 9.0, "Nama Proyek": "Bendungan Jragung Paket V", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 14.0, "Persen Kepatuhan": "70.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 10.0, "Nama Proyek": "Pengendalian Banjir Tenggang Tahap 1", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 11.0, "Nama Proyek": "Sewerage Development Project (Zone 6)", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 12.0, "Nama Proyek": "Pemb. Reservoir DC Samanan", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 14.0, "Persen Kepatuhan": "70.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 13.0, "Nama Proyek": "Karian-Serpong (KSCS 3)", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 13.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 13.0, "Persen Kepatuhan": "65.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 14.0, "Nama Proyek": "Bendungan Jatimlerek", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 15.0, "Nama Proyek": "Tanggap Darurat SPAM Paket 2", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 12.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 12.0, "Persen Kepatuhan": "60.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 16.0, "Nama Proyek": "Tanggap Darurat Sibolga-Padang Sidempuan", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 8.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 8.0, "Persen Kepatuhan": "40.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 17.0, "Nama Proyek": "PL. Tanggap Darurat Bencana Alam Kab. Tapanuli Selatan", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 12.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 12.0, "Persen Kepatuhan": "60.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 18.0, "Nama Proyek": "Tanggap Darurat SPAM Solok", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 8.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 8.0, "Persen Kepatuhan": "40.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 19.0, "Nama Proyek": "PL - Rehabilitasi Rekonstruksi Sungai Tukka", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "", "EoT": "", "MoM Ekst.": "", "Skor CM": 5.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 5.0, "Persen Kepatuhan": "25.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 1.0, "Nama Proyek": "Jalan Tol Ancol Timur - Pluit (Elevated)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 2.0, "Nama Proyek": "(Main Road) Jalan Tol Serang Panimbang (Serpan)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 3.0, "Nama Proyek": "Jalan Tol Serang - Panimbang (Serpan) Seksi 3", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 4.0, "Nama Proyek": "Patimban 6", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 5.0, "Nama Proyek": "Patimban 4", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 6.0, "Nama Proyek": "Jalan Tol Jakarta-Cikampek II", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 7.0, "Nama Proyek": "Toll Road Semarang Demak 1B", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 8.0, "Nama Proyek": "Jalan Tol Probolinggo-Banyuwangi Paket 3", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 9.0, "Nama Proyek": "Bendungan Sukamahi (MYC)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 10.0, "Nama Proyek": "Jalan Tol Cisumdawu (Km 177/Bojongtotor)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 11.0, "Nama Proyek": "Pemb. Irigasi Belimbing", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 12.0, "Nama Proyek": "Tol Serang Panimbang (Serpan 3B)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 13.0, "Nama Proyek": "Jalan Tol Akses Patimban Paket II", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 6.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 6.0, "Persen Kepatuhan": "30.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 14.0, "Nama Proyek": "Pemb. FO Muara Enim", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 13.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 13.0, "Persen Kepatuhan": "65.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 15.0, "Nama Proyek": "MRT Bundaran HI", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 6.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 6.0, "Persen Kepatuhan": "30.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 16.0, "Nama Proyek": "Tol Serang - Panimbang Paket 1 (Serpan 3B)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 17.0, "Nama Proyek": "Jalan Tol Yogyakarta - Bawen Seksi 3", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "✓", "SPMK": "", "BASTL": "", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 4.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 4.0, "Persen Kepatuhan": "20.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 18.0, "Nama Proyek": "Longsoran Bojongtotor Lanjutan", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 1.0, "Nama Proyek": "Pemb. Bendungan Manikin Kab. Kupang (Paket 1)", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 13.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 19.0, "Persen Kepatuhan": "95.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": null}, {"No": 2.0, "Nama Proyek": "Pemb. Relokasi Jalan Ruas Sel Duri-Mempawah Kalbar", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 12.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 18.0, "Persen Kepatuhan": "90.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": null}, {"No": 3.0, "Nama Proyek": "Dedging Pendalaman Alur Tursina Area III & IV", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 4.0, "Nama Proyek": "Pemb. Bendungan Jenelata Kab.Gowa, Sulsel", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 5.0, "Nama Proyek": "Pemb. Jalan Tol IKN Seksi 3B-2: Segmen KKT", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 6.0, "Nama Proyek": "MWRD Re-Diversion Construction", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 14.0, "Persen Kepatuhan": "70.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Sudah Ada Perubahan Seperti Item baru namun belum diinput di Tabel VO"}, {"No": 7.0, "Nama Proyek": "Pemb. Jalan Di KIPP: Hankam dan Lingkar Sepaku (LS) 4", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 8.0, "Nama Proyek": "Pemb. Tol IKN Seksi 1B Segmen Bandara Sepinggan - Tol Balsam", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 11.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 11.0, "Persen Kepatuhan": "55.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 9.0, "Nama Proyek": "Pemb. Jalan Kawasan Kompleks Yudikatif", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 14.0, "Persen Kepatuhan": "70.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 10.0, "Nama Proyek": "Pemb. Infrastruktur KSPP Merauke (Pkt2)", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 12.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 12.0, "Persen Kepatuhan": "60.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 11.0, "Nama Proyek": "Sewerage Pipe Installation Nipah Kuning B - CWIP 03", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 13.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 13.0, "Persen Kepatuhan": "65.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 12.0, "Nama Proyek": "Sewerage Pipe Installation Nipah Kuning B - CWIP 05", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "", "SPMK": "", "BASTL": "", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "", "EoT": "", "MoM Ekst.": "", "Skor CM": 0.0, "Status CM": "Belum Diisi", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 0.0, "Persen Kepatuhan": "0.0%", "Kategori Status": "Kritis 0%", "Catatan Khusus ADKON": null}, {"No": 13.0, "Nama Proyek": "Pemb. Jalan Bebas Hambatan Seksi 6B", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "", "SPMK": "", "BASTL": "", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "", "EoT": "", "MoM Ekst.": "", "Skor CM": 0.0, "Status CM": "Belum Diisi", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 0.0, "Persen Kepatuhan": "0.0%", "Kategori Status": "Kritis 0%", "Catatan Khusus ADKON": "Dokumen kontraktual hanya terdapat SPMK dan Kontrak Perjanjian"}, {"No": 14.0, "Nama Proyek": "Jalan Paket G di KIPP 1B-1C", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "", "SPMK": "", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 7.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 7.0, "Persen Kepatuhan": "35.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}];
     let activeFilterDivision = 'all';
     let activeFilterStatus = 'all';
     let activeSearchQuery = '';
+    let currentPage = 1;
+    const itemsPerPage = 12;
 
     // 14 CM Parameter Keys & Display Labels
     const CM_PARAMETERS = [
-      { key: "CCMS", label: "1. Akun CCMS Terdaftar" },
-      { key: "Do. Kontrak (SSUK/SSKK)+Amandemen", label: "2. Dokumen SSUK & SSKK (+ Amandemen)" },
-      { key: "SPP", label: "3. Surat Penunjukan (SPP)" },
-      { key: "SPMK", label: "4. Surat Perintah Kerja (SPMK)" },
-      { key: "BASTL", label: "5. Berita Acara Serah Lahan (BASTL)" },
-      { key: "Jaminan UM", label: "6. Jaminan Uang Muka (JUM)" },
-      { key: "Jaminan Pelaksanaan", label: "7. Jaminan Pelaksanaan" },
-      { key: "Polis Asuransi", label: "8. CAR Insurance Renewal" },
-      { key: "TDK", label: "9. Tanggal Dimulainya Kerja (TDK)" },
-      { key: "RKP Bab 12", label: "10. RKP Bab 12 (K3/Ketenagaan)" },
-      { key: "Cheklist Progress", label: "11. Checklist Progres Bulanan" },
-      { key: "Executive Summary", label: "12. Executive Summary Bulanan" },
-      { key: "EoT", label: "13. Extension of Time (EoT)" },
-      { key: "MoM Ekst.", label: "14. Notulen Eksternal (MoM)" }
+      { key: "CCMS", label: "1. Akun CCMS Terdaftar", desc: "Registrasi aktif di aplikasi CCMS" },
+      { key: "Do. Kontrak (SSUK/SSKK)+Amandemen", label: "2. Dokumen SSUK & SSKK", desc: "Syarat-Syarat Umum & Khusus Kontrak" },
+      { key: "SPP", label: "3. Surat Penunjukan (SPP)", desc: "Surat Penunjukan Penyedia Barang/Jasa" },
+      { key: "SPMK", label: "4. Surat Perintah Kerja (SPMK)", desc: "Surat Perintah Mulai Kerja resmi" },
+      { key: "BASTL", label: "5. Berita Acara Serah Lahan (BASTL)", desc: "Legalitas serah terima lahan kerja" },
+      { key: "Jaminan UM", label: "6. Jaminan Uang Muka (JUM)", desc: "Jaminan keuangan uang muka" },
+      { key: "Jaminan Pelaksanaan", label: "7. Jaminan Pelaksanaan", desc: "Jaminan garansi pelaksanaan kontrak" },
+      { key: "Polis Asuransi", label: "8. CAR Insurance Renewal", desc: "Construction All Risk Insurance" },
+      { key: "TDK", label: "9. Tanggal Dimulainya Kerja (TDK)", desc: "Pencatatan tanggal awal kalender kerja" },
+      { key: "RKP Bab 12", label: "10. RKP Bab 12 (K3/Ketenagaan)", desc: "Rencana Kerja & Keselamatan Kerja" },
+      { key: "Cheklist Progress", label: "11. Checklist Progres Bulanan", desc: "Monitoring berkala progres fisik mingguan/bulanan" },
+      { key: "Executive Summary", label: "12. Executive Summary Bulanan", desc: "Laporan ringkasan eksekutif proyek" },
+      { key: "EoT", label: "13. Extension of Time (EoT)", desc: "Justifikasi perpanjangan waktu kerja" },
+      { key: "MoM Ekst.", label: "14. Notulen Eksternal (MoM)", desc: "Minutes of Meeting dengan stakeholder eksternal" }
     ];
 
     // 6 VO Parameter Keys & Display Labels
     const VO_PARAMETERS = [
-      { key: "Input CCMS (Update Status)", label: "1. Update Status Fisik CCMS" },
-      { key: "Notis", label: "2. Surat Notis Klaim" },
-      { key: "Claim Waktu (Terdampak)", label: "3. Klaim Waktu (Terdampak)" },
-      { key: "Proposal Perubahan", label: "4. Proposal Perubahan Kontrak" },
-      { key: "BAK", label: "5. Berita Acara Kesepakatan (BAK)" },
-      { key: "Amandemen Kontrak", label: "6. Amandemen Kontrak Fisik / CCO" }
+      { key: "Input CCMS (Update Status)", label: "1. Update Status Fisik CCMS", desc: "Pembaruan log pekerjaan tambah-kurang pada CCMS" },
+      { key: "Notis", label: "2. Surat Notis Klaim", desc: "Pemberitahuan resmi potensi klaim waktu/biaya" },
+      { key: "Claim Waktu (Terdampak)", label: "3. Klaim Waktu (Terdampak)", desc: "Analisis dampak jadwal kerja (Schedule Impact)" },
+      { key: "Proposal Perubahan", label: "4. Proposal Perubahan Kontrak", desc: "Justifikasi teknis & BoQ penyesuaian lapangan" },
+      { key: "BAK", label: "5. Berita Acara Kesepakatan (BAK)", desc: "Kesepakatan teknis & harga antara PPK dan Kontraktor" },
+      { key: "Amandemen Kontrak", label: "6. Amandemen Kontrak Fisik / CCO", desc: "Naskah perjanjian addendum bertandatangan resmi" }
     ];
 
     // Toast Notification helper
@@ -1278,6 +1341,73 @@
       }, 3500);
     }
 
+    // Theme Toggle (Dark / Light)
+    function toggleTheme() {
+      const htmlEl = document.documentElement;
+      if (htmlEl.classList.contains('dark')) {
+        htmlEl.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        showToast('Tema Terang', 'Mode tampilan eksekutif terang diaktifkan.', 'light_mode');
+      } else {
+        htmlEl.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        showToast('Tema Gelap', 'Mode tampilan obsidian gelap diaktifkan.', 'dark_mode');
+      }
+    }
+
+    // Modal Generic Controls
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) modal.classList.add('hidden');
+    }
+
+    // Close on Escape
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        ['auditModal', 'adkonGuidelinesModal', 'systemDiagnosticsModal', 'auditReportModal', 'alertsModal', 'doMatrixModal', 'parametersModal', 'dispatchNoticeModal'].forEach(id => closeModal(id));
+      }
+    });
+
+    // Navigation Helper
+    function navigateTo(target) {
+      if (target === 'all' || target === 'dashboard') {
+        activeFilterDivision = 'all';
+        activeFilterStatus = 'all';
+        activeSearchQuery = '';
+        currentPage = 1;
+        // update filter buttons
+        updateDivisionFilterButtons('all');
+        renderDashboard();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        showToast('Dashboard Utama', 'Menampilkan seluruh 51 proyek.', 'dashboard');
+      } else if (target === 'DO 1' || target === 'DO 2' || target === 'DO 3') {
+        activeFilterDivision = target;
+        currentPage = 1;
+        updateDivisionFilterButtons(target);
+        renderDashboard();
+        const complianceSection = document.getElementById('compliance');
+        if (complianceSection) complianceSection.scrollIntoView({ behavior: 'smooth' });
+        showToast(`Divisi ${target}`, `Menampilkan portofolio proyek ${target}.`, 'filter_alt');
+      }
+    }
+
+    function updateDivisionFilterButtons(code) {
+      const buttons = document.querySelectorAll('#compliance button');
+      buttons.forEach(btn => {
+        const text = btn.innerText;
+        if ((code === 'all' && text.includes('Semua')) || (code !== 'all' && text.includes(code))) {
+          btn.className = "px-3 py-1.5 rounded-md font-label-md text-label-md bg-primary text-on-primary shadow transition-all";
+        } else if (text.includes('DO') || text.includes('Semua')) {
+          btn.className = "px-3 py-1.5 rounded-md font-label-md text-label-md text-text-muted hover:text-on-surface transition-all";
+        }
+      });
+    }
+
     // Fetch Live Data from Google Sheets
     async function fetchLiveData(isManualTrigger = false) {
       try {
@@ -1300,7 +1430,7 @@
             const now = new Date();
             const timeStr = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
             const badge = document.getElementById('syncStatusBadge');
-            if (badge) badge.textContent = `<span id=\"syncStatusBadge\">Live Google Sheets Connected (Last sync: Baru saja)</span>`;
+            if (badge) badge.textContent = `Live Google Sheets Connected (Last sync: ${timeStr})`;
             if (isManualTrigger) {
               showToast('Sinkronisasi Sukses', `Tersinkron dengan 51 proyek (${timeStr} WIB)`, 'cloud_done');
             }
@@ -1320,14 +1450,7 @@
       fetchLiveData(true);
     }
 
-    function triggerAuditToast() {
-      showToast('Laporan Audit Siap', 'Laporan kepatuhan 51 proyek digenerate dalam format eksekutif.', 'description');
-    }
-
-    function triggerExportModal() {
-      window.print();
-    }
-
+    // Export Functions
     function triggerExportCSV() {
       if (!allProjects || allProjects.length === 0) return;
       const headers = Object.keys(allProjects[0]);
@@ -1345,42 +1468,27 @@
       showToast('Export CSV', 'File data 51 proyek berhasil diunduh.', 'file_download');
     }
 
-    function triggerDispatchNotice() {
-      showToast('Surat Teguran Terkirim', '18 Nota dinas peringatan Addendum 1 telah dikirim ke masing-masing PPK & PM.', 'send', true);
+    function triggerExportModal() {
+      openAuditReportModal();
     }
 
-    function sendPMRminder() {
-      showToast('Peringatan Dikirim', 'Pemberitahuan eskalasi diteruskan ke PM Proyek dan Auditor Regional.', 'notification_important', true);
-      closeAuditModal();
-    }
-
-    function triggerVerificationDownload() {
-      showToast('Lembar Verifikasi', 'Mengunduh checklist audit 20-parameter untuk validasi lapangan.', 'download');
-    }
-
-    // Render Table Rows & KPIs
+    // Render Table Rows & Dynamic Elements
     function renderDashboard() {
       const tbody = document.getElementById('tableBody');
       if (!tbody) return;
 
       tbody.innerHTML = '';
-      let visibleCount = 0;
 
-      allProjects.forEach((proj, idx) => {
-        const pNo = parseInt(String(proj['No'] || idx + 1).replace('.', '').trim()) || (idx + 1);
-        const name = proj['Nama Proyek'] || 'Proyek Tanpa Nama';
+      // Compute filtered projects
+      const filtered = allProjects.filter((proj, idx) => {
         const deptCode = (proj['Kode Dept'] || '').toUpperCase();
-        const scoreCM = parseInt(proj['Skor CM']) || 0;
-        const scoreVO = parseInt(proj['Skor VO']) || 0;
         let percent = parseFloat(proj['Persen Kepatuhan']) || 0;
-        if (percent <= 1.0 && percent > 0) percent = percent * 100; // handle 0.85 format
+        if (percent <= 1.0 && percent > 0) percent = percent * 100;
         percent = Math.min(100, Math.round(percent * 10) / 10);
-
         const statusCategory = proj['Kategori Status'] || (percent >= 80 ? 'Lengkap' : percent >= 40 ? 'Monitoring' : 'Kritis');
         const notes = proj['Catatan Khusus ADKON'] || '';
         const isAddendumFlag = notes.includes('Addendum 1') || (proj['BAK'] === '✓' && proj['Amandemen Kontrak'] !== '✓');
 
-        // Check active filters
         let matchDiv = (activeFilterDivision === 'all' || deptCode === activeFilterDivision.toUpperCase());
         let matchStatus = true;
         if (activeFilterStatus === 'addendum-flag') {
@@ -1391,15 +1499,36 @@
 
         let matchSearch = true;
         if (activeSearchQuery) {
-          const fullText = (name + ' ' + deptCode + ' ' + notes).toLowerCase();
+          const fullText = (proj['Nama Proyek'] + ' ' + deptCode + ' ' + notes).toLowerCase();
           matchSearch = fullText.includes(activeSearchQuery);
         }
 
-        if (!matchDiv || !matchStatus || !matchSearch) return;
+        return matchDiv && matchStatus && matchSearch;
+      });
 
-        visibleCount++;
+      // Render Pagination Controls
+      const totalFiltered = filtered.length;
+      const totalPages = Math.ceil(totalFiltered / itemsPerPage) || 1;
+      if (currentPage > totalPages) currentPage = totalPages;
 
-        // Status badge & style
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const pageProjects = filtered.slice(startIndex, startIndex + itemsPerPage);
+
+      pageProjects.forEach((proj) => {
+        const originalIndex = allProjects.indexOf(proj);
+        const pNo = parseInt(String(proj['No'] || originalIndex + 1).replace('.', '').trim()) || (originalIndex + 1);
+        const name = proj['Nama Proyek'] || 'Proyek Tanpa Nama';
+        const deptCode = (proj['Kode Dept'] || '').toUpperCase();
+        const scoreCM = parseInt(proj['Skor CM']) || 0;
+        const scoreVO = parseInt(proj['Skor VO']) || 0;
+        let percent = parseFloat(proj['Persen Kepatuhan']) || 0;
+        if (percent <= 1.0 && percent > 0) percent = percent * 100;
+        percent = Math.min(100, Math.round(percent * 10) / 10);
+
+        const statusCategory = proj['Kategori Status'] || (percent >= 80 ? 'Lengkap' : percent >= 40 ? 'Monitoring' : 'Kritis');
+        const notes = proj['Catatan Khusus ADKON'] || '';
+        const isAddendumFlag = notes.includes('Addendum 1') || (proj['BAK'] === '✓' && proj['Amandemen Kontrak'] !== '✓');
+
         let badgeClass = "bg-status-compliance/15 text-status-compliance border-status-compliance/30";
         let dotColor = "bg-status-compliance";
         let barColorCM = "bg-status-compliance";
@@ -1422,10 +1551,6 @@
 
         const tr = document.createElement('tr');
         tr.className = "hover:bg-surface-container-high/50 transition-colors group";
-        tr.setAttribute('data-division', deptCode.toLowerCase());
-        tr.setAttribute('data-status', statusCategory);
-        tr.setAttribute('data-addendum', isAddendumFlag ? 'flag' : 'safe');
-
         tr.innerHTML = `
           <td class="py-2.5 px-3 text-center font-label-md text-text-muted">${pNo}</td>
           <td class="py-2.5 px-4 font-semibold text-on-surface">
@@ -1463,7 +1588,7 @@
             </span>
           </td>
           <td class="py-2.5 px-3 text-center">
-            <button class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high border border-border-glass text-xs font-semibold text-primary hover:text-on-surface active:scale-95 transition-all" onclick="openAuditModalByIndex(${idx})">
+            <button class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high border border-border-glass text-xs font-semibold text-primary hover:text-on-surface active:scale-95 transition-all" onclick="openAuditModalByIndex(${originalIndex})">
               Detail
             </button>
           </td>
@@ -1472,10 +1597,226 @@
       });
 
       const countEl = document.getElementById('displayingCount');
-      if (countEl) countEl.textContent = `Menampilkan ${visibleCount} dari ${allProjects.length} proyek`;
+      if (countEl) countEl.textContent = `Menampilkan ${startIndex + 1}-${Math.min(startIndex + itemsPerPage, totalFiltered)} dari ${totalFiltered} proyek terfilter (${allProjects.length} total)`;
+
+      renderPagination(totalPages);
     }
 
-    // Modal Audit Control
+    function renderPagination(totalPages) {
+      const navContainer = document.querySelector('#compliance nav[aria-label="Pagination"]');
+      if (!navContainer) return;
+
+      navContainer.innerHTML = '';
+
+      // Prev Button
+      const prevBtn = document.createElement('button');
+      prevBtn.className = `px-3 py-1.5 rounded-lg border border-border-glass text-xs font-semibold ${currentPage === 1 ? 'opacity-40 cursor-not-allowed text-text-muted' : 'text-primary hover:bg-surface-container'} transition-all`;
+      prevBtn.innerHTML = '« Prev';
+      prevBtn.onclick = () => { if (currentPage > 1) { currentPage--; renderDashboard(); } };
+      navContainer.appendChild(prevBtn);
+
+      // Page numbers
+      for (let p = 1; p <= totalPages; p++) {
+        const pBtn = document.createElement('button');
+        pBtn.className = (p === currentPage)
+          ? "w-8 h-8 rounded-lg bg-primary text-on-primary font-bold text-xs shadow transition-all"
+          : "w-8 h-8 rounded-lg border border-border-glass text-text-muted hover:text-on-surface hover:bg-surface-container text-xs font-semibold transition-all";
+        pBtn.textContent = p;
+        pBtn.onclick = () => { currentPage = p; renderDashboard(); };
+        navContainer.appendChild(pBtn);
+      }
+
+      // Next Button
+      const nextBtn = document.createElement('button');
+      nextBtn.className = `px-3 py-1.5 rounded-lg border border-border-glass text-xs font-semibold ${currentPage === totalPages ? 'opacity-40 cursor-not-allowed text-text-muted' : 'text-primary hover:bg-surface-container'} transition-all`;
+      nextBtn.innerHTML = 'Next »';
+      nextBtn.onclick = () => { if (currentPage < totalPages) { currentPage++; renderDashboard(); } };
+      navContainer.appendChild(nextBtn);
+    }
+
+    // Open Specific Modals Handlers
+    function openAdkonGuidelinesModal() {
+      openModal('adkonGuidelinesModal');
+    }
+
+    function openDiagnosticsModal() {
+      const rawTextEl = document.getElementById('rawJsonText');
+      if (rawTextEl) {
+        rawTextEl.textContent = JSON.stringify(allProjects, null, 2);
+      }
+      openModal('systemDiagnosticsModal');
+    }
+
+    function toggleRawJson() {
+      const c = document.getElementById('rawJsonContainer');
+      const chev = document.getElementById('jsonChevron');
+      if (c) {
+        if (c.classList.contains('hidden')) {
+          c.classList.remove('hidden');
+          if (chev) chev.textContent = 'expand_less';
+        } else {
+          c.classList.add('hidden');
+          if (chev) chev.textContent = 'expand_more';
+        }
+      }
+    }
+
+    function openAuditReportModal() {
+      // Update dynamic figures in report
+      let total = allProjects.length;
+      let sumPct = 0;
+      let lengkap = 0;
+      let kritis = 0;
+      allProjects.forEach(p => {
+        let pct = parseFloat(p['Persen Kepatuhan']) || 0;
+        if (pct <= 1.0 && pct > 0) pct = pct * 100;
+        sumPct += pct;
+        if (pct >= 80) lengkap++;
+        else if (pct < 40) kritis++;
+      });
+      const avg = total > 0 ? (sumPct / total).toFixed(1) : 0;
+      const elAvg = document.getElementById('repAvgCompliance');
+      const elLengkap = document.getElementById('repLengkapCount');
+      const elKritis = document.getElementById('repKritisCount');
+      if (elAvg) elAvg.textContent = `${avg}%`;
+      if (elLengkap) elLengkap.textContent = `${lengkap} Proyek`;
+      if (elKritis) elKritis.textContent = `${kritis} Proyek`;
+
+      openModal('auditReportModal');
+    }
+
+    function openAlertsModal() {
+      const container = document.getElementById('alertsListContainer');
+      if (container) {
+        container.innerHTML = '';
+        const flagged = allProjects.filter(p => {
+          const notes = p['Catatan Khusus ADKON'] || '';
+          return notes.includes('Addendum 1') || (p['BAK'] === '✓' && p['Amandemen Kontrak'] !== '✓');
+        });
+
+        if (flagged.length === 0) {
+          container.innerHTML = '<div class="p-6 text-center text-text-muted">Tidak ada proyek yang terindikasi risiko kritis saat ini.</div>';
+        } else {
+          flagged.forEach((p, i) => {
+            const origIdx = allProjects.indexOf(p);
+            let pct = parseFloat(p['Persen Kepatuhan']) || 0;
+            if (pct <= 1.0 && pct > 0) pct = pct * 100;
+            pct = Math.round(pct);
+            const item = document.createElement('div');
+            item.className = "p-3 rounded-xl bg-surface-glass border border-status-critical/30 hover:border-status-critical/60 flex items-center justify-between gap-3 transition-all";
+            item.innerHTML = `
+              <div class="space-y-0.5 flex-1 min-w-0">
+                <div class="flex items-center gap-2">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-surface-container border border-border-glass text-text-muted">${p['Kode Dept']}</span>
+                  <span class="font-bold text-on-surface truncate text-xs">${p['Nama Proyek']}</span>
+                </div>
+                <div class="text-[11px] text-text-muted truncate">${p['Catatan Khusus ADKON'] || 'Pekerjaan Tambah Kurang tanpa amandemen fisik'}</div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded text-xs font-bold bg-status-critical/15 text-status-critical border border-status-critical/30">${pct}%</span>
+                <button class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-container-high border border-border-glass text-xs text-primary font-semibold" onclick="closeModal('alertsModal'); openAuditModalByIndex(${origIdx})">
+                  Detail
+                </button>
+              </div>
+            `;
+            container.appendChild(item);
+          });
+        }
+      }
+      openModal('alertsModal');
+    }
+
+    function openDOMatrixModal() {
+      const container = document.getElementById('doComparisonCards');
+      if (container) {
+        container.innerHTML = '';
+        ['DO 1', 'DO 2', 'DO 3'].forEach(code => {
+          const list = allProjects.filter(p => (p['Kode Dept'] || '').toUpperCase() === code);
+          let sumPct = 0;
+          let kritis = 0;
+          let monitoring = 0;
+          let lengkap = 0;
+          list.forEach(p => {
+            let pct = parseFloat(p['Persen Kepatuhan']) || 0;
+            if (pct <= 1.0 && pct > 0) pct = pct * 100;
+            sumPct += pct;
+            if (pct >= 80) lengkap++;
+            else if (pct >= 40) monitoring++;
+            else kritis++;
+          });
+          const avg = list.length > 0 ? (sumPct / list.length).toFixed(1) : 0;
+          const card = document.createElement('div');
+          card.className = "p-4 rounded-xl bg-surface-glass border border-border-glass space-y-3";
+          card.innerHTML = `
+            <div class="flex items-center justify-between border-b border-border-glass pb-2">
+              <span class="font-bold text-on-surface">${code}</span>
+              <span class="text-xs font-bold px-2 py-0.5 rounded bg-surface-container text-primary">${list.length} Proyek</span>
+            </div>
+            <div class="space-y-1">
+              <div class="text-xs text-text-muted">Kepatuhan Rata-rata:</div>
+              <div class="text-2xl font-black text-primary">${avg}%</div>
+            </div>
+            <div class="space-y-1.5 text-xs text-text-muted pt-2 border-t border-border-glass/60">
+              <div class="flex justify-between"><span>Patuh Lengkap:</span> <strong class="text-status-compliance">${lengkap}</strong></div>
+              <div class="flex justify-between"><span>Perlu Monitoring:</span> <strong class="text-status-followup">${monitoring}</strong></div>
+              <div class="flex justify-between"><span>Status Kritis:</span> <strong class="text-status-critical">${kritis}</strong></div>
+            </div>
+            <button class="w-full mt-2 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high border border-border-glass text-xs font-semibold text-primary transition-all" onclick="closeModal('doMatrixModal'); navigateTo('${code}')">
+              Isolasi Tabel Proyek ${code}
+            </button>
+          `;
+          container.appendChild(card);
+        });
+      }
+      openModal('doMatrixModal');
+    }
+
+    function openParametersModal() {
+      const container = document.getElementById('parametersDictionaryGrid');
+      if (container) {
+        container.innerHTML = '';
+        const allParams = [...CM_PARAMETERS, ...VO_PARAMETERS];
+        allParams.forEach((param, i) => {
+          const isCM = i < 14;
+          const item = document.createElement('div');
+          item.className = "p-3 rounded-xl bg-surface-glass border border-border-glass flex items-start gap-3";
+          item.innerHTML = `
+            <div class="w-8 h-8 rounded-lg ${isCM ? 'bg-primary/10 text-primary border-primary/30' : 'bg-status-compliance/10 text-status-compliance border-status-compliance/30'} border flex items-center justify-center font-bold text-xs flex-shrink-0">
+              ${i + 1}
+            </div>
+            <div class="space-y-0.5">
+              <div class="font-bold text-on-surface text-xs flex items-center gap-2">
+                <span>${param.label}</span>
+                <span class="px-1.5 py-0.2 rounded text-[10px] font-bold ${isCM ? 'bg-primary/20 text-primary' : 'bg-status-compliance/20 text-status-compliance'}">
+                  ${isCM ? 'Contract Management' : 'Variation Order'}
+                </span>
+              </div>
+              <div class="text-[11px] text-text-muted">${param.desc}</div>
+            </div>
+          `;
+          container.appendChild(item);
+        });
+      }
+      openModal('parametersModal');
+    }
+
+    function openDispatchNoticeModal() {
+      openModal('dispatchNoticeModal');
+    }
+
+    function copyDispatchText() {
+      const text = `NOMOR: ND-051026/INFRA1/ADKON/IV/2026\nHAL: Instruksi Percepatan Kelengkapan Berkas Addendum 1 & Mitigasi Risiko Audit\nKEPADA: Seluruh Project Manager & PPK 18 Proyek Terlampir\n\nBerdasarkan audit kepatuhan CCMS Triwulan IV, teridentifikasi bahwa proyek Saudara telah melaksanakan pekerjaan fisik tambah-kurang (CCO/MC0) namun berkas formal Addendum 1 Kontrak belum tercatat lengkap pada pangkalan data Divisi.\n\nDiinstruksikan untuk segera menyelesaikan BAK, Justek, dan mengunggah dokumen legal amandemen fisik pada portal CCMS paling lambat 7 hari kerja.`;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Teks Disalin', 'Draf surat dinas tersalin ke clipboard.', 'content_copy');
+      });
+    }
+
+    function confirmDispatchSend() {
+      showToast('Surat Terkirim', 'Nota dinas dan rekap 18 proyek diteruskan ke PPK via email/portal ADKON.', 'forward_to_inbox', true);
+      closeModal('dispatchNoticeModal');
+    }
+
+    // Modal Detail Proyek
     function openAuditModalByIndex(index) {
       const proj = allProjects[index];
       if (!proj) return;
@@ -1569,18 +1910,17 @@
         `;
       }
 
-      const modal = document.getElementById('auditModal');
-      if (modal) modal.classList.remove('hidden');
+      openModal('auditModal');
     }
 
     function closeAuditModal() {
-      const modal = document.getElementById('auditModal');
-      if (modal) modal.classList.add('hidden');
+      closeModal('auditModal');
     }
 
-    // Filter by Division Tabs
+    // Filter controls
     function filterDivision(divCode, btn) {
       activeFilterDivision = divCode;
+      currentPage = 1;
       const container = btn.parentElement;
       const buttons = container.querySelectorAll('button');
       buttons.forEach(b => {
@@ -1590,51 +1930,490 @@
       renderDashboard();
     }
 
-    // Filter by Dropdown Status
     function filterStatus() {
       const select = document.getElementById('statusFilterSelect');
       activeFilterStatus = select.value;
+      currentPage = 1;
       renderDashboard();
     }
 
-    // Filter trigger from Risk Alert card
     function filterTableByAddendum() {
       const select = document.getElementById('statusFilterSelect');
       if (select) select.value = 'addendum-flag';
       activeFilterStatus = 'addendum-flag';
+      currentPage = 1;
       renderDashboard();
       const el = document.getElementById('compliance');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
       showToast('Filter Diterapkan', 'Menampilkan 18 proyek terindikasi Missing Addendum 1.', 'filter_alt');
     }
 
-    // Search Projects Table
     function searchProjects() {
       const query = document.getElementById('projectSearchInput').value.toLowerCase();
       activeSearchQuery = query;
+      currentPage = 1;
       renderDashboard();
     }
 
-    // Global Top Search sync
     const globalSearch = document.getElementById('globalSearch');
     if (globalSearch) {
       globalSearch.addEventListener('keyup', (e) => {
         const input = document.getElementById('projectSearchInput');
         if (input) input.value = e.target.value;
         activeSearchQuery = e.target.value.toLowerCase();
+        currentPage = 1;
         renderDashboard();
       });
     }
 
-    // Close modal on Escape
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeAuditModal();
-    });
+    function sendPMRminder() {
+      showToast('Peringatan Dikirim', 'Pemberitahuan eskalasi diteruskan ke PM Proyek dan Auditor Regional.', 'notification_important', true);
+      closeAuditModal();
+    }
 
-    // Initialize Dashboard on DOM load
+    function triggerVerificationDownload() {
+      showToast('Lembar Verifikasi', 'Mengunduh checklist audit 20-parameter untuk validasi lapangan.', 'download');
+    }
+
+    // Initialize on DOM load
     window.addEventListener('DOMContentLoaded', () => {
+      // restore theme preference
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.classList.remove('dark');
+      }
       renderDashboard();
       fetchLiveData(false);
     });
 </script>
+
+  <!-- ==================================================== -->
+  <!-- MODAL 1: ADKON GUIDELINES (SOP KONTRAKTUAL)          -->
+  <!-- ==================================================== -->
+  <div id="adkonGuidelinesModal" class="fixed inset-0 z-50 hidden bg-surface-container-lowest/80 backdrop-blur-md flex justify-center items-center p-4">
+    <div class="w-full max-w-4xl max-h-[90vh] bg-surface-container-low border border-border-glass rounded-2xl shadow-2xl flex flex-col overflow-hidden modal-enter">
+      <!-- Modal Header -->
+      <div class="p-space-md border-b border-border-glass bg-surface-glass backdrop-blur-md flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-2xl">menu_book</span>
+          </div>
+          <div>
+            <h3 class="font-headline-sm font-bold text-on-surface">Pedoman Tata Kelola ADKON & CCMS</h3>
+            <p class="font-body-xs text-text-muted">Standar Operasional Prosedur (SOP) Divisi Infrastruktur 1 — Kepatuhan 20 Parameter</p>
+          </div>
+        </div>
+        <button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high border border-border-glass text-text-muted hover:text-on-surface" onclick="closeModal('adkonGuidelinesModal')">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+      <!-- Modal Tabs & Content -->
+      <div class="p-space-md overflow-y-auto space-y-4 custom-scrollbar flex-1 text-body-sm">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Pillar 1 -->
+          <div class="p-4 rounded-xl bg-surface-glass border border-border-glass space-y-2">
+            <div class="flex items-center gap-2 text-primary font-bold">
+              <span class="material-symbols-outlined text-lg">inventory</span>
+              <h4>Pillar 1: Contract Management (14 Dokumen Wajib)</h4>
+            </div>
+            <ul class="space-y-1.5 text-text-muted font-body-xs list-disc pl-4">
+              <li><strong class="text-on-surface">Akun CCMS:</strong> Proyek wajib terdaftar aktif di aplikasi Construction Contract Management System.</li>
+              <li><strong class="text-on-surface">SSUK & SSKK:</strong> Syarat-Syarat Umum & Khusus Kontrak beserta seluruh lembar amandemen.</li>
+              <li><strong class="text-on-surface">SPP & SPMK:</strong> Surat Penunjukan Penyedia & Surat Perintah Mulai Kerja bertanggal resmi.</li>
+              <li><strong class="text-on-surface">BASTL:</strong> Berita Acara Serah Terima Lahan sebagai batas tanggung jawab fisik.</li>
+              <li><strong class="text-on-surface">JUM & Jampel:</strong> Jaminan Uang Muka & Pelaksanaan yang masa lakunya mencakup durasi kontrak.</li>
+              <li><strong class="text-on-surface">Polis CAR:</strong> Construction All Risks Insurance wajib diperpanjang sebelum masa asuransi berakhir.</li>
+              <li><strong class="text-on-surface">TDK & RKP:</strong> Tanggal Dimulainya Kerja & Rencana Kerja Proyek Bab 12 (K3 & Ketenagaan).</li>
+              <li><strong class="text-on-surface">Checklist & Exec Summary:</strong> Laporan bulanan progres fisik dan rekap eksekutif manajemen.</li>
+              <li><strong class="text-on-surface">EoT & MoM:</strong> Dokumen Extension of Time dan Notulen Rapat Eksternal berkala.</li>
+            </ul>
+          </div>
+          <!-- Pillar 2 -->
+          <div class="p-4 rounded-xl bg-surface-glass border border-border-glass space-y-2">
+            <div class="flex items-center gap-2 text-status-compliance font-bold">
+              <span class="material-symbols-outlined text-lg">sync_alt</span>
+              <h4>Pillar 2: Variation Order & Klaim (6 Dokumen)</h4>
+            </div>
+            <ul class="space-y-1.5 text-text-muted font-body-xs list-disc pl-4">
+              <li><strong class="text-on-surface">Update Status CCMS:</strong> Pembaruan log pekerjaan tambah-kurang pada modul VO aplikasi CCMS.</li>
+              <li><strong class="text-on-surface">Notis Klaim:</strong> Wajib diterbitkan maksimal 14 hari kerja sejak timbulnya peristiwa klaim/keterlambatan.</li>
+              <li><strong class="text-on-surface">Klaim Waktu:</strong> Analisis dampak jadwal (Schedule Impact Analysis) dengan Time Impact Analysis (TIA).</li>
+              <li><strong class="text-on-surface">Proposal Perubahan:</strong> Rincian Justifikasi Teknis (Justek) dan BoQ pekerjaan baru.</li>
+              <li><strong class="text-on-surface">BAK:</strong> Berita Acara Kesepakatan harga satuan timpang & volume tambah kurang.</li>
+              <li><strong class="text-on-surface">Amandemen Kontrak:</strong> Kontrak Addendum fisik bertandatangan PPK dan Penyedia Jasa.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Warning Addendum 1 Box -->
+        <div class="p-3.5 rounded-xl bg-status-critical/10 border border-status-critical/30 space-y-1.5">
+          <div class="flex items-center gap-2 text-status-critical font-bold">
+            <span class="material-symbols-outlined text-base">warning</span>
+            <span>Ketentuan Kritis Addendum 1 (CCO / Pekerjaan Tambah-Kurang)</span>
+          </div>
+          <p class="font-body-xs text-text-muted leading-relaxed">
+            Sesuai audit kepatuhan, proyek yang telah memiliki progres fisik MC0 wajib segera memformalkan Addendum 1. Keterlambatan terbitnya Addendum 1 berpotensi menyebabkan status pekerjaan tidak sah dalam uji petik BPKP dan menghambat pencairan termin akhir tahun.
+          </p>
+        </div>
+      </div>
+      <!-- Modal Footer -->
+      <div class="p-space-md border-t border-border-glass bg-surface-glass flex justify-end">
+        <button class="px-4 py-2 rounded-lg bg-primary text-on-primary font-bold text-xs" onclick="closeModal('adkonGuidelinesModal')">
+          Saya Mengerti
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- MODAL 2: SYSTEM DIAGNOSTICS & GOOGLE INTEGRATION     -->
+  <!-- ==================================================== -->
+  <div id="systemDiagnosticsModal" class="fixed inset-0 z-50 hidden bg-surface-container-lowest/80 backdrop-blur-md flex justify-center items-center p-4">
+    <div class="w-full max-w-3xl max-h-[90vh] bg-surface-container-low border border-border-glass rounded-2xl shadow-2xl flex flex-col overflow-hidden modal-enter">
+      <!-- Modal Header -->
+      <div class="p-space-md border-b border-border-glass bg-surface-glass backdrop-blur-md flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-2xl">settings_ethernet</span>
+          </div>
+          <div>
+            <h3 class="font-headline-sm font-bold text-on-surface">Diagnostik Sistem & Integrasi Google</h3>
+            <p class="font-body-xs text-text-muted">Status konektivitas live spreadsheet, MCP Stitch, dan integritas data 51 proyek.</p>
+          </div>
+        </div>
+        <button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high border border-border-glass text-text-muted hover:text-on-surface" onclick="closeModal('systemDiagnosticsModal')">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+      <!-- Modal Body -->
+      <div class="p-space-md overflow-y-auto space-y-4 custom-scrollbar flex-1 text-body-sm">
+        <!-- Status Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="p-3 rounded-xl bg-surface-glass border border-status-compliance/40 space-y-1">
+            <div class="flex items-center justify-between text-xs text-text-muted">
+              <span>Google Sheets API</span>
+              <span class="w-2 h-2 rounded-full bg-status-compliance"></span>
+            </div>
+            <div class="text-base font-bold text-status-compliance">Connected (200 OK)</div>
+            <div class="text-[11px] text-text-muted truncate">Cheklist_20_Dokumen</div>
+          </div>
+          <div class="p-3 rounded-xl bg-surface-glass border border-primary/40 space-y-1">
+            <div class="flex items-center justify-between text-xs text-text-muted">
+              <span>Google Stitch MCP</span>
+              <span class="w-2 h-2 rounded-full bg-primary"></span>
+            </div>
+            <div class="text-base font-bold text-primary">Active (Stateless)</div>
+            <div class="text-[11px] text-text-muted truncate">ID: 5754498186717590984</div>
+          </div>
+          <div class="p-3 rounded-xl bg-surface-glass border border-status-compliance/40 space-y-1">
+            <div class="flex items-center justify-between text-xs text-text-muted">
+              <span>Data Sanitization</span>
+              <span class="w-2 h-2 rounded-full bg-status-compliance"></span>
+            </div>
+            <div class="text-base font-bold text-on-surface">51 Proyek Terverifikasi</div>
+            <div class="text-[11px] text-status-compliance">Row 42 (Jenelata) Repaired</div>
+          </div>
+        </div>
+
+        <!-- Integration Specs -->
+        <div class="p-3.5 rounded-xl bg-surface-container/60 border border-border-glass space-y-2 text-xs">
+          <div class="font-bold text-on-surface flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm text-primary">dataset</span>
+            Metadata Sumber Daya Proyek:
+          </div>
+          <div class="space-y-1 font-mono text-[11px] text-text-muted">
+            <div>• Spreadsheet ID: <span class="text-on-surface">139JB1xkZd9jp44Xrb6FrT4vgamycWJAvxVwnjCskzzg</span></div>
+            <div>• Drive Folder ID: <span class="text-on-surface">1f3vx1Gr5UwLTsqk4t9WZM2VB6lpfmmB6</span></div>
+            <div>• Live Endpoint: <span class="text-primary truncate">https://docs.google.com/spreadsheets/d/.../gviz/tq</span></div>
+            <div>• GitHub Branch: <span class="text-on-surface">AhmdKidz/monitoring-ccms-dashboard:main</span></div>
+          </div>
+        </div>
+
+        <!-- Raw JSON Viewer Accordion -->
+        <div class="border border-border-glass rounded-xl overflow-hidden">
+          <button class="w-full p-3 bg-surface-glass flex items-center justify-between text-xs font-bold text-on-surface" onclick="toggleRawJson()">
+            <span class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm">code</span>
+              Lihat Snapshot Raw JSON Proyek (51 Entri)
+            </span>
+            <span class="material-symbols-outlined text-sm" id="jsonChevron">expand_more</span>
+          </button>
+          <div id="rawJsonContainer" class="hidden p-3 bg-surface-container-lowest border-t border-border-glass font-mono text-[10px] text-text-muted max-h-48 overflow-y-auto custom-scrollbar">
+            <pre id="rawJsonText"></pre>
+          </div>
+        </div>
+      </div>
+      <!-- Modal Footer -->
+      <div class="p-space-md border-t border-border-glass bg-surface-glass flex justify-between items-center">
+        <button class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high border border-border-glass text-xs font-bold text-primary flex items-center gap-1.5" onclick="triggerSyncNotification()">
+          <span class="material-symbols-outlined text-sm">sync</span>
+          Uji Refresh Koneksi
+        </button>
+        <button class="px-4 py-2 rounded-lg bg-surface-container text-on-surface font-bold text-xs" onclick="closeModal('systemDiagnosticsModal')">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- MODAL 3: FULL EXECUTIVE AUDIT REPORT                 -->
+  <!-- ==================================================== -->
+  <div id="auditReportModal" class="fixed inset-0 z-50 hidden bg-surface-container-lowest/80 backdrop-blur-md flex justify-center items-center p-4">
+    <div class="w-full max-w-4xl max-h-[90vh] bg-surface-container-low border border-border-glass rounded-2xl shadow-2xl flex flex-col overflow-hidden modal-enter">
+      <!-- Modal Header -->
+      <div class="p-space-md border-b border-border-glass bg-surface-glass backdrop-blur-md flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-status-compliance/10 border border-status-compliance/30 flex items-center justify-center text-status-compliance">
+            <span class="material-symbols-outlined text-2xl">description</span>
+          </div>
+          <div>
+            <h3 class="font-headline-sm font-bold text-on-surface">Laporan Eksekutif Audit Kepatuhan ADKON & CCMS</h3>
+            <p class="font-body-xs text-text-muted">Periode Evaluasi Triwulan IV — Divisi Infrastruktur 1 (51 Proyek)</p>
+          </div>
+        </div>
+        <button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high border border-border-glass text-text-muted hover:text-on-surface" onclick="closeModal('auditReportModal')">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+      <!-- Modal Body -->
+      <div class="p-space-md overflow-y-auto space-y-4 custom-scrollbar flex-1 text-body-sm">
+        <div class="p-4 rounded-xl bg-surface-glass border border-border-glass space-y-3">
+          <h4 class="font-bold text-on-surface text-sm border-b border-border-glass pb-1.5">1. Ringkasan Eksekutif</h4>
+          <p class="text-text-muted font-body-xs leading-relaxed">
+            Audit tata kelola administrasi kontrak (ADKON) dan pemanfaatan sistem Construction Contract Management System (CCMS) mencakup <strong>51 Proyek Strategis</strong> di lingkungan Divisi Infrastruktur 1. Evaluasi difokuskan pada 20 parameter kepatuhan (14 Contract Management dan 6 Variation Order) guna memastikan kesiapan uji petik BPKP dan mitigasi sengketa klaim akhir tahun.
+          </p>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2">
+            <div class="p-2.5 rounded-lg bg-surface-container text-center">
+              <div class="text-[11px] text-text-muted">Total Portofolio</div>
+              <div class="text-lg font-bold text-on-surface">51 Proyek</div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-surface-container text-center">
+              <div class="text-[11px] text-text-muted">Tingkat Kepatuhan Rata-rata</div>
+              <div class="text-lg font-bold text-primary" id="repAvgCompliance">52.4%</div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-surface-container text-center">
+              <div class="text-[11px] text-text-muted">Proyek Patuh (Lengkap)</div>
+              <div class="text-lg font-bold text-status-compliance" id="repLengkapCount">0 Proyek</div>
+            </div>
+            <div class="p-2.5 rounded-lg bg-surface-container text-center">
+              <div class="text-[11px] text-text-muted">Perlu Eskalasi Kritis</div>
+              <div class="text-lg font-bold text-status-critical" id="repKritisCount">0 Proyek</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-surface-glass border border-border-glass space-y-3">
+          <h4 class="font-bold text-on-surface text-sm border-b border-border-glass pb-1.5">2. Isu Strategis & Risiko Kontraktual Utama</h4>
+          <ul class="space-y-2 text-text-muted font-body-xs">
+            <li class="flex items-start gap-2">
+              <span class="material-symbols-outlined text-status-critical text-sm mt-0.5">error</span>
+              <div>
+                <strong class="text-on-surface">18 Proyek Mengalami Keterlambatan Penerbitan Addendum 1:</strong>
+                Pekerjaan tambah-kurang (MC0/CCO) telah berjalan namun belum memiliki payung amandemen kontrak fisik. Risiko: potensi penghentian pembayaran termin oleh KPPN/PPK.
+              </div>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="material-symbols-outlined text-status-followup text-sm mt-0.5">warning</span>
+              <div>
+                <strong class="text-on-surface">Ketertinggalan Unggah Checklist & Executive Summary Bulanan:</strong>
+                Menjadi bottleneck tertinggi pada pilar Contract Management, menghambat visibilitas manajemen atas deviasi biaya dan waktu.
+              </div>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="material-symbols-outlined text-primary text-sm mt-0.5">info</span>
+              <div>
+                <strong class="text-on-surface">Disparitas Kepatuhan Antar Departemen Operasi:</strong>
+                DO 2 (Jalan Tol & MRT) menunjukkan tingkat kedisiplinan tertinggi, disusul DO 1 (Air & Sanitasi), sedangkan DO 3 (IKN & Regional) memerlukan supervisi akselerasi.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="p-4 rounded-xl bg-surface-glass border border-border-glass space-y-3">
+          <h4 class="font-bold text-on-surface text-sm border-b border-border-glass pb-1.5">3. Rencana Aksi Rekomendasi ADKON</h4>
+          <ol class="space-y-1.5 text-text-muted font-body-xs list-decimal pl-4">
+            <li>Penerbitan Nota Dinas Teguran Kepatuhan kepada 18 Project Manager proyek terindikasi Addendum 1.</li>
+            <li>Rekonsiliasi berkas Berita Acara Kesepakatan (BAK) dan Justifikasi Teknis sebelum tutup buku anggaran.</li>
+            <li>Audit lapangan sampling berkala untuk memverifikasi keabsahan Polis Asuransi CAR dan Jaminan Pelaksanaan.</li>
+            <li>Wajib input mingguan pada portal CCMS untuk memantau progress pekerjaan fisik secara real-time.</li>
+          </ol>
+        </div>
+      </div>
+      <!-- Modal Footer -->
+      <div class="p-space-md border-t border-border-glass bg-surface-glass flex justify-between items-center">
+        <button class="px-4 py-2 rounded-lg bg-primary text-on-primary font-bold text-xs flex items-center gap-1.5" onclick="window.print()">
+          <span class="material-symbols-outlined text-sm">print</span>
+          Cetak / Download PDF Laporan
+        </button>
+        <button class="px-4 py-2 rounded-lg bg-surface-container text-on-surface font-bold text-xs" onclick="closeModal('auditReportModal')">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- MODAL 4: 18 CRITICAL ALERTS NOTIFICATION CENTER      -->
+  <!-- ==================================================== -->
+  <div id="alertsModal" class="fixed inset-0 z-50 hidden bg-surface-container-lowest/80 backdrop-blur-md flex justify-center items-center p-4">
+    <div class="w-full max-w-3xl max-h-[90vh] bg-surface-container-low border border-border-glass rounded-2xl shadow-2xl flex flex-col overflow-hidden modal-enter">
+      <!-- Modal Header -->
+      <div class="p-space-md border-b border-border-glass bg-surface-glass backdrop-blur-md flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-status-critical/10 border border-status-critical/30 flex items-center justify-center text-status-critical">
+            <span class="material-symbols-outlined text-2xl">notification_important</span>
+          </div>
+          <div>
+            <h3 class="font-headline-sm font-bold text-on-surface">Pusat Peringatan & Tindakan Kritis (18 Proyek)</h3>
+            <p class="font-body-xs text-text-muted">Daftar proyek terindikasi pekerjaan tambah-kurang tanpa kelengkapan berkas Addendum 1</p>
+          </div>
+        </div>
+        <button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high border border-border-glass text-text-muted hover:text-on-surface" onclick="closeModal('alertsModal')">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+      <!-- Modal Body -->
+      <div class="p-space-md overflow-y-auto space-y-2.5 custom-scrollbar flex-1 text-body-sm" id="alertsListContainer">
+        <!-- Rendered dynamically -->
+      </div>
+      <!-- Modal Footer -->
+      <div class="p-space-md border-t border-border-glass bg-surface-glass flex justify-between items-center">
+        <button class="px-3.5 py-1.5 rounded-lg bg-status-critical text-surface-container-lowest font-bold text-xs flex items-center gap-1.5 shadow-[0_0_12px_rgba(244,63,94,0.35)]" onclick="openDispatchNoticeModal()">
+          <span class="material-symbols-outlined text-sm">send</span>
+          Kirim Surat Teguran Otomatis (18 PPK)
+        </button>
+        <button class="px-4 py-2 rounded-lg bg-surface-container text-on-surface font-bold text-xs" onclick="closeModal('alertsModal')">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- MODAL 5: DO DIVISION MATRIX BREAKDOWN                -->
+  <!-- ==================================================== -->
+  <div id="doMatrixModal" class="fixed inset-0 z-50 hidden bg-surface-container-lowest/80 backdrop-blur-md flex justify-center items-center p-4">
+    <div class="w-full max-w-4xl max-h-[90vh] bg-surface-container-low border border-border-glass rounded-2xl shadow-2xl flex flex-col overflow-hidden modal-enter">
+      <!-- Modal Header -->
+      <div class="p-space-md border-b border-border-glass bg-surface-glass backdrop-blur-md flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-2xl">leaderboard</span>
+          </div>
+          <div>
+            <h3 class="font-headline-sm font-bold text-on-surface">Matriks Komparasi Departemen Operasi</h3>
+            <p class="font-body-xs text-text-muted">Perbandingan Kinerja Kepatuhan Kontraktual DO 1, DO 2, dan DO 3</p>
+          </div>
+        </div>
+        <button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high border border-border-glass text-text-muted hover:text-on-surface" onclick="closeModal('doMatrixModal')">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+      <!-- Modal Body -->
+      <div class="p-space-md overflow-y-auto space-y-4 custom-scrollbar flex-1 text-body-sm">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="doComparisonCards">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+      <!-- Modal Footer -->
+      <div class="p-space-md border-t border-border-glass bg-surface-glass flex justify-end">
+        <button class="px-4 py-2 rounded-lg bg-surface-container text-on-surface font-bold text-xs" onclick="closeModal('doMatrixModal')">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- MODAL 6: 20-PARAMETER DICTIONARY & GUIDE             -->
+  <!-- ==================================================== -->
+  <div id="parametersModal" class="fixed inset-0 z-50 hidden bg-surface-container-lowest/80 backdrop-blur-md flex justify-center items-center p-4">
+    <div class="w-full max-w-4xl max-h-[90vh] bg-surface-container-low border border-border-glass rounded-2xl shadow-2xl flex flex-col overflow-hidden modal-enter">
+      <!-- Modal Header -->
+      <div class="p-space-md border-b border-border-glass bg-surface-glass backdrop-blur-md flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-2xl">rule</span>
+          </div>
+          <div>
+            <h3 class="font-headline-sm font-bold text-on-surface">Kamus 20 Parameter Kepatuhan Kontraktual</h3>
+            <p class="font-body-xs text-text-muted">Dasar hukum dan tolok ukur kelengkapan administrasi proyek Divisi Infrastruktur 1</p>
+          </div>
+        </div>
+        <button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high border border-border-glass text-text-muted hover:text-on-surface" onclick="closeModal('parametersModal')">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+      <!-- Modal Body -->
+      <div class="p-space-md overflow-y-auto space-y-3 custom-scrollbar flex-1 text-body-sm" id="parametersDictionaryGrid">
+        <!-- Rendered dynamically -->
+      </div>
+      <!-- Modal Footer -->
+      <div class="p-space-md border-t border-border-glass bg-surface-glass flex justify-end">
+        <button class="px-4 py-2 rounded-lg bg-surface-container text-on-surface font-bold text-xs" onclick="closeModal('parametersModal')">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- MODAL 7: DRAFT NOTA DINAS / SURAT TEGURAN OTOMATIS   -->
+  <!-- ==================================================== -->
+  <div id="dispatchNoticeModal" class="fixed inset-0 z-50 hidden bg-surface-container-lowest/80 backdrop-blur-md flex justify-center items-center p-4">
+    <div class="w-full max-w-3xl max-h-[90vh] bg-surface-container-low border border-border-glass rounded-2xl shadow-2xl flex flex-col overflow-hidden modal-enter">
+      <!-- Modal Header -->
+      <div class="p-space-md border-b border-border-glass bg-surface-glass backdrop-blur-md flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-status-critical/10 border border-status-critical/30 flex items-center justify-center text-status-critical">
+            <span class="material-symbols-outlined text-2xl">send</span>
+          </div>
+          <div>
+            <h3 class="font-headline-sm font-bold text-on-surface">Draf Surat Teguran Otomatis ADKON</h3>
+            <p class="font-body-xs text-text-muted">Format resmi surat dinas internal percepatan penyelesaian Addendum 1</p>
+          </div>
+        </div>
+        <button class="p-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high border border-border-glass text-text-muted hover:text-on-surface" onclick="closeModal('dispatchNoticeModal')">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+      <!-- Modal Body -->
+      <div class="p-space-md overflow-y-auto space-y-3 custom-scrollbar flex-1 text-body-sm">
+        <div class="p-4 rounded-xl bg-surface-container border border-border-glass font-mono text-xs space-y-3 text-on-surface leading-relaxed">
+          <div class="border-b border-border-glass pb-2">
+            <div><strong>NOMOR:</strong> ND-051026/INFRA1/ADKON/IV/2026</div>
+            <div><strong>HAL:</strong> Instruksi Percepatan Kelengkapan Berkas Addendum 1 & Mitigasi Risiko Audit</div>
+            <div><strong>KEPADA:</strong> Seluruh Project Manager & PPK 18 Proyek Terlampir</div>
+          </div>
+          <p>
+            Berdasarkan audit kepatuhan CCMS Triwulan IV, teridentifikasi bahwa proyek Saudara telah melaksanakan pekerjaan fisik tambah-kurang (CCO/MC0) namun berkas formal <strong>Addendum 1 Kontrak</strong> belum tercatat lengkap pada pangkalan data Divisi.
+          </p>
+          <p>
+            Guna mencegah timbulnya sanggahan pada audit eksternal BPKP serta memperlancar proses administrasi termin akhir tahun, diinstruksikan untuk segera:
+          </p>
+          <ol class="list-decimal pl-5 space-y-1">
+            <li>Menyelesaikan Berita Acara Kesepakatan (BAK) dan Justifikasi Teknis paling lambat 7 hari kerja.</li>
+            <li>Mengunggah dokumen legal amandemen kontrak fisik pada aplikasi CCMS.</li>
+            <li>Memperbarui masa laku Jaminan Pelaksanaan dan Asuransi CAR jika terjadi penyesuaian jadwal waktu.</li>
+          </ol>
+          <div class="pt-2 text-right">
+            <div>Divisi Infrastruktur 1</div>
+            <div><strong>Tim Pengendali Kontrak (ADKON)</strong></div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal Footer -->
+      <div class="p-space-md border-t border-border-glass bg-surface-glass flex justify-between items-center">
+        <button class="px-3.5 py-1.5 rounded-lg bg-primary text-on-primary font-bold text-xs flex items-center gap-1.5" onclick="copyDispatchText()">
+          <span class="material-symbols-outlined text-sm">content_copy</span>
+          Salin Teks Surat
+        </button>
+        <button class="px-4 py-2 rounded-lg bg-status-critical text-surface-container-lowest font-bold text-xs flex items-center gap-1.5 shadow-[0_0_12px_rgba(244,63,94,0.35)]" onclick="confirmDispatchSend()">
+          <span class="material-symbols-outlined text-sm">forward_to_inbox</span>
+          Kirim Notifikasi via Email / WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+
 </body></html>
