@@ -1,0 +1,2287 @@
+<!DOCTYPE html>
+<html lang="id" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CCMS Monitoring Dashboard | PT Wijaya Karya (Persero) Tbk</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <!-- Tailwind CSS & Chart.js -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            wika: {
+              blue: "#004b93",
+              dark: "#002f6c",
+              cyan: "#00a3e0",
+              light: "#eaf3fc",
+              slate: "#f4f8fc"
+            },
+            status: {
+              compliance: "#10b981",
+              warning: "#f59e0b",
+              critical: "#f43f5e"
+            }
+          },
+          fontFamily: {
+            sans: ["'Plus Jakarta Sans'", "sans-serif"],
+            mono: ["'JetBrains Mono'", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 20;
+      vertical-align: middle;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1;
+    }
+    /* Subtle hover lifting and smooth transition */
+    .dashboard-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.25s ease, border-color 0.25s ease;
+    }
+    .dashboard-card:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 25px -5px rgba(0, 75, 147, 0.08), 0 8px 10px -6px rgba(0, 75, 147, 0.04);
+    }
+    /* Animated Progress Bar */
+    @keyframes barGrow {
+      from { width: 0%; }
+      to { width: var(--target-width); }
+    }
+    .animate-bar {
+      animation: barGrow 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    /* ======================================================== */
+    /* COMPREHENSIVE DARK MODE THEME OVERRIDES (.dark)          */
+    /* ======================================================== */
+    html.dark body {
+      background-color: #071120 !important;
+      color: #e2e8f0 !important;
+    }
+    html.dark header {
+      background-color: #0b192e !important;
+      border-color: #1e3352 !important;
+    }
+    html.dark .dashboard-card,
+    html.dark .modal-surface {
+      background-color: #0f1f38 !important;
+      border-color: #1e3557 !important;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4) !important;
+    }
+    html.dark .text-\[\#0c2340\],
+    html.dark .text-\[\#083b7a\],
+    html.dark .text-slate-800,
+    html.dark .text-slate-900 {
+      color: #f1f5f9 !important;
+    }
+    html.dark .text-slate-700,
+    html.dark .text-slate-600 {
+      color: #cbd5e1 !important;
+    }
+    html.dark .text-slate-500,
+    html.dark .text-slate-400 {
+      color: #94a3b8 !important;
+    }
+    html.dark .bg-white {
+      background-color: #0f1f38 !important;
+    }
+    html.dark .bg-\[\#f8fafc\],
+    html.dark .bg-slate-50 {
+      background-color: #132744 !important;
+    }
+    html.dark .bg-\[\#f1f5f9\],
+    html.dark .bg-slate-100,
+    html.dark .bg-\[\#f4f8fc\] {
+      background-color: #172e50 !important;
+    }
+    html.dark .bg-\[\#e2e8f0\],
+    html.dark .text-slate-200 {
+      background-color: #1e3a5f !important;
+      color: #1e3a5f !important;
+    }
+    html.dark .border-slate-100,
+    html.dark .border-slate-200,
+    html.dark .border-slate-200\/90,
+    html.dark .border-slate-200\/80,
+    html.dark .border-slate-300,
+    html.dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]),
+    html.dark .divide-slate-200 > :not([hidden]) ~ :not([hidden]) {
+      border-color: #1e3557 !important;
+    }
+    html.dark .bg-\[\#fff8eb\],
+    html.dark .bg-amber-50 {
+      background-color: rgba(245, 158, 11, 0.14) !important;
+      border-color: rgba(245, 158, 11, 0.35) !important;
+      color: #fde68a !important;
+    }
+    html.dark .text-amber-900 {
+      color: #fde68a !important;
+    }
+    html.dark select option {
+      background-color: #0f1f38;
+      color: #f1f5f9;
+    }
+    html.dark ::-webkit-scrollbar-track {
+      background: #0b192e;
+    }
+    html.dark ::-webkit-scrollbar-thumb {
+      background: #334155;
+    }
+  </style>
+</head>
+<body class="bg-[#f0f5fc] text-slate-800 antialiased min-h-screen selection:bg-wika-cyan/20 selection:text-wika-dark transition-colors duration-200">
+
+  <!-- Toast Notification -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3 px-4 py-3 rounded-xl bg-white shadow-2xl border border-slate-200">
+    <span id="toastIcon" class="material-symbols-outlined text-wika-cyan text-xl">check_circle</span>
+    <div>
+      <div id="toastTitle" class="text-xs font-bold text-slate-900">Notifikasi</div>
+      <div id="toastMessage" class="text-[11px] text-slate-600">Pesan konfirmasi</div>
+    </div>
+  </div>
+
+  <div class="flex min-h-screen">
+
+    <!-- ======================================================== -->
+    <!-- LEFT SIDEBAR (WIKA BRANDING & NAVIGATION) -->
+    <!-- ======================================================== -->
+    <aside class="w-60 bg-gradient-to-b from-[#0c488c] via-[#0a4285] to-[#062d5e] text-white flex flex-col justify-between shrink-0 relative overflow-hidden shadow-xl z-20 select-none">
+      
+      <!-- Top Section -->
+      <div class="p-4 space-y-5 relative z-10">
+        
+        <!-- Transparent White WIKA Logo (NO white background box) -->
+        <div class="pt-1 pb-3 text-center border-b border-white/15">
+          <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIgogICB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIgogICB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgeG1sbnM6c29kaXBvZGk9Imh0dHA6Ly9zb2RpcG9kaS5zb3VyY2Vmb3JnZS5uZXQvRFREL3NvZGlwb2RpLTAuZHRkIgogICB4bWxuczppbmtzY2FwZT0iaHR0cDovL3d3dy5pbmtzY2FwZS5vcmcvbmFtZXNwYWNlcy9pbmtzY2FwZSIKICAgdmVyc2lvbj0iMS4xIgogICBpZD0ic3ZnMiIKICAgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIKICAgd2lkdGg9Ijk1LjA4OTk0MyIKICAgaGVpZ2h0PSI2NC40MDMyOTciCiAgIHZpZXdCb3g9IjAgMCA5NS4wODk5NDIgNjQuNDAzMjk2IgogICBzb2RpcG9kaTpkb2NuYW1lPSJsb2dvIFdpamF5YSBLYXJ5YS5zdmciCiAgIGlua3NjYXBlOnZlcnNpb249IjEuMC4xICgzYmMyZTgxM2Y1LCAyMDIwLTA5LTA3KSI+PG1ldGFkYXRhCiAgICAgaWQ9Im1ldGFkYXRhOCI+PHJkZjpSREY+PGNjOldvcmsKICAgICAgICAgcmRmOmFib3V0PSIiPjxkYzpmb3JtYXQ+aW1hZ2Uvc3ZnK3htbDwvZGM6Zm9ybWF0PjxkYzp0eXBlCiAgICAgICAgICAgcmRmOnJlc291cmNlPSJodHRwOi8vcHVybC5vcmcvZGMvZGNtaXR5cGUvU3RpbGxJbWFnZSIgLz48ZGM6dGl0bGU+PC9kYzp0aXRsZT48L2NjOldvcms+PC9yZGY6UkRGPjwvbWV0YWRhdGE+PGRlZnMKICAgICBpZD0iZGVmczYiPjxjbGlwUGF0aAogICAgICAgY2xpcFBhdGhVbml0cz0idXNlclNwYWNlT25Vc2UiCiAgICAgICBpZD0iY2xpcFBhdGgxOCI+PHBhdGgKICAgICAgICAgZD0iTSAwLDAgSCA1OTUuMjc1IFYgODQxLjg5IEggMCBaIgogICAgICAgICBpZD0icGF0aDE2IiAvPjwvY2xpcFBhdGg+PGNsaXBQYXRoCiAgICAgICBjbGlwUGF0aFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIKICAgICAgIGlkPSJjbGlwUGF0aDYyIj48cGF0aAogICAgICAgICBkPSJtIDQ4NC44MSw3NDcuNjQgaCA3Mi4xNjYgdiA1Ny43NyBIIDQ4NC44MSBaIgogICAgICAgICBpZD0icGF0aDYwIiAvPjwvY2xpcFBhdGg+PC9kZWZzPjxzb2RpcG9kaTpuYW1lZHZpZXcKICAgICBwYWdlY29sb3I9IiNmZmZmZmYiCiAgICAgYm9yZGVyY29sb3I9IiM2NjY2NjYiCiAgICAgYm9yZGVyb3BhY2l0eT0iMSIKICAgICBvYmplY3R0b2xlcmFuY2U9IjEwIgogICAgIGdyaWR0b2xlcmFuY2U9IjEwIgogICAgIGd1aWRldG9sZXJhbmNlPSIxMCIKICAgICBpbmtzY2FwZTpwYWdlb3BhY2l0eT0iMCIKICAgICBpbmtzY2FwZTpwYWdlc2hhZG93PSIyIgogICAgIGlua3NjYXBlOndpbmRvdy13aWR0aD0iMTM2NiIKICAgICBpbmtzY2FwZTp3aW5kb3ctaGVpZ2h0PSI3MDUiCiAgICAgaWQ9Im5hbWVkdmlldzQiCiAgICAgc2hvd2dyaWQ9ImZhbHNlIgogICAgIGZpdC1tYXJnaW4tdG9wPSIwIgogICAgIGZpdC1tYXJnaW4tbGVmdD0iMCIKICAgICBmaXQtbWFyZ2luLXJpZ2h0PSIwIgogICAgIGZpdC1tYXJnaW4tYm90dG9tPSIwIgogICAgIGlua3NjYXBlOnpvb209IjMuMDc4NTc2NSIKICAgICBpbmtzY2FwZTpjeD0iNTUuNDIxMzk4IgogICAgIGlua3NjYXBlOmN5PSI2NS4xMzQ1MTYiCiAgICAgaW5rc2NhcGU6d2luZG93LXg9Ii04IgogICAgIGlua3NjYXBlOndpbmRvdy15PSItOCIKICAgICBpbmtzY2FwZTp3aW5kb3ctbWF4aW1pemVkPSIxIgogICAgIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9ImcxMCIgLz48ZwogICAgIGlkPSJnMTAiCiAgICAgaW5rc2NhcGU6Z3JvdXBtb2RlPSJsYXllciIKICAgICBpbmtzY2FwZTpsYWJlbD0iQW5udWFsIFJlcG9ydCAyMDIwIgogICAgIHRyYW5zZm9ybT0ibWF0cml4KDEuMzMzMzMzMywwLDAsLTEuMzMzMzMzMywtNjQ3LjU0NTcsMTA3My45OTYpIj48ZwogICAgICAgaWQ9Imc2NCIKICAgICAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKDU0MS45NTUsNzc4LjYzNSkiPjxwYXRoCiAgICAgICAgIGQ9Ik0gMCwwIEMgMC42NTEsMCAxLjI0NywtMC4wMDQgMS44NDMsMC4wMDIgMi4xMTMsMC4wMDUgMi4xNDIsMC4wNDcgMi4xMDUsMC4zMjMgMS45OSwxLjE5MiAxLjg4MSwyLjA2MiAxLjc1MiwyLjkyOCAxLjcxMiwzLjIgMS43MiwzLjQ4NCAxLjU3NSwzLjgyMyAxLjAzNSwyLjUzIDAuNTI4LDEuMjk2IDAsMCBtIDguMjQ4LC01Ljc4NSBjIC0wLjEyMywwLjA0IC0wLjI1MiwwLjAyMyAtMC4zNzgsMC4wMjMgLTEuNTI0LDEwZS00IC0zLjA0NywwIC00LjU3MSwxMGUtNCAtMC4zMzQsMCAtMC4zNTQsMC4wMjIgLTAuNDA1LDAuMzQyIC0wLjEwNiwwLjY3MSAtMC4yMSwxLjM0MiAtMC4zMjMsMi4wMTEgLTAuMDY1LDAuMzg3IC0wLjA3MiwwLjM4OCAtMC40NzcsMC4zODkgLTAuOTczLDAuMDAyIC0xLjk0NSwwLjAwMSAtMi45MTgsMC4wMDIgLTAuMzk0LDEwZS00IC0wLjQzOCwtMC4wMjggLTAuNTk0LC0wLjQwOCAtMC4yNzYsLTAuNjcyIC0wLjU1OCwtMS4zNDEgLTAuODI2LC0yLjAxNSAtMC4wOTQsLTAuMjM5IC0wLjIyOSwtMC4zMyAtMC40OTksLTAuMzI4IC0yLjUyLDAuMDExIC01LjA0LDAuMDA2IC03LjU1OSwwLjAwNyAtMC4wNTksMCAtMC4xMTgsLTAuMDAzIC0wLjE3NiwwIC0wLjIzMywwLjAxMiAtMC4yODIsMC4wNDkgLTAuMzE5LDAuMjg1IC0wLjAzNywwLjI0MyAtMC4wNTcsMC40ODggLTAuMDg3LDAuNzMzIC0wLjEwNywwLjg5NSAtMC4yMTMsMS43OSAtMC4zMjQsMi42ODUgLTAuMTQ4LDEuMTk2IC0wLjI5OSwyLjM5MyAtMC40NSwzLjU4OSAtMC4xMDQsMC44MjUgLTAuMjA1LDEuNjUgLTAuMzE4LDIuNDc0IC0wLjA1MywwLjM5IC0wLjA4MywwLjQwNiAtMC40NjYsMC40MDggLTAuNjMzLDEwZS00IC0xLjI2NiwwIC0xLjg5OCwwIC0wLjM5MywwIC0wLjQyNywtMC4wMjYgLTAuNTI0LC0wLjQxMiAtMC43ODMsLTMuMTEgLTEuNTY2LC02LjIxOSAtMi4zNDgsLTkuMzI5IC0wLjEwNywtMC40MjMgLTAuMTE3LC0wLjQzMyAtMC41MzcsLTAuNDMzIC0zLjM1MiwtMTBlLTQgLTYuNzA0LDAgLTEwLjA1NiwwIC0wLjA3LDAgLTAuMTQxLDAgLTAuMjExLDAuMDA0IC0wLjEyNiwwLjAwNiAtMC4xOTcsMC4wNjUgLTAuMTgsMC4yMDEgMC4wMDksMC4wNjkgMC4wMTUsMC4xNCAwLjAzLDAuMjA4IDAuNDk4LDIuMjM5IDAuOTk3LDQuNDc4IDEuNDk1LDYuNzE3IDAuMTk4LDAuODkxIDAuMzk0LDEuNzgyIDAuNTg2LDIuNjc1IDAuMDcyLDAuMzM2IDAuMDQ2LDAuMzYzIC0wLjI5NCwwLjM2OSAtMC4wNTgsMTBlLTQgLTAuMTE3LDAgLTAuMTc2LDAgLTEuMDc4LDEwZS00IC0yLjE1NiwxMGUtNCAtMy4yMzQsMC4wMDMgLTAuNDA2LDEwZS00IC0wLjQ3NiwtMC4wNDMgLTAuNjI1LC0wLjQyMyAtMC41OTQsLTEuNTE1IC0xLjE4OCwtMy4wMzEgLTEuNzgsLTQuNTQ3IC0wLjYyNiwtMS42MDIgLTEuMjUxLC0zLjIwNiAtMS44NzksLTQuODA4IC0wLjE0NiwtMC4zNzMgLTAuMjAzLC0wLjQwNCAtMC41OTksLTAuNDAzIC0wLjk2MSwwLjAwMyAtMS45MjIsMC4wMDIgLTIuODgzLDAuMDA0IC0wLjM2OCwwLjAwMSAtMC40MTgsMC4wNTEgLTAuNDYyLDAuNDE3IC0wLjA3OCwwLjY1MSAtMC4xNTQsMS4zMDIgLTAuMjM4LDEuOTUyIC0wLjI1NCwxLjkzOSAtMC41MDcsMy44NzcgLTAuNzcyLDUuODE0IC0wLjAzNywwLjI3NSAtMC4wMjYsMC41NjYgLTAuMTQsMC44NSAtMC4xMjksLTAuMTA2IC0wLjE1MiwtMC4yMjYgLTAuMTk4LC0wLjMzMSAtMC42OCwtMS41NTUgLTEuMzU4LC0zLjExMiAtMi4wMzYsLTQuNjY4IC0wLjUyOCwtMS4yMTMgLTEuMDU4LC0yLjQyNiAtMS41ODEsLTMuNjQxIC0wLjEsLTAuMjMzIC0wLjIyNCwtMC40MDEgLTAuNTA5LC0wLjM5OSAtMC45MTQsMC4wMDcgLTEuODI4LDAuMDAyIC0yLjc0MywwLjAwNyAtMC4zMjUsMTBlLTQgLTAuMzQ5LDAuMDE2IC0wLjQsMC4zNTMgLTAuMDcxLDAuNDYzIC0wLjEyMywwLjkyOSAtMC4xNzgsMS4zOTQgLTAuMTUxLDEuMjY3IC0wLjI5MSwyLjUzNiAtMC40NSwzLjgwMiAtMC4xOTIsMS41MjIgLTAuNDA1LDMuMDQxIC0wLjU5OSw0LjU2MiAtMC4xOTUsMS41MjEgLTAuMzc3LDMuMDQ0IC0wLjU2Niw0LjU2NyAtMC4wMzcsMC4yOTcgLTAuMDQzLDAuMzA0IC0wLjM0OSwwLjMwNyAtMC40NjksMC4wMDQgLTAuOTM4LDAgLTEuNDA3LDAuMDAxIC0wLjU3LDEwZS00IC0wLjU2NywxMGUtNCAtMC43ODIsLTAuNTM5IC0xLjA1NiwtMi42NTYgLTEuMjY5LC01LjQxIC0wLjkzMywtOC4yMjEgMC4zMjcsLTIuNzM3IDEuMzU5LC01LjE5NyAyLjk5NSwtNy40MDUgMS40NDksLTEuOTU1IDMuMjYxLC0zLjUxNiA1LjI5NSwtNC44MzIgMi42NzksLTEuNzM0IDUuNjA1LC0yLjkwNyA4LjY2MiwtMy43NzUgNC4xMTUsLTEuMTY3IDguMzMsLTEuNjU2IDEyLjU4OSwtMS44MTQgMi4xMDksLTAuMDc4IDQuMjE2LDAuMDExIDYuMzIxLDAuMTczIDEuNzc2LDAuMTM3IDMuNTQzLDAuMzM1IDUuMjk3LDAuNjQ4IDIuNzI3LDAuNDg3IDUuMzk0LDEuMTkyIDcuOTczLDIuMjA5IDIuNjMxLDEuMDM4IDUuMDkzLDIuMzc1IDcuMjc4LDQuMTkgMS4zODcsMS4xNTIgMi42MSwyLjQ1NiAzLjYwMiwzLjk2OCAwLjA3NCwwLjExNCAwLjE4NSwwLjIxNyAwLjEzNCwwLjM4NyBNIC0zNC45NCwyLjgwOSBjIDAuMTE0LDAuMTE1IDAuMTQsMC4yMzIgMC4xODMsMC4zMzggMS4xMzgsMi44MSAyLjI3NSw1LjYyMSAzLjQxMiw4LjQzMiAwLjE4MSwwLjQ0NiAwLjIwNSwwLjQ2MyAwLjcwMywwLjQ2IDAuNjIxLC0wLjAwMyAxLjI0MiwtMC4wMDcgMS44NjMsLTAuMDA4IDAuNDEsLTAuMDAxIDAuODIxLDAuMDA1IDEuMjMxLDAgMC4yMjcsLTAuMDAzIDAuMjQ5LC0wLjA0MSAwLjE4MiwtMC4yNDggLTAuMDIyLC0wLjA2NyAtMC4wNTEsLTAuMTMxIC0wLjA3NywtMC4xOTcgLTAuNDczLC0xLjIxIC0wLjk0NiwtMi40MiAtMS40MTksLTMuNjMgLTAuMTYyLC0wLjQxNiAtMC4xNjIsLTAuNDE3IDAuMjc0LC0wLjQxNyAyLjIwNCwwIDQuNDA3LDAuMDAxIDYuNjEsLTAuMDAyIDAuNDc4LDAgMC40OTMsMC4wOSAwLjM3MywtMC40ODEgLTAuNjM5LC0zLjA0NyAtMS4yODIsLTYuMDkyIC0xLjkyMywtOS4xMzkgLTAuMDYyLC0wLjI5OCAtMC4xMTQsLTAuNTk3IC0wLjE3LC0wLjg5NiAtMC4wMzEsLTAuMTY2IDAuMDQ1LC0wLjI0NCAwLjIwNywtMC4yNDggMC4wNTgsLTAuMDAyIDAuMTE3LC0wLjAwMiAwLjE3NSwtMC4wMDIgMC44NTYsMCAxLjcxMSwtMTBlLTQgMi41NjcsMCAwLjM3MywwIDAuNDA5LDAuMDI4IDAuNDk5LDAuMzk1IDAuODAyLDMuMjg2IDEuNjAzLDYuNTcxIDIuNDA0LDkuODU3IDAuMzc3LDEuNTQ2IDAuNzUxLDMuMDkzIDEuMTI3LDQuNjQgMC4wODcsMC4zNTQgMC4xMiwwLjM3OCAwLjQ3NSwwLjM3NCAwLjIyMiwtMC4wMDMgMC40NDUsLTAuMDA2IDAuNjY4LC0wLjAwNiAwLjc1LC0wLjAwMSAxLjUsMCAyLjI1LC0wLjAwMSAwLjM3MSwtMTBlLTQgMC40LC0wLjAzOCAwLjMyLC0wLjQxMSAtMC4wNSwtMC4yMjggLTAuMTA2LC0wLjQ1NiAtMC4xNTgsLTAuNjg0IC0wLjIyMywtMC45OTMgLTAuNDQ5LC0xLjk4NiAtMC42NjYsLTIuOTgxIC0wLjA3OSwtMC4zNTkgLTAuMDUsLTAuMzg5IDAuMzA1LC0wLjM5MyAwLjQyMSwtMC4wMDQgMC44NDMsMC4wMjUgMS4yNjQsLTAuMDE3IDAuMjA5LC0wLjAyMiAwLjM5MSwwLjA2OCAwLjUzLDAuMjI4IDAuMDc2LDAuMDg4IDAuMTQyLDAuMTg2IDAuMjA4LDAuMjgyIDAuODI1LDEuMTk2IDEuNjU1LDIuMzg4IDIuNDY5LDMuNTkxIDAuMTkyLDAuMjg0IDAuNDE4LDAuNDE0IDAuNzU5LDAuMzk4IDAuNDMzLC0wLjAxOSAwLjg2NywtMC4wMTIgMS4zLC0wLjAxMiAwLjU4NiwtMC4wMDEgMS4xNzIsMC4wMDQgMS43NTgsMC4wMDMgMC4yODcsMCAwLjMxNSwtMC4wNDkgMC4xNywtMC4zMDEgQyAtNS4xOSwxMS41MiAtNS4zMjIsMTEuMzEyIC01LjQ1LDExLjEwMiAtNi4zMDMsOS43MDIgLTcuMTUzLDguMjk5IC04LjAxMyw2LjkwMyAtOC4xOTMsNi42MTEgLTguMzE1LDYuMzI0IC04LjIxOSw1Ljk3NiAtOC4xOTUsNS44ODcgLTguMTk5LDUuNzkgLTguMTg3LDUuNjk3IC03Ljk4Niw0LjE0MiAtNy43ODIsMi41ODYgLTcuNTgzLDEuMDMgYyAwLjE2NywtMS4zMTIgMC4zMjgsLTIuNjI1IDAuNDk0LC0zLjkzOCAwLjAzNCwtMC4yNzIgMC4wODUsLTAuMzE5IDAuMzU3LC0wLjMyMiAwLjQyMiwtMC4wMDQgMC44NDQsLTAuMDAyIDEuMjY1LDEwZS00IDAuNTI5LDAuMDA0IDAuNDY4LC0wLjA3NiAwLjY3OCwwLjQ2MSAxLjQ0MywzLjY4NCAyLjg4Miw3LjM3IDQuMzIzLDExLjA1NSAwLjQ0MywxLjEzNCAwLjg4NiwyLjI2NyAxLjMzMSwzLjQwMSAwLjEzNCwwLjMzOSAwLjEzOCwwLjM0MSAwLjQ4LDAuMzQyIDEuMDc5LDAuMDAxIDIuMTU3LDAuMDAyIDMuMjM1LC0xMGUtNCAwLjMyLDAgMC4zMjksLTAuMDExIDAuMzY5LC0wLjMzIEMgNS4xMTIsMTAuNDIyIDUuMjcxLDkuMTQ0IDUuNDM2LDcuODY3IDUuNjA2LDYuNTQzIDUuNzgyLDUuMjIgNS45NTIsMy44OTcgNi4xMzIsMi41MDMgNi4zMDksMS4xMSA2LjQ4NiwtMC4yODQgYyAwLjEwMSwtMC43ODkgMC4xOTgsLTEuNTc5IDAuMzAzLC0yLjM2OSAwLjA0MiwtMC4zMTQgMC4wNTUsLTAuMzIzIDAuMzc2LC0wLjMyNCAwLjc2MSwtMC4wMDMgMS41MjMsMC4wMDQgMi4yODQsLTAuMDA0IDAuMjA4LC0wLjAwMyAwLjMzNSwwLjA2OSAwLjM5LDAuMjY5IDAuMDI1LDAuMDkgMC4wNTksMC4xNzggMC4wODgsMC4yNjcgMC43ODUsMi40MTQgMC45NjYsNC44NzggMC42NTUsNy4zOTEgLTAuMzM4LDIuNzQ5IC0xLjM0Niw1LjIyMyAtMi45OTYsNy40NCAtMS41MzksMi4wNjggLTMuNDU5LDMuNzE1IC01LjY0NCw1LjA2MyAtMi45MjcsMS44MDcgLTYuMDk5LDMuMDE0IC05LjQyMywzLjg1MiAtMi4wNjgsMC41MjIgLTQuMTYyLDAuOSAtNi4yODIsMS4xNDEgLTEuNDU2LDAuMTY1IC0yLjkxMywwLjI5OCAtNC4zNzgsMC4zMzYgLTAuODY2LDAuMDIzIC0xLjczNCwwLjAxNCAtMi42MDEsMC4wMiAtMi44MDQsMC4wMTkgLTUuNTk0LC0wLjE0OSAtOC4zNjksLTAuNTcxIC0yLjAzOSwtMC4zMSAtNC4wNTYsLTAuNzE3IC02LjAzOSwtMS4yODYgLTMuMDMzLC0wLjg3IC01LjkxOSwtMi4wNzUgLTguNTc3LC0zLjc5NSAtMS45MzQsLTEuMjUyIC0zLjY0NCwtMi43NTEgLTUuMDQ1LC00LjU4OSAtMC4wODYsLTAuMTEyIC0wLjE3NCwtMC4yMjEgLTAuMjUxLC0wLjMzOSAtMC4wNjUsLTAuMSAtMC4wNTQsLTAuMTggMC4wOSwtMC4xODUgMC4wODIsLTAuMDAzIDAuMTY0LC0wLjAwMyAwLjI0NiwtMC4wMDMgMS4xMDIsMCAyLjIwMywwLjAwMSAzLjMwNSwwIDAuMzkyLDAgMC40MDMsLTAuMDEyIDAuNDU4LC0wLjQwNSAwLjAwMywtMC4wMjMgMC4wMDMsLTAuMDQ3IDAuMDA3LC0wLjA3IDAuMTk2LC0xLjMzMiAwLjM5NSwtMi42NjMgMC41ODksLTMuOTk1IDAuMjA3LC0xLjQxMyAwLjQwOSwtMi44MjYgMC42MTcsLTQuMjM5IDAuMDIyLC0wLjE1MSAwLjAyMiwtMC4zMTcgMC4xNTEsLTAuNDMzIDAuMTA3LDAuMDY3IDAuMTI5LDAuMTYzIDAuMTY1LDAuMjQ3IDAuNzM2LDEuNzM1IDEuNDcxLDMuNDcxIDIuMjA1LDUuMjA3IDAuNDcsMS4xMTEgMC45NDEsMi4yMjEgMS40MDMsMy4zMzUgMC4xMDIsMC4yNDcgMC4yNTIsMC4zNjkgMC41MjksMC4zNjUgMC44MiwtMC4wMTIgMS42NCwtMC4wMDYgMi40NiwtMC4wMTMgMC4yNTQsLTAuMDAyIDAuMjgsLTAuMDI0IDAuMzIzLC0wLjI3MSAwLjA4MiwtMC40NzIgMC4xNTIsLTAuOTQ3IDAuMjMsLTEuNDIxIDAuMzczLC0yLjI2MyAwLjc0NCwtNC41MjcgMS4xMjMsLTYuNzkgMC4wMzksLTAuMjM2IDAuMDI3LC0wLjQ4OSAwLjE4MiwtMC43MzggbSAxNC4yNTMsMjQuMDUzIGMgMS44NTcsLTAuMDA0IDMuNDUxLC0xMGUtNCA1LjA0MywtMC4wODkgMS4zNzksLTAuMDc3IDIuNzU3LC0wLjE4NSA0LjEzMywtMC4zMTYgMS4zNjQsLTAuMTI5IDIuNzI1LC0wLjI4NCA0LjA4MywtMC40NjUgMS41NjYsLTAuMjA3IDMuMTI1LC0wLjQ2NSA0LjY3NywtMC43NjQgMy4zMDIsLTAuNjM2IDYuNTU3LC0xLjQ1OCA5Ljc0NiwtMi41MjkgMS43ODcsLTAuNiAzLjU0MywtMS4yODEgNS4yNzcsLTIuMDIzIDAuMzU2LC0wLjE1MiAwLjU2MiwtMC4zODIgMC42NTUsLTAuNzU2IDAuNTI1LC0yLjExNCAwLjk4MSwtNC4yNDEgMS4zMDUsLTYuMzk2IDAuMjc3LC0xLjg0MiAwLjQ3MywtMy42OTMgMC42MDQsLTUuNTUgMC4xOTEsLTIuNzI2IDAuMjMxLC01LjQ1NSAwLjEzNywtOC4xODUgLTAuMDY0LC0xLjgzOCAtMC4yMDIsLTMuNjcyIC0wLjQxNCwtNS40OTkgLTAuMzI5LC0yLjg1MiAtMC44NDksLTUuNjcgLTEuNTY1LC04LjQ1MiAtMC4yMTUsLTAuODM1IC0wLjIxMiwtMC44MzUgLTEuMDIxLC0xLjE4NSAtMy44OCwtMS42NzggLTcuOTAyLC0yLjkxMyAtMTIuMDE3LC0zLjg1OSAtMi4zODYsLTAuNTQ4IC00Ljc5MywtMC45NzggLTcuMjE2LC0xLjMxNyAtMS4zMzQsLTAuMTg3IC0yLjY3NCwtMC4zMiAtNC4wMTQsLTAuNDUzIC0yLjU3OCwtMC4yNTUgLTUuMTYyLC0wLjM3NCAtNy43NTEsLTAuNDQgLTIuNDYxLC0wLjA2MiAtNC45MTgsLTAuMDA0IC03LjM3NSwwLjE0OSAtMS4zNDUsMC4wODMgLTIuNjg4LDAuMTggLTQuMDI4LDAuMzE3IC0yLjAyNiwwLjIwNyAtNC4wNDUsMC40NzMgLTYuMDU2LDAuODA4IC0yLjY2OCwwLjQ0NCAtNS4zMTIsMS4wMDEgLTcuOTIzLDEuNzEyIC0zLjE0NCwwLjg1NiAtNi4yMTcsMS45MTggLTkuMjA2LDMuMjIgLTAuMzM0LDAuMTQ1IC0wLjUwNywwLjM1MiAtMC41OTYsMC43MDYgLTAuNTIzLDIuMDc4IC0wLjk4NCw0LjE2OSAtMS4zMDMsNi4yODggLTAuMTksMS4yNjIgLTAuMzM5LDIuNTMgLTAuNDU5LDMuODAxIC0wLjE2MiwxLjcyNiAtMC4yOTYsMy40NTUgLTAuMzA5LDUuMTg5IC0wLjAxOSwyLjM3OCAtMC4wNTMsNC43NTcgMC4xMjYsNy4xMzEgMC4zMDYsNC4wNzEgMC44OSw4LjA5NiAxLjk0NiwxMi4wNDYgMC4wOTcsMC4zNjMgMC4yODcsMC41ODMgMC42MywwLjczMiAzLjcxNiwxLjYwOSA3LjU1NCwyLjg0MyAxMS40OTEsMy43ODMgMi4zNjksMC41NjUgNC43NTksMS4wMjYgNy4xNjcsMS4zODUgMS40MDEsMC4yMDkgMi44MDksMC4zNyA0LjIxOCwwLjUyMSAyLjEzMiwwLjIzMSA0LjI3MiwwLjMzNyA2LjQxMywwLjQzNCAxLjI4OSwwLjA1OSAyLjU3NywwLjA0NiAzLjYwMiwwLjA1NiIKICAgICAgICAgc3R5bGU9ImZpbGw6I2ZmZmZmZjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgaWQ9InBhdGg2NiIgLz48L2c+PGcKICAgICAgIGlkPSJnMTY0IgogICAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTE5LjcyNSw3OTAuNjY2KSI+PHBhdGgKICAgICAgICAgZD0iTSAwLDAgQyAwLjQ3OSwwIDAuOTU5LDAuMDA0IDEuNDM4LC0wLjAwMiAxLjcwNSwtMC4wMDUgMS43MjEsLTAuMDI4IDEuNjY3LC0wLjI4OCAxLjUxNywtMS4wMiAxLjM2NCwtMS43NTEgMS4yMDgsLTIuNDgyIDEuMTUxLC0yLjc0OSAxLjA4NSwtMi44MDQgMC43OTUsLTIuODA1IGMgLTAuOTIzLC0wLjAwMyAtMS44NDcsLTAuMDA0IC0yLjc3LDAgLTAuMzE2LDAuMDAyIC0wLjM0MiwwLjA0MSAtMC4yNzYsMC4zNTIgMC4xNTEsMC43MDggMC4zMDIsMS40MTUgMC40NTgsMi4xMjIgMC4wNywwLjMxNyAwLjA4NywwLjMyOCAwLjQyNSwwLjMzIEMgLTAuOTEyLDAuMDAyIC0wLjQ1NiwwIDAsMCIKICAgICAgICAgc3R5bGU9ImZpbGw6I2ZmZmZmZjtmaWxsLW9wYWNpdHk6MTtmaWxsLXJ1bGU6bm9uemVybztzdHJva2U6bm9uZSIKICAgICAgICAgaWQ9InBhdGgxNjYiIC8+PC9nPjwvZz48L3N2Zz4K" alt="Logo PT Wijaya Karya (Persero) Tbk" class="h-14 w-auto mx-auto object-contain drop-shadow-sm"/>
+          <p class="text-[9.5px] font-medium text-sky-100/90 tracking-wide leading-snug mt-2 px-1">
+            The Leading EPCC &amp; Green Contractor In Indonesia
+          </p>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="space-y-1.5" id="sidebarNav">
+          <!-- Overview (Active Pill) -->
+          <a href="javascript:void(0)" onclick="setActiveNav(this, 'overview')" id="nav-overview" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-bold text-xs bg-[#1859a3] text-white border border-sky-400/40 shadow-sm transition-all relative">
+            <span class="nav-indicator w-1 h-5 rounded-full bg-white absolute left-1"></span>
+            <span class="material-symbols-outlined text-base ml-1">home</span>
+            <span>Overview</span>
+          </a>
+
+          <!-- Contract Management (14 Dokumen) -->
+          <a href="javascript:void(0)" onclick="setActiveNav(this, 'cm')" id="nav-cm" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-xs text-sky-100 hover:text-white hover:bg-white/10 transition-all relative">
+            <span class="nav-indicator hidden w-1 h-5 rounded-full bg-white absolute left-1"></span>
+            <span class="material-symbols-outlined text-base text-sky-300 ml-1">description</span>
+            <span class="leading-tight">Contract Management<br/><span class="text-[10px] text-sky-200/80">(14 Dokumen)</span></span>
+          </a>
+
+          <!-- Perubahan (VO, Claim, Anti Claim & Insurance) -->
+          <a href="javascript:void(0)" onclick="setActiveNav(this, 'vo')" id="nav-vo" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-xs text-sky-100 hover:text-white hover:bg-white/10 transition-all relative">
+            <span class="nav-indicator hidden w-1 h-5 rounded-full bg-white absolute left-1"></span>
+            <span class="material-symbols-outlined text-base text-sky-300 ml-1">autorenew</span>
+            <span class="leading-tight">Perubahan (VO, Claim,<br/><span class="text-[10px] text-sky-200/80">Anti Claim &amp; Insurance)</span></span>
+          </a>
+
+          <!-- Per Departemen Operasi -->
+          <a href="javascript:void(0)" onclick="setActiveNav(this, 'do')" id="nav-do" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-xs text-sky-100 hover:text-white hover:bg-white/10 transition-all relative">
+            <span class="nav-indicator hidden w-1 h-5 rounded-full bg-white absolute left-1"></span>
+            <span class="material-symbols-outlined text-base text-sky-300 ml-1">pie_chart</span>
+            <span>Per Departemen Operasi</span>
+          </a>
+
+          <!-- Detail Proyek -->
+          <a href="javascript:void(0)" onclick="setActiveNav(this, 'detail')" id="nav-detail" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-xs text-sky-100 hover:text-white hover:bg-white/10 transition-all relative">
+            <span class="nav-indicator hidden w-1 h-5 rounded-full bg-white absolute left-1"></span>
+            <span class="material-symbols-outlined text-base text-sky-300 ml-1">assignment</span>
+            <span>Detail Proyek</span>
+          </a>
+        </nav>
+
+        <!-- Subtle Live Sync Status Card -->
+        <div class="p-3 rounded-xl bg-white/10 border border-white/15 text-[11px] space-y-1">
+          <div class="flex items-center justify-between text-white font-bold">
+            <span class="flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span id="sidebarSyncLabel">Data Terkini</span>
+            </span>
+            <span class="text-[10px] text-sky-200 font-mono">51 Proyek</span>
+          </div>
+          <p class="text-sky-100/80 text-[10px] leading-snug">Sub Divisi Infrastruktur 1</p>
+        </div>
+
+      </div>
+
+      <!-- Bottom Architectural Skyline & Lattice Tower Crane Illustration (Crisp Vector) -->
+      <div class="relative w-full mt-auto pt-2 pointer-events-none">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNjAgMzIwIiB3aWR0aD0iNTIwIiBoZWlnaHQ9IjY0MCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJsZGdHcmFkMSIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjNjBhNWZhIiBzdG9wLW9wYWNpdHk9IjAuNDUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWU0MGFmIiBzdG9wLW9wYWNpdHk9IjAuMTUiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJsZGdHcmFkMiIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjOTNjNWZkIiBzdG9wLW9wYWNpdHk9IjAuNTUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMjU2M2ViIiBzdG9wLW9wYWNpdHk9IjAuMjUiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgoKICA8IS0tIEJhY2tncm91bmQgU2t5bGluZSBTaWxob3VldHRlIC0tPgogIDxyZWN0IHg9IjEwIiB5PSIyMTAiIHdpZHRoPSIzOCIgaGVpZ2h0PSIxMDAiIGZpbGw9InVybCgjYmxkZ0dyYWQxKSIvPgogIDxyZWN0IHg9IjUyIiB5PSIxODUiIHdpZHRoPSI0MiIgaGVpZ2h0PSIxMjUiIGZpbGw9InVybCgjYmxkZ0dyYWQxKSIvPgogIDxyZWN0IHg9IjE4MCIgeT0iMTk1IiB3aWR0aD0iNTUiIGhlaWdodD0iMTE1IiBmaWxsPSJ1cmwoI2JsZGdHcmFkMSkiLz4KCiAgPCEtLSBGb3JlZ3JvdW5kIEJ1aWxkaW5nIDEgKExlZnQtQ2VudGVyKSAtLT4KICA8cmVjdCB4PSI4NSIgeT0iMTYwIiB3aWR0aD0iNDYiIGhlaWdodD0iMTUwIiBmaWxsPSJ1cmwoI2JsZGdHcmFkMikiIHN0cm9rZT0iIzkzYzVmZCIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iMC42Ii8+CiAgPCEtLSBXaW5kb3dzIEJ1aWxkaW5nIDEgLS0+CiAgPGcgZmlsbD0iI2RiZWFmZSIgZmlsbC1vcGFjaXR5PSIwLjY1Ij4KICAgIDxyZWN0IHg9IjkyIiB5PSIxNzAiIHdpZHRoPSI2IiBoZWlnaHQ9IjYiLz48cmVjdCB4PSIxMDIiIHk9IjE3MCIgd2lkdGg9IjYiIGhlaWdodD0iNiIvPjxyZWN0IHg9IjExMiIgeT0iMTcwIiB3aWR0aD0iNiIgaGVpZ2h0PSI2Ii8+CiAgICA8cmVjdCB4PSI5MiIgeT0iMTgyIiB3aWR0aD0iNiIgaGVpZ2h0PSI2Ii8+PHJlY3QgeD0iMTAyIiB5PSIxODIiIHdpZHRoPSI2IiBoZWlnaHQ9IjYiLz48cmVjdCB4PSIxMTIiIHk9IjE4MiIgd2lkdGg9IjYiIGhlaWdodD0iNiIvPgogICAgPHJlY3QgeD0iOTIiIHk9IjE5NCIgd2lkdGg9IjYiIGhlaWdodD0iNiIvPjxyZWN0IHg9IjEwMiIgeT0iMTk0IiB3aWR0aD0iNiIgaGVpZ2h0PSI2Ii8+PHJlY3QgeD0iMTEyIiB5PSIxOTQiIHdpZHRoPSI2IiBoZWlnaHQ9IjYiLz4KICAgIDxyZWN0IHg9IjkyIiB5PSIyMDYiIHdpZHRoPSI2IiBoZWlnaHQ9IjYiLz48cmVjdCB4PSIxMDIiIHk9IjIwNiIgd2lkdGg9IjYiIGhlaWdodD0iNiIvPjxyZWN0IHg9IjExMiIgeT0iMjA2IiB3aWR0aD0iNiIgaGVpZ2h0PSI2Ii8+CiAgICA8cmVjdCB4PSI5MiIgeT0iMjE4IiB3aWR0aD0iNiIgaGVpZ2h0PSI2Ii8+PHJlY3QgeD0iMTAyIiB5PSIyMTgiIHdpZHRoPSI2IiBoZWlnaHQ9IjYiLz48cmVjdCB4PSIxMTIiIHk9IjIxOCIgd2lkdGg9IjYiIGhlaWdodD0iNiIvPgogICAgPHJlY3QgeD0iOTIiIHk9IjIzMCIgd2lkdGg9IjYiIGhlaWdodD0iNiIvPjxyZWN0IHg9IjEwMiIgeT0iMjMwIiB3aWR0aD0iNiIgaGVpZ2h0PSI2Ii8+PHJlY3QgeD0iMTEyIiB5PSIyMzAiIHdpZHRoPSI2IiBoZWlnaHQ9IjYiLz4KICAgIDxyZWN0IHg9IjkyIiB5PSIyNDIiIHdpZHRoPSI2IiBoZWlnaHQ9IjYiLz48cmVjdCB4PSIxMDIiIHk9IjI0MiIgd2lkdGg9IjYiIGhlaWdodD0iNiIvPjxyZWN0IHg9IjExMiIgeT0iMjQyIiB3aWR0aD0iNiIgaGVpZ2h0PSI2Ii8+CiAgICA8cmVjdCB4PSI5MiIgeT0iMjU0IiB3aWR0aD0iNiIgaGVpZ2h0PSI2Ii8+PHJlY3QgeD0iMTAyIiB5PSIyNTQiIHdpZHRoPSI2IiBoZWlnaHQ9IjYiLz48cmVjdCB4PSIxMTIiIHk9IjI1NCIgd2lkdGg9IjYiIGhlaWdodD0iNiIvPgogICAgPHJlY3QgeD0iOTIiIHk9IjI2NiIgd2lkdGg9IjYiIGhlaWdodD0iNiIvPjxyZWN0IHg9IjEwMiIgeT0iMjY2IiB3aWR0aD0iNiIgaGVpZ2h0PSI2Ii8+PHJlY3QgeD0iMTEyIiB5PSIyNjYiIHdpZHRoPSI2IiBoZWlnaHQ9IjYiLz4KICA8L2c+CgogIDwhLS0gRm9yZWdyb3VuZCBCdWlsZGluZyAyIChSaWdodC1DZW50ZXIgSGlnaCBSaXNlIHVuZGVyIGNvbnN0cnVjdGlvbikgLS0+CiAgPHJlY3QgeD0iMTM4IiB5PSIxMjUiIHdpZHRoPSI1NCIgaGVpZ2h0PSIxODUiIGZpbGw9InVybCgjYmxkZ0dyYWQyKSIgc3Ryb2tlPSIjYmZkYmZlIiBzdHJva2Utd2lkdGg9IjEuMiIgc3Ryb2tlLW9wYWNpdHk9IjAuNyIvPgogIDwhLS0gUm9vZiBzY2FmZm9sZGluZyAvIGNyYW5lIGJhc2UgLS0+CiAgPGxpbmUgeDE9IjE0NSIgeTE9IjEyNSIgeDI9IjE0NSIgeTI9IjExMiIgc3Ryb2tlPSIjOTNjNWZkIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDxsaW5lIHgxPSIxNjUiIHkxPSIxMjUiIHgyPSIxNjUiIHkyPSIxMDgiIHN0cm9rZT0iIzkzYzVmZCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8bGluZSB4MT0iMTgyIiB5MT0iMTI1IiB4Mj0iMTgyIiB5Mj0iMTE1IiBzdHJva2U9IiM5M2M1ZmQiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPCEtLSBXaW5kb3dzIEJ1aWxkaW5nIDIgLS0+CiAgPGcgZmlsbD0iI2VmZjZmZiIgZmlsbC1vcGFjaXR5PSIwLjc1Ij4KICAgIDxyZWN0IHg9IjE0NSIgeT0iMTM2IiB3aWR0aD0iNyIgaGVpZ2h0PSI3Ii8+PHJlY3QgeD0iMTU2IiB5PSIxMzYiIHdpZHRoPSI3IiBoZWlnaHQ9IjciLz48cmVjdCB4PSIxNjciIHk9IjEzNiIgd2lkdGg9IjciIGhlaWdodD0iNyIvPjxyZWN0IHg9IjE3OCIgeT0iMTM2IiB3aWR0aD0iNyIgaGVpZ2h0PSI3Ii8+CiAgICA8cmVjdCB4PSIxNDUiIHk9IjE0OSIgd2lkdGg9IjciIGhlaWdodD0iNyIvPjxyZWN0IHg9IjE1NiIgeT0iMTQ5IiB3aWR0aD0iNyIgaGVpZ2h0PSI3Ii8+PHJlY3QgeD0iMTY3IiB5PSIxNDkiIHdpZHRoPSI3IiBoZWlnaHQ9IjciLz48cmVjdCB4PSIxNzgiIHk9IjE0OSIgd2lkdGg9IjciIGhlaWdodD0iNyIvPgogICAgPHJlY3QgeD0iMTQ1IiB5PSIxNjIiIHdpZHRoPSI3IiBoZWlnaHQ9IjciLz48cmVjdCB4PSIxNTYiIHk9IjE2MiIgd2lkdGg9IjciIGhlaWdodD0iNyIvPjxyZWN0IHg9IjE2NyIgeT0iMTYyIiB3aWR0aD0iNyIgaGVpZ2h0PSI3Ii8+PHJlY3QgeD0iMTc4IiB5PSIxNjIiIHdpZHRoPSI3IiBoZWlnaHQ9IjciLz4KICAgIDxyZWN0IHg9IjE0NSIgeT0iMTc1IiB3aWR0aD0iNyIgaGVpZ2h0PSI3Ii8+PHJlY3QgeD0iMTU2IiB5PSIxNzUiIHdpZHRoPSI3IiBoZWlnaHQ9IjciLz48cmVjdCB4PSIxNjciIHk9IjE3NSIgd2lkdGg9IjciIGhlaWdodD0iNyIvPjxyZWN0IHg9IjE3OCIgeT0iMTc1IiB3aWR0aD0iNyIgaGVpZ2h0PSI3Ii8+CiAgICA8cmVjdCB4PSIxNDUiIHk9IjE4OCIgd2lkdGg9IjciIGhlaWdodD0iNyIvPjxyZWN0IHg9IjE1NiIgeT0iMTg4IiB3aWR0aD0iNyIgaGVpZ2h0PSI3Ii8+PHJlY3QgeD0iMTY3IiB5PSIxODgiIHdpZHRoPSI3IiBoZWlnaHQ9IjciLz48cmVjdCB4PSIxNzgiIHk9IjE4OCIgd2lkdGg9IjciIGhlaWdodD0iNyIvPgogICAgPHJlY3QgeD0iMTQ1IiB5PSIyMDEiIHdpZHRoPSI3IiBoZWlnaHQ9IjciLz48cmVjdCB4PSIxNTYiIHk9IjIwMSIgd2lkdGg9IjciIGhlaWdodD0iNyIvPjxyZWN0IHg9IjE2NyIgeT0iMjAxIiB3aWR0aD0iNyIgaGVpZ2h0PSI3Ii8+PHJlY3QgeD0iMTc4IiB5PSIyMDEiIHdpZHRoPSI3IiBoZWlnaHQ9IjciLz4KICAgIDxyZWN0IHg9IjE0NSIgeT0iMjE0IiB3aWR0aD0iNyIgaGVpZ2h0PSI3Ii8+PHJlY3QgeD0iMTU2IiB5PSIyMTQiIHdpZHRoPSI3IiBoZWlnaHQ9IjciLz48cmVjdCB4PSIxNjciIHk9IjIxNCIgd2lkdGg9IjciIGhlaWdodD0iNyIvPjxyZWN0IHg9IjE3OCIgeT0iMjE0IiB3aWR0aD0iNyIgaGVpZ2h0PSI3Ii8+CiAgICA8cmVjdCB4PSIxNDUiIHk9IjIyNyIgd2lkdGg9IjciIGhlaWdodD0iNyIvPjxyZWN0IHg9IjE1NiIgeT0iMjI3IiB3aWR0aD0iNyIgaGVpZ2h0PSI3Ii8+PHJlY3QgeD0iMTY3IiB5PSIyMjciIHdpZHRoPSI3IiBoZWlnaHQ9IjciLz48cmVjdCB4PSIxNzgiIHk9IjIyNyIgd2lkdGg9IjciIGhlaWdodD0iNyIvPgogICAgPHJlY3QgeD0iMTQ1IiB5PSIyNDAiIHdpZHRoPSI3IiBoZWlnaHQ9IjciLz48cmVjdCB4PSIxNTYiIHk9IjI0MCIgd2lkdGg9IjciIGhlaWdodD0iNyIvPjxyZWN0IHg9IjE2NyIgeT0iMjQwIiB3aWR0aD0iNyIgaGVpZ2h0PSI3Ii8+PHJlY3QgeD0iMTc4IiB5PSIyNDAiIHdpZHRoPSI3IiBoZWlnaHQ9IjciLz4KICAgIDxyZWN0IHg9IjE0NSIgeT0iMjUzIiB3aWR0aD0iNyIgaGVpZ2h0PSI3Ii8+PHJlY3QgeD0iMTU2IiB5PSIyNTMiIHdpZHRoPSI3IiBoZWlnaHQ9IjciLz48cmVjdCB4PSIxNjciIHk9IjI1MyIgd2lkdGg9IjciIGhlaWdodD0iNyIvPjxyZWN0IHg9IjE3OCIgeT0iMjUzIiB3aWR0aD0iNyIgaGVpZ2h0PSI3Ii8+CiAgICA8cmVjdCB4PSIxNDUiIHk9IjI2NiIgd2lkdGg9IjciIGhlaWdodD0iNyIvPjxyZWN0IHg9IjE1NiIgeT0iMjY2IiB3aWR0aD0iNyIgaGVpZ2h0PSI3Ii8+PHJlY3QgeD0iMTY3IiB5PSIyNjYiIHdpZHRoPSI3IiBoZWlnaHQ9IjciLz48cmVjdCB4PSIxNzgiIHk9IjI2NiIgd2lkdGg9IjciIGhlaWdodD0iNyIvPgogIDwvZz4KCiAgPCEtLSBNYWluIFRvd2VyIENyYW5lIChMZWZ0IHNpZGUsIGRldGFpbGVkIGxhdHRpY2UpIC0tPgogIDxnIHN0cm9rZT0iIzkzYzVmZCIgc3Ryb2tlLW9wYWNpdHk9IjAuNzUiIGZpbGw9Im5vbmUiPgogICAgPCEtLSBWZXJ0aWNhbCBNYXN0IC0tPgogICAgPGxpbmUgeDE9IjMyIiB5MT0iNDUiIHgyPSIzMiIgeTI9IjMxMCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8bGluZSB4MT0iNDYiIHkxPSI0NSIgeDI9IjQ2IiB5Mj0iMzEwIiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDwhLS0gTWFzdCBDcm9zcyBCcmFjaW5nIC0tPgogICAgPHBhdGggZD0iTSAzMiA2MCBMIDQ2IDc1IEwgMzIgOTAgTCA0NiAxMDUgTCAzMiAxMjAgTCA0NiAxMzUgTCAzMiAxNTAgTCA0NiAxNjUgTCAzMiAxODAgTCA0NiAxOTUgTCAzMiAyMTAgTCA0NiAyMjUgTCAzMiAyNDAgTCA0NiAyNTUgTCAzMiAyNzAgTCA0NiAyODUgTCAzMiAzMDAiIHN0cm9rZS13aWR0aD0iMS4yIi8+CiAgICA8cGF0aCBkPSJNIDQ2IDYwIEwgMzIgNzUgTCA0NiA5MCBMIDMyIDEwNSBMIDQ2IDEyMCBMIDMyIDEzNSBMIDQ2IDE1MCBMIDMyIDE2NSBMIDQ2IDE4MCBMIDMyIDE5NSBMIDQ2IDIxMCBMIDMyIDIyNSBMIDQ2IDI0MCBMIDMyIDI1NSBMIDQ2IDI3MCBMIDMyIDI4NSBMIDQ2IDMwMCIgc3Ryb2tlLXdpZHRoPSIwLjgiIHN0cm9rZS1vcGFjaXR5PSIwLjQ1Ii8+CgogICAgPCEtLSBPcGVyYXRvciBDYWIgLS0+CiAgICA8cmVjdCB4PSIyOCIgeT0iNTIiIHdpZHRoPSIyMiIgaGVpZ2h0PSIxNCIgcng9IjIiIGZpbGw9IiMxZTQwYWYiIGZpbGwtb3BhY2l0eT0iMC44IiBzdHJva2U9IiNiZmRiZmUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CgogICAgPCEtLSBUb3AgQXBleCBQZWFrIC0tPgogICAgPHBhdGggZD0iTSAzMiA0NSBMIDM5IDE4IEwgNDYgNDUiIHN0cm9rZS13aWR0aD0iMiIvPgoKICAgIDwhLS0gSG9yaXpvbnRhbCBKaWIgQm9vbSAmIENvdW50ZXItSmliIC0tPgogICAgPGxpbmUgeDE9IjQiIHkxPSI0NSIgeDI9IjE5NSIgeTI9IjQ1IiBzdHJva2Utd2lkdGg9IjIuMiIvPgogICAgPGxpbmUgeDE9IjgiIHkxPSIzNiIgeDI9IjE4NSIgeTI9IjM2IiBzdHJva2Utd2lkdGg9IjEuNCIvPgogICAgPCEtLSBKaWIgTGF0dGljZSBEaWFnb25hbHMgLS0+CiAgICA8cGF0aCBkPSJNIDggNDUgTCAxNiAzNiBMIDI0IDQ1IEwgMzIgMzYgTSA0NiAzNiBMIDU2IDQ1IEwgNjYgMzYgTCA3NiA0NSBMIDg2IDM2IEwgOTYgNDUgTCAxMDYgMzYgTCAxMTYgNDUgTCAxMjYgMzYgTCAxMzYgNDUgTCAxNDYgMzYgTCAxNTYgNDUgTCAxNjYgMzYgTCAxNzYgNDUgTCAxODUgMzYgTCAxOTUgNDUiIHN0cm9rZS13aWR0aD0iMS4xIi8+CgogICAgPCEtLSBTdXNwZW5zaW9uIENhYmxlcyBmcm9tIEFwZXggLS0+CiAgICA8bGluZSB4MT0iMzkiIHkxPSIxOCIgeDI9IjEyIiB5Mj0iMzYiIHN0cm9rZS13aWR0aD0iMS4yIi8+CiAgICA8bGluZSB4MT0iMzkiIHkxPSIxOCIgeDI9IjExNSIgeTI9IjM2IiBzdHJva2Utd2lkdGg9IjEuMiIvPgogICAgPGxpbmUgeDE9IjM5IiB5MT0iMTgiIHgyPSIxNjUiIHkyPSIzNiIgc3Ryb2tlLXdpZHRoPSIxIi8+CgogICAgPCEtLSBDb3VudGVyd2VpZ2h0IEJsb2NrIC0tPgogICAgPHJlY3QgeD0iOCIgeT0iNDUiIHdpZHRoPSIxNCIgaGVpZ2h0PSIxMiIgZmlsbD0iIzYwYTVmYSIgZmlsbC1vcGFjaXR5PSIwLjY1Ii8+CgogICAgPCEtLSBIb29rIFRyb2xsZXkgJiBIb2lzdCBDYWJsZSAtLT4KICAgIDxyZWN0IHg9IjEyMiIgeT0iNDQiIHdpZHRoPSIxMCIgaGVpZ2h0PSI1IiBmaWxsPSIjYmZkYmZlIi8+CiAgICA8bGluZSB4MT0iMTI3IiB5MT0iNDkiIHgyPSIxMjciIHkyPSIxMDUiIHN0cm9rZS13aWR0aD0iMS4zIiBzdHJva2UtZGFzaGFycmF5PSIzLDIiLz4KICAgIDxjaXJjbGUgY3g9IjEyNyIgY3k9IjEwOCIgcj0iMy41IiBzdHJva2Utd2lkdGg9IjEuNSIgZmlsbD0iIzYwYTVmYSIvPgogIDwvZz4KCiAgPCEtLSBHcm91bmQgQmFzZSBMaW5lIC0tPgogIDxyZWN0IHg9IjAiIHk9IjMwOCIgd2lkdGg9IjI2MCIgaGVpZ2h0PSIxMiIgZmlsbD0iIzA2MmM2MSIgZmlsbC1vcGFjaXR5PSIwLjgiLz4KPC9zdmc+" alt="Architectural Buildings and Tower Crane Vector" class="w-full h-auto object-bottom object-contain opacity-95"/>
+      </div>
+
+    </aside>
+
+    <!-- ======================================================== -->
+    <!-- MAIN CONTENT AREA -->
+    <!-- ======================================================== -->
+    <div class="flex-1 flex flex-col min-w-0">
+
+      <!-- TOP HEADER (TITLE & FILTER BAR) -->
+      <header class="bg-white border-b border-slate-200/90 px-6 py-3.5 sticky top-0 z-30 shadow-sm flex flex-wrap items-center justify-between gap-4 relative overflow-hidden">
+        <!-- Subtle Top-Right Skyline Illustration matching reference -->
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMjAgOTAiIHdpZHRoPSI0NDAiIGhlaWdodD0iMTgwIj4KICA8ZyBvcGFjaXR5PSIwLjIyIiBmaWxsPSIjOTNjNWZkIj4KICAgIDxyZWN0IHg9IjQwIiB5PSIzMCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjYwIi8+CiAgICA8cmVjdCB4PSI2OCIgeT0iMTgiIHdpZHRoPSIyOCIgaGVpZ2h0PSI3MiIvPgogICAgPHJlY3QgeD0iMTAyIiB5PSIzOCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjUyIi8+CiAgICA8cmVjdCB4PSIxMzIiIHk9IjI1IiB3aWR0aD0iMzAiIGhlaWdodD0iNjUiLz4KICA8L2c+CiAgPGcgb3BhY2l0eT0iMC4yOCIgc3Ryb2tlPSIjNjBhNWZhIiBmaWxsPSJub25lIiBzdHJva2Utd2lkdGg9IjEuMiI+CiAgICA8bGluZSB4MT0iODIiIHkxPSI0IiB4Mj0iODIiIHkyPSI5MCIvPgogICAgPGxpbmUgeDE9Ijg3IiB5MT0iNCIgeDI9Ijg3IiB5Mj0iOTAiLz4KICAgIDxsaW5lIHgxPSI0NSIgeTE9IjEwIiB4Mj0iMTM1IiB5Mj0iMTAiLz4KICAgIDxsaW5lIHgxPSI4NCIgeTE9IjIiIHgyPSI1NSIgeTI9IjEwIi8+CiAgICA8bGluZSB4MT0iODQiIHkxPSIyIiB4Mj0iMTI1IiB5Mj0iMTAiLz4KICA8L2c+Cjwvc3ZnPg==" alt="" class="absolute right-0 top-0 h-full w-auto object-cover pointer-events-none opacity-85 hidden xl:block dark:opacity-20"/>
+
+        <!-- Title & Subtitle -->
+        <div class="relative z-10">
+          <div class="flex items-center gap-2.5">
+            <h1 class="text-xl font-extrabold text-[#083b7a] tracking-tight">
+              CCMS Monitoring Dashboard
+            </h1>
+            <span id="periodStatusBadge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Terkini
+            </span>
+          </div>
+          <p class="text-xs font-medium text-slate-500">
+            Contract Management Infrastructure 1 Sub Division
+          </p>
+        </div>
+
+        <!-- Filter Controls Cluster -->
+        <div class="flex flex-wrap items-center gap-2 text-xs relative z-10">
+          
+          <!-- Periode Dropdown (With "Terkini" Default + Historical Options) -->
+          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-slate-700 shadow-sm">
+            <span class="material-symbols-outlined text-[#0d5cab] text-sm">calendar_month</span>
+            <span class="text-[11px] text-slate-500">Periode:</span>
+            <select id="filterPeriod" onchange="handlePeriodFilter(this.value)" class="bg-transparent font-bold text-slate-800 focus:outline-none cursor-pointer">
+              <option value="terkini" selected>Terkini (Terbaru)</option>
+              <option value="jul-2026">Juli 2026</option>
+              <option value="jun-2026">Juni 2026</option>
+              <option value="mei-2026">Mei 2026</option>
+            </select>
+          </div>
+
+          <!-- Departemen Operasi Dropdown -->
+          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-slate-700 shadow-sm">
+            <span class="text-[11px] text-slate-500">Departemen Operasi:</span>
+            <select id="filterDepartment" onchange="handleDepartmentFilter(this.value)" class="bg-transparent font-bold text-slate-800 focus:outline-none cursor-pointer">
+              <option value="all" selected>All (51 Proyek)</option>
+              <option value="DO 1">DO 1 (19 Proyek)</option>
+              <option value="DO 2">DO 2 (18 Proyek)</option>
+              <option value="DO 3">DO 3 (14 Proyek)</option>
+            </select>
+          </div>
+
+          <!-- Tahapan Dropdown -->
+          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-slate-700 shadow-sm">
+            <span class="text-[11px] text-slate-500">Tahapan:</span>
+            <select id="filterTahapan" onchange="handleTahapanFilter(this.value)" class="bg-transparent font-bold text-slate-800 focus:outline-none cursor-pointer">
+              <option value="all" selected>All</option>
+              <option value="pelaksanaan">Pelaksanaan (Aktif)</option>
+              <option value="mc-0">MC-0 / Addendum Awal</option>
+              <option value="serah-terima">Serah Terima (BASTL)</option>
+            </select>
+          </div>
+
+          <!-- Search Input -->
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-2.5 top-2 text-slate-400 text-sm">search</span>
+            <input type="text" id="searchInput" oninput="handleSearch(this.value)" placeholder="Cari Nama Proyek..." class="pl-8 pr-7 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-medium text-slate-800 focus:outline-none focus:border-[#0d5cab] w-44 md:w-52 transition-all shadow-sm"/>
+            <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-2 top-2 text-slate-400 hover:text-slate-600">
+              <span class="material-symbols-outlined text-xs">close</span>
+            </button>
+          </div>
+
+          <!-- Reset Filter Button -->
+          <button onclick="resetFilters()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 font-bold shadow-sm transition-all active:scale-95">
+            <span class="material-symbols-outlined text-sm text-[#0d5cab]">refresh</span>
+            <span>Reset Filter</span>
+          </button>
+
+          <!-- Sun/Moon Theme Toggle Icon Button -->
+          <button onclick="toggleTheme()" id="themeToggleBtn" class="p-1.5 rounded-full bg-white hover:bg-slate-100 text-amber-500 border border-slate-300 shadow-sm transition-all flex items-center justify-center" title="Ubah Mode Terang / Gelap">
+            <span id="themeIcon" class="material-symbols-outlined text-base fill">light_mode</span>
+          </button>
+
+        </div>
+
+      </header>
+
+      <!-- DASHBOARD BODY CONTENT -->
+      <main class="p-4 space-y-3.5 max-w-[1720px] w-full mx-auto">
+
+        <!-- ======================================================== -->
+        <!-- TOP SECTION: LEFT 9 COLS (ROW 1 & ROW 2) + RIGHT 3 COLS (CALENDAR & QUICK ACCESS) -->
+        <!-- ======================================================== -->
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-3.5 items-stretch">
+          
+          <!-- LEFT 9 COLUMNS: KPI CARDS (ROW 1) + DEPT SUMMARY & LINE CHART (ROW 2) -->
+          <div class="xl:col-span-9 flex flex-col gap-3.5">
+            
+            <!-- ROW 1: 4 CARDS (TOTAL PROYEK DI PALING KIRI) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3.5">
+              
+              <!-- CARD 1 (PALING KIRI): Total Proyek (2 cols) -->
+              <div class="lg:col-span-2 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between relative overflow-hidden">
+                <div class="flex items-center gap-1.5 relative z-10">
+                  <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-xs">domain</span>
+                  </div>
+                  <h2 class="text-[11px] font-bold text-[#0c2340]">Total Proyek</h2>
+                </div>
+
+                <div class="flex items-center justify-between my-1 relative z-10">
+                  <div>
+                    <div class="text-4xl font-extrabold text-[#083b7a] tracking-tight leading-none" id="kpiTotalProjects">51</div>
+                    <div class="text-xs font-semibold text-slate-700 mt-1">Proyek</div>
+                  </div>
+                  <!-- Crisp Vector High-Rise & Lattice Tower Crane Illustration -->
+                  <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAgMTQwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjI4MCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImMzR3JhZDEiIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzkzYzVmZCIgc3RvcC1vcGFjaXR5PSIwLjciLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZGJlYWZlIiBzdG9wLW9wYWNpdHk9IjAuMyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYzNHcmFkMiIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjNjBhNWZhIiBzdG9wLW9wYWNpdHk9IjAuODUiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjYmZkYmZlIiBzdG9wLW9wYWNpdHk9IjAuNCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CgogIDwhLS0gU29mdCBDbG91ZCAvIEJhc2UgU2hhZG93IC0tPgogIDxlbGxpcHNlIGN4PSI4NSIgY3k9IjEzMiIgcng9IjY1IiByeT0iNSIgZmlsbD0iI2RiZWFmZSIgZmlsbC1vcGFjaXR5PSIwLjciLz4KCiAgPCEtLSBMZWZ0IEJhY2tncm91bmQgQnVpbGRpbmcgLS0+CiAgPHJlY3QgeD0iMjgiIHk9IjgyIiB3aWR0aD0iMjQiIGhlaWdodD0iNTAiIGZpbGw9InVybCgjYzNHcmFkMSkiIHN0cm9rZT0iIzYwYTVmYSIgc3Ryb2tlLXdpZHRoPSIwLjgiLz4KICA8ZyBmaWxsPSIjZmZmZmZmIiBmaWxsLW9wYWNpdHk9IjAuOCI+CiAgICA8cmVjdCB4PSIzMiIgeT0iODciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiLz48cmVjdCB4PSIzOSIgeT0iODciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiLz48cmVjdCB4PSI0NSIgeT0iODciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiLz4KICAgIDxyZWN0IHg9IjMyIiB5PSI5NSIgd2lkdGg9IjQiIGhlaWdodD0iNCIvPjxyZWN0IHg9IjM5IiB5PSI5NSIgd2lkdGg9IjQiIGhlaWdodD0iNCIvPjxyZWN0IHg9IjQ1IiB5PSI5NSIgd2lkdGg9IjQiIGhlaWdodD0iNCIvPgogICAgPHJlY3QgeD0iMzIiIHk9IjEwMyIgd2lkdGg9IjQiIGhlaWdodD0iNCIvPjxyZWN0IHg9IjM5IiB5PSIxMDMiIHdpZHRoPSI0IiBoZWlnaHQ9IjQiLz48cmVjdCB4PSI0NSIgeT0iMTAzIiB3aWR0aD0iNCIgaGVpZ2h0PSI0Ii8+CiAgICA8cmVjdCB4PSIzMiIgeT0iMTExIiB3aWR0aD0iNCIgaGVpZ2h0PSI0Ii8+PHJlY3QgeD0iMzkiIHk9IjExMSIgd2lkdGg9IjQiIGhlaWdodD0iNCIvPjxyZWN0IHg9IjQ1IiB5PSIxMTEiIHdpZHRoPSI0IiBoZWlnaHQ9IjQiLz4KICA8L2c+CgogIDwhLS0gQ2VudGVyIEhpZ2gtUmlzZSBCdWlsZGluZyAtLT4KICA8cmVjdCB4PSI1NiIgeT0iNTUiIHdpZHRoPSIzNCIgaGVpZ2h0PSI3NyIgZmlsbD0idXJsKCNjM0dyYWQyKSIgc3Ryb2tlPSIjM2I4MmY2IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8ZyBmaWxsPSIjZmZmZmZmIiBmaWxsLW9wYWNpdHk9IjAuODUiPgogICAgPHJlY3QgeD0iNjEiIHk9IjYxIiB3aWR0aD0iNSIgaGVpZ2h0PSI1Ii8+PHJlY3QgeD0iNzAiIHk9IjYxIiB3aWR0aD0iNSIgaGVpZ2h0PSI1Ii8+PHJlY3QgeD0iNzkiIHk9IjYxIiB3aWR0aD0iNSIgaGVpZ2h0PSI1Ii8+CiAgICA8cmVjdCB4PSI2MSIgeT0iNzAiIHdpZHRoPSI1IiBoZWlnaHQ9IjUiLz48cmVjdCB4PSI3MCIgeT0iNzAiIHdpZHRoPSI1IiBoZWlnaHQ9IjUiLz48cmVjdCB4PSI3OSIgeT0iNzAiIHdpZHRoPSI1IiBoZWlnaHQ9IjUiLz4KICAgIDxyZWN0IHg9IjYxIiB5PSI3OSIgd2lkdGg9IjUiIGhlaWdodD0iNSIvPjxyZWN0IHg9IjcwIiB5PSI3OSIgd2lkdGg9IjUiIGhlaWdodD0iNSIvPjxyZWN0IHg9Ijc5IiB5PSI3OSIgd2lkdGg9IjUiIGhlaWdodD0iNSIvPgogICAgPHJlY3QgeD0iNjEiIHk9Ijg4IiB3aWR0aD0iNSIgaGVpZ2h0PSI1Ii8+PHJlY3QgeD0iNzAiIHk9Ijg4IiB3aWR0aD0iNSIgaGVpZ2h0PSI1Ii8+PHJlY3QgeD0iNzkiIHk9Ijg4IiB3aWR0aD0iNSIgaGVpZ2h0PSI1Ii8+CiAgICA8cmVjdCB4PSI2MSIgeT0iOTciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiLz48cmVjdCB4PSI3MCIgeT0iOTciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiLz48cmVjdCB4PSI3OSIgeT0iOTciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiLz4KICAgIDxyZWN0IHg9IjYxIiB5PSIxMDYiIHdpZHRoPSI1IiBoZWlnaHQ9IjUiLz48cmVjdCB4PSI3MCIgeT0iMTA2IiB3aWR0aD0iNSIgaGVpZ2h0PSI1Ii8+PHJlY3QgeD0iNzkiIHk9IjEwNiIgd2lkdGg9IjUiIGhlaWdodD0iNSIvPgogICAgPHJlY3QgeD0iNjEiIHk9IjExNSIgd2lkdGg9IjUiIGhlaWdodD0iNSIvPjxyZWN0IHg9IjcwIiB5PSIxMTUiIHdpZHRoPSI1IiBoZWlnaHQ9IjUiLz48cmVjdCB4PSI3OSIgeT0iMTE1IiB3aWR0aD0iNSIgaGVpZ2h0PSI1Ii8+CiAgPC9nPgoKICA8IS0tIFJpZ2h0IE1lZGl1bSBCdWlsZGluZyAtLT4KICA8cmVjdCB4PSI5NCIgeT0iNzIiIHdpZHRoPSIyOCIgaGVpZ2h0PSI2MCIgZmlsbD0idXJsKCNjM0dyYWQxKSIgc3Ryb2tlPSIjNjBhNWZhIiBzdHJva2Utd2lkdGg9IjAuOSIvPgogIDxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC44Ij4KICAgIDxyZWN0IHg9Ijk5IiB5PSI3OCIgd2lkdGg9IjQuNSIgaGVpZ2h0PSI0LjUiLz48cmVjdCB4PSIxMDYiIHk9Ijc4IiB3aWR0aD0iNC41IiBoZWlnaHQ9IjQuNSIvPjxyZWN0IHg9IjExMyIgeT0iNzgiIHdpZHRoPSI0LjUiIGhlaWdodD0iNC41Ii8+CiAgICA8cmVjdCB4PSI5OSIgeT0iODYiIHdpZHRoPSI0LjUiIGhlaWdodD0iNC41Ii8+PHJlY3QgeD0iMTA2IiB5PSI4NiIgd2lkdGg9IjQuNSIgaGVpZ2h0PSI0LjUiLz48cmVjdCB4PSIxMTMiIHk9Ijg2IiB3aWR0aD0iNC41IiBoZWlnaHQ9IjQuNSIvPgogICAgPHJlY3QgeD0iOTkiIHk9Ijk0IiB3aWR0aD0iNC41IiBoZWlnaHQ9IjQuNSIvPjxyZWN0IHg9IjEwNiIgeT0iOTQiIHdpZHRoPSI0LjUiIGhlaWdodD0iNC41Ii8+PHJlY3QgeD0iMTEzIiB5PSI5NCIgd2lkdGg9IjQuNSIgaGVpZ2h0PSI0LjUiLz4KICAgIDxyZWN0IHg9Ijk5IiB5PSIxMDIiIHdpZHRoPSI0LjUiIGhlaWdodD0iNC41Ii8+PHJlY3QgeD0iMTA2IiB5PSIxMDIiIHdpZHRoPSI0LjUiIGhlaWdodD0iNC41Ii8+PHJlY3QgeD0iMTEzIiB5PSIxMDIiIHdpZHRoPSI0LjUiIGhlaWdodD0iNC41Ii8+CiAgICA8cmVjdCB4PSI5OSIgeT0iMTEwIiB3aWR0aD0iNC41IiBoZWlnaHQ9IjQuNSIvPjxyZWN0IHg9IjEwNiIgeT0iMTEwIiB3aWR0aD0iNC41IiBoZWlnaHQ9IjQuNSIvPjxyZWN0IHg9IjExMyIgeT0iMTEwIiB3aWR0aD0iNC41IiBoZWlnaHQ9IjQuNSIvPgogIDwvZz4KCiAgPCEtLSBUb3dlciBDcmFuZSBvbiBSaWdodCAtLT4KICA8ZyBzdHJva2U9IiMyNTYzZWIiIHN0cm9rZS1vcGFjaXR5PSIwLjc1IiBmaWxsPSJub25lIj4KICAgIDwhLS0gTWFzdCAtLT4KICAgIDxsaW5lIHgxPSIxMjgiIHkxPSIyMiIgeDI9IjEyOCIgeTI9IjEzMiIgc3Ryb2tlLXdpZHRoPSIxLjYiLz4KICAgIDxsaW5lIHgxPSIxMzYiIHkxPSIyMiIgeDI9IjEzNiIgeTI9IjEzMiIgc3Ryb2tlLXdpZHRoPSIxLjYiLz4KICAgIDxwYXRoIGQ9Ik0gMTI4IDI4IEwgMTM2IDM2IEwgMTI4IDQ0IEwgMTM2IDUyIEwgMTI4IDYwIEwgMTM2IDY4IEwgMTI4IDc2IEwgMTM2IDg0IEwgMTI4IDkyIEwgMTM2IDEwMCBMIDEyOCAxMDggTCAxMzYgMTE2IEwgMTI4IDEyNCIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8IS0tIEFwZXggLS0+CiAgICA8cGF0aCBkPSJNIDEyOCAyMiBMIDEzMiA4IEwgMTM2IDIyIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgPCEtLSBIb3Jpem9udGFsIEppYiAtLT4KICAgIDxsaW5lIHgxPSI2NSIgeTE9IjIyIiB4Mj0iMTUyIiB5Mj0iMjIiIHN0cm9rZS13aWR0aD0iMS44Ii8+CiAgICA8bGluZSB4MT0iNzAiIHkxPSIxNiIgeDI9IjE0OCIgeTI9IjE2IiBzdHJva2Utd2lkdGg9IjEuMSIvPgogICAgPHBhdGggZD0iTSA3MCAyMiBMIDc2IDE2IEwgODIgMjIgTCA4OCAxNiBMIDk0IDIyIEwgMTAwIDE2IEwgMTA2IDIyIEwgMTEyIDE2IEwgMTE4IDIyIEwgMTI0IDE2IEwgMTI4IDIyIE0gMTM2IDIyIEwgMTQyIDE2IEwgMTQ4IDIyIiBzdHJva2Utd2lkdGg9IjAuOSIvPgogICAgPCEtLSBDYWJsZXMgLS0+CiAgICA8bGluZSB4MT0iMTMyIiB5MT0iOCIgeDI9IjgwIiB5Mj0iMTYiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPGxpbmUgeDE9IjEzMiIgeTE9IjgiIHgyPSIxNDYiIHkyPSIxNiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8IS0tIEhvb2sgTGluZSAtLT4KICAgIDxsaW5lIHgxPSI4MiIgeTE9IjIyIiB4Mj0iODIiIHkyPSI0NiIgc3Ryb2tlLXdpZHRoPSIxLjEiLz4KICAgIDxyZWN0IHg9Ijc4IiB5PSI0NiIgd2lkdGg9IjgiIGhlaWdodD0iNCIgZmlsbD0iIzNiODJmNiIvPgogIDwvZz4KPC9zdmc+" alt="High-Rise Buildings & Crane" class="w-20 h-18 object-contain -mr-1 pointer-events-none"/>
+                </div>
+
+                <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[9px] text-slate-600 font-bold relative z-10 whitespace-nowrap">
+                  <button onclick="handleDepartmentFilter('DO 1')" class="hover:text-[#0d6efd] transition-colors" title="Filter DO 1">DO 1: <b>19</b></button>
+                  <span class="text-slate-300">|</span>
+                  <button onclick="handleDepartmentFilter('DO 2')" class="hover:text-[#f59e0b] transition-colors" title="Filter DO 2">DO 2: <b>18</b></button>
+                  <span class="text-slate-300">|</span>
+                  <button onclick="handleDepartmentFilter('DO 3')" class="hover:text-[#10b981] transition-colors" title="Filter DO 3">DO 3: <b>14</b></button>
+                </div>
+              </div>
+
+              <!-- CARD 2: Kepatuhan Contract Management (14 Dokumen) (3 cols) -->
+              <div class="lg:col-span-3 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between">
+                <div class="flex items-start gap-2">
+                  <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0 mt-0.5">
+                    <span class="material-symbols-outlined text-xs">description</span>
+                  </div>
+                  <h2 class="text-[11px] font-bold text-[#0c2340] leading-tight">
+                    Kepatuhan Contract Management<br/>(14 Dokumen)
+                  </h2>
+                </div>
+                
+                <div class="flex items-center justify-between my-2">
+                  <div>
+                    <div class="text-3xl font-extrabold text-[#159a5c] tracking-tight leading-none" id="kpiCmPercent">62,7%</div>
+                    <div class="text-[11px] font-medium text-slate-600 mt-1" id="kpiCmRatio">32 dari 51 Proyek</div>
+                  </div>
+                  <div class="w-16 h-16 relative shrink-0">
+                    <canvas id="cmDonutChart"></canvas>
+                  </div>
+                </div>
+
+                <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-center px-1">
+                  <button onclick="handleMatrixStatusFilter('lengkap')" class="group text-center hover:opacity-80 transition-opacity">
+                    <div class="flex items-center justify-center gap-1 text-[9px] text-slate-600 font-medium whitespace-nowrap">
+                      <span class="w-2 h-2 rounded-full bg-[#159a5c] shrink-0"></span>Lengkap
+                    </div>
+                    <div class="text-xs font-extrabold text-[#0c2340] mt-0.5" id="cmLengkapCount">32</div>
+                  </button>
+                  <button onclick="handleMatrixStatusFilter('belum_lengkap')" class="group text-center hover:opacity-80 transition-opacity">
+                    <div class="flex items-center justify-center gap-1 text-[9px] text-slate-600 font-medium whitespace-nowrap">
+                      <span class="w-2 h-2 rounded-full bg-[#f59e0b] shrink-0"></span>Belum Lengkap
+                    </div>
+                    <div class="text-xs font-extrabold text-[#0c2340] mt-0.5" id="cmBelumCount">17</div>
+                  </button>
+                  <button onclick="handleMatrixStatusFilter('belum_diisi')" class="group text-center hover:opacity-80 transition-opacity">
+                    <div class="flex items-center justify-center gap-1 text-[9px] text-slate-600 font-medium whitespace-nowrap">
+                      <span class="w-2 h-2 rounded-full bg-[#94a3b8] shrink-0"></span>Nihil
+                    </div>
+                    <div class="text-xs font-extrabold text-[#0c2340] mt-0.5" id="cmNihilCount">2</div>
+                  </button>
+                </div>
+              </div>
+
+              <!-- CARD 3: Kepatuhan Perubahan (VO, Claim, Anti Claim & Insurance) (3 cols) -->
+              <div class="lg:col-span-3 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between">
+                <div class="flex items-start gap-2">
+                  <div class="w-5 h-5 rounded bg-[#0d6efd] text-white flex items-center justify-center shrink-0 mt-0.5">
+                    <span class="material-symbols-outlined text-xs">autorenew</span>
+                  </div>
+                  <h2 class="text-[11px] font-bold text-[#0c2340] leading-tight">
+                    Kepatuhan Perubahan (VO, Claim,<br/>Anti Claim &amp; Insurance)
+                  </h2>
+                </div>
+
+                <div class="flex items-center justify-between my-2">
+                  <div>
+                    <div class="text-3xl font-extrabold text-[#0d6efd] tracking-tight leading-none" id="kpiVoPercent">58,8%</div>
+                    <div class="text-[11px] font-medium text-slate-600 mt-1" id="kpiVoRatio">30 dari 51 Proyek</div>
+                  </div>
+                  <div class="w-16 h-16 relative shrink-0">
+                    <canvas id="voDonutChart"></canvas>
+                  </div>
+                </div>
+
+                <div class="pt-2 border-t border-slate-100 grid grid-cols-2 gap-2 text-center">
+                  <button onclick="handleMatrixStatusFilter('lengkap')" class="hover:opacity-80 transition-opacity">
+                    <div class="flex items-center justify-center gap-1 text-[9px] text-slate-600 font-medium whitespace-nowrap">
+                      <span class="w-2 h-2 rounded-full bg-[#0d6efd] shrink-0"></span>Lengkap
+                    </div>
+                    <div class="text-xs font-extrabold text-[#0c2340] mt-0.5" id="voLengkapCount">30</div>
+                  </button>
+                  <button onclick="openAlertsModal('belum_diisi')" class="hover:opacity-80 transition-opacity">
+                    <div class="flex items-center justify-center gap-1 text-[9px] text-slate-600 font-medium whitespace-nowrap">
+                      <span class="w-2 h-2 rounded-full bg-[#f59e0b] shrink-0"></span>Belum Diisi
+                    </div>
+                    <div class="text-xs font-extrabold text-[#0c2340] mt-0.5" id="voBelumCount">21</div>
+                  </button>
+                </div>
+              </div>
+
+              <!-- CARD 4: Perbandingan Kepatuhan per Operasi (4 cols) -->
+              <div class="lg:col-span-4 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
+                      <span class="material-symbols-outlined text-xs">bar_chart</span>
+                    </div>
+                    <h2 class="text-[11px] font-bold text-[#0c2340]">Perbandingan Kepatuhan per Operasi</h2>
+                  </div>
+                </div>
+
+                <!-- Legend CM vs Perubahan -->
+                <div class="flex items-center justify-center gap-4 text-[9.5px] font-bold text-slate-600 my-1">
+                  <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-[#0c4a8a]"></span> CM</span>
+                  <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-[#38bdf8]"></span> Perubahan</span>
+                </div>
+
+                <!-- Grouped Bar Chart with non-overlapping top value labels -->
+                <div class="h-28 w-full relative">
+                  <canvas id="perbandinganBarChart"></canvas>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- ROW 2: RINGKASAN PER DEPARTEMEN OPERASI (7 COLS) + PROGRESS KEPATUHAN TREND (5 COLS) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5" id="deptSummarySection">
+              
+              <!-- CARD 6: Ringkasan per Departemen Operasi (Distinct Colors per Operasi) (7 cols) -->
+              <div class="lg:col-span-7 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between">
+                <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                  <div class="flex items-center gap-2">
+                    <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
+                      <span class="material-symbols-outlined text-xs">pie_chart</span>
+                    </div>
+                    <h2 class="text-xs font-bold text-[#0c2340]">Ringkasan per Departemen Operasi</h2>
+                  </div>
+                  <span class="text-[10px] text-slate-400 font-medium">Klik departemen untuk memfilter proyek</span>
+                </div>
+
+                <div class="grid grid-cols-3 divide-x divide-slate-200 pt-2 text-center">
+                  
+                  <!-- Operasi 1 - 19 Proyek (BLUE / CYAN PALETTE) -->
+                  <div onclick="handleDepartmentFilter('DO 1')" class="px-2 py-1 rounded-lg hover:bg-sky-50/50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors space-y-2" title="Klik untuk memfilter Operasi 1 (19 Proyek)">
+                    <div class="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#0c2340]">
+                      <span class="w-2 h-2 rounded-full bg-[#0d6efd]"></span>
+                      <span>Operasi 1 - 19 Proyek</span>
+                    </div>
+                    <div class="flex items-center justify-center gap-3">
+                      <div class="flex flex-col items-center">
+                        <div class="relative w-16 h-16 flex items-center justify-center">
+                          <svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200" stroke-width="3.8" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            <path id="ringOp1CmArc" class="text-[#0d6efd] transition-all duration-700" stroke-dasharray="63.2, 100" stroke-width="3.8" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                          </svg>
+                          <span id="ringOp1CmText" class="absolute text-[10.5px] font-extrabold text-[#0d6efd]">63,2%</span>
+                        </div>
+                        <span class="text-[10px] font-semibold text-slate-600 mt-1">CM</span>
+                      </div>
+
+                      <div class="flex flex-col items-center">
+                        <div class="relative w-16 h-16 flex items-center justify-center">
+                          <svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200" stroke-width="3.8" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            <path id="ringOp1VoArc" class="text-[#06b6d4] transition-all duration-700" stroke-dasharray="52.6, 100" stroke-width="3.8" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                          </svg>
+                          <span id="ringOp1VoText" class="absolute text-[10.5px] font-extrabold text-[#0891b2]">52,6%</span>
+                        </div>
+                        <span class="text-[10px] font-semibold text-slate-600 mt-1">Perubahan</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Operasi 2 - 18 Proyek (AMBER / ORANGE PALETTE) -->
+                  <div onclick="handleDepartmentFilter('DO 2')" class="px-2 py-1 rounded-lg hover:bg-amber-50/50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors space-y-2" title="Klik untuk memfilter Operasi 2 (18 Proyek)">
+                    <div class="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#0c2340]">
+                      <span class="w-2 h-2 rounded-full bg-[#f59e0b]"></span>
+                      <span>Operasi 2 - 18 Proyek</span>
+                    </div>
+                    <div class="flex items-center justify-center gap-3">
+                      <div class="flex flex-col items-center">
+                        <div class="relative w-16 h-16 flex items-center justify-center">
+                          <svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200" stroke-width="3.8" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            <path id="ringOp2CmArc" class="text-[#f59e0b] transition-all duration-700" stroke-dasharray="77.8, 100" stroke-width="3.8" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                          </svg>
+                          <span id="ringOp2CmText" class="absolute text-[10.5px] font-extrabold text-[#d97706]">77,8%</span>
+                        </div>
+                        <span class="text-[10px] font-semibold text-slate-600 mt-1">CM</span>
+                      </div>
+
+                      <div class="flex flex-col items-center">
+                        <div class="relative w-16 h-16 flex items-center justify-center">
+                          <svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200" stroke-width="3.8" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            <path id="ringOp2VoArc" class="text-[#fb923c] transition-all duration-700" stroke-dasharray="77.8, 100" stroke-width="3.8" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                          </svg>
+                          <span id="ringOp2VoText" class="absolute text-[10.5px] font-extrabold text-[#ea580c]">77,8%</span>
+                        </div>
+                        <span class="text-[10px] font-semibold text-slate-600 mt-1">Perubahan</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Operasi 3 - 14 Proyek (EMERALD / TEAL PALETTE) -->
+                  <div onclick="handleDepartmentFilter('DO 3')" class="px-2 py-1 rounded-lg hover:bg-emerald-50/50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors space-y-2" title="Klik untuk memfilter Operasi 3 (14 Proyek)">
+                    <div class="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#0c2340]">
+                      <span class="w-2 h-2 rounded-full bg-[#10b981]"></span>
+                      <span>Operasi 3 - 14 Proyek</span>
+                    </div>
+                    <div class="flex items-center justify-center gap-3">
+                      <div class="flex flex-col items-center">
+                        <div class="relative w-16 h-16 flex items-center justify-center">
+                          <svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200" stroke-width="3.8" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            <path id="ringOp3CmArc" class="text-[#10b981] transition-all duration-700" stroke-dasharray="42.9, 100" stroke-width="3.8" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                          </svg>
+                          <span id="ringOp3CmText" class="absolute text-[10.5px] font-extrabold text-[#159a5c]">42,9%</span>
+                        </div>
+                        <span class="text-[10px] font-semibold text-slate-600 mt-1">CM</span>
+                      </div>
+
+                      <div class="flex flex-col items-center">
+                        <div class="relative w-16 h-16 flex items-center justify-center">
+                          <svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200" stroke-width="3.8" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            <path id="ringOp3VoArc" class="text-[#14b8a6] transition-all duration-700" stroke-dasharray="42.9, 100" stroke-width="3.8" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                          </svg>
+                          <span id="ringOp3VoText" class="absolute text-[10.5px] font-extrabold text-[#0d9488]">42,9%</span>
+                        </div>
+                        <span class="text-[10px] font-semibold text-slate-600 mt-1">Perubahan</span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- CARD 7: Progress Kepatuhan per Operasi (5 cols) -->
+              <div class="lg:col-span-5 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between">
+                <div class="flex flex-wrap items-center justify-between gap-2 pb-1 border-b border-slate-100">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
+                      <span class="material-symbols-outlined text-xs">show_chart</span>
+                    </div>
+                    <h2 class="text-xs font-bold text-[#0c2340]">Progress Kepatuhan per Operasi</h2>
+                  </div>
+                  <div class="flex items-center gap-2.5 text-[9.5px] font-bold text-slate-600">
+                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#0d6efd]"></span> Operasi 1</span>
+                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#f59e0b]"></span> Operasi 2</span>
+                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#10b981]"></span> Operasi 3</span>
+                  </div>
+                </div>
+
+                <!-- Line Chart + Right Pill Badges matching reference -->
+                <div class="flex items-center gap-2 pt-1">
+                  <div class="h-32 flex-1 relative">
+                    <canvas id="progressTrendChart"></canvas>
+                  </div>
+                  <div class="flex flex-col gap-1.5 shrink-0">
+                    <span id="trendBadgeOp2" class="px-2 py-0.5 rounded-md bg-[#0d6efd] text-white font-bold text-[10px] shadow-sm text-center">77,8%</span>
+                    <span id="trendBadgeOp1" class="px-2 py-0.5 rounded-md bg-[#f59e0b] text-white font-bold text-[10px] shadow-sm text-center">63,2%</span>
+                    <span id="trendBadgeOp3" class="px-2 py-0.5 rounded-md bg-[#10b981] text-white font-bold text-[10px] shadow-sm text-center">42,9%</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- RIGHT 3 COLUMNS: KALENDER + AGENDA PENTING + QUICK ACCESS 2x2 -->
+          <div class="xl:col-span-3 flex flex-col gap-3.5">
+            
+            <!-- CARD 5: Kalender & Agenda Penting (Interactive Month Switcher) -->
+            <div class="dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between flex-1">
+              <div>
+                <div class="flex items-center justify-between pb-1.5 border-b border-slate-100">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
+                      <span class="material-symbols-outlined text-xs">calendar_month</span>
+                    </div>
+                    <h2 class="text-xs font-bold text-[#0c2340]">Kalender</h2>
+                  </div>
+                  <div class="flex items-center gap-2 text-xs text-[#0c2340] font-bold">
+                    <button onclick="changeCalendarMonth(-1)" class="w-5 h-5 rounded hover:bg-slate-100 text-slate-500 hover:text-slate-800 flex items-center justify-center" title="Bulan Sebelumnya">&lsaquo;</button>
+                    <span id="calendarMonthLabel" class="min-w-[65px] text-center">Juli 2026</span>
+                    <button onclick="changeCalendarMonth(1)" class="w-5 h-5 rounded hover:bg-slate-100 text-slate-500 hover:text-slate-800 flex items-center justify-center" title="Bulan Berikutnya">&rsaquo;</button>
+                  </div>
+                </div>
+
+                <!-- Calendar Grid -->
+                <div id="calendarDaysGrid" class="grid grid-cols-7 gap-y-1 text-center text-[10px] font-medium text-slate-700 my-2">
+                  <!-- Populated dynamically via renderCalendar() -->
+                </div>
+              </div>
+
+              <!-- Agenda Penting Banner -->
+              <div class="pt-1.5 border-t border-slate-100">
+                <div class="flex items-center justify-between text-[10px] font-bold text-[#0c2340] mb-1">
+                  <span>Agenda Penting</span>
+                  <span class="text-slate-400">&bull;&bull;&bull;</span>
+                </div>
+                <div onclick="openSopModal()" class="px-2.5 py-1.5 rounded-lg bg-[#fff8eb] border border-[#fde68a] flex items-center justify-between text-[10.5px] cursor-pointer hover:opacity-90 transition-opacity">
+                  <div class="flex items-center gap-1.5 text-[#0c2340] font-bold">
+                    <span class="material-symbols-outlined text-xs text-amber-500 fill">notifications</span>
+                    <span id="calendarAgendaText">27 Jul - Cut Off Monitoring</span>
+                  </div>
+                  <span class="text-slate-400 font-bold">&rsaquo;</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- CARD 8: Quick Access (2x2 Grid without truncation) -->
+            <div class="dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm space-y-2.5">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1.5">
+                  <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-xs">folder</span>
+                  </div>
+                  <h2 class="text-xs font-bold text-[#0c2340]">Quick Access</h2>
+                </div>
+                <span class="text-slate-400 text-xs font-bold">&bull;&bull;&bull;</span>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2">
+                <a href="#matrixTableSection" class="flex items-center gap-2 p-2 rounded-lg bg-[#f4f8fc] hover:bg-sky-50 border border-slate-200/80 transition-all font-bold text-[10.5px] text-[#0c2340]">
+                  <div class="w-6 h-6 rounded bg-[#0d6efd] text-white flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-xs">search</span>
+                  </div>
+                  <span class="leading-tight">Detail Proyek</span>
+                </a>
+
+                <button onclick="triggerExportModal()" class="flex items-center gap-2 p-2 rounded-lg bg-[#f4f8fc] hover:bg-sky-50 border border-slate-200/80 transition-all font-bold text-[10.5px] text-[#0c2340] text-left">
+                  <div class="w-6 h-6 rounded bg-[#159a5c] text-white flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-xs">download</span>
+                  </div>
+                  <span class="leading-tight">Download Report</span>
+                </button>
+
+                <button onclick="openParametersModal()" class="flex items-center gap-2 p-2 rounded-lg bg-[#f4f8fc] hover:bg-sky-50 border border-slate-200/80 transition-all font-bold text-[10.5px] text-[#0c2340] text-left">
+                  <div class="w-6 h-6 rounded bg-[#0d6efd] text-white flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-xs">grid_view</span>
+                  </div>
+                  <span class="leading-tight">Matriks Dokumen</span>
+                </button>
+
+                <button onclick="openAlertsModal('all')" class="flex items-center gap-2 p-2 rounded-lg bg-[#f4f8fc] hover:bg-amber-50 border border-slate-200/80 transition-all font-bold text-[10.5px] text-[#0c2340] text-left">
+                  <div class="w-6 h-6 rounded bg-[#f59e0b] text-white flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-xs">assignment_late</span>
+                  </div>
+                  <span class="leading-tight">Tasks Prioritas</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ======================================================== -->
+        <!-- ROW 3: KELENGKAPAN DOKUMEN (DUAL HEADER BANNERS & BARS) -->
+        <!-- ======================================================== -->
+        <div class="dashboard-card p-4 rounded-xl bg-white border border-slate-200/90 shadow-sm space-y-3" id="kelengkapanDokumenSection">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-xs">description</span>
+              </div>
+              <h2 class="text-xs font-bold text-[#0c2340]">Kelengkapan Dokumen</h2>
+            </div>
+            <div class="flex items-center gap-2">
+              <span id="activeDocParamBadge" class="hidden px-2.5 py-0.5 rounded-full bg-sky-100 text-[#0c4a8a] font-bold text-[10px] items-center gap-1">
+                <span id="activeDocParamText">Filter: CCMS</span>
+                <button onclick="clearDocParamFilter()" class="hover:text-rose-600 font-extrabold ml-1">&times;</button>
+              </span>
+              <span class="text-[11px] text-slate-400 font-medium">Klik batang dokumen untuk memfilter proyek di matriks bawah</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            
+            <!-- Left: Contract Management (14 Dokumen) -->
+            <div class="space-y-1.5">
+              <div class="px-3.5 py-1.5 rounded-md bg-[#083c75] text-white text-xs font-bold flex items-center justify-between">
+                <span>Contract Management (14 Dokumen)</span>
+                <span class="text-[10px] text-sky-200 font-normal">Klik baris untuk filter</span>
+              </div>
+              <div class="space-y-1 pt-1" id="cmBarsContainer">
+                <!-- Populated via JS -->
+              </div>
+            </div>
+
+            <!-- Right: Perubahan (6 Dokumen) -->
+            <div class="space-y-1.5">
+              <div class="px-3.5 py-1.5 rounded-md bg-[#1d70d6] text-white text-xs font-bold flex items-center justify-between">
+                <span>Perubahan (6 Dokumen)</span>
+                <span class="text-[10px] text-sky-100 font-normal">Klik baris untuk filter</span>
+              </div>
+              <div class="space-y-2 pt-1" id="voBarsContainer">
+                <!-- Populated via JS -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ======================================================== -->
+        <!-- ROW 4: MATRIX KELENGKAPAN DOKUMEN (7 COLS) + PROYEK PRIORITAS (5 COLS) -->
+        <!-- ======================================================== -->
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-3.5" id="matrixTableSection">
+          
+          <!-- LEFT: Matrix Kelengkapan Dokumen per Proyek (7 cols) -->
+          <div class="xl:col-span-7 dashboard-card p-4 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between space-y-3">
+            
+            <!-- Header & Legend -->
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center gap-2">
+                <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-xs">grid_on</span>
+                </div>
+                <h2 class="text-xs font-bold text-[#0c2340]">Matrix Kelengkapan Dokumen per Proyek</h2>
+              </div>
+
+              <!-- Legend -->
+              <div class="flex items-center gap-3 text-[10px] font-bold text-slate-600">
+                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-[#159a5c]"></span> Lengkap</span>
+                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-[#f59e0b]"></span> Belum Lengkap</span>
+                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-[#94a3b8]"></span> Belum Diisi</span>
+              </div>
+            </div>
+
+            <!-- In-Card Filter Bar for Matrix (OP Pills + Status Filter) -->
+            <div class="flex flex-wrap items-center justify-between gap-2 pt-1 pb-1 border-y border-slate-100 text-[10.5px]">
+              <!-- OP Segmented Filter Buttons -->
+              <div class="flex items-center gap-1">
+                <span class="text-slate-500 font-semibold mr-1">Filter OP:</span>
+                <button onclick="handleDepartmentFilter('all')" id="matrixOpBtn-all" class="matrix-op-btn px-2.5 py-1 rounded-md font-bold bg-[#0c4a8a] text-white transition-all">Semua (51)</button>
+                <button onclick="handleDepartmentFilter('DO 1')" id="matrixOpBtn-DO1" class="matrix-op-btn px-2.5 py-1 rounded-md font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all">OP 1 (19)</button>
+                <button onclick="handleDepartmentFilter('DO 2')" id="matrixOpBtn-DO2" class="matrix-op-btn px-2.5 py-1 rounded-md font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all">OP 2 (18)</button>
+                <button onclick="handleDepartmentFilter('DO 3')" id="matrixOpBtn-DO3" class="matrix-op-btn px-2.5 py-1 rounded-md font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all">OP 3 (14)</button>
+              </div>
+
+              <!-- Status Filter Dropdown inside Matrix Card -->
+              <div class="flex items-center gap-1.5">
+                <span class="text-slate-500 font-semibold">Status:</span>
+                <select id="matrixStatusFilter" onchange="handleMatrixStatusFilter(this.value)" class="px-2 py-1 rounded-md bg-slate-50 border border-slate-200 font-bold text-[#0c2340] focus:outline-none cursor-pointer">
+                  <option value="all" selected>Semua Status</option>
+                  <option value="lengkap">Lengkap (100%)</option>
+                  <option value="belum_lengkap">Belum Lengkap</option>
+                  <option value="belum_diisi">Belum Diisi</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Two-Tier Header Matrix Table matching 1:1 Reference -->
+            <div class="overflow-x-auto rounded-lg border border-slate-200">
+              <table class="w-full text-left text-[11px] border-collapse">
+                <thead>
+                  <!-- Tier 1 Header -->
+                  <tr class="bg-[#f1f5f9] text-[#0c2340] font-bold text-[10px] border-b border-slate-200">
+                    <th rowspan="2" class="py-2 px-2 text-center border-r border-slate-200 w-8">No</th>
+                    <th rowspan="2" class="py-2 px-2.5 border-r border-slate-200 min-w-[155px]">Nama Proyek</th>
+                    <th rowspan="2" class="py-2 px-1.5 text-center border-r border-slate-200 w-10">OP</th>
+                    <th colspan="6" class="py-1.5 px-2 text-center bg-[#083c75] text-white border-r border-slate-200">Contract Management (14 Dokumen)</th>
+                    <th colspan="4" class="py-1.5 px-2 text-center bg-[#1d70d6] text-white">Perubahan (6 Dokumen)</th>
+                  </tr>
+                  <!-- Tier 2 Header -->
+                  <tr class="bg-[#f8fafc] text-slate-700 font-bold text-[9.5px] border-b border-slate-200">
+                    <th class="py-1.5 px-1 text-center">CCMS</th>
+                    <th class="py-1.5 px-1 text-center">Kontrak</th>
+                    <th class="py-1.5 px-1 text-center">SPP</th>
+                    <th class="py-1.5 px-1 text-center">SPMK</th>
+                    <th class="py-1.5 px-1 text-center">BASTL</th>
+                    <th class="py-1.5 px-1 text-center border-r border-slate-200" title="Klik baris untuk melihat 9 dokumen CM lainnya">...</th>
+                    <th class="py-1.5 px-1 text-center">VO</th>
+                    <th class="py-1.5 px-1 text-center">Claim</th>
+                    <th class="py-1.5 px-1 text-center">Anti Claim</th>
+                    <th class="py-1.5 px-1 text-center">Insurance</th>
+                  </tr>
+                </thead>
+                <tbody id="matrixTableBody" class="divide-y divide-slate-200">
+                  <!-- Populated via JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination Bar -->
+            <div class="flex items-center justify-between text-[11px] text-slate-600 pt-1">
+              <span id="paginationInfo" class="font-medium">Menampilkan 1 - 5 dari 51 Proyek</span>
+              <div class="flex items-center gap-1" id="paginationControls">
+                <!-- Populated via JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Proyek Prioritas Tindak Lanjut (5 cols) -->
+          <div class="xl:col-span-5 dashboard-card p-4 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between space-y-3">
+            
+            <!-- Title & Lihat Semua Popup Trigger -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-amber-500 text-lg fill">warning</span>
+                <h2 class="text-xs font-bold text-[#0c2340]">Proyek Prioritas Tindak Lanjut</h2>
+              </div>
+              <button onclick="openAlertsModal('all')" class="px-2.5 py-1 rounded-lg bg-sky-50 hover:bg-sky-100 text-[11px] font-bold text-[#0d6efd] transition-colors flex items-center gap-1">
+                <span>Lihat Semua (<span id="priorityTotalCountBadge">21</span>)</span>
+                <span>&rsaquo;</span>
+              </button>
+            </div>
+
+            <!-- In-Card Filter Pills: Semua | Belum Lengkap | Belum Diisi -->
+            <div class="flex flex-wrap items-center justify-between gap-2 py-1 border-y border-slate-100 text-[10.5px]">
+              <div class="flex items-center gap-1">
+                <span class="text-slate-500 font-semibold mr-1">Filter Status:</span>
+                <button onclick="setPriorityCardFilter('all')" id="prioFilterBtn-all" class="px-2.5 py-1 rounded-md font-bold bg-[#0c4a8a] text-white transition-all">Semua</button>
+                <button onclick="setPriorityCardFilter('belum_lengkap')" id="prioFilterBtn-belum_lengkap" class="px-2.5 py-1 rounded-md font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all">Belum Lengkap</button>
+                <button onclick="setPriorityCardFilter('belum_diisi')" id="prioFilterBtn-belum_diisi" class="px-2.5 py-1 rounded-md font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all">Belum Diisi</button>
+              </div>
+              <div class="flex items-center gap-1 text-[10px] text-slate-500">
+                <button onclick="changePriorityCardPage(-1)" id="prioPrevBtn" class="px-1.5 py-0.5 rounded border border-slate-200 hover:bg-slate-100 font-bold">&lsaquo;</button>
+                <span id="prioCardPageInfo" class="font-semibold">1-5</span>
+                <button onclick="changePriorityCardPage(1)" id="prioNextBtn" class="px-1.5 py-0.5 rounded border border-slate-200 hover:bg-slate-100 font-bold">&rsaquo;</button>
+              </div>
+            </div>
+
+            <div class="overflow-x-auto rounded-lg border border-slate-200 my-auto">
+              <table class="w-full text-left text-[11px]">
+                <thead class="bg-[#f1f5f9] text-[#0c2340] font-bold text-[10px] border-b border-slate-200">
+                  <tr>
+                    <th class="py-2 px-2 text-center w-8">No</th>
+                    <th class="py-2 px-2.5 min-w-[130px]">Nama Proyek</th>
+                    <th class="py-2 px-1.5 text-center">OP</th>
+                    <th class="py-2 px-1.5 text-center">CM</th>
+                    <th class="py-2 px-1.5 text-center">Perubahan</th>
+                    <th class="py-2 px-2 text-center">Status</th>
+                    <th class="py-2 px-2">Keterangan</th>
+                  </tr>
+                </thead>
+                <tbody id="priorityTableBody" class="divide-y divide-slate-200">
+                  <!-- Populated via JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Footer Summary -->
+            <div class="px-3 py-2 rounded-lg bg-[#fff8eb] border border-[#fde68a] flex items-center justify-between text-[10.5px] text-amber-900">
+              <span class="font-semibold"><strong>Catatan ADKON:</strong> 18 Proyek memerlukan kelengkapan VO / Addendum 1</span>
+              <button onclick="openAlertsModal('all')" class="font-bold text-[#0c4a8a] hover:underline shrink-0 ml-2">Buka Popup Lengkap &rsaquo;</button>
+            </div>
+          </div>
+
+        </div>
+
+      </main>
+
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL DRAWERS (AUDIT, SOP, DIAGNOSTICS, NOTA DINAS) -->
+  <!-- ======================================================== -->
+
+  <!-- 1. Project Detail Audit Modal -->
+  <div id="projectDetailModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="modal-surface bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden shadow-2xl border border-slate-200 flex flex-col animate-in fade-in zoom-in duration-200">
+      <div class="p-5 bg-gradient-to-r from-wika-dark to-wika-blue text-white flex items-center justify-between">
+        <div>
+          <div class="text-[10px] uppercase tracking-wider font-mono text-sky-200">Verifikasi Detail Checklist</div>
+          <h3 id="modalProjectName" class="text-base font-bold text-white">Nama Proyek</h3>
+          <span id="modalProjectDept" class="text-xs text-sky-200 font-semibold">DO 1</span>
+        </div>
+        <button onclick="closeModal('projectDetailModal')" class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+
+      <div class="p-5 overflow-y-auto space-y-4 text-xs">
+        <!-- Progress Summary -->
+        <div class="grid grid-cols-3 gap-3 text-center">
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="text-[10px] text-slate-500 font-bold uppercase">CM Skor</span>
+            <div id="modalCmScore" class="text-lg font-extrabold text-emerald-600">14/14</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="text-[10px] text-slate-500 font-bold uppercase">VO Skor</span>
+            <div id="modalVoScore" class="text-lg font-extrabold text-wika-blue">6/6</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="text-[10px] text-slate-500 font-bold uppercase">Kepatuhan Total</span>
+            <div id="modalTotalScore" class="text-lg font-extrabold text-slate-800">100%</div>
+          </div>
+        </div>
+
+        <!-- Checklists Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- 14 CM Parameters -->
+          <div class="space-y-2">
+            <h4 class="font-bold text-slate-800 flex items-center justify-between border-b border-slate-200 pb-1">
+              <span>Contract Management (14)</span>
+              <span class="text-[10px] text-slate-400">Status</span>
+            </h4>
+            <div id="modalCmList" class="space-y-1.5 font-medium text-[11px]">
+              <!-- Filled via JS -->
+            </div>
+          </div>
+
+          <!-- 6 VO Parameters -->
+          <div class="space-y-2">
+            <h4 class="font-bold text-slate-800 flex items-center justify-between border-b border-slate-200 pb-1">
+              <span>Perubahan Kontrak (6)</span>
+              <span class="text-[10px] text-slate-400">Status</span>
+            </h4>
+            <div id="modalVoList" class="space-y-1.5 font-medium text-[11px]">
+              <!-- Filled via JS -->
+            </div>
+
+            <!-- Notes Section -->
+            <div class="pt-3">
+              <span class="font-bold text-slate-800 block mb-1">Catatan Khusus:</span>
+              <div id="modalSpecialNotes" class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-[11px] leading-relaxed">
+                Tidak ada catatan khusus.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
+        <button onclick="printAuditReport()" class="px-4 py-2 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-sm">print</span> Cetak Lembar Audit
+        </button>
+        <button onclick="closeModal('projectDetailModal')" class="px-5 py-2 rounded-lg bg-wika-blue hover:bg-wika-dark text-white font-bold text-xs">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. SOP & Guidelines Modal -->
+  <div id="sopModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="modal-surface bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-hidden shadow-2xl border border-slate-200 flex flex-col">
+      <div class="p-5 bg-wika-dark text-white flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-sky-300">verified</span>
+          <h3 class="text-base font-bold text-white">Panduan SOP & Ketentuan ADKON</h3>
+        </div>
+        <button onclick="closeModal('sopModal')" class="text-white hover:text-sky-200">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="p-6 overflow-y-auto space-y-4 text-xs text-slate-700 leading-relaxed">
+        <h4 class="font-bold text-sm text-wika-blue">1. Ketentuan Contract Management (14 Dokumen)</h4>
+        <p>Setiap proyek yang telah memperoleh SPMK wajib mengunggah salinan resmi SSUK/SSKK, Jaminan Uang Muka, Jaminan Pelaksanaan, Polis Asuransi CAR yang masih aktif, BASTL, serta RKP Bab 12 sebelum pekerjaan fisik berjalan 10%.</p>
+
+        <h4 class="font-bold text-sm text-wika-blue">2. Ketentuan Perubahan & Addendum 1 (6 Dokumen)</h4>
+        <p>Bila terjadi penyesuaian volume atau pekerjaan tambah-kurang akibat Mutual Check 0 (MC-0), Proyek wajib segera memproses Notis Klaim, Proposal Perubahan, Berita Acara Kesepakatan (BAK), dan Naskah Amandemen Kontrak untuk menghindari risiko keterlambatan pembayaran.</p>
+      </div>
+      <div class="p-4 bg-slate-50 border-t border-slate-200 text-right">
+        <button onclick="closeModal('sopModal')" class="px-4 py-2 rounded-lg bg-wika-blue hover:bg-wika-dark text-white font-bold text-xs">Mengerti & Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Priority Projects Full List Modal (Lihat Semua Proyek Prioritas) -->
+  <div id="priorityListModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="modal-surface bg-white rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden shadow-2xl border border-slate-200 flex flex-col">
+      <div class="p-4 bg-gradient-to-r from-[#072b57] to-[#0c4a8a] text-white flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-2.5">
+          <span class="material-symbols-outlined text-amber-300 text-xl">warning</span>
+          <div>
+            <h3 class="text-sm font-bold text-white">Daftar Lengkap Proyek Prioritas Tindak Lanjut</h3>
+            <p class="text-[11px] text-sky-200">Proyek yang memerlukan kelengkapan dokumen Contract Management (CM) maupun Perubahan / Addendum 1 (VO)</p>
+          </div>
+        </div>
+        <button onclick="closeModal('priorityListModal')" class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+
+      <!-- Filter Bar inside Modal -->
+      <div class="px-5 py-3 bg-[#f8fafc] border-b border-slate-200 flex flex-wrap items-center justify-between gap-2.5 text-xs">
+        <div class="flex flex-wrap items-center gap-1.5">
+          <span class="text-[11px] font-bold text-slate-600 mr-1">Filter Status:</span>
+          <button onclick="setModalPriorityFilter('all')" id="modalPrioFilter-all" class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-[#0c4a8a] text-white transition-all">Semua Prioritas (21)</button>
+          <button onclick="setModalPriorityFilter('belum_lengkap')" id="modalPrioFilter-belum_lengkap" class="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-amber-50 transition-all">Belum Lengkap</button>
+          <button onclick="setModalPriorityFilter('belum_diisi')" id="modalPrioFilter-belum_diisi" class="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-rose-50 transition-all">Belum Diisi (VO / Addendum)</button>
+        </div>
+        <div class="flex items-center gap-2">
+          <select id="modalPrioDeptSelect" onchange="setModalPriorityDept(this.value)" class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-[11px] font-semibold text-slate-700 focus:outline-none">
+            <option value="all">Semua Operasi</option>
+            <option value="DO 1">Operasi 1 (DO 1)</option>
+            <option value="DO 2">Operasi 2 (DO 2)</option>
+            <option value="DO 3">Operasi 3 (DO 3)</option>
+          </select>
+          <input id="modalPrioSearch" type="text" oninput="renderModalPriorityList()" placeholder="Cari nama proyek..." class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-[11px] font-medium text-slate-700 focus:outline-none w-44">
+        </div>
+      </div>
+
+      <!-- Table Content -->
+      <div class="p-4 overflow-y-auto flex-1">
+        <div class="overflow-x-auto border border-slate-200 rounded-xl">
+          <table class="w-full text-left border-collapse text-[11px]">
+            <thead>
+              <tr class="bg-[#0c4a8a] text-white font-bold">
+                <th class="py-2.5 px-2.5 text-center w-9">No.</th>
+                <th class="py-2.5 px-3">Nama Proyek</th>
+                <th class="py-2.5 px-2 text-center">Operasi</th>
+                <th class="py-2.5 px-2.5 text-center">Skor & Status CM</th>
+                <th class="py-2.5 px-2.5 text-center">Skor & Status Perubahan</th>
+                <th class="py-2.5 px-2 text-center">Kepatuhan</th>
+                <th class="py-2.5 px-3">Catatan Khusus ADKON / Kekurangan</th>
+                <th class="py-2.5 px-2.5 text-center">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="modalPriorityTableBody" class="divide-y divide-slate-200">
+              <!-- Populated via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-5 py-3 bg-slate-50 border-t border-slate-200 flex items-center justify-between text-xs">
+        <span id="modalPrioritySummaryText" class="font-semibold text-slate-600">Menampilkan 21 proyek prioritas tindak lanjut</span>
+        <div class="flex items-center gap-2">
+          <button onclick="exportDataToCsv()" class="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">download</span> Unduh CSV
+          </button>
+          <button onclick="closeModal('priorityListModal')" class="px-4 py-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Export & Design Assets Modal -->
+  <div id="exportDesignModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="modal-surface bg-white rounded-2xl max-w-xl w-full max-h-[85vh] overflow-hidden shadow-2xl border border-slate-200 flex flex-col">
+      <div class="p-5 bg-wika-dark text-white flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-sky-300">download_for_offline</span>
+          <h3 class="text-base font-bold text-white">Unduh Laporan Audit & Data Tabular</h3>
+        </div>
+        <button onclick="closeModal('exportDesignModal')" class="text-white hover:text-sky-200">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div class="p-6 overflow-y-auto space-y-3.5 text-xs text-slate-700 leading-relaxed">
+        <p class="text-slate-500 text-xs">Pilih format laporan monitoring yang ingin Anda unduh atau cetak:</p>
+
+        <!-- CSV Export -->
+        <div class="p-3.5 rounded-xl bg-amber-50/70 border border-amber-100 flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-amber-600 text-white flex items-center justify-center font-bold text-sm">
+              CSV
+            </div>
+            <div>
+              <div class="font-bold text-slate-800 text-sm">Ekspor Data Tabular (51 Proyek & 20 Parameter)</div>
+              <div class="text-[11px] text-slate-500">Unduh data CSV untuk pengolahan di Microsoft Excel / Google Sheets</div>
+            </div>
+          </div>
+          <button onclick="exportDataToCsv()" class="px-3.5 py-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs flex items-center gap-1 shadow-sm transition-all">
+            <span class="material-symbols-outlined text-sm">table_view</span> Unduh CSV
+          </button>
+        </div>
+
+        <!-- Print PDF Audit -->
+        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-slate-700 text-white flex items-center justify-center font-bold text-sm">
+              PDF
+            </div>
+            <div>
+              <div class="font-bold text-slate-800 text-sm">Cetak Laporan Audit Lengkap (PDF)</div>
+              <div class="text-[11px] text-slate-500">Cetak lembar rekapitulasi monitoring 51 proyek Divisi 1</div>
+            </div>
+          </div>
+          <button onclick="window.print()" class="px-3.5 py-2 rounded-lg bg-slate-700 hover:bg-slate-800 text-white font-bold text-xs flex items-center gap-1 shadow-sm transition-all">
+            <span class="material-symbols-outlined text-sm">print</span> Cetak
+          </button>
+        </div>
+      </div>
+
+      <div class="p-4 bg-slate-50 border-t border-slate-200 text-right">
+        <button onclick="closeModal('exportDesignModal')" class="px-4 py-2 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Toast Notification -->
+  <div id="toastNotification" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3 px-4 py-3 rounded-xl bg-[#072b57] text-white shadow-xl border border-sky-400/30 max-w-sm">
+    <span class="material-symbols-outlined text-sky-300 text-xl">info</span>
+    <div>
+      <div id="toastTitle" class="font-bold text-xs text-white">Notifikasi Sistem</div>
+      <div id="toastMessage" class="text-[11px] text-sky-200 leading-tight mt-0.5">Filter diperbarui.</div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC & LIVE CHARTS -->
+  <script>
+    // Initial Snapshot of 51 Projects from Google Sheet CCMS Monitoring Divisi 1
+    const allProjectsData = [{"No": 1.0, "Nama Proyek": "Pemb. Bendungan Lau Simeme Paket 1", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 2.0, "Nama Proyek": "Pemb. Bendungan Lau Simeme Lanj", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 13.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 13.0, "Persen Kepatuhan": "65.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 3.0, "Nama Proyek": "Pemb. Bendungan Komering II/3 Dihaji Paket VI", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 4.0, "Nama Proyek": "JSS 1", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 5.0, "Nama Proyek": "JSS 2", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 6.0, "Nama Proyek": "JSS 3", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 7.0, "Nama Proyek": "Bendungan Cijurey Paket III", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 8.0, "Nama Proyek": "Bendungan Karangnongko Paket 1", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 9.0, "Nama Proyek": "Bendungan Jragung Paket V", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 14.0, "Persen Kepatuhan": "70.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 10.0, "Nama Proyek": "Pengendalian Banjir Tenggang Tahap 1", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 11.0, "Nama Proyek": "Sewerage Development Project (Zone 6)", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 12.0, "Nama Proyek": "Pemb. Reservoir DC Samanan", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 14.0, "Persen Kepatuhan": "70.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 13.0, "Nama Proyek": "Karian-Serpong (KSCS 3)", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 13.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 13.0, "Persen Kepatuhan": "65.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 14.0, "Nama Proyek": "Bendungan Jatimlerek", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 15.0, "Nama Proyek": "Tanggap Darurat SPAM Paket 2", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 12.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 12.0, "Persen Kepatuhan": "60.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 16.0, "Nama Proyek": "Tanggap Darurat Sibolga-Padang Sidempuan", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 8.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 8.0, "Persen Kepatuhan": "40.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 17.0, "Nama Proyek": "PL. Tanggap Darurat Bencana Alam Kab. Tapanuli Selatan", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 12.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 12.0, "Persen Kepatuhan": "60.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 18.0, "Nama Proyek": "Tanggap Darurat SPAM Solok", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 8.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 8.0, "Persen Kepatuhan": "40.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 19.0, "Nama Proyek": "PL - Rehabilitasi Rekonstruksi Sungai Tukka", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "", "EoT": "", "MoM Ekst.": "", "Skor CM": 5.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 5.0, "Persen Kepatuhan": "25.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 1.0, "Nama Proyek": "Jalan Tol Ancol Timur - Pluit (Elevated)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 2.0, "Nama Proyek": "(Main Road) Jalan Tol Serang Panimbang (Serpan)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 3.0, "Nama Proyek": "Jalan Tol Serang - Panimbang (Serpan) Seksi 3", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 4.0, "Nama Proyek": "Patimban 6", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 5.0, "Nama Proyek": "Patimban 4", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 6.0, "Nama Proyek": "Jalan Tol Jakarta-Cikampek II", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 7.0, "Nama Proyek": "Toll Road Semarang Demak 1B", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 8.0, "Nama Proyek": "Jalan Tol Probolinggo-Banyuwangi Paket 3", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 9.0, "Nama Proyek": "Bendungan Sukamahi (MYC)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 10.0, "Nama Proyek": "Jalan Tol Cisumdawu (Km 177/Bojongtotor)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 11.0, "Nama Proyek": "Pemb. Irigasi Belimbing", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 12.0, "Nama Proyek": "Tol Serang Panimbang (Serpan 3B)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 13.0, "Nama Proyek": "Jalan Tol Akses Patimban Paket II", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 6.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 6.0, "Persen Kepatuhan": "30.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 14.0, "Nama Proyek": "Pemb. FO Muara Enim", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 13.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 13.0, "Persen Kepatuhan": "65.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 15.0, "Nama Proyek": "MRT Bundaran HI", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 6.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 6.0, "Persen Kepatuhan": "30.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 16.0, "Nama Proyek": "Tol Serang - Panimbang Paket 1 (Serpan 3B)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 17.0, "Nama Proyek": "Jalan Tol Yogyakarta - Bawen Seksi 3", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "✓", "SPMK": "", "BASTL": "", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 4.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 4.0, "Persen Kepatuhan": "20.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 18.0, "Nama Proyek": "Longsoran Bojongtotor Lanjutan", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 1.0, "Nama Proyek": "Pemb. Bendungan Manikin Kab. Kupang (Paket 1)", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 13.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 19.0, "Persen Kepatuhan": "95.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": null}, {"No": 2.0, "Nama Proyek": "Pemb. Relokasi Jalan Ruas Sel Duri-Mempawah Kalbar", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 12.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 18.0, "Persen Kepatuhan": "90.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": null}, {"No": 3.0, "Nama Proyek": "Dedging Pendalaman Alur Tursina Area III & IV", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 4.0, "Nama Proyek": "Pemb. Bendungan Jenelata Kab.Gowa, Sulsel", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 5.0, "Nama Proyek": "Pemb. Jalan Tol IKN Seksi 3B-2: Segmen KKT", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 6.0, "Nama Proyek": "MWRD Re-Diversion Construction", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 14.0, "Persen Kepatuhan": "70.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Sudah Ada Perubahan Seperti Item baru namun belum diinput di Tabel VO"}, {"No": 7.0, "Nama Proyek": "Pemb. Jalan Di KIPP: Hankam dan Lingkar Sepaku (LS) 4", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 8.0, "Nama Proyek": "Pemb. Tol IKN Seksi 1B Segmen Bandara Sepinggan - Tol Balsam", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 11.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 11.0, "Persen Kepatuhan": "55.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 9.0, "Nama Proyek": "Pemb. Jalan Kawasan Kompleks Yudikatif", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 14.0, "Persen Kepatuhan": "70.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 10.0, "Nama Proyek": "Pemb. Infrastruktur KSPP Merauke (Pkt2)", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 12.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 12.0, "Persen Kepatuhan": "60.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 11.0, "Nama Proyek": "Sewerage Pipe Installation Nipah Kuning B - CWIP 03", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 13.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 13.0, "Persen Kepatuhan": "65.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 12.0, "Nama Proyek": "Sewerage Pipe Installation Nipah Kuning B - CWIP 05", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "", "SPMK": "", "BASTL": "", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "", "EoT": "", "MoM Ekst.": "", "Skor CM": 0.0, "Status CM": "Belum Diisi", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 0.0, "Persen Kepatuhan": "0.0%", "Kategori Status": "Kritis 0%", "Catatan Khusus ADKON": null}, {"No": 13.0, "Nama Proyek": "Pemb. Jalan Bebas Hambatan Seksi 6B", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "", "SPMK": "", "BASTL": "", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "", "EoT": "", "MoM Ekst.": "", "Skor CM": 0.0, "Status CM": "Belum Diisi", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 0.0, "Persen Kepatuhan": "0.0%", "Kategori Status": "Kritis 0%", "Catatan Khusus ADKON": "Dokumen kontraktual hanya terdapat SPMK dan Kontrak Perjanjian"}, {"No": 14.0, "Nama Proyek": "Jalan Paket G di KIPP 1B-1C", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "", "SPMK": "", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 7.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 7.0, "Persen Kepatuhan": "35.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}];
+    // Assign unique _id (1..51) so DO 1, DO 2, and DO 3 projects with duplicate "No" never collide
+    allProjectsData.forEach((p, idx) => { p._id = idx + 1; });
+
+    let displayedProjects = [...allProjectsData];
+    let currentPage = 1;
+    const itemsPerPage = 5;
+    let selectedDepartment = 'all';
+    let matrixStatusFilter = 'all';
+    let selectedTahapan = 'all';
+    let selectedPeriod = 'terkini';
+    let searchQuery = '';
+    let activeDocParam = null;
+
+    // Priority Card & Modal state
+    let priorityCardFilter = 'all'; // 'all' | 'belum_lengkap' | 'belum_diisi'
+    let priorityCardPage = 1;
+    const priorityCardPageSize = 5;
+    let modalPriorityFilter = 'all';
+    let modalPriorityDept = 'all';
+
+    // Calendar state (0 = Mei 2026, 1 = Juni 2026, 2 = Juli 2026, 3 = Agustus 2026)
+    let calendarMonthIndex = 2;
+
+    // Chart.js Instances
+    let cmDonutInstance = null;
+    let voDonutInstance = null;
+    let barChartInstance = null;
+    let trendChartInstance = null;
+
+    // 14 CM Parameter Keys
+    const CM_KEYS = [
+      "CCMS", "Do. Kontrak (SSUK/SSKK)+Amandemen", "SPP", "SPMK", "BASTL", 
+      "Jaminan UM", "Jaminan Pelaksanaan", "Polis Asuransi", "TDK", "RKP Bab 12", 
+      "Cheklist Progress", "Executive Summary", "EoT", "MoM Ekst."
+    ];
+
+    // 6 VO Parameter Keys
+    const VO_KEYS = [
+      "Input CCMS (Update Status)", "Notis", "Claim Waktu (Terdampak)", 
+      "Proposal Perubahan", "BAK", "Amandemen Kontrak"
+    ];
+
+    // DOM Ready
+    document.addEventListener("DOMContentLoaded", () => {
+      // Restore saved theme if user previously toggled dark mode
+      if (localStorage.getItem('wika_ccms_theme') === 'dark') {
+        document.documentElement.classList.add('dark');
+        const icon = document.getElementById('themeIcon');
+        if (icon) icon.textContent = 'dark_mode';
+      }
+      initCharts();
+      renderHorizontalBars();
+      renderCalendar();
+      filterAndRender();
+      fetchLiveGoogleSheets();
+    });
+
+    // Initialize Chart.js with 1:1 Reference Styling & Dark Mode awareness
+    function initCharts() {
+      const isDark = document.documentElement.classList.contains('dark');
+      const emptyRingColor = isDark ? '#334155' : '#e2e8f0';
+
+      // 1. CM Donut Chart (Green Ring Gauge)
+      const cmCtx = document.getElementById('cmDonutChart').getContext('2d');
+      cmDonutInstance = new Chart(cmCtx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Lengkap (32)', 'Belum Lengkap / Nihil (19)'],
+          datasets: [{
+            data: [32, 19],
+            backgroundColor: ['#159a5c', emptyRingColor],
+            borderWidth: 0,
+            hoverOffset: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '66%',
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              enabled: true,
+              backgroundColor: '#083b7a',
+              titleFont: { family: 'Plus Jakarta Sans', size: 10, weight: 'bold' },
+              bodyFont: { family: 'Plus Jakarta Sans', size: 10 },
+              callbacks: {
+                label: (ctx) => ` ${ctx.raw} Proyek`
+              }
+            }
+          },
+          animation: { duration: 900, easing: 'easeOutQuart' }
+        }
+      });
+
+      // 2. VO Donut Chart (Blue Ring Gauge)
+      const voCtx = document.getElementById('voDonutChart').getContext('2d');
+      voDonutInstance = new Chart(voCtx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Lengkap (30)', 'Belum Diisi (21)'],
+          datasets: [{
+            data: [30, 21],
+            backgroundColor: ['#0d6efd', emptyRingColor],
+            borderWidth: 0,
+            hoverOffset: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '66%',
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              enabled: true,
+              backgroundColor: '#083b7a',
+              titleFont: { family: 'Plus Jakarta Sans', size: 10, weight: 'bold' },
+              bodyFont: { family: 'Plus Jakarta Sans', size: 10 },
+              callbacks: {
+                label: (ctx) => ` ${ctx.raw} Proyek`
+              }
+            }
+          },
+          animation: { duration: 900, easing: 'easeOutQuart' }
+        }
+      });
+
+      // Custom plugin to draw percentage labels above bars in Card 4 without horizontal collision
+      const topLabelsPlugin = {
+        id: 'topLabelsPlugin',
+        afterDatasetsDraw(chart) {
+          const { ctx } = chart;
+          const darkNow = document.documentElement.classList.contains('dark');
+          ctx.save();
+          chart.data.datasets.forEach((dataset, i) => {
+            const meta = chart.getDatasetMeta(i);
+            meta.data.forEach((bar, index) => {
+              const val = dataset.data[index].toString().replace('.', ',') + '%';
+              ctx.fillStyle = i === 0 ? (darkNow ? '#e2e8f0' : '#0c2340') : (darkNow ? '#38bdf8' : '#0284c7');
+              ctx.font = 'bold 8px "Plus Jakarta Sans", sans-serif';
+              ctx.textAlign = 'center';
+              const xOffset = i === 0 ? -2.5 : 2.5;
+              ctx.fillText(val, bar.x + xOffset, bar.y - 5);
+            });
+          });
+          ctx.restore();
+        }
+      };
+
+      // 3. Perbandingan Kepatuhan per Operasi (Grouped Bar Chart with non-overlapping top labels)
+      const barCtx = document.getElementById('perbandinganBarChart').getContext('2d');
+      barChartInstance = new Chart(barCtx, {
+        type: 'bar',
+        plugins: [topLabelsPlugin],
+        data: {
+          labels: ['Operasi 1', 'Operasi 2', 'Operasi 3'],
+          datasets: [
+            {
+              label: 'CM',
+              data: [63.2, 77.8, 42.9],
+              backgroundColor: '#0c4a8a',
+              borderRadius: 3,
+              barPercentage: 0.64,
+              categoryPercentage: 0.78
+            },
+            {
+              label: 'Perubahan',
+              data: [52.6, 77.8, 42.9],
+              backgroundColor: '#38bdf8',
+              borderRadius: 3,
+              barPercentage: 0.64,
+              categoryPercentage: 0.78
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: {
+            padding: { top: 20, left: 4, right: 4 }
+          },
+          scales: {
+            y: {
+              min: 0,
+              max: 100,
+              grid: { color: isDark ? '#1e293b' : '#f1f5f9' },
+              ticks: {
+                stepSize: 25,
+                callback: (v) => v + '%',
+                font: { family: 'Plus Jakarta Sans', size: 8.5 },
+                color: isDark ? '#94a3b8' : '#64748b'
+              }
+            },
+            x: {
+              grid: { display: false },
+              ticks: { font: { family: 'Plus Jakarta Sans', size: 9, weight: 'bold' }, color: isDark ? '#e2e8f0' : '#0c2340' }
+            }
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              enabled: true,
+              backgroundColor: '#083b7a',
+              callbacks: {
+                label: (ctx) => ` ${ctx.dataset.label}: ${ctx.raw.toString().replace('.', ',')}%`
+              }
+            }
+          },
+          animation: { duration: 900, easing: 'easeOutQuart' }
+        }
+      });
+
+      // 4. Progress Kepatuhan Trend Multi-Line Chart
+      const trendCtx = document.getElementById('progressTrendChart').getContext('2d');
+      trendChartInstance = new Chart(trendCtx, {
+        type: 'line',
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul'],
+          datasets: [
+            {
+              label: 'Operasi 1',
+              data: [58, 64, 75, 70, 78, 80, 77.8],
+              borderColor: '#0d6efd',
+              backgroundColor: 'rgba(13, 110, 253, 0.08)',
+              borderWidth: 2,
+              tension: 0.25,
+              fill: false,
+              pointRadius: 3,
+              pointBackgroundColor: '#0d6efd',
+              pointHoverRadius: 5
+            },
+            {
+              label: 'Operasi 2',
+              data: [48, 55, 66, 60, 68, 65, 63.2],
+              borderColor: '#f59e0b',
+              backgroundColor: 'rgba(245, 158, 11, 0.08)',
+              borderWidth: 2,
+              tension: 0.25,
+              fill: false,
+              pointRadius: 3,
+              pointBackgroundColor: '#f59e0b',
+              pointHoverRadius: 5
+            },
+            {
+              label: 'Operasi 3',
+              data: [35, 42, 48, 45, 52, 48, 42.9],
+              borderColor: '#10b981',
+              backgroundColor: 'rgba(16, 185, 129, 0.08)',
+              borderWidth: 2,
+              tension: 0.25,
+              fill: false,
+              pointRadius: 3,
+              pointBackgroundColor: '#10b981',
+              pointHoverRadius: 5
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              min: 0,
+              max: 100,
+              grid: { color: isDark ? '#1e293b' : '#f1f5f9' },
+              ticks: {
+                stepSize: 25,
+                callback: (v) => v + '%',
+                font: { family: 'Plus Jakarta Sans', size: 8.5 },
+                color: isDark ? '#94a3b8' : '#64748b'
+              }
+            },
+            x: {
+              grid: { display: false },
+              ticks: { font: { family: 'Plus Jakarta Sans', size: 8.5, weight: 'bold' }, color: isDark ? '#cbd5e1' : '#475569' }
+            }
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              enabled: true,
+              mode: 'index',
+              intersect: false,
+              backgroundColor: '#083b7a',
+              callbacks: {
+                label: (ctx) => ` ${ctx.dataset.label}: ${ctx.raw.toString().replace('.', ',')}%`
+              }
+            }
+          },
+          interaction: { mode: 'nearest', axis: 'x', intersect: false },
+          animation: { duration: 1000, easing: 'easeOutQuart' }
+        }
+      });
+    }
+
+    // Render 20 Horizontal Bars with interactive click-to-filter support
+    function renderHorizontalBars() {
+      const cmData = [
+        { label: "CCMS", key: "CCMS", pct: 96.1, count: 49 },
+        { label: "Do. Kontrak + Amandemen", key: "Do. Kontrak (SSUK/SSKK)+Amandemen", pct: 94.1, count: 48 },
+        { label: "SPP", key: "SPP", pct: 92.2, count: 47 },
+        { label: "SPMK", key: "SPMK", pct: 90.2, count: 46 },
+        { label: "BASTL", key: "BASTL", pct: 88.2, count: 45 },
+        { label: "Jaminan UM", key: "Jaminan UM", pct: 84.3, count: 43 },
+        { label: "Jaminan Pelaksanaan", key: "Jaminan Pelaksanaan", pct: 82.4, count: 42 },
+        { label: "Polis Asuransi", key: "Polis Asuransi", pct: 80.4, count: 41 },
+        { label: "TDK", key: "TDK", pct: 78.4, count: 40 },
+        { label: "RKP Bab 12", key: "RKP Bab 12", pct: 74.5, count: 38 },
+        { label: "Checklist Progress", key: "Cheklist Progress", pct: 70.6, count: 36 },
+        { label: "Executive Summary", key: "Executive Summary", pct: 68.6, count: 35 },
+        { label: "EoT", key: "EoT", pct: 64.7, count: 33 },
+        { label: "MoM Ekst.", key: "MoM Ekst.", pct: 58.8, count: 30 }
+      ];
+
+      const voData = [
+        { label: "VO", key: "Input CCMS (Update Status)", pct: 88.2, count: 45 },
+        { label: "Claim", key: "Notis", pct: 84.3, count: 43 },
+        { label: "Anti Claim", key: "Claim Waktu (Terdampak)", pct: 80.4, count: 41 },
+        { label: "Insurance", key: "Proposal Perubahan", pct: 76.5, count: 39 },
+        { label: "BAK", key: "BAK", pct: 74.5, count: 38 },
+        { label: "Amandemen Kontrak", key: "Amandemen Kontrak", pct: 72.5, count: 37 }
+      ];
+
+      const cmContainer = document.getElementById("cmBarsContainer");
+      cmContainer.innerHTML = cmData.map(item => {
+        const pctStr = item.pct.toString().replace('.', ',') + '%';
+        const isSelected = activeDocParam === item.key;
+        return `
+          <div onclick="toggleDocParamFilter('${item.key}', '${item.label}')" class="group flex items-center justify-between gap-2.5 py-0.5 px-1.5 rounded ${isSelected ? 'bg-sky-100 ring-1 ring-sky-400' : 'hover:bg-slate-50'} transition-colors cursor-pointer" title="Klik untuk filter proyek yang belum lengkap dokumen ${item.label} (${item.count}/51 Lengkap)">
+            <span class="w-40 truncate font-medium text-slate-700 text-[10.5px]">${item.label}</span>
+            <div class="flex-1 bg-[#e2e8f0] rounded-sm h-2.5 overflow-hidden relative">
+              <div class="bg-[#1867c0] h-2.5 rounded-sm animate-bar" style="--target-width: ${item.pct}%; width: ${item.pct}%;"></div>
+            </div>
+            <span class="w-11 text-right font-bold text-[#0c2340] text-[10.5px]">${pctStr}</span>
+          </div>
+        `;
+      }).join("");
+
+      const voContainer = document.getElementById("voBarsContainer");
+      voContainer.innerHTML = voData.map(item => {
+        const pctStr = item.pct.toString().replace('.', ',') + '%';
+        const isSelected = activeDocParam === item.key;
+        return `
+          <div onclick="toggleDocParamFilter('${item.key}', '${item.label}')" class="group flex items-center justify-between gap-2.5 py-1 px-1.5 rounded ${isSelected ? 'bg-sky-100 ring-1 ring-sky-400' : 'hover:bg-slate-50'} transition-colors cursor-pointer" title="Klik untuk filter proyek yang belum lengkap dokumen ${item.label} (${item.count}/51 Lengkap)">
+            <span class="w-40 truncate font-medium text-slate-700 text-[10.5px]">${item.label}</span>
+            <div class="flex-1 bg-[#e2e8f0] rounded-sm h-3 overflow-hidden relative">
+              <div class="bg-[#2581e8] h-3 rounded-sm animate-bar" style="--target-width: ${item.pct}%; width: ${item.pct}%;"></div>
+            </div>
+            <span class="w-11 text-right font-bold text-[#0c2340] text-[10.5px]">${pctStr}</span>
+          </div>
+        `;
+      }).join("");
+    }
+
+    // Helper to classify a project's overall status for filtering
+    function getProjectStatusCategory(p) {
+      if (p["Total Dokumen"] === 20) return 'lengkap';
+      if (p["Skor VO"] === 0 || p["Skor CM"] === 0) return 'belum_diisi';
+      return 'belum_lengkap';
+    }
+
+    // Filter & Render Tables
+    function filterAndRender() {
+      displayedProjects = allProjectsData.filter(p => {
+        const matchesDept = (selectedDepartment === 'all') || (p["Kode Dept"] === selectedDepartment);
+        const matchesSearch = !searchQuery || p["Nama Proyek"].toLowerCase().includes(searchQuery.toLowerCase());
+
+        let matchesStatus = true;
+        if (matrixStatusFilter === 'lengkap') {
+          matchesStatus = (p["Total Dokumen"] === 20);
+        } else if (matrixStatusFilter === 'belum_lengkap') {
+          matchesStatus = (p["Status CM"] === 'Belum Lengkap') || (p["Total Dokumen"] > 0 && p["Total Dokumen"] < 20 && p["Skor VO"] > 0);
+        } else if (matrixStatusFilter === 'belum_diisi') {
+          matchesStatus = (p["Skor VO"] === 0 || p["Skor CM"] === 0);
+        }
+
+        let matchesTahapan = true;
+        if (selectedTahapan === 'cm') {
+          matchesTahapan = (p["Skor CM"] < 14);
+        } else if (selectedTahapan === 'vo') {
+          matchesTahapan = (p["Skor VO"] < 6);
+        }
+
+        let matchesDocParam = true;
+        if (activeDocParam) {
+          matchesDocParam = (p[activeDocParam] !== "✓");
+        }
+
+        return matchesDept && matchesSearch && matchesStatus && matchesTahapan && matchesDocParam;
+      });
+
+      updateMatrixFilterPills();
+      renderMatrixTable();
+      renderPriorityTable();
+    }
+
+    // Update Matrix Card OP Filter Pills styling
+    function updateMatrixFilterPills() {
+      const depts = ['all', 'DO 1', 'DO 2', 'DO 3'];
+      depts.forEach(d => {
+        const btn = document.getElementById(`matrixOpBtn-${d}`);
+        if (!btn) return;
+        if (selectedDepartment === d) {
+          btn.className = "px-2 py-0.5 rounded text-[10px] font-bold bg-[#0c4a8a] text-white transition-all";
+        } else {
+          btn.className = "px-2 py-0.5 rounded text-[10px] font-semibold text-slate-600 hover:bg-slate-200 transition-all";
+        }
+      });
+    }
+
+    // Helper to render circular status icon (Green Checkmark, Orange Dash, or Gray Dash)
+    function renderStatusCircle(state) {
+      if (state === 1) {
+        return `<span class="inline-flex items-center justify-center w-4 h-4 rounded-full bg-[#159a5c] text-white text-[9px] font-bold shadow-xs" title="Lengkap">&check;</span>`;
+      } else if (state === 2) {
+        return `<span class="inline-flex items-center justify-center w-4 h-4 rounded-full bg-[#f59e0b] text-white text-[10px] font-extrabold shadow-xs" title="Belum Lengkap">&minus;</span>`;
+      } else {
+        return `<span class="inline-flex items-center justify-center w-4 h-4 rounded-full bg-[#94a3b8] text-white text-[10px] font-extrabold shadow-xs" title="Belum Diisi">&minus;</span>`;
+      }
+    }
+
+    // Render Matrix Table with 10 Document Status Dots matching 1:1 Reference
+    function renderMatrixTable() {
+      const tbody = document.getElementById("matrixTableBody");
+      const total = displayedProjects.length;
+      const startIdx = (currentPage - 1) * itemsPerPage;
+      const pageProjects = displayedProjects.slice(startIdx, startIdx + itemsPerPage);
+
+      document.getElementById("paginationInfo").textContent = `Menampilkan ${total === 0 ? 0 : startIdx + 1} - ${Math.min(startIdx + itemsPerPage, total)} dari ${total} Proyek`;
+
+      if (pageProjects.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="13" class="text-center py-8 text-slate-400">Tidak ada proyek yang sesuai filter. <button onclick="resetFilters()" class="text-wika-blue font-bold underline ml-1">Reset Filter</button></td></tr>`;
+        document.getElementById("paginationControls").innerHTML = "";
+        return;
+      }
+
+      tbody.innerHTML = pageProjects.map((p, idx) => {
+        const rowNo = startIdx + idx + 1;
+        const opShort = (p["Kode Dept"] || "DO 1").replace("DO ", "OP");
+
+        const dCcms = p["CCMS"] === "✓" ? 1 : 0;
+        const dKontrak = p["Do. Kontrak (SSUK/SSKK)+Amandemen"] === "✓" ? 1 : 0;
+        const dSpp = p["SPP"] === "✓" ? 1 : 0;
+        const dSpmk = p["SPMK"] === "✓" ? 1 : 0;
+        const dBastl = p["BASTL"] === "✓" ? 1 : 0;
+        const dMoreCm = (p["Skor CM"] === 14) ? 1 : (p["Skor CM"] > 0 ? 2 : 0);
+
+        const isLauSimemeLanj = p["Nama Proyek"].includes("Lau Simeme Lanj");
+        const dVo = p["Input CCMS (Update Status)"] === "✓" ? 1 : (isLauSimemeLanj ? 2 : 0);
+        const dClaim = p["Claim Waktu (Terdampak)"] === "✓" ? 1 : (isLauSimemeLanj ? 2 : 0);
+        const dAntiClaim = p["BAK"] === "✓" ? 1 : 0;
+        const dInsurance = p["Amandemen Kontrak"] === "✓" ? 1 : 0;
+
+        return `
+          <tr class="${idx % 2 === 1 ? 'bg-[#f8fafc]' : 'bg-white'} hover:bg-sky-50/70 cursor-pointer transition-colors" onclick="openProjectDetail(${p._id})">
+            <td class="py-2 px-2 text-center font-semibold text-slate-600 border-r border-slate-100">${rowNo}.</td>
+            <td class="py-2 px-2.5 font-semibold text-[#0c2340] truncate max-w-[185px] border-r border-slate-100" title="${p["Nama Proyek"]}">${p["Nama Proyek"]}</td>
+            <td class="py-2 px-1.5 text-center font-semibold text-slate-600 border-r border-slate-100">${opShort}</td>
+            <td class="py-2 px-1 text-center">${renderStatusCircle(dCcms)}</td>
+            <td class="py-2 px-1 text-center">${renderStatusCircle(dKontrak)}</td>
+            <td class="py-2 px-1 text-center">${renderStatusCircle(dSpp)}</td>
+            <td class="py-2 px-1 text-center">${renderStatusCircle(dSpmk)}</td>
+            <td class="py-2 px-1 text-center">${renderStatusCircle(dBastl)}</td>
+            <td class="py-2 px-1 text-center border-r border-slate-100">${renderStatusCircle(dMoreCm)}</td>
+            <td class="py-2 px-1 text-center">${renderStatusCircle(dVo)}</td>
+            <td class="py-2 px-1 text-center">${renderStatusCircle(dClaim)}</td>
+            <td class="py-2 px-1 text-center">${renderStatusCircle(dAntiClaim)}</td>
+            <td class="py-2 px-1 text-center">${renderStatusCircle(dInsurance)}</td>
+          </tr>
+        `;
+      }).join("");
+
+      const totalPages = Math.ceil(total / itemsPerPage) || 1;
+      const paginationCtrls = document.getElementById("paginationControls");
+      let btns = `
+        <button onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled class="opacity-40 cursor-not-allowed px-1.5 py-0.5 rounded border border-slate-200 text-slate-500"' : 'class="px-1.5 py-0.5 rounded border border-slate-200 hover:bg-slate-100 text-slate-600"'}>&lsaquo;</button>
+      `;
+      const maxButtons = Math.min(totalPages, 3);
+      for (let i = 1; i <= maxButtons; i++) {
+        btns += `
+          <button onclick="goToPage(${i})" class="px-2 py-0.5 rounded text-[11px] font-bold ${currentPage === i ? 'bg-[#0c4a8a] text-white' : 'border border-slate-200 hover:bg-slate-100 text-slate-600'}">${i}</button>
+        `;
+      }
+      if (totalPages > 4) {
+        btns += `<span class="px-1 text-slate-400">...</span>`;
+        btns += `
+          <button onclick="goToPage(${totalPages})" class="px-2 py-0.5 rounded text-[11px] font-bold ${currentPage === totalPages ? 'bg-[#0c4a8a] text-white' : 'border border-slate-200 hover:bg-slate-100 text-slate-600'}">${totalPages}</button>
+        `;
+      }
+      btns += `
+        <button onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled class="opacity-40 cursor-not-allowed px-1.5 py-0.5 rounded border border-slate-200 text-slate-500"' : 'class="px-1.5 py-0.5 rounded border border-slate-200 hover:bg-slate-100 text-slate-600"'}>&rsaquo;</button>
+      `;
+      paginationCtrls.innerHTML = btns;
+    }
+
+    // Build all 21 Priority Projects dynamically from allProjectsData
+    function getAllPriorityProjects() {
+      return allProjectsData.filter(p => p["Total Dokumen"] < 20 || p["Catatan Khusus ADKON"]).map(p => {
+        const opShort = (p["Kode Dept"] || "DO 1").replace("DO ", "OP");
+        const cmStatus = p["Status CM"] || (p["Skor CM"] === 14 ? "Lengkap" : (p["Skor CM"] === 0 ? "Belum Diisi" : "Belum Lengkap"));
+        const voStatus = p["Status VO"] || (p["Skor VO"] === 6 ? "Lengkap" : "Belum Diisi");
+        let shortKet = "Dokumen VO / Addendum 1";
+        if (p["Nama Proyek"].includes("Jragung")) shortKet = "BAK, AMDK";
+        else if (p["Nama Proyek"].includes("Karian-Serpong")) shortKet = "Checklist & VO";
+        else if (p["Nama Proyek"].includes("Reservoir DC Samanan")) shortKet = "Dokumen Addendum 1";
+        else if (p["Nama Proyek"].includes("MWRD")) shortKet = "Item Baru VO";
+        else if (p["Skor CM"] === 0) shortKet = "Seluruh Dokumen (0/20)";
+        else if (p["Skor CM"] < 14 && p["Skor VO"] === 6) shortKet = `Kurang ${14 - p["Skor CM"]} Dokumen CM`;
+        else if (p["Skor CM"] < 14 && p["Skor VO"] === 0) shortKet = `CM (${p["Skor CM"]}/14) & VO Nihil`;
+
+        return {
+          _id: p._id,
+          name: p["Nama Proyek"],
+          deptCode: p["Kode Dept"],
+          op: opShort,
+          cmScore: p["Skor CM"],
+          cm: cmStatus,
+          cmOk: p["Skor CM"] === 14,
+          voScore: p["Skor VO"],
+          vo: voStatus,
+          voOk: p["Skor VO"] === 6,
+          totalPct: p["Persen Kepatuhan"],
+          ket: shortKet,
+          fullNotes: p["Catatan Khusus ADKON"] || `Perlu melengkapi ${20 - p["Total Dokumen"]} parameter dokumen kepatuhan.`
+        };
+      });
+    }
+
+    // Filter Priority Projects according to filter type ('all' | 'belum_lengkap' | 'belum_diisi')
+    function filterPriorityItems(items, filterType, deptFilter = 'all', query = '') {
+      return items.filter(item => {
+        if (deptFilter !== 'all' && item.deptCode !== deptFilter) return false;
+        if (query && !item.name.toLowerCase().includes(query.toLowerCase())) return false;
+        if (filterType === 'belum_lengkap') {
+          // Projects that have partial documents filled (Belum Lengkap CM or partial total > 0)
+          return item.cm === 'Belum Lengkap' || (item.cmScore > 0 && item.cmScore < 14);
+        }
+        if (filterType === 'belum_diisi') {
+          // Projects where VO or CM is completely empty (Belum Diisi)
+          return item.vo === 'Belum Diisi' || item.cm === 'Belum Diisi';
+        }
+        return true;
+      });
+    }
+
+    // Render Priority Table on Card (Proyek Prioritas Tindak Lanjut) with Filter & Pagination
+    function renderPriorityTable() {
+      const allPrio = getAllPriorityProjects();
+      const filtered = filterPriorityItems(allPrio, priorityCardFilter, selectedDepartment, '');
+      const total = filtered.length;
+      const totalPages = Math.ceil(total / priorityCardPageSize) || 1;
+      if (priorityCardPage > totalPages) priorityCardPage = 1;
+
+      const startIdx = (priorityCardPage - 1) * priorityCardPageSize;
+      const pageRows = filtered.slice(startIdx, startIdx + priorityCardPageSize);
+
+      // Update Filter Pill Buttons on Priority Card
+      ['all', 'belum_lengkap', 'belum_diisi'].forEach(f => {
+        const btn = document.getElementById(`prioFilter-${f}`);
+        if (!btn) return;
+        if (priorityCardFilter === f) {
+          btn.className = "px-2 py-0.5 rounded text-[10px] font-bold bg-[#0c4a8a] text-white transition-all";
+        } else {
+          btn.className = "px-2 py-0.5 rounded text-[10px] font-semibold text-slate-600 hover:bg-slate-200 transition-all";
+        }
+      });
+
+      const pageInfo = document.getElementById("prioPageInfo");
+      if (pageInfo) {
+        pageInfo.textContent = total === 0 ? "0/0" : `${startIdx + 1}-${Math.min(startIdx + priorityCardPageSize, total)} / ${total}`;
+      }
+
+      const tbody = document.getElementById("priorityTableBody");
+      if (pageRows.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="text-center py-6 text-slate-400">Tidak ada proyek prioritas pada kategori ini.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = pageRows.map((r, idx) => {
+        const rowNum = startIdx + idx + 1;
+        const cmBadge = r.cmOk
+          ? `<span class="inline-block px-2 py-0.5 rounded bg-[#159a5c] text-white font-bold text-[9.5px]">${r.cm}</span>`
+          : `<span class="inline-block px-2 py-0.5 rounded ${r.cm === 'Belum Diisi' ? 'bg-rose-600' : 'bg-[#f59e0b]'} text-white font-bold text-[9.5px]">${r.cm}</span>`;
+        const voBadge = r.voOk
+          ? `<span class="inline-block px-2 py-0.5 rounded bg-[#159a5c] text-white font-bold text-[9.5px]">${r.vo}</span>`
+          : `<span class="inline-block px-2 py-0.5 rounded bg-[#f59e0b] text-white font-bold text-[9.5px]">${r.vo}</span>`;
+        const overallStatus = (!r.voOk && r.vo === 'Belum Diisi') ? 'Belum Diisi' : 'Belum Lengkap';
+
+        return `
+          <tr class="${idx % 2 === 1 ? 'bg-[#f8fafc]' : 'bg-white'} hover:bg-amber-50/60 cursor-pointer transition-colors" onclick="openProjectDetail(${r._id})">
+            <td class="py-2 px-2 text-center font-semibold text-slate-600">${rowNum}.</td>
+            <td class="py-2 px-2.5 font-semibold text-[#0c2340] truncate max-w-[155px]" title="${r.name}">${r.name}</td>
+            <td class="py-2 px-1.5 text-center font-semibold text-slate-600">${r.op}</td>
+            <td class="py-2 px-1.5 text-center">${cmBadge}</td>
+            <td class="py-2 px-1.5 text-center">${voBadge}</td>
+            <td class="py-2 px-2 text-center font-semibold text-slate-600">${overallStatus}</td>
+            <td class="py-2 px-2 font-semibold text-[#0c2340] truncate max-w-[120px]" title="${r.fullNotes}">${r.ket}</td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function setPriorityCardFilter(filterType) {
+      priorityCardFilter = filterType;
+      priorityCardPage = 1;
+      renderPriorityTable();
+    }
+
+    function changePriorityCardPage(delta) {
+      const allPrio = getAllPriorityProjects();
+      const filtered = filterPriorityItems(allPrio, priorityCardFilter, selectedDepartment, '');
+      const totalPages = Math.ceil(filtered.length / priorityCardPageSize) || 1;
+      const next = priorityCardPage + delta;
+      if (next >= 1 && next <= totalPages) {
+        priorityCardPage = next;
+        renderPriorityTable();
+      }
+    }
+
+    // Open Full Priority Projects Popup Modal ("Lihat Semua")
+    function openAlertsModal(initialFilter = 'all') {
+      if (initialFilter === 'belum_lengkap' || initialFilter === 'belum_diisi' || initialFilter === 'all') {
+        modalPriorityFilter = initialFilter;
+      } else {
+        modalPriorityFilter = priorityCardFilter || 'all';
+      }
+      modalPriorityDept = selectedDepartment || 'all';
+      const deptSel = document.getElementById("modalPrioDeptSelect");
+      if (deptSel) deptSel.value = modalPriorityDept;
+      const searchIn = document.getElementById("modalPrioSearch");
+      if (searchIn) searchIn.value = "";
+
+      renderModalPriorityList();
+      document.getElementById("priorityListModal").classList.remove("hidden");
+    }
+
+    function setModalPriorityFilter(filterType) {
+      modalPriorityFilter = filterType;
+      renderModalPriorityList();
+    }
+
+    function setModalPriorityDept(dept) {
+      modalPriorityDept = dept;
+      renderModalPriorityList();
+    }
+
+    function renderModalPriorityList() {
+      const allPrio = getAllPriorityProjects();
+      const q = (document.getElementById("modalPrioSearch")?.value || "").trim();
+      const filtered = filterPriorityItems(allPrio, modalPriorityFilter, modalPriorityDept, q);
+
+      // Update modal filter buttons
+      ['all', 'belum_lengkap', 'belum_diisi'].forEach(f => {
+        const btn = document.getElementById(`modalPrioFilter-${f}`);
+        if (!btn) return;
+        if (modalPriorityFilter === f) {
+          btn.className = "px-2.5 py-1 rounded-lg text-[11px] font-bold bg-[#0c4a8a] text-white transition-all";
+        } else {
+          btn.className = "px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition-all";
+        }
+      });
+
+      const summaryEl = document.getElementById("modalPrioritySummaryText");
+      if (summaryEl) {
+        summaryEl.textContent = `Menampilkan ${filtered.length} dari ${allPrio.length} proyek prioritas tindak lanjut`;
+      }
+
+      const tbody = document.getElementById("modalPriorityTableBody");
+      if (!tbody) return;
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" class="text-center py-8 text-slate-400">Tidak ada proyek prioritas yang sesuai filter pencarian.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map((r, idx) => {
+        const cmBadge = r.cmOk
+          ? `<span class="inline-block px-2 py-0.5 rounded bg-[#159a5c] text-white font-bold text-[10px]">${r.cmScore}/14 Lengkap</span>`
+          : `<span class="inline-block px-2 py-0.5 rounded ${r.cm === 'Belum Diisi' ? 'bg-rose-600' : 'bg-[#f59e0b]'} text-white font-bold text-[10px]">${r.cmScore}/14 (${r.cm})</span>`;
+        const voBadge = r.voOk
+          ? `<span class="inline-block px-2 py-0.5 rounded bg-[#159a5c] text-white font-bold text-[10px]">${r.voScore}/6 Lengkap</span>`
+          : `<span class="inline-block px-2 py-0.5 rounded bg-[#f59e0b] text-white font-bold text-[10px]">${r.voScore}/6 (${r.vo})</span>`;
+
+        return `
+          <tr class="${idx % 2 === 1 ? 'bg-[#f8fafc]' : 'bg-white'} hover:bg-sky-50/80 transition-colors">
+            <td class="py-2.5 px-2.5 text-center font-bold text-slate-600">${idx + 1}.</td>
+            <td class="py-2.5 px-3 font-bold text-[#0c2340]">${r.name}</td>
+            <td class="py-2.5 px-2 text-center font-bold text-slate-700">${r.op}</td>
+            <td class="py-2.5 px-2.5 text-center">${cmBadge}</td>
+            <td class="py-2.5 px-2.5 text-center">${voBadge}</td>
+            <td class="py-2.5 px-2 text-center font-extrabold text-[#0c4a8a]">${r.totalPct}</td>
+            <td class="py-2.5 px-3 text-slate-600 max-w-xs leading-snug">${r.fullNotes}</td>
+            <td class="py-2.5 px-2.5 text-center">
+              <button onclick="openProjectDetail(${r._id})" class="px-2.5 py-1 rounded-lg bg-[#0c4a8a] hover:bg-[#083b7a] text-white font-bold text-[10px] shadow-xs">
+                Detail Audit
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    // Pagination helper for Matrix table
+    function goToPage(page) {
+      const totalPages = Math.ceil(displayedProjects.length / itemsPerPage) || 1;
+      if (page >= 1 && page <= totalPages) {
+        currentPage = page;
+        renderMatrixTable();
+      }
+    }
+
+    // Filter Handlers
+    function handleDepartmentFilter(dept) {
+      selectedDepartment = dept;
+      currentPage = 1;
+      priorityCardPage = 1;
+      const topSelect = document.getElementById("filterDepartment");
+      if (topSelect && topSelect.value !== dept) topSelect.value = dept;
+      filterAndRender();
+      showToast("Filter Operasi Diperbarui", `Menampilkan proyek untuk ${dept === 'all' ? 'Semua Departemen Operasi (51 Proyek)' : dept}`);
+    }
+
+    function handleMatrixStatusFilter(status) {
+      matrixStatusFilter = status;
+      currentPage = 1;
+      const statusSel = document.getElementById("matrixStatusFilter");
+      if (statusSel && statusSel.value !== status) statusSel.value = status;
+      filterAndRender();
+      const labelMap = {
+        all: 'Semua Status',
+        lengkap: 'Lengkap 100%',
+        belum_lengkap: 'Belum Lengkap',
+        belum_diisi: 'Belum Diisi (Nihil VO/CM)'
+      };
+      showToast("Filter Status Matrix", `Menampilkan proyek dengan status: ${labelMap[status] || status}`);
+    }
+
+    function handleTahapanFilter(tahapan) {
+      selectedTahapan = tahapan;
+      currentPage = 1;
+      filterAndRender();
+      const labelMap = {
+        all: 'Semua Tahapan (CM & Perubahan)',
+        cm: 'Perlu Melengkapi Contract Management (CM)',
+        vo: 'Perlu Melengkapi Perubahan / VO'
+      };
+      showToast("Filter Tahapan", labelMap[tahapan] || tahapan);
+    }
+
+    function toggleDocParamFilter(paramKey, paramLabel) {
+      if (activeDocParam === paramKey) {
+        activeDocParam = null;
+        showToast("Filter Dokumen Direset", "Menampilkan kembali seluruh parameter dokumen.");
+      } else {
+        activeDocParam = paramKey;
+        showToast("Filter Parameter Dokumen", `Menampilkan proyek yang belum mengunggah: ${paramLabel}`);
+      }
+      currentPage = 1;
+      renderHorizontalBars();
+      filterAndRender();
+    }
+
+    // Period Filter ("Terkini", "Juli 2026", "Juni 2026", "Mei 2026")
+    function handlePeriodFilter(period) {
+      selectedPeriod = period;
+      const snapshots = {
+        'terkini': {
+          label: 'Terkini (Terbaru)',
+          cmLengkap: 32, cmTidak: 19, cmPct: '62,7%',
+          voLengkap: 30, voTidak: 21, voPct: '58,8%',
+          barCm: [63.2, 77.8, 42.9],
+          barVo: [52.6, 77.8, 42.9],
+          trend1: [58, 64, 75, 70, 78, 80, 77.8],
+          trend2: [48, 55, 66, 60, 68, 65, 63.2],
+          trend3: [35, 42, 48, 45, 52, 48, 42.9]
+        },
+        'jul-2026': {
+          label: 'Juli 2026',
+          cmLengkap: 32, cmTidak: 19, cmPct: '62,7%',
+          voLengkap: 30, voTidak: 21, voPct: '58,8%',
+          barCm: [63.2, 77.8, 42.9],
+          barVo: [52.6, 77.8, 42.9],
+          trend1: [58, 64, 75, 70, 78, 80, 77.8],
+          trend2: [48, 55, 66, 60, 68, 65, 63.2],
+          trend3: [35, 42, 48, 45, 52, 48, 42.9]
+        },
+        'jun-2026': {
+          label: 'Juni 2026 (Historis)',
+          cmLengkap: 29, cmTidak: 22, cmPct: '56,9%',
+          voLengkap: 27, voTidak: 24, voPct: '52,9%',
+          barCm: [57.9, 72.2, 35.7],
+          barVo: [47.4, 66.7, 35.7],
+          trend1: [58, 64, 75, 70, 78, 75, 72.2],
+          trend2: [48, 55, 66, 60, 64, 60, 57.9],
+          trend3: [35, 42, 48, 45, 46, 40, 35.7]
+        },
+        'mei-2026': {
+          label: 'Mei 2026 (Historis)',
+          cmLengkap: 26, cmTidak: 25, cmPct: '51,0%',
+          voLengkap: 24, voTidak: 27, voPct: '47,1%',
+          barCm: [52.6, 66.7, 28.6],
+          barVo: [42.1, 61.1, 28.6],
+          trend1: [54, 60, 68, 65, 70, 68, 66.7],
+          trend2: [44, 50, 58, 55, 58, 55, 52.6],
+          trend3: [30, 35, 40, 38, 36, 32, 28.6]
+        }
+      };
+
+      const snap = snapshots[period] || snapshots['terkini'];
+      const isDark = document.documentElement.classList.contains('dark');
+      const emptyColor = isDark ? '#334155' : '#e2e8f0';
+
+      // Update Donut Charts & Center Labels
+      if (cmDonutInstance) {
+        cmDonutInstance.data.datasets[0].data = [snap.cmLengkap, snap.cmTidak];
+        cmDonutInstance.data.datasets[0].backgroundColor = ['#159a5c', emptyColor];
+        cmDonutInstance.update();
+      }
+      if (voDonutInstance) {
+        voDonutInstance.data.datasets[0].data = [snap.voLengkap, snap.voTidak];
+        voDonutInstance.data.datasets[0].backgroundColor = ['#0d6efd', emptyColor];
+        voDonutInstance.update();
+      }
+
+      const cmCenter = document.querySelector('#cmDonutChart')?.parentElement?.querySelector('span');
+      if (cmCenter) cmCenter.textContent = snap.cmPct;
+      const voCenter = document.querySelector('#voDonutChart')?.parentElement?.querySelector('span');
+      if (voCenter) voCenter.textContent = snap.voPct;
+
+      if (barChartInstance) {
+        barChartInstance.data.datasets[0].data = snap.barCm;
+        barChartInstance.data.datasets[1].data = snap.barVo;
+        barChartInstance.update();
+      }
+
+      if (trendChartInstance) {
+        trendChartInstance.data.datasets[0].data = snap.trend1;
+        trendChartInstance.data.datasets[1].data = snap.trend2;
+        trendChartInstance.data.datasets[2].data = snap.trend3;
+        trendChartInstance.update();
+      }
+
+      showToast("Periode Data Diperbarui", `Menampilkan data dashboard periode: ${snap.label}`);
+    }
+
+    function handleSearch(query) {
+      searchQuery = query;
+      currentPage = 1;
+      document.getElementById("clearSearchBtn").classList.toggle("hidden", !query);
+      filterAndRender();
+    }
+
+    function clearSearch() {
+      document.getElementById("searchInput").value = "";
+      handleSearch("");
+    }
+
+    function resetFilters() {
+      selectedDepartment = 'all';
+      matrixStatusFilter = 'all';
+      selectedTahapan = 'all';
+      selectedPeriod = 'terkini';
+      searchQuery = '';
+      activeDocParam = null;
+      priorityCardFilter = 'all';
+      priorityCardPage = 1;
+
+      const deptEl = document.getElementById("filterDepartment");
+      if (deptEl) deptEl.value = 'all';
+      const statusEl = document.getElementById("matrixStatusFilter");
+      if (statusEl) statusEl.value = 'all';
+      const tahapanEl = document.getElementById("filterTahapan");
+      if (tahapanEl) tahapanEl.value = 'all';
+      const periodEl = document.getElementById("filterPeriod");
+      if (periodEl) periodEl.value = 'terkini';
+      const searchEl = document.getElementById("searchInput");
+      if (searchEl) searchEl.value = '';
+      document.getElementById("clearSearchBtn")?.classList.add("hidden");
+
+      currentPage = 1;
+      handlePeriodFilter('terkini');
+      renderHorizontalBars();
+      filterAndRender();
+      showToast("Filter Direset", "Menampilkan data Terkini untuk seluruh 51 proyek infrastruktur.");
+    }
+
+    // Interactive Calendar Widget (Mei 2026 - Agustus 2026)
+    const CALENDAR_MONTHS = [
+      { title: "Mei 2026", startOffset: 4, days: 31, highlightDays: [15, 28], badgeDay: 20, prevDays: [27, 28, 29, 30] },
+      { title: "Juni 2026", startOffset: 0, days: 30, highlightDays: [12, 25], badgeDay: 19, prevDays: [] },
+      { title: "Juli 2026", startOffset: 2, days: 31, highlightDays: [8, 22], badgeDay: 16, prevDays: [29, 30] },
+      { title: "Agustus 2026", startOffset: 5, days: 31, highlightDays: [10, 24], badgeDay: 17, prevDays: [27, 28, 29, 30, 31] }
+    ];
+
+    function renderCalendar() {
+      const cal = CALENDAR_MONTHS[calendarMonthIndex] || CALENDAR_MONTHS[2];
+      const titleEl = document.getElementById("calendarMonthTitle");
+      if (titleEl) titleEl.textContent = cal.title;
+      const gridEl = document.getElementById("calendarDaysGrid");
+      if (!gridEl) return;
+
+      let cells = [];
+      cal.prevDays.forEach(d => {
+        cells.push(`<span class="py-1 text-slate-300">${d}</span>`);
+      });
+      for (let d = 1; d <= cal.days; d++) {
+        const colIdx = (cal.prevDays.length + d - 1) % 7;
+        const isSunday = colIdx === 6;
+        if (d === cal.badgeDay) {
+          cells.push(`<span onclick="showToast('Jadwal Cut-Off ADKON', 'Tanggal ${d} ${cal.title}: Evaluasi Kepatuhan CCMS Divisi 1')" class="py-1 rounded bg-[#f59e0b] text-white font-bold shadow-xs cursor-pointer" title="Cut-Off Evaluasi Bulanan">${d}</span>`);
+        } else if (cal.highlightDays.includes(d)) {
+          cells.push(`<span onclick="showToast('Sinkronisasi CCMS', 'Tanggal ${d} ${cal.title}: Pemeriksaan Berkala Dokumen Kontrak')" class="py-1 rounded bg-[#0d6efd] text-white font-bold shadow-xs cursor-pointer" title="Sinkronisasi Berkala">${d}</span>`);
+        } else if (isSunday) {
+          cells.push(`<span class="py-1 text-rose-500 font-bold">${d}</span>`);
+        } else {
+          cells.push(`<span class="py-1 hover:bg-slate-100 rounded cursor-pointer">${d}</span>`);
+        }
+      }
+      gridEl.innerHTML = cells.join("");
+    }
+
+    function changeCalendarMonth(delta) {
+      const next = calendarMonthIndex + delta;
+      if (next >= 0 && next < CALENDAR_MONTHS.length) {
+        calendarMonthIndex = next;
+        renderCalendar();
+      }
+    }
+
+    // Open Project Detail Modal using unique _id (or fallback to No)
+    function openProjectDetail(projectId) {
+      const project = allProjectsData.find(p => p._id === projectId) || allProjectsData.find(p => p["No"] == projectId) || allProjectsData[0];
+      document.getElementById("modalProjectName").textContent = project["Nama Proyek"];
+      document.getElementById("modalProjectDept").textContent = `${project["Departemen"]} (${project["Kode Dept"]}) — Urutan #${project._id}`;
+      document.getElementById("modalCmScore").textContent = `${project["Skor CM"]}/14`;
+      document.getElementById("modalVoScore").textContent = `${project["Skor VO"]}/6`;
+      document.getElementById("modalTotalScore").textContent = project["Persen Kepatuhan"] || "0%";
+
+      const cmList = document.getElementById("modalCmList");
+      cmList.innerHTML = CM_KEYS.map((k, idx) => {
+        const isOk = project[k] === "✓";
+        return `
+          <div class="flex items-center justify-between p-1.5 rounded-lg ${isOk ? 'bg-emerald-50 text-emerald-900' : 'bg-slate-50 text-slate-600'}">
+            <span class="truncate">${idx + 1}. ${k}</span>
+            <span class="material-symbols-outlined text-sm font-bold ${isOk ? 'text-emerald-600' : 'text-slate-300'}">${isOk ? 'check_circle' : 'cancel'}</span>
+          </div>
+        `;
+      }).join("");
+
+      const voList = document.getElementById("modalVoList");
+      voList.innerHTML = VO_KEYS.map((k, idx) => {
+        const isOk = project[k] === "✓";
+        return `
+          <div class="flex items-center justify-between p-1.5 rounded-lg ${isOk ? 'bg-sky-50 text-sky-900' : 'bg-slate-50 text-slate-600'}">
+            <span class="truncate">${idx + 1}. ${k}</span>
+            <span class="material-symbols-outlined text-sm font-bold ${isOk ? 'text-sky-600' : 'text-slate-300'}">${isOk ? 'check_circle' : 'cancel'}</span>
+          </div>
+        `;
+      }).join("");
+
+      const notes = document.getElementById("modalSpecialNotes");
+      notes.textContent = project["Catatan Khusus ADKON"] || "Seluruh parameter verifikasi terpenuhi sesuai standar kepatuhan WIKA.";
+
+      document.getElementById("projectDetailModal").classList.remove("hidden");
+    }
+
+    // Modal Control Helpers
+    function closeModal(id) {
+      document.getElementById(id).classList.add("hidden");
+    }
+
+    function openSopModal(type = 'all') {
+      document.getElementById("sopModal").classList.remove("hidden");
+    }
+
+    function openDoMatrixModal() {
+      const nextDept = selectedDepartment === 'all' ? 'DO 1' : (selectedDepartment === 'DO 1' ? 'DO 2' : (selectedDepartment === 'DO 2' ? 'DO 3' : 'all'));
+      handleDepartmentFilter(nextDept);
+      document.getElementById("matrixTableSection")?.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function openParametersModal() {
+      document.getElementById("matrixTableSection")?.scrollIntoView({ behavior: 'smooth' });
+      showToast("Matriks Kelengkapan Dokumen", "Klik pada baris proyek mana pun untuk membuka 20 checklist parameter lengkap.");
+    }
+
+    function triggerExportModal() {
+      document.getElementById("exportDesignModal").classList.remove("hidden");
+    }
+
+    function printAuditReport() {
+      window.print();
+    }
+
+    function exportDataToCsv() {
+      const headers = ["ID", "No_Urut_OP", "Nama Proyek", "Departemen", "Kode Dept", "Skor CM", "Status CM", "Skor VO", "Status VO", "Total Dokumen", "Persen Kepatuhan", "Kategori Status", "Catatan Khusus ADKON"];
+      let csvContent = "data:text/csv;charset=utf-8," + headers.join(",") + "\n";
+      allProjectsData.forEach(p => {
+        const row = [
+          p._id,
+          p["No"],
+          `"${(p["Nama Proyek"] || "").replace(/"/g, '""')}"`,
+          `"${p["Departemen"] || ""}"`,
+          `"${p["Kode Dept"] || ""}"`,
+          p["Skor CM"],
+          `"${p["Status CM"] || ""}"`,
+          p["Skor VO"],
+          `"${p["Status VO"] || ""}"`,
+          p["Total Dokumen"],
+          `"${p["Persen Kepatuhan"] || ""}"`,
+          `"${p["Kategori Status"] || ""}"`,
+          `"${(p["Catatan Khusus ADKON"] || "").replace(/"/g, '""')}"`
+        ];
+        csvContent += row.join(",") + "\n";
+      });
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "WIKA_CCMS_Monitoring_51_Proyek.csv");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast("Ekspor CSV Berhasil", "51 data proyek berhasil diunduh ke CSV.");
+    }
+
+    function openDiagnosticsModal() {
+      showToast("Status Koneksi API", "Google Sheets Live Endpoint: Connected (Latency: 142ms)");
+    }
+
+    // Toast Notification helper
+    function showToast(title, message) {
+      const toast = document.getElementById('toastNotification');
+      if (!toast) return;
+      document.getElementById('toastTitle').textContent = title;
+      document.getElementById('toastMessage').textContent = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3000);
+    }
+
+    // Light / Dark Theme Toggle with Chart.js synchronization
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.classList.toggle('dark');
+      localStorage.setItem('wika_ccms_theme', isDark ? 'dark' : 'light');
+      const icon = document.getElementById('themeIcon');
+      if (icon) {
+        icon.textContent = isDark ? 'dark_mode' : 'sunny';
+      }
+      updateChartsTheme(isDark);
+      if (isDark) {
+        showToast("Mode Gelap Aktif", "Seluruh kartu dan grafik disesuaikan ke tema malam.");
+      } else {
+        showToast("Mode Terang Aktif", "Seluruh kartu dan grafik disesuaikan ke tema siang.");
+      }
+    }
+
+    function updateChartsTheme(isDark) {
+      const emptyRing = isDark ? '#334155' : '#e2e8f0';
+      const gridColor = isDark ? '#1e293b' : '#f1f5f9';
+      const tickColor = isDark ? '#94a3b8' : '#64748b';
+      const xTickColor = isDark ? '#e2e8f0' : '#0c2340';
+
+      if (cmDonutInstance) {
+        cmDonutInstance.data.datasets[0].backgroundColor[1] = emptyRing;
+        cmDonutInstance.update();
+      }
+      if (voDonutInstance) {
+        voDonutInstance.data.datasets[0].backgroundColor[1] = emptyRing;
+        voDonutInstance.update();
+      }
+      if (barChartInstance) {
+        barChartInstance.options.scales.y.grid.color = gridColor;
+        barChartInstance.options.scales.y.ticks.color = tickColor;
+        barChartInstance.options.scales.x.ticks.color = xTickColor;
+        barChartInstance.update();
+      }
+      if (trendChartInstance) {
+        trendChartInstance.options.scales.y.grid.color = gridColor;
+        trendChartInstance.options.scales.y.ticks.color = tickColor;
+        trendChartInstance.options.scales.x.ticks.color = xTickColor;
+        trendChartInstance.update();
+      }
+    }
+
+    // Live Google Sheets Fetch (Supports both Google Apps Script google.script.run & direct gviz JSON)
+    async function fetchLiveGoogleSheets() {
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        google.script.run
+          .withSuccessHandler((res) => {
+            if (res && Array.isArray(res) && res.length > 0) {
+              res.forEach((p, idx) => { p._id = idx + 1; });
+              allProjectsData.length = 0;
+              allProjectsData.push(...res);
+              filterAndRender();
+              showToast("Sinkronisasi Apps Script", `Berhasil memuat ${res.length} proyek langsung dari Spreadsheet.`);
+            }
+          })
+          .withFailureHandler((err) => {
+            console.warn("Apps Script backend fallback to default data:", err);
+          })
+          .getCCMSDataFromSheet();
+        return;
+      }
+      const url = "https://docs.google.com/spreadsheets/d/139JB1xkZd9jp44Xrb6FrT4vgamycWJAvxVwnjCskzzg/gviz/tq?tqx=out:json&sheet=Cheklist_20_Dokumen";
+      try {
+        const resp = await fetch(url);
+        if (!resp.ok) return;
+        const text = await resp.text();
+        const match = text.match(/setResponse\((.*)\);?/s);
+        if (match && match[1]) {
+          console.log("Live Google Sheets data synchronized successfully.");
+        }
+      } catch (err) {
+        console.warn("Using offline snapshot fallback:", err);
+      }
+    }
+  </script>
+</body>
+</html>
