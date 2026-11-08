@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 140" width="320" height="280">
+  <defs>
+    <linearGradient id="c3Grad1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#93c5fd" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#dbeafe" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="c3Grad2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#bfdbfe" stop-opacity="0.4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Soft Cloud / Base Shadow -->
+  <ellipse cx="85" cy="132" rx="65" ry="5" fill="#dbeafe" fill-opacity="0.7"/>
+
+  <!-- Left Background Building -->
+  <rect x="28" y="82" width="24" height="50" fill="url(#c3Grad1)" stroke="#60a5fa" stroke-width="0.8"/>
+  <g fill="#ffffff" fill-opacity="0.8">
+    <rect x="32" y="87" width="4" height="4"/><rect x="39" y="87" width="4" height="4"/><rect x="45" y="87" width="4" height="4"/>
+    <rect x="32" y="95" width="4" height="4"/><rect x="39" y="95" width="4" height="4"/><rect x="45" y="95" width="4" height="4"/>
+    <rect x="32" y="103" width="4" height="4"/><rect x="39" y="103" width="4" height="4"/><rect x="45" y="103" width="4" height="4"/>
+    <rect x="32" y="111" width="4" height="4"/><rect x="39" y="111" width="4" height="4"/><rect x="45" y="111" width="4" height="4"/>
+  </g>
+
+  <!-- Center High-Rise Building -->
+  <rect x="56" y="55" width="34" height="77" fill="url(#c3Grad2)" stroke="#3b82f6" stroke-width="1"/>
+  <g fill="#ffffff" fill-opacity="0.85">
+    <rect x="61" y="61" width="5" height="5"/><rect x="70" y="61" width="5" height="5"/><rect x="79" y="61" width="5" height="5"/>
+    <rect x="61" y="70" width="5" height="5"/><rect x="70" y="70" width="5" height="5"/><rect x="79" y="70" width="5" height="5"/>
+    <rect x="61" y="79" width="5" height="5"/><rect x="70" y="79" width="5" height="5"/><rect x="79" y="79" width="5" height="5"/>
+    <rect x="61" y="88" width="5" height="5"/><rect x="70" y="88" width="5" height="5"/><rect x="79" y="88" width="5" height="5"/>
+    <rect x="61" y="97" width="5" height="5"/><rect x="70" y="97" width="5" height="5"/><rect x="79" y="97" width="5" height="5"/>
+    <rect x="61" y="106" width="5" height="5"/><rect x="70" y="106" width="5" height="5"/><rect x="79" y="106" width="5" height="5"/>
+    <rect x="61" y="115" width="5" height="5"/><rect x="70" y="115" width="5" height="5"/><rect x="79" y="115" width="5" height="5"/>
+  </g>
+
+  <!-- Right Medium Building -->
+  <rect x="94" y="72" width="28" height="60" fill="url(#c3Grad1)" stroke="#60a5fa" stroke-width="0.9"/>
+  <g fill="#ffffff" fill-opacity="0.8">
+    <rect x="99" y="78" width="4.5" height="4.5"/><rect x="106" y="78" width="4.5" height="4.5"/><rect x="113" y="78" width="4.5" height="4.5"/>
+    <rect x="99" y="86" width="4.5" height="4.5"/><rect x="106" y="86" width="4.5" height="4.5"/><rect x="113" y="86" width="4.5" height="4.5"/>
+    <rect x="99" y="94" width="4.5" height="4.5"/><rect x="106" y="94" width="4.5" height="4.5"/><rect x="113" y="94" width="4.5" height="4.5"/>
+    <rect x="99" y="102" width="4.5" height="4.5"/><rect x="106" y="102" width="4.5" height="4.5"/><rect x="113" y="102" width="4.5" height="4.5"/>
+    <rect x="99" y="110" width="4.5" height="4.5"/><rect x="106" y="110" width="4.5" height="4.5"/><rect x="113" y="110" width="4.5" height="4.5"/>
+  </g>
+
+  <!-- Tower Crane on Right -->
+  <g stroke="#2563eb" stroke-opacity="0.75" fill="none">
+    <!-- Mast -->
+    <line x1="128" y1="22" x2="128" y2="132" stroke-width="1.6"/>
+    <line x1="136" y1="22" x2="136" y2="132" stroke-width="1.6"/>
+    <path d="M 128 28 L 136 36 L 128 44 L 136 52 L 128 60 L 136 68 L 128 76 L 136 84 L 128 92 L 136 100 L 128 108 L 136 116 L 128 124" stroke-width="1"/>
+    <!-- Apex -->
+    <path d="M 128 22 L 132 8 L 136 22" stroke-width="1.5"/>
+    <!-- Horizontal Jib -->
+    <line x1="65" y1="22" x2="152" y2="22" stroke-width="1.8"/>
+    <line x1="70" y1="16" x2="148" y2="16" stroke-width="1.1"/>
+    <path d="M 70 22 L 76 16 L 82 22 L 88 16 L 94 22 L 100 16 L 106 22 L 112 16 L 118 22 L 124 16 L 128 22 M 136 22 L 142 16 L 148 22" stroke-width="0.9"/>
+    <!-- Cables -->
+    <line x1="132" y1="8" x2="80" y2="16" stroke-width="1"/>
+    <line x1="132" y1="8" x2="146" y2="16" stroke-width="1"/>
+    <!-- Hook Line -->
+    <line x1="82" y1="22" x2="82" y2="46" stroke-width="1.1"/>
+    <rect x="78" y="46" width="8" height="4" fill="#3b82f6"/>
+  </g>
+</svg>

@@ -107,104 +107,83 @@
   <div class="flex min-h-screen">
 
     <!-- ======================================================== -->
-    <!-- LEFT SIDEBAR (WIKA BRANDING & NAVIGATION) -->
+    <!-- LEFT SIDEBAR (WIKA BRANDING & NAVIGATION - 1:1 REFERENCE) -->
     <!-- ======================================================== -->
-    <aside class="w-64 bg-gradient-to-b from-[#003874] via-[#004b93] to-[#002f6c] text-white flex flex-col justify-between p-5 shrink-0 relative overflow-hidden shadow-xl z-20">
+    <aside class="w-60 bg-gradient-to-b from-[#0c488c] via-[#0a4285] to-[#062d5e] text-white flex flex-col justify-between shrink-0 relative overflow-hidden shadow-xl z-20 select-none">
       
       <!-- Top Section -->
-      <div class="space-y-6 relative z-10">
+      <div class="p-4 space-y-5 relative z-10">
         
-        <!-- WIKA Logo Card -->
-        <div class="space-y-2 text-center">
-          <div class="px-5 py-3 rounded-2xl bg-white shadow-md flex items-center justify-center">
-            <img src="assets/wika-logo.svg" alt="Logo PT Wijaya Karya (Persero) Tbk" class="h-9 w-auto object-contain"/>
-          </div>
-          <p class="text-[11px] font-semibold text-sky-100/90 tracking-wide leading-tight px-1">
-            The Leading EPCC & Green Contractor In Indonesia
+        <!-- Transparent White WIKA Logo (NO white background box) -->
+        <div class="pt-1 pb-2 text-center border-b border-white/15">
+          <img src="assets/wika-logo-white.svg" alt="Logo PT Wijaya Karya (Persero) Tbk" class="h-14 w-auto mx-auto object-contain drop-shadow-sm"/>
+          <p class="text-[9.5px] font-medium text-sky-100/90 tracking-wide leading-snug mt-2 px-1">
+            The Leading EPCC &amp; Green Contractor In Indonesia
           </p>
         </div>
 
         <!-- Navigation Menu -->
-        <nav class="space-y-1.5 pt-2">
-          <!-- Overview (Active) -->
-          <a href="#" onclick="switchTab('overview')" id="nav-overview" class="flex items-center gap-3 px-4 py-2.5 rounded-xl font-bold text-xs bg-white text-wika-blue shadow-md transition-all">
-            <span class="material-symbols-outlined text-lg">home</span>
+        <nav class="space-y-1">
+          <!-- Overview (Active Pill) -->
+          <a href="#" onclick="switchTab('overview')" id="nav-overview" class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-bold text-xs bg-[#1859a3] text-white border border-sky-400/40 shadow-sm transition-all relative">
+            <span class="w-1 h-5 rounded-full bg-white absolute left-1"></span>
+            <span class="material-symbols-outlined text-base ml-1">home</span>
             <span>Overview</span>
           </a>
 
           <!-- Contract Management (14 Dokumen) -->
-          <a href="#" onclick="openSopModal()" class="flex items-center gap-3 px-4 py-2.5 rounded-xl font-semibold text-xs text-sky-100 hover:text-white hover:bg-white/10 transition-all">
-            <span class="material-symbols-outlined text-lg">description</span>
-            <span>Contract Management (14 Dokumen)</span>
+          <a href="#" onclick="openSopModal()" class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-xs text-sky-100 hover:text-white hover:bg-white/10 transition-all">
+            <span class="material-symbols-outlined text-base text-sky-300">description</span>
+            <span class="leading-tight">Contract Management<br/><span class="text-[10px] text-sky-200/80">(14 Dokumen)</span></span>
           </a>
 
-          <!-- Perubahan (VO, Claim, Anti Claim) -->
-          <a href="#" onclick="openSopModal('vo')" class="flex items-center gap-3 px-4 py-2.5 rounded-xl font-semibold text-xs text-sky-100 hover:text-white hover:bg-white/10 transition-all">
-            <span class="material-symbols-outlined text-lg">edit_document</span>
-            <span>Perubahan (VO, Claim, Anti Claim & Insurance)</span>
+          <!-- Perubahan (VO, Claim, Anti Claim & Insurance) -->
+          <a href="#" onclick="openSopModal('vo')" class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-xs text-sky-100 hover:text-white hover:bg-white/10 transition-all">
+            <span class="material-symbols-outlined text-base text-sky-300">autorenew</span>
+            <span class="leading-tight">Perubahan (VO, Claim,<br/><span class="text-[10px] text-sky-200/80">Anti Claim &amp; Insurance)</span></span>
           </a>
 
           <!-- Per Departemen Operasi -->
-          <a href="#" onclick="openDoMatrixModal()" class="flex items-center gap-3 px-4 py-2.5 rounded-xl font-semibold text-xs text-sky-100 hover:text-white hover:bg-white/10 transition-all">
-            <span class="material-symbols-outlined text-lg">groups</span>
+          <a href="#" onclick="openDoMatrixModal()" class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-xs text-sky-100 hover:text-white hover:bg-white/10 transition-all">
+            <span class="material-symbols-outlined text-base text-sky-300">pie_chart</span>
             <span>Per Departemen Operasi</span>
           </a>
 
           <!-- Detail Proyek -->
-          <a href="#matrixTableSection" class="flex items-center gap-3 px-4 py-2.5 rounded-xl font-semibold text-xs text-sky-100 hover:text-white hover:bg-white/10 transition-all">
-            <span class="material-symbols-outlined text-lg">fact_check</span>
+          <a href="#matrixTableSection" class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-xs text-sky-100 hover:text-white hover:bg-white/10 transition-all">
+            <span class="material-symbols-outlined text-base text-sky-300">assignment</span>
             <span>Detail Proyek</span>
           </a>
         </nav>
 
         <!-- Divider -->
-        <div class="h-px bg-white/15 my-2"></div>
+        <div class="h-px bg-white/15"></div>
 
-        <!-- Quick System Links -->
+        <!-- Design & System Deliverables -->
         <div class="space-y-1 text-xs">
-          <a href="design-system.html" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sky-200 hover:text-white hover:bg-white/10 transition-all font-semibold text-[11px]">
-            <span class="material-symbols-outlined text-sm">category</span>
-            <span>Design System Foundations</span>
+          <div class="px-2 text-[9px] font-bold uppercase tracking-wider text-sky-300/80">Design &amp; Sync Assets</div>
+          <a href="WIKA_CCMS_Monitoring.figcraft" download class="flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-sky-100/90 hover:text-white hover:bg-white/10 transition-all font-medium text-[11px]">
+            <span class="material-symbols-outlined text-sm text-sky-300">draw</span>
+            <span>FigCraft File (.figcraft)</span>
           </a>
-          <a href="WIKA_CCMS_Monitoring.figcraft" download class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sky-200 hover:text-white hover:bg-white/10 transition-all font-semibold text-[11px]">
-            <span class="material-symbols-outlined text-sm">draw</span>
-            <span>FigCraft Design (.figcraft)</span>
+          <a href="WIKA_CCMS_Monitoring.fig" download class="flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-sky-100/90 hover:text-white hover:bg-white/10 transition-all font-medium text-[11px]">
+            <span class="material-symbols-outlined text-sm text-sky-300">layers</span>
+            <span>Figma Native (.fig)</span>
           </a>
-          <a href="WIKA_CCMS_Monitoring.fig" download class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sky-200 hover:text-white hover:bg-white/10 transition-all font-semibold text-[11px]">
-            <span class="material-symbols-outlined text-sm">layers</span>
-            <span>Figma Native File (.fig)</span>
+          <a href="assets/WIKA_CCMS_Monitoring_render.png" target="_blank" class="flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-sky-100/90 hover:text-white hover:bg-white/10 transition-all font-medium text-[11px]">
+            <span class="material-symbols-outlined text-sm text-sky-300">image</span>
+            <span>1:1 HD Render (1920p)</span>
           </a>
-          <a href="assets/WIKA_CCMS_Monitoring_render.png" target="_blank" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sky-200 hover:text-white hover:bg-white/10 transition-all font-semibold text-[11px]">
-            <span class="material-symbols-outlined text-sm">image</span>
-            <span>HD Canvas Preview (1920p)</span>
+          <a href="design-system.html" class="flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-sky-100/90 hover:text-white hover:bg-white/10 transition-all font-medium text-[11px]">
+            <span class="material-symbols-outlined text-sm text-sky-300">category</span>
+            <span>Atomic Design System</span>
           </a>
-          <button onclick="openDiagnosticsModal()" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sky-200 hover:text-white hover:bg-white/10 transition-all font-semibold text-[11px] text-left">
-            <span class="material-symbols-outlined text-sm">cloud_sync</span>
-            <span>Live Diagnostics API</span>
-          </button>
         </div>
-
       </div>
 
-      <!-- Bottom Illustration (Construction Crane Silhouette) -->
-      <div class="relative z-10 pt-6">
-        <div class="p-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/15 text-[11px] space-y-1">
-          <div class="flex items-center justify-between text-white font-bold">
-            <span class="flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              Live Sync
-            </span>
-            <span class="text-[10px] text-sky-200">51 Proyek</span>
-          </div>
-          <p class="text-sky-100 text-[10px]">Google Sheets API Connected</p>
-        </div>
-
-        <!-- Crane SVG graphic -->
-        <div class="opacity-20 mt-3 flex justify-center pointer-events-none">
-          <svg class="w-36 h-28 text-white fill-current" viewBox="0 0 100 100">
-            <path d="M10 90 L90 90 M25 90 L25 20 L75 20 M25 35 L45 20 M25 50 L55 20 M25 65 L65 20 M25 80 L75 20 M75 20 L75 35 M70 35 L80 35 L75 45 Z M15 90 L25 70 M35 90 L25 70 M45 90 L55 70 L55 90 M65 90 L75 70 L75 90 M85 90 L95 70"/>
-          </svg>
-        </div>
+      <!-- Bottom Architectural Skyline & Lattice Tower Crane Illustration (Crisp Vector) -->
+      <div class="relative w-full mt-auto pt-2 pointer-events-none">
+        <img src="assets/sidebar-skyline.svg" alt="Architectural Buildings and Tower Crane Vector" class="w-full h-auto object-bottom object-contain opacity-95"/>
       </div>
 
     </aside>
@@ -215,25 +194,27 @@
     <div class="flex-1 flex flex-col min-w-0">
 
       <!-- TOP HEADER (TITLE & FILTER BAR) -->
-      <header class="bg-white border-b border-slate-200/80 px-6 py-4 sticky top-0 z-30 shadow-sm flex flex-wrap items-center justify-between gap-4">
-        
+      <header class="bg-white border-b border-slate-200/90 px-6 py-3.5 sticky top-0 z-30 shadow-sm flex flex-wrap items-center justify-between gap-4 relative overflow-hidden">
+        <!-- Subtle Top-Right Skyline Illustration matching reference -->
+        <img src="assets/header-skyline.svg" alt="" class="absolute right-0 top-0 h-full w-auto object-cover pointer-events-none opacity-85 hidden xl:block"/>
+
         <!-- Title & Subtitle -->
-        <div>
-          <h1 class="text-xl font-extrabold text-[#002f6c] tracking-tight flex items-center gap-2">
+        <div class="relative z-10">
+          <h1 class="text-xl font-extrabold text-[#083b7a] tracking-tight">
             CCMS Monitoring Dashboard
           </h1>
-          <p class="text-xs font-semibold text-slate-500">
+          <p class="text-xs font-medium text-slate-500">
             Contract Management Infrastructure 1 Sub Division
           </p>
         </div>
 
         <!-- Filter Controls Cluster -->
-        <div class="flex flex-wrap items-center gap-2.5 text-xs">
+        <div class="flex flex-wrap items-center gap-2 text-xs relative z-10">
           
           <!-- Periode Dropdown -->
-          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 font-semibold shadow-sm">
-            <span class="material-symbols-outlined text-wika-blue text-sm">calendar_month</span>
-            <span class="text-[10px] text-slate-400 uppercase">Periode:</span>
+          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-slate-700 shadow-sm">
+            <span class="material-symbols-outlined text-[#0d5cab] text-sm">calendar_month</span>
+            <span class="text-[11px] text-slate-500">Periode:</span>
             <select id="filterPeriod" class="bg-transparent font-bold text-slate-800 focus:outline-none cursor-pointer">
               <option value="jul-2026" selected>Juli 2026</option>
               <option value="jun-2026">Juni 2026</option>
@@ -242,9 +223,9 @@
           </div>
 
           <!-- Departemen Operasi Dropdown -->
-          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 font-semibold shadow-sm">
-            <span class="text-[10px] text-slate-400 uppercase">Departemen Operasi:</span>
-            <select id="filterDepartment" onchange="handleDepartmentFilter(this.value)" class="bg-transparent font-bold text-wika-blue focus:outline-none cursor-pointer">
+          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-slate-700 shadow-sm">
+            <span class="text-[11px] text-slate-500">Departemen Operasi:</span>
+            <select id="filterDepartment" onchange="handleDepartmentFilter(this.value)" class="bg-transparent font-bold text-slate-800 focus:outline-none cursor-pointer">
               <option value="all" selected>All</option>
               <option value="DO 1">DO 1 (19 Proyek)</option>
               <option value="DO 2">DO 2 (18 Proyek)</option>
@@ -253,8 +234,8 @@
           </div>
 
           <!-- Tahapan Dropdown -->
-          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 font-semibold shadow-sm">
-            <span class="text-[10px] text-slate-400 uppercase">Tahapan:</span>
+          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-slate-700 shadow-sm">
+            <span class="text-[11px] text-slate-500">Tahapan:</span>
             <select id="filterTahapan" class="bg-transparent font-bold text-slate-800 focus:outline-none cursor-pointer">
               <option value="all" selected>All</option>
               <option value="pelaksanaan">Pelaksanaan</option>
@@ -266,21 +247,21 @@
           <!-- Search Input -->
           <div class="relative">
             <span class="material-symbols-outlined absolute left-2.5 top-2 text-slate-400 text-sm">search</span>
-            <input type="text" id="searchInput" oninput="handleSearch(this.value)" placeholder="Cari Nama Proyek..." class="pl-8 pr-7 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-xs font-medium text-slate-800 focus:outline-none focus:border-wika-blue focus:bg-white w-44 md:w-56 transition-all shadow-sm"/>
+            <input type="text" id="searchInput" oninput="handleSearch(this.value)" placeholder="Cari Nama Proyek..." class="pl-8 pr-7 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-medium text-slate-800 focus:outline-none focus:border-[#0d5cab] w-44 md:w-52 transition-all shadow-sm"/>
             <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-2 top-2 text-slate-400 hover:text-slate-600">
               <span class="material-symbols-outlined text-xs">close</span>
             </button>
           </div>
 
           <!-- Reset Filter Button -->
-          <button onclick="resetFilters()" class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#004b93] hover:bg-[#003874] text-white font-bold shadow-sm transition-all active:scale-95">
-            <span class="material-symbols-outlined text-sm">restart_alt</span>
+          <button onclick="resetFilters()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 font-bold shadow-sm transition-all active:scale-95">
+            <span class="material-symbols-outlined text-sm text-[#0d5cab]">refresh</span>
             <span>Reset Filter</span>
           </button>
 
-          <!-- Sun/Moon Theme Toggle Icon Button -->
-          <button onclick="toggleTheme()" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 border border-slate-200 transition-all ml-1" title="Toggle Tampilan">
-            <span id="themeIcon" class="material-symbols-outlined text-base">sunny</span>
+          <!-- Sun Icon Button -->
+          <button onclick="toggleTheme()" class="p-1.5 rounded-full bg-white hover:bg-slate-100 text-amber-500 border border-slate-300 shadow-sm transition-all" title="Toggle Tampilan">
+            <span id="themeIcon" class="material-symbols-outlined text-base fill">light_mode</span>
           </button>
 
         </div>
@@ -288,354 +269,412 @@
       </header>
 
       <!-- DASHBOARD BODY CONTENT -->
-      <main class="p-6 space-y-6 max-w-[1700px] w-full mx-auto">
+      <main class="p-4 space-y-3.5 max-w-[1720px] w-full mx-auto">
 
         <!-- ======================================================== -->
-        <!-- ROW 1: TOP 5 KPI CARDS -->
+        <!-- TOP SECTION: LEFT 9 COLS (ROW 1 & ROW 2) + RIGHT 3 COLS (CALENDAR & QUICK ACCESS) -->
         <!-- ======================================================== -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-3.5 items-stretch">
           
-          <!-- CARD 1: Kepatuhan Contract Management (14 Dokumen) -->
-          <div class="dashboard-card p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between">
-            <div class="flex items-center justify-between pb-2">
-              <span class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-wika-blue text-base">description</span>
-                Kepatuhan Contract Management (14 Dokumen)
-              </span>
-            </div>
+          <!-- LEFT 9 COLUMNS: KPI CARDS (ROW 1) + DEPT SUMMARY & LINE CHART (ROW 2) -->
+          <div class="xl:col-span-9 flex flex-col gap-3.5">
             
-            <div class="flex items-center justify-between py-1">
-              <div>
-                <div class="text-3xl font-extrabold text-emerald-600 tracking-tight" id="kpiCmPercent">62,7%</div>
-                <div class="text-xs font-semibold text-slate-500 mt-0.5" id="kpiCmRatio">32 dari 51 Proyek</div>
-              </div>
-              <div class="w-16 h-16 relative">
-                <canvas id="cmDonutChart"></canvas>
-              </div>
-            </div>
-
-            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-600 font-medium">
-              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Lengkap: <b id="cmLengkapCount">32</b></span>
-              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-500"></span> Belum: <b id="cmBelumCount">17</b></span>
-              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-400"></span> Nihil: <b id="cmNihilCount">2</b></span>
-            </div>
-          </div>
-
-          <!-- CARD 2: Kepatuhan Perubahan (VO, Claim, Anti Claim & Insurance) -->
-          <div class="dashboard-card p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between">
-            <div class="flex items-center justify-between pb-2">
-              <span class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-wika-blue text-base">edit_note</span>
-                Kepatuhan Perubahan (VO, Claim, Anti Claim & Insurance)
-              </span>
-            </div>
-
-            <div class="flex items-center justify-between py-1">
-              <div>
-                <div class="text-3xl font-extrabold text-[#0066cc] tracking-tight" id="kpiVoPercent">58,8%</div>
-                <div class="text-xs font-semibold text-slate-500 mt-0.5" id="kpiVoRatio">30 dari 51 Proyek</div>
-              </div>
-              <div class="w-16 h-16 relative">
-                <canvas id="voDonutChart"></canvas>
-              </div>
-            </div>
-
-            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-600 font-medium">
-              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#0066cc]"></span> Lengkap: <b id="voLengkapCount">30</b></span>
-              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-500"></span> Belum Diisi: <b id="voBelumCount">21</b></span>
-            </div>
-          </div>
-
-          <!-- CARD 3: Total Proyek -->
-          <div class="dashboard-card p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between">
-            <div class="flex items-center justify-between pb-2">
-              <span class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-wika-blue text-base">domain</span>
-                Total Proyek
-              </span>
-            </div>
-
-            <div class="flex items-center justify-between py-1">
-              <div>
-                <div class="text-3xl font-extrabold text-[#002f6c] tracking-tight">51</div>
-                <div class="text-xs font-bold text-slate-500 mt-0.5">Proyek</div>
-              </div>
-              <div class="w-16 h-16 text-sky-400 flex items-center justify-center">
-                <svg class="w-14 h-14" viewBox="0 0 64 64" fill="none" stroke="currentColor">
-                  <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M8 56h48M16 56V24l16-8 16 8v32M24 32h4M36 32h4M24 40h4M36 40h4M24 48h4M36 48h4 M32 16V8m-6 0h12" />
-                  <path stroke-width="2" stroke-linecap="round" d="M48 20l8 4v32" opacity="0.6"/>
-                </svg>
-              </div>
-            </div>
-
-            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500 font-semibold">
-              <span>DO 1: 19</span>
-              <span>•</span>
-              <span>DO 2: 18</span>
-              <span>•</span>
-              <span>DO 3: 14</span>
-            </div>
-          </div>
-
-          <!-- CARD 4: Perbandingan Kepatuhan per Operasi -->
-          <div class="dashboard-card p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between">
-            <div class="flex items-center justify-between pb-1">
-              <span class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-wika-blue text-base">bar_chart</span>
-                Perbandingan Kepatuhan per Operasi
-              </span>
-              <div class="flex items-center gap-2 text-[9px] font-bold">
-                <span class="flex items-center gap-1 text-[#004b93]"><span class="w-2 h-2 rounded-sm bg-[#004b93]"></span> CM</span>
-                <span class="flex items-center gap-1 text-sky-400"><span class="w-2 h-2 rounded-sm bg-sky-400"></span> Perubahan</span>
-              </div>
-            </div>
-
-            <!-- Grouped Bar Chart -->
-            <div class="h-24 w-full relative">
-              <canvas id="perbandinganBarChart"></canvas>
-            </div>
-          </div>
-
-          <!-- CARD 5: Kalender & Agenda Penting -->
-          <div class="dashboard-card p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between">
-            <div class="flex items-center justify-between pb-1">
-              <span class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-wika-blue text-base">calendar_month</span>
-                Kalender
-              </span>
-              <div class="flex items-center gap-1 text-xs text-slate-500 font-bold">
-                <span>Juli 2026</span>
-                <button class="hover:text-slate-800 px-1">&lt;</button>
-                <button class="hover:text-slate-800 px-1">&gt;</button>
-              </div>
-            </div>
-
-            <!-- Mini Calendar Grid -->
-            <div class="grid grid-cols-7 gap-1 text-center text-[9px] font-semibold text-slate-600 my-1">
-              <span class="text-slate-400">Min</span><span class="text-slate-400">Sen</span><span class="text-slate-400">Sel</span><span class="text-slate-400">Rab</span><span class="text-slate-400">Kam</span><span class="text-slate-400">Jum</span><span class="text-slate-400">Sab</span>
-              <span class="text-slate-300">28</span><span class="text-slate-300">29</span><span class="text-slate-300">30</span><span>1</span><span>2</span><span>3</span><span>4</span>
-              <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span>
-              <span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span>
-              <span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span>
-              <span>26</span><span class="w-5 h-5 mx-auto rounded-full bg-[#004b93] text-white flex items-center justify-center font-bold shadow-sm ring-2 ring-sky-300">27</span><span>28</span><span>29</span><span>30</span><span>31</span><span class="text-slate-300">1</span>
-            </div>
-
-            <!-- Agenda Penting Banner -->
-            <div class="p-1.5 rounded-lg bg-sky-50 border border-sky-100 flex items-center justify-between text-[10px]">
-              <div class="flex items-center gap-1 text-wika-blue font-bold">
-                <span class="material-symbols-outlined text-xs text-amber-500 fill">notifications</span>
-                <span>27 Jul - Cut Off Monitoring</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- ======================================================== -->
-        <!-- ROW 2: MIDDLE ANALYTICS & QUICK ACCESS -->
-        <!-- ======================================================== -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
-          
-          <!-- LEFT: Ringkasan per Departemen Operasi (5 cols) -->
-          <div class="lg:col-span-5 dashboard-card p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-4">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
-              <h2 class="text-sm font-bold text-slate-800 flex items-center gap-2">
-                <span class="material-symbols-outlined text-wika-blue text-base">donut_large</span>
-                Ringkasan per Departemen Operasi
-              </h2>
-              <span class="text-[11px] font-mono text-slate-400">51 Proyek</span>
-            </div>
-
-            <div class="grid grid-cols-3 gap-3 text-center">
+            <!-- ROW 1: 4 CARDS -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3.5">
               
-              <!-- Operasi 1 -->
-              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/60 space-y-2">
-                <div class="text-xs font-bold text-slate-800">Operasi 1</div>
-                <div class="text-[10px] font-semibold text-slate-500">19 Proyek</div>
+              <!-- CARD 1: Kepatuhan Contract Management (14 Dokumen) (3 cols) -->
+              <div class="lg:col-span-3 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between">
+                <div class="flex items-start gap-2">
+                  <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0 mt-0.5">
+                    <span class="material-symbols-outlined text-xs">description</span>
+                  </div>
+                  <h2 class="text-[11px] font-bold text-[#0c2340] leading-tight">
+                    Kepatuhan Contract Management<br/>(14 Dokumen)
+                  </h2>
+                </div>
                 
-                <div class="flex items-center justify-center gap-2 pt-1">
-                  <!-- CM Gauge -->
-                  <div class="relative w-12 h-12 flex items-center justify-center">
-                    <svg class="w-12 h-12 transform -rotate-90" viewBox="0 0 36 36">
-                      <path class="text-slate-200" stroke-width="3.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                      <path class="text-emerald-500" stroke-dasharray="63.2, 100" stroke-width="3.5" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                    </svg>
-                    <span class="absolute text-[10px] font-extrabold text-slate-700">63%</span>
+                <div class="flex items-center justify-between my-2">
+                  <div>
+                    <div class="text-3xl font-extrabold text-[#159a5c] tracking-tight leading-none" id="kpiCmPercent">62,7%</div>
+                    <div class="text-[11px] font-medium text-slate-600 mt-1" id="kpiCmRatio">32 dari 51 Proyek</div>
                   </div>
-                  <!-- Perubahan Gauge -->
-                  <div class="relative w-12 h-12 flex items-center justify-center">
-                    <svg class="w-12 h-12 transform -rotate-90" viewBox="0 0 36 36">
-                      <path class="text-slate-200" stroke-width="3.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                      <path class="text-sky-500" stroke-dasharray="52.6, 100" stroke-width="3.5" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                    </svg>
-                    <span class="absolute text-[10px] font-extrabold text-slate-700">53%</span>
+                  <div class="w-16 h-16 relative shrink-0">
+                    <canvas id="cmDonutChart"></canvas>
                   </div>
                 </div>
 
-                <div class="flex justify-around text-[9px] font-bold text-slate-500 pt-1">
-                  <span class="text-emerald-600">CM: 63,2%</span>
-                  <span class="text-sky-600">VO: 52,6%</span>
-                </div>
-              </div>
-
-              <!-- Operasi 2 -->
-              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/60 space-y-2">
-                <div class="text-xs font-bold text-slate-800">Operasi 2</div>
-                <div class="text-[10px] font-semibold text-slate-500">18 Proyek</div>
-
-                <div class="flex items-center justify-center gap-2 pt-1">
-                  <!-- CM Gauge -->
-                  <div class="relative w-12 h-12 flex items-center justify-center">
-                    <svg class="w-12 h-12 transform -rotate-90" viewBox="0 0 36 36">
-                      <path class="text-slate-200" stroke-width="3.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                      <path class="text-emerald-500" stroke-dasharray="77.8, 100" stroke-width="3.5" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                    </svg>
-                    <span class="absolute text-[10px] font-extrabold text-slate-700">78%</span>
+                <div class="pt-2 border-t border-slate-100 grid grid-cols-3 gap-1 text-center">
+                  <div>
+                    <div class="flex items-center justify-center gap-1 text-[9.5px] text-slate-600 font-medium">
+                      <span class="w-2 h-2 rounded-full bg-[#159a5c]"></span>Lengkap
+                    </div>
+                    <div class="text-xs font-extrabold text-[#0c2340] mt-0.5" id="cmLengkapCount">32</div>
                   </div>
-                  <!-- Perubahan Gauge -->
-                  <div class="relative w-12 h-12 flex items-center justify-center">
-                    <svg class="w-12 h-12 transform -rotate-90" viewBox="0 0 36 36">
-                      <path class="text-slate-200" stroke-width="3.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                      <path class="text-sky-500" stroke-dasharray="77.8, 100" stroke-width="3.5" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                    </svg>
-                    <span class="absolute text-[10px] font-extrabold text-slate-700">78%</span>
+                  <div>
+                    <div class="flex items-center justify-center gap-1 text-[9.5px] text-slate-600 font-medium">
+                      <span class="w-2 h-2 rounded-full bg-[#f59e0b]"></span>Belum Lengkap
+                    </div>
+                    <div class="text-xs font-extrabold text-[#0c2340] mt-0.5" id="cmBelumCount">17</div>
                   </div>
-                </div>
-
-                <div class="flex justify-around text-[9px] font-bold text-slate-500 pt-1">
-                  <span class="text-emerald-600">CM: 77,8%</span>
-                  <span class="text-sky-600">VO: 77,8%</span>
+                  <div>
+                    <div class="flex items-center justify-center gap-1 text-[9.5px] text-slate-600 font-medium">
+                      <span class="w-2 h-2 rounded-full bg-[#94a3b8]"></span>Nihil
+                    </div>
+                    <div class="text-xs font-extrabold text-[#0c2340] mt-0.5" id="cmNihilCount">2</div>
+                  </div>
                 </div>
               </div>
 
-              <!-- Operasi 3 -->
-              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/60 space-y-2">
-                <div class="text-xs font-bold text-slate-800">Operasi 3</div>
-                <div class="text-[10px] font-semibold text-slate-500">14 Proyek</div>
-
-                <div class="flex items-center justify-center gap-2 pt-1">
-                  <!-- CM Gauge -->
-                  <div class="relative w-12 h-12 flex items-center justify-center">
-                    <svg class="w-12 h-12 transform -rotate-90" viewBox="0 0 36 36">
-                      <path class="text-slate-200" stroke-width="3.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                      <path class="text-emerald-500" stroke-dasharray="42.9, 100" stroke-width="3.5" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                    </svg>
-                    <span class="absolute text-[10px] font-extrabold text-slate-700">43%</span>
+              <!-- CARD 2: Kepatuhan Perubahan (VO, Claim, Anti Claim & Insurance) (3 cols) -->
+              <div class="lg:col-span-3 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between">
+                <div class="flex items-start gap-2">
+                  <div class="w-5 h-5 rounded bg-[#0d6efd] text-white flex items-center justify-center shrink-0 mt-0.5">
+                    <span class="material-symbols-outlined text-xs">autorenew</span>
                   </div>
-                  <!-- Perubahan Gauge -->
-                  <div class="relative w-12 h-12 flex items-center justify-center">
-                    <svg class="w-12 h-12 transform -rotate-90" viewBox="0 0 36 36">
-                      <path class="text-slate-200" stroke-width="3.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                      <path class="text-sky-500" stroke-dasharray="42.9, 100" stroke-width="3.5" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                    </svg>
-                    <span class="absolute text-[10px] font-extrabold text-slate-700">43%</span>
+                  <h2 class="text-[11px] font-bold text-[#0c2340] leading-tight">
+                    Kepatuhan Perubahan (VO, Claim,<br/>Anti Claim &amp; Insurance)
+                  </h2>
+                </div>
+
+                <div class="flex items-center justify-between my-2">
+                  <div>
+                    <div class="text-3xl font-extrabold text-[#0d6efd] tracking-tight leading-none" id="kpiVoPercent">58,8%</div>
+                    <div class="text-[11px] font-medium text-slate-600 mt-1" id="kpiVoRatio">30 dari 51 Proyek</div>
+                  </div>
+                  <div class="w-16 h-16 relative shrink-0">
+                    <canvas id="voDonutChart"></canvas>
                   </div>
                 </div>
 
-                <div class="flex justify-around text-[9px] font-bold text-slate-500 pt-1">
-                  <span class="text-emerald-600">CM: 42,9%</span>
-                  <span class="text-sky-600">VO: 42,9%</span>
+                <div class="pt-2 border-t border-slate-100 grid grid-cols-2 gap-2 text-center">
+                  <div>
+                    <div class="flex items-center justify-center gap-1 text-[9.5px] text-slate-600 font-medium">
+                      <span class="w-2 h-2 rounded-full bg-[#0d6efd]"></span>Lengkap
+                    </div>
+                    <div class="text-xs font-extrabold text-[#0c2340] mt-0.5" id="voLengkapCount">30</div>
+                  </div>
+                  <div>
+                    <div class="flex items-center justify-center gap-1 text-[9.5px] text-slate-600 font-medium">
+                      <span class="w-2 h-2 rounded-full bg-[#f59e0b]"></span>Belum Diisi
+                    </div>
+                    <div class="text-xs font-extrabold text-[#0c2340] mt-0.5" id="voBelumCount">21</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CARD 3: Total Proyek (2 cols) -->
+              <div class="lg:col-span-2 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between relative overflow-hidden">
+                <div class="flex items-center gap-1.5 relative z-10">
+                  <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-xs">domain</span>
+                  </div>
+                  <h2 class="text-[11px] font-bold text-[#0c2340]">Total Proyek</h2>
+                </div>
+
+                <div class="flex items-center justify-between my-1 relative z-10">
+                  <div>
+                    <div class="text-4xl font-extrabold text-[#083b7a] tracking-tight leading-none">51</div>
+                    <div class="text-xs font-semibold text-slate-700 mt-1">Proyek</div>
+                  </div>
+                  <!-- Crisp Vector High-Rise & Lattice Tower Crane Illustration -->
+                  <img src="assets/card3-crane.svg" alt="High-Rise Buildings & Crane" class="w-24 h-20 object-contain -mr-2 pointer-events-none"/>
+                </div>
+
+                <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[9.5px] text-slate-600 font-bold relative z-10">
+                  <span>DO 1: 19</span>
+                  <span class="text-slate-300">|</span>
+                  <span>DO 2: 18</span>
+                  <span class="text-slate-300">|</span>
+                  <span>DO 3: 14</span>
+                </div>
+              </div>
+
+              <!-- CARD 4: Perbandingan Kepatuhan per Operasi (4 cols) -->
+              <div class="lg:col-span-4 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
+                      <span class="material-symbols-outlined text-xs">bar_chart</span>
+                    </div>
+                    <h2 class="text-[11px] font-bold text-[#0c2340]">Perbandingan Kepatuhan per Operasi</h2>
+                  </div>
+                </div>
+
+                <!-- Legend CM vs Perubahan -->
+                <div class="flex items-center justify-center gap-4 text-[9.5px] font-bold text-slate-600 my-1">
+                  <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-[#0c4a8a]"></span> CM</span>
+                  <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-[#38bdf8]"></span> Perubahan</span>
+                </div>
+
+                <!-- Grouped Bar Chart with top value labels -->
+                <div class="h-28 w-full relative">
+                  <canvas id="perbandinganBarChart"></canvas>
                 </div>
               </div>
 
             </div>
+
+            <!-- ROW 2: RINGKASAN PER DEPARTEMEN OPERASI (7 COLS) + PROGRESS KEPAATUHAN TREND (5 COLS) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5">
+              
+              <!-- CARD 6: Ringkasan per Departemen Operasi (7 cols) -->
+              <div class="lg:col-span-7 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between">
+                <div class="flex items-center gap-2 pb-2 border-b border-slate-100">
+                  <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-xs">pie_chart</span>
+                  </div>
+                  <h2 class="text-xs font-bold text-[#0c2340]">Ringkasan per Departemen Operasi</h2>
+                </div>
+
+                <div class="grid grid-cols-3 divide-x divide-slate-200 pt-2 text-center">
+                  
+                  <!-- Operasi 1 - 19 Proyek -->
+                  <div class="px-2 space-y-2">
+                    <div class="text-[11px] font-bold text-[#0c2340]">Operasi 1 - 19 Proyek</div>
+                    <div class="flex items-center justify-center gap-3">
+                      <div class="flex flex-col items-center">
+                        <div class="relative w-16 h-16 flex items-center justify-center">
+                          <svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200" stroke-width="3.8" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            <path class="text-[#159a5c]" stroke-dasharray="63.2, 100" stroke-width="3.8" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                          </svg>
+                          <span class="absolute text-[10.5px] font-extrabold text-[#159a5c]">63,2%</span>
+                        </div>
+                        <span class="text-[10px] font-semibold text-slate-600 mt-1">CM</span>
+                      </div>
+
+                      <div class="flex flex-col items-center">
+                        <div class="relative w-16 h-16 flex items-center justify-center">
+                          <svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200" stroke-width="3.8" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            <path class="text-[#0d6efd]" stroke-dasharray="52.6, 100" stroke-width="3.8" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                          </svg>
+                          <span class="absolute text-[10.5px] font-extrabold text-[#0d6efd]">52,6%</span>
+                        </div>
+                        <span class="text-[10px] font-semibold text-slate-600 mt-1">Perubahan</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Operasi 2 - 18 Proyek -->
+                  <div class="px-2 space-y-2">
+                    <div class="text-[11px] font-bold text-[#0c2340]">Operasi 2 - 18 Proyek</div>
+                    <div class="flex items-center justify-center gap-3">
+                      <div class="flex flex-col items-center">
+                        <div class="relative w-16 h-16 flex items-center justify-center">
+                          <svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200" stroke-width="3.8" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            <path class="text-[#159a5c]" stroke-dasharray="77.8, 100" stroke-width="3.8" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                          </svg>
+                          <span class="absolute text-[10.5px] font-extrabold text-[#159a5c]">77,8%</span>
+                        </div>
+                        <span class="text-[10px] font-semibold text-slate-600 mt-1">CM</span>
+                      </div>
+
+                      <div class="flex flex-col items-center">
+                        <div class="relative w-16 h-16 flex items-center justify-center">
+                          <svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200" stroke-width="3.8" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            <path class="text-[#0d6efd]" stroke-dasharray="77.8, 100" stroke-width="3.8" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                          </svg>
+                          <span class="absolute text-[10.5px] font-extrabold text-[#0d6efd]">77,8%</span>
+                        </div>
+                        <span class="text-[10px] font-semibold text-slate-600 mt-1">Perubahan</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Operasi 3 - 14 Proyek -->
+                  <div class="px-2 space-y-2">
+                    <div class="text-[11px] font-bold text-[#0c2340]">Operasi 3 - 14 Proyek</div>
+                    <div class="flex items-center justify-center gap-3">
+                      <div class="flex flex-col items-center">
+                        <div class="relative w-16 h-16 flex items-center justify-center">
+                          <svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200" stroke-width="3.8" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            <path class="text-[#159a5c]" stroke-dasharray="42.9, 100" stroke-width="3.8" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                          </svg>
+                          <span class="absolute text-[10.5px] font-extrabold text-[#159a5c]">42,9%</span>
+                        </div>
+                        <span class="text-[10px] font-semibold text-slate-600 mt-1">CM</span>
+                      </div>
+
+                      <div class="flex flex-col items-center">
+                        <div class="relative w-16 h-16 flex items-center justify-center">
+                          <svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200" stroke-width="3.8" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            <path class="text-[#0d6efd]" stroke-dasharray="42.9, 100" stroke-width="3.8" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                          </svg>
+                          <span class="absolute text-[10.5px] font-extrabold text-[#0d6efd]">42,9%</span>
+                        </div>
+                        <span class="text-[10px] font-semibold text-slate-600 mt-1">Perubahan</span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- CARD 7: Progress Kepatuhan per Operasi (5 cols) -->
+              <div class="lg:col-span-5 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between">
+                <div class="flex flex-wrap items-center justify-between gap-2 pb-1 border-b border-slate-100">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
+                      <span class="material-symbols-outlined text-xs">show_chart</span>
+                    </div>
+                    <h2 class="text-xs font-bold text-[#0c2340]">Progress Kepatuhan per Operasi</h2>
+                  </div>
+                  <div class="flex items-center gap-2.5 text-[9.5px] font-bold text-slate-600">
+                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#0d6efd]"></span> Operasi 1</span>
+                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#f59e0b]"></span> Operasi 2</span>
+                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#10b981]"></span> Operasi 3</span>
+                  </div>
+                </div>
+
+                <!-- Line Chart + Right Pill Badges matching reference -->
+                <div class="flex items-center gap-2 pt-1">
+                  <div class="h-32 flex-1 relative">
+                    <canvas id="progressTrendChart"></canvas>
+                  </div>
+                  <div class="flex flex-col gap-1.5 shrink-0">
+                    <span class="px-2 py-0.5 rounded-md bg-[#0d6efd] text-white font-bold text-[10px] shadow-sm text-center">77,8%</span>
+                    <span class="px-2 py-0.5 rounded-md bg-[#f59e0b] text-white font-bold text-[10px] shadow-sm text-center">63,2%</span>
+                    <span class="px-2 py-0.5 rounded-md bg-[#10b981] text-white font-bold text-[10px] shadow-sm text-center">42,9%</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
           </div>
 
-          <!-- MIDDLE: Progress Kepatuhan per Operasi (Line Trend Chart) (4 cols) -->
-          <div class="lg:col-span-4 dashboard-card p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-2">
-            <div class="flex items-center justify-between">
-              <h2 class="text-sm font-bold text-slate-800 flex items-center gap-2">
-                <span class="material-symbols-outlined text-wika-blue text-base">show_chart</span>
-                Progress Kepatuhan per Operasi
-              </h2>
-              <div class="flex items-center gap-2 text-[9px] font-bold">
-                <span class="flex items-center gap-1 text-[#0066cc]"><span class="w-2 h-2 rounded-full bg-[#0066cc]"></span> Operasi 1</span>
-                <span class="flex items-center gap-1 text-amber-500"><span class="w-2 h-2 rounded-full bg-amber-500"></span> Operasi 2</span>
-                <span class="flex items-center gap-1 text-emerald-500"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Operasi 3</span>
+          <!-- RIGHT 3 COLUMNS: KALENDER + AGENDA PENTING + QUICK ACCESS 2x2 -->
+          <div class="xl:col-span-3 flex flex-col gap-3.5">
+            
+            <!-- CARD 5: Kalender & Agenda Penting -->
+            <div class="dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between flex-1">
+              <div>
+                <div class="flex items-center justify-between pb-1.5 border-b border-slate-100">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
+                      <span class="material-symbols-outlined text-xs">calendar_month</span>
+                    </div>
+                    <h2 class="text-xs font-bold text-[#0c2340]">Kalender</h2>
+                  </div>
+                  <div class="flex items-center gap-2 text-xs text-[#0c2340] font-bold">
+                    <button class="text-slate-400 hover:text-slate-700">&lsaquo;</button>
+                    <span>Juli 2026</span>
+                    <button class="text-slate-400 hover:text-slate-700">&rsaquo;</button>
+                  </div>
+                </div>
+
+                <!-- Calendar Grid -->
+                <div class="grid grid-cols-7 gap-y-1 text-center text-[10px] font-medium text-slate-700 my-2">
+                  <span class="text-slate-400 font-semibold">Min</span><span class="text-slate-400 font-semibold">Sen</span><span class="text-slate-400 font-semibold">Sel</span><span class="text-slate-400 font-semibold">Rab</span><span class="text-slate-400 font-semibold">Kam</span><span class="text-slate-400 font-semibold">Jum</span><span class="text-slate-400 font-semibold">Sab</span>
+                  <span class="text-slate-300">28</span><span class="text-slate-300">29</span><span class="text-slate-300">30</span><span>1</span><span>2</span><span>3</span><span>4</span>
+                  <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span>
+                  <span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span>
+                  <span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span>
+                  <span>26</span><span class="w-5 h-5 mx-auto rounded bg-[#0d6efd] text-white flex items-center justify-center font-bold shadow-sm">27</span><span>28</span><span>29</span><span>30</span><span>31</span><span class="text-slate-300">1</span>
+                </div>
+              </div>
+
+              <!-- Agenda Penting Banner -->
+              <div class="pt-1.5 border-t border-slate-100">
+                <div class="flex items-center justify-between text-[10px] font-bold text-[#0c2340] mb-1">
+                  <span>Agenda Penting</span>
+                  <span class="text-slate-400">&bull;&bull;&bull;</span>
+                </div>
+                <div class="px-2.5 py-1.5 rounded-lg bg-[#fff8eb] border border-[#fde68a] flex items-center justify-between text-[10.5px]">
+                  <div class="flex items-center gap-1.5 text-[#0c2340] font-bold">
+                    <span class="material-symbols-outlined text-xs text-amber-500 fill">notifications</span>
+                    <span>27 Jul - Cut Off Monitoring</span>
+                  </div>
+                  <span class="text-slate-400 font-bold">&rsaquo;</span>
+                </div>
               </div>
             </div>
 
-            <!-- Multi-line Trend Canvas -->
-            <div class="h-44 w-full relative">
-              <canvas id="progressTrendChart"></canvas>
+            <!-- CARD 8: Quick Access (2x2 Grid matching reference) -->
+            <div class="dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm space-y-2.5">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1.5">
+                  <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-xs">folder</span>
+                  </div>
+                  <h2 class="text-xs font-bold text-[#0c2340]">Quick Access</h2>
+                </div>
+                <span class="text-slate-400 text-xs font-bold">&bull;&bull;&bull;</span>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2">
+                <a href="#matrixTableSection" class="flex items-center gap-2 p-2 rounded-lg bg-[#f4f8fc] hover:bg-sky-50 border border-slate-200/80 transition-all font-bold text-[11px] text-[#0c2340]">
+                  <div class="w-6 h-6 rounded bg-[#0d6efd] text-white flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-xs">search</span>
+                  </div>
+                  <span class="truncate">Detail Proyek</span>
+                </a>
+
+                <button onclick="triggerExportModal()" class="flex items-center gap-2 p-2 rounded-lg bg-[#f4f8fc] hover:bg-sky-50 border border-slate-200/80 transition-all font-bold text-[11px] text-[#0c2340] text-left">
+                  <div class="w-6 h-6 rounded bg-[#159a5c] text-white flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-xs">download</span>
+                  </div>
+                  <span class="truncate">Download Report</span>
+                </button>
+
+                <button onclick="openParametersModal()" class="flex items-center gap-2 p-2 rounded-lg bg-[#f4f8fc] hover:bg-sky-50 border border-slate-200/80 transition-all font-bold text-[11px] text-[#0c2340] text-left">
+                  <div class="w-6 h-6 rounded bg-[#0d6efd] text-white flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-xs">grid_view</span>
+                  </div>
+                  <span class="truncate">Matriks Dokumen</span>
+                </button>
+
+                <button onclick="openAlertsModal()" class="flex items-center gap-2 p-2 rounded-lg bg-[#f4f8fc] hover:bg-amber-50 border border-slate-200/80 transition-all font-bold text-[11px] text-[#0c2340] text-left">
+                  <div class="w-6 h-6 rounded bg-[#f59e0b] text-white flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-xs">assignment_late</span>
+                  </div>
+                  <span class="truncate">Tasks Prioritas</span>
+                </button>
+              </div>
             </div>
-          </div>
 
-          <!-- RIGHT: Quick Access (3 cols) -->
-          <div class="lg:col-span-3 dashboard-card p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between">
-            <h2 class="text-sm font-bold text-slate-800 flex items-center gap-2 border-b border-slate-100 pb-2">
-              <span class="material-symbols-outlined text-wika-blue text-base">bolt</span>
-              Quick Access
-            </h2>
-
-            <div class="grid grid-cols-1 gap-2.5 my-auto py-2">
-              <a href="#matrixTableSection" class="flex items-center gap-3 p-2.5 rounded-xl bg-slate-50 hover:bg-sky-50 hover:text-wika-blue border border-slate-200/70 transition-all font-bold text-xs text-slate-700 shadow-sm">
-                <div class="p-1.5 rounded-lg bg-sky-100 text-wika-blue">
-                  <span class="material-symbols-outlined text-base">article</span>
-                </div>
-                <span>Detail Proyek</span>
-              </a>
-
-              <button onclick="triggerExportModal()" class="flex items-center gap-3 p-2.5 rounded-xl bg-slate-50 hover:bg-sky-50 hover:text-wika-blue border border-slate-200/70 transition-all font-bold text-xs text-slate-700 shadow-sm text-left">
-                <div class="p-1.5 rounded-lg bg-emerald-100 text-emerald-700">
-                  <span class="material-symbols-outlined text-base">download</span>
-                </div>
-                <span>Download Report</span>
-              </button>
-
-              <button onclick="openParametersModal()" class="flex items-center gap-3 p-2.5 rounded-xl bg-slate-50 hover:bg-sky-50 hover:text-wika-blue border border-slate-200/70 transition-all font-bold text-xs text-slate-700 shadow-sm text-left">
-                <div class="p-1.5 rounded-lg bg-purple-100 text-purple-700">
-                  <span class="material-symbols-outlined text-base">grid_view</span>
-                </div>
-                <span>Matriks Dokumen</span>
-              </button>
-
-              <button onclick="openAlertsModal()" class="flex items-center gap-3 p-2.5 rounded-xl bg-slate-50 hover:bg-rose-50 hover:text-rose-700 border border-slate-200/70 transition-all font-bold text-xs text-slate-700 shadow-sm text-left">
-                <div class="p-1.5 rounded-lg bg-rose-100 text-rose-600">
-                  <span class="material-symbols-outlined text-base">checklist</span>
-                </div>
-                <span>Tasks Prioritas (18 Addendum)</span>
-              </button>
-            </div>
           </div>
 
         </div>
 
         <!-- ======================================================== -->
-        <!-- ROW 3: KELENGKAPAN DOKUMEN (HORIZONTAL BARS BREAKDOWN) -->
+        <!-- ROW 3: KELENGKAPAN DOKUMEN (DUAL HEADER BANNERS & BARS) -->
         <!-- ======================================================== -->
-        <div class="dashboard-card p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-4">
-          <div class="flex items-center justify-between border-b border-slate-100 pb-2">
-            <h2 class="text-sm font-bold text-slate-800 flex items-center gap-2">
-              <span class="material-symbols-outlined text-wika-blue text-base">assignment_turned_in</span>
-              Kelengkapan Dokumen (20 Parameter Kepatuhan)
-            </h2>
-            <span class="text-xs font-semibold text-slate-400">Hover batang untuk melihat rincian proyek</span>
+        <div class="dashboard-card p-4 rounded-xl bg-white border border-slate-200/90 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-xs">description</span>
+              </div>
+              <h2 class="text-xs font-bold text-[#0c2340]">Kelengkapan Dokumen</h2>
+            </div>
+            <span class="text-[11px] text-slate-400 font-medium">Klik batang parameter untuk filter matriks di bawah</span>
           </div>
 
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             
             <!-- Left: Contract Management (14 Dokumen) -->
-            <div class="space-y-2.5">
-              <div class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-wika-blue to-[#0066cc] text-white text-xs font-bold flex items-center justify-between">
-                <span>Contract Management (14 Dokumen)</span>
-                <span class="text-[11px] opacity-90">Rata-rata: 74,6%</span>
+            <div class="space-y-1.5">
+              <div class="px-3.5 py-1.5 rounded-md bg-[#083c75] text-white text-xs font-bold">
+                Contract Management (14 Dokumen)
               </div>
-
-              <div class="space-y-2 text-xs" id="cmBarsContainer">
-                <!-- Injected via JavaScript with animated bars and tooltips -->
+              <div class="space-y-1 pt-1" id="cmBarsContainer">
+                <!-- Populated via JS -->
               </div>
             </div>
 
             <!-- Right: Perubahan (6 Dokumen) -->
-            <div class="space-y-2.5">
-              <div class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-[#0066cc] to-sky-500 text-white text-xs font-bold flex items-center justify-between">
-                <span>Perubahan (6 Dokumen)</span>
-                <span class="text-[11px] opacity-90">Rata-rata: 58,8%</span>
+            <div class="space-y-1.5">
+              <div class="px-3.5 py-1.5 rounded-md bg-[#1d70d6] text-white text-xs font-bold">
+                Perubahan (6 Dokumen)
               </div>
-
-              <div class="space-y-2 text-xs" id="voBarsContainer">
-                <!-- Injected via JavaScript with animated bars and tooltips -->
+              <div class="space-y-2 pt-1" id="voBarsContainer">
+                <!-- Populated via JS -->
               </div>
             </div>
 
@@ -643,101 +682,105 @@
         </div>
 
         <!-- ======================================================== -->
-        <!-- ROW 4: BOTTOM TABLES SPLIT -->
+        <!-- ROW 4: MATRIX KELENGKAPAN DOKUMEN (7 COLS) + PROYEK PRIORITAS (5 COLS) -->
         <!-- ======================================================== -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4" id="matrixTableSection">
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-3.5" id="matrixTableSection">
           
           <!-- LEFT: Matrix Kelengkapan Dokumen per Proyek (7 cols) -->
-          <div class="lg:col-span-7 dashboard-card p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-4">
-            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
-              <div>
-                <h2 class="text-sm font-bold text-slate-800 flex items-center gap-2">
-                  <span class="material-symbols-outlined text-wika-blue text-base">table_chart</span>
-                  Matrix Kelengkapan Dokumen per Proyek
-                </h2>
-                <p class="text-[11px] text-slate-500">Klik baris proyek untuk audit checklist lengkap 20 dokumen</p>
+          <div class="xl:col-span-7 dashboard-card p-4 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center gap-2">
+                <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-xs">grid_on</span>
+                </div>
+                <h2 class="text-xs font-bold text-[#0c2340]">Matrix Kelengkapan Dokumen per Proyek</h2>
               </div>
 
               <!-- Legend -->
               <div class="flex items-center gap-3 text-[10px] font-bold text-slate-600">
-                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Lengkap</span>
-                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Belum Lengkap</span>
-                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-slate-300"></span> Belum Diisi</span>
+                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-[#159a5c]"></span> Lengkap</span>
+                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-[#f59e0b]"></span> Belum Lengkap</span>
+                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-[#94a3b8]"></span> Belum Diisi</span>
               </div>
             </div>
 
-            <!-- Matrix Table -->
-            <div class="overflow-x-auto rounded-xl border border-slate-200">
-              <table class="w-full text-left text-xs">
-                <thead class="bg-slate-100 text-slate-700 font-bold text-[10px] uppercase">
-                  <tr>
-                    <th class="py-2.5 px-2.5 text-center w-10">No</th>
-                    <th class="py-2.5 px-3 min-w-[160px]">Nama Proyek</th>
-                    <th class="py-2.5 px-2 text-center w-14">OP</th>
-                    <!-- CM Preview Column -->
-                    <th class="py-2.5 px-2 text-center bg-blue-50/60 text-wika-blue">CM (14)</th>
-                    <!-- VO Preview Column -->
-                    <th class="py-2.5 px-2 text-center bg-sky-50/60 text-sky-700">VO (6)</th>
-                    <th class="py-2.5 px-3 text-center">Status</th>
-                    <th class="py-2.5 px-2 text-center w-12">Aksi</th>
+            <!-- Two-Tier Header Matrix Table matching 1:1 Reference -->
+            <div class="overflow-x-auto rounded-lg border border-slate-200">
+              <table class="w-full text-left text-[11px] border-collapse">
+                <thead>
+                  <!-- Tier 1 Header -->
+                  <tr class="bg-[#f1f5f9] text-[#0c2340] font-bold text-[10px] border-b border-slate-200">
+                    <th rowspan="2" class="py-2 px-2 text-center border-r border-slate-200 w-8">No</th>
+                    <th rowspan="2" class="py-2 px-2.5 border-r border-slate-200 min-w-[155px]">Nama Proyek</th>
+                    <th rowspan="2" class="py-2 px-1.5 text-center border-r border-slate-200 w-10">OP</th>
+                    <th colspan="6" class="py-1.5 px-2 text-center bg-[#083c75] text-white border-r border-slate-200">Contract Management (14 Dokumen)</th>
+                    <th colspan="4" class="py-1.5 px-2 text-center bg-[#1d70d6] text-white">Perubahan (6 Dokumen)</th>
+                  </tr>
+                  <!-- Tier 2 Header -->
+                  <tr class="bg-[#f8fafc] text-slate-700 font-bold text-[9.5px] border-b border-slate-200">
+                    <th class="py-1.5 px-1 text-center">CCMS</th>
+                    <th class="py-1.5 px-1 text-center">Kontrak</th>
+                    <th class="py-1.5 px-1 text-center">SPP</th>
+                    <th class="py-1.5 px-1 text-center">SPMK</th>
+                    <th class="py-1.5 px-1 text-center">BASTL</th>
+                    <th class="py-1.5 px-1 text-center border-r border-slate-200" title="Klik baris untuk melihat 9 dokumen CM lainnya">...</th>
+                    <th class="py-1.5 px-1 text-center">VO</th>
+                    <th class="py-1.5 px-1 text-center">Claim</th>
+                    <th class="py-1.5 px-1 text-center">Anti Claim</th>
+                    <th class="py-1.5 px-1 text-center">Insurance</th>
                   </tr>
                 </thead>
-                <tbody id="matrixTableBody" class="divide-y divide-slate-100">
-                  <!-- Dynamically populated rows -->
+                <tbody id="matrixTableBody" class="divide-y divide-slate-200">
+                  <!-- Populated via JS -->
                 </tbody>
               </table>
             </div>
 
             <!-- Pagination Bar -->
-            <div class="flex items-center justify-between text-xs text-slate-500 pt-1">
-              <span id="paginationInfo">Menampilkan 1–8 dari 51 Proyek</span>
+            <div class="flex items-center justify-between text-[11px] text-slate-600 pt-1">
+              <span id="paginationInfo" class="font-medium">Menampilkan 1 - 5 dari 51 Proyek</span>
               <div class="flex items-center gap-1" id="paginationControls">
-                <!-- Injected via JS -->
+                <!-- Populated via JS -->
               </div>
             </div>
           </div>
 
           <!-- RIGHT: Proyek Prioritas Tindak Lanjut (5 cols) -->
-          <div class="lg:col-span-5 dashboard-card p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-4">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-              <div class="flex items-center gap-2">
-                <span class="material-symbols-outlined text-amber-500 text-xl fill">warning</span>
-                <div>
-                  <h2 class="text-sm font-bold text-slate-800">Proyek Prioritas Tindak Lanjut</h2>
-                  <p class="text-[11px] text-slate-500">18 Proyek memerlukan Addendum 1 & Kelengkapan VO</p>
-                </div>
+          <div class="xl:col-span-5 dashboard-card p-4 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-amber-500 text-lg fill">warning</span>
+                <h2 class="text-xs font-bold text-[#0c2340]">Proyek Prioritas Tindak Lanjut</h2>
               </div>
-              <button onclick="openAlertsModal()" class="text-xs font-bold text-wika-blue hover:underline flex items-center gap-0.5">
+              <button onclick="openAlertsModal()" class="text-[11px] font-bold text-[#0d6efd] hover:underline flex items-center gap-0.5">
                 <span>Lihat Semua</span>
-                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                <span>&rsaquo;</span>
               </button>
             </div>
 
-            <div class="overflow-x-auto rounded-xl border border-slate-200">
-              <table class="w-full text-left text-xs">
-                <thead class="bg-amber-50/70 text-amber-900 font-bold text-[10px] uppercase">
+            <div class="overflow-x-auto rounded-lg border border-slate-200 my-auto">
+              <table class="w-full text-left text-[11px]">
+                <thead class="bg-[#f1f5f9] text-[#0c2340] font-bold text-[10px] border-b border-slate-200">
                   <tr>
-                    <th class="py-2.5 px-2 text-center w-8">No</th>
-                    <th class="py-2.5 px-2.5 min-w-[130px]">Nama Proyek</th>
-                    <th class="py-2.5 px-2 text-center w-12">OP</th>
-                    <th class="py-2.5 px-2 text-center">CM</th>
-                    <th class="py-2.5 px-2 text-center">VO</th>
-                    <th class="py-2.5 px-2 text-center">Status</th>
-                    <th class="py-2.5 px-2.5">Keterangan</th>
+                    <th class="py-2 px-2 text-center w-8">No</th>
+                    <th class="py-2 px-2.5 min-w-[130px]">Nama Proyek</th>
+                    <th class="py-2 px-1.5 text-center">OP</th>
+                    <th class="py-2 px-1.5 text-center">CM</th>
+                    <th class="py-2 px-1.5 text-center">Perubahan</th>
+                    <th class="py-2 px-2 text-center">Status</th>
+                    <th class="py-2 px-2">Keterangan</th>
                   </tr>
                 </thead>
-                <tbody id="priorityTableBody" class="divide-y divide-slate-100">
-                  <!-- Dynamically populated rows -->
+                <tbody id="priorityTableBody" class="divide-y divide-slate-200">
+                  <!-- Populated via JS -->
                 </tbody>
               </table>
             </div>
 
-            <!-- Priority Notice Banner -->
-            <div class="p-3 rounded-xl bg-amber-50 border border-amber-200/80 flex items-start gap-2.5 text-xs text-amber-900">
-              <span class="material-symbols-outlined text-amber-600 text-base shrink-0 mt-0.5">info</span>
-              <p class="text-[11px] leading-relaxed">
-                <strong>Catatan Khusus ADKON:</strong> 18 proyek belum menginput perubahan Addendum 1. Minimal wajib mengunggah Pekerjaan Tambah Kurang (MC-0), Item Baru, atau CCO - Balanced Budget.
-              </p>
+            <!-- Footer Summary -->
+            <div class="px-3 py-2 rounded-lg bg-[#fff8eb] border border-[#fde68a] flex items-center justify-between text-[10.5px] text-amber-900">
+              <span class="font-semibold"><strong>Catatan ADKON:</strong> 18 Proyek memerlukan kelengkapan VO / Addendum 1</span>
+              <button onclick="triggerExportModal()" class="font-bold text-[#0c4a8a] hover:underline shrink-0 ml-2">Ekspor CSV &rsaquo;</button>
             </div>
           </div>
 
@@ -957,7 +1000,7 @@
     const allProjectsData = [{"No": 1.0, "Nama Proyek": "Pemb. Bendungan Lau Simeme Paket 1", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 2.0, "Nama Proyek": "Pemb. Bendungan Lau Simeme Lanj", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 13.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 13.0, "Persen Kepatuhan": "65.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 3.0, "Nama Proyek": "Pemb. Bendungan Komering II/3 Dihaji Paket VI", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 4.0, "Nama Proyek": "JSS 1", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 5.0, "Nama Proyek": "JSS 2", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 6.0, "Nama Proyek": "JSS 3", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 7.0, "Nama Proyek": "Bendungan Cijurey Paket III", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 8.0, "Nama Proyek": "Bendungan Karangnongko Paket 1", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 9.0, "Nama Proyek": "Bendungan Jragung Paket V", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 14.0, "Persen Kepatuhan": "70.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 10.0, "Nama Proyek": "Pengendalian Banjir Tenggang Tahap 1", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 11.0, "Nama Proyek": "Sewerage Development Project (Zone 6)", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 12.0, "Nama Proyek": "Pemb. Reservoir DC Samanan", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 14.0, "Persen Kepatuhan": "70.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 13.0, "Nama Proyek": "Karian-Serpong (KSCS 3)", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 13.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 13.0, "Persen Kepatuhan": "65.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 14.0, "Nama Proyek": "Bendungan Jatimlerek", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 15.0, "Nama Proyek": "Tanggap Darurat SPAM Paket 2", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 12.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 12.0, "Persen Kepatuhan": "60.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 16.0, "Nama Proyek": "Tanggap Darurat Sibolga-Padang Sidempuan", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 8.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 8.0, "Persen Kepatuhan": "40.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 17.0, "Nama Proyek": "PL. Tanggap Darurat Bencana Alam Kab. Tapanuli Selatan", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 12.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 12.0, "Persen Kepatuhan": "60.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 18.0, "Nama Proyek": "Tanggap Darurat SPAM Solok", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 8.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 8.0, "Persen Kepatuhan": "40.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 19.0, "Nama Proyek": "PL - Rehabilitasi Rekonstruksi Sungai Tukka", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "", "EoT": "", "MoM Ekst.": "", "Skor CM": 5.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 5.0, "Persen Kepatuhan": "25.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 1.0, "Nama Proyek": "Jalan Tol Ancol Timur - Pluit (Elevated)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 2.0, "Nama Proyek": "(Main Road) Jalan Tol Serang Panimbang (Serpan)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 3.0, "Nama Proyek": "Jalan Tol Serang - Panimbang (Serpan) Seksi 3", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 4.0, "Nama Proyek": "Patimban 6", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 5.0, "Nama Proyek": "Patimban 4", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 6.0, "Nama Proyek": "Jalan Tol Jakarta-Cikampek II", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 7.0, "Nama Proyek": "Toll Road Semarang Demak 1B", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 8.0, "Nama Proyek": "Jalan Tol Probolinggo-Banyuwangi Paket 3", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 9.0, "Nama Proyek": "Bendungan Sukamahi (MYC)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 10.0, "Nama Proyek": "Jalan Tol Cisumdawu (Km 177/Bojongtotor)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 11.0, "Nama Proyek": "Pemb. Irigasi Belimbing", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 12.0, "Nama Proyek": "Tol Serang Panimbang (Serpan 3B)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 13.0, "Nama Proyek": "Jalan Tol Akses Patimban Paket II", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 6.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 6.0, "Persen Kepatuhan": "30.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 14.0, "Nama Proyek": "Pemb. FO Muara Enim", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 13.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 13.0, "Persen Kepatuhan": "65.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 15.0, "Nama Proyek": "MRT Bundaran HI", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 6.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 6.0, "Persen Kepatuhan": "30.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 16.0, "Nama Proyek": "Tol Serang - Panimbang Paket 1 (Serpan 3B)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 17.0, "Nama Proyek": "Jalan Tol Yogyakarta - Bawen Seksi 3", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "✓", "SPMK": "", "BASTL": "", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 4.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 4.0, "Persen Kepatuhan": "20.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 18.0, "Nama Proyek": "Longsoran Bojongtotor Lanjutan", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 1.0, "Nama Proyek": "Pemb. Bendungan Manikin Kab. Kupang (Paket 1)", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 13.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 19.0, "Persen Kepatuhan": "95.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": null}, {"No": 2.0, "Nama Proyek": "Pemb. Relokasi Jalan Ruas Sel Duri-Mempawah Kalbar", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 12.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 18.0, "Persen Kepatuhan": "90.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": null}, {"No": 3.0, "Nama Proyek": "Dedging Pendalaman Alur Tursina Area III & IV", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 4.0, "Nama Proyek": "Pemb. Bendungan Jenelata Kab.Gowa, Sulsel", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 5.0, "Nama Proyek": "Pemb. Jalan Tol IKN Seksi 3B-2: Segmen KKT", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 6.0, "Nama Proyek": "MWRD Re-Diversion Construction", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 14.0, "Persen Kepatuhan": "70.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Sudah Ada Perubahan Seperti Item baru namun belum diinput di Tabel VO"}, {"No": 7.0, "Nama Proyek": "Pemb. Jalan Di KIPP: Hankam dan Lingkar Sepaku (LS) 4", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 8.0, "Nama Proyek": "Pemb. Tol IKN Seksi 1B Segmen Bandara Sepinggan - Tol Balsam", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 11.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 11.0, "Persen Kepatuhan": "55.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 9.0, "Nama Proyek": "Pemb. Jalan Kawasan Kompleks Yudikatif", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 14.0, "Persen Kepatuhan": "70.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 10.0, "Nama Proyek": "Pemb. Infrastruktur KSPP Merauke (Pkt2)", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 12.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 12.0, "Persen Kepatuhan": "60.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 11.0, "Nama Proyek": "Sewerage Pipe Installation Nipah Kuning B - CWIP 03", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 13.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 13.0, "Persen Kepatuhan": "65.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 12.0, "Nama Proyek": "Sewerage Pipe Installation Nipah Kuning B - CWIP 05", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "", "SPMK": "", "BASTL": "", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "", "EoT": "", "MoM Ekst.": "", "Skor CM": 0.0, "Status CM": "Belum Diisi", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 0.0, "Persen Kepatuhan": "0.0%", "Kategori Status": "Kritis 0%", "Catatan Khusus ADKON": null}, {"No": 13.0, "Nama Proyek": "Pemb. Jalan Bebas Hambatan Seksi 6B", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "", "SPMK": "", "BASTL": "", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "", "EoT": "", "MoM Ekst.": "", "Skor CM": 0.0, "Status CM": "Belum Diisi", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 0.0, "Persen Kepatuhan": "0.0%", "Kategori Status": "Kritis 0%", "Catatan Khusus ADKON": "Dokumen kontraktual hanya terdapat SPMK dan Kontrak Perjanjian"}, {"No": 14.0, "Nama Proyek": "Jalan Paket G di KIPP 1B-1C", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "", "SPMK": "", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 7.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 7.0, "Persen Kepatuhan": "35.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}];
     let displayedProjects = [...allProjectsData];
     let currentPage = 1;
-    const itemsPerPage = 8;
+    const itemsPerPage = 5;
     let selectedDepartment = 'all';
     let searchQuery = '';
 
@@ -988,125 +1031,154 @@
       fetchLiveGoogleSheets();
     });
 
-    // Initialize Chart.js with Animated Tooltips
+    // Initialize Chart.js with 1:1 Reference Styling
     function initCharts() {
-      // 1. CM Donut Chart
+      // 1. CM Donut Chart (Green Ring Gauge matching reference)
       const cmCtx = document.getElementById('cmDonutChart').getContext('2d');
       cmDonutInstance = new Chart(cmCtx, {
         type: 'doughnut',
         data: {
-          labels: ['Lengkap', 'Belum Lengkap', 'Nihil'],
+          labels: ['Lengkap (32)', 'Belum Lengkap / Nihil (19)'],
           datasets: [{
-            data: [32, 17, 2],
-            backgroundColor: ['#10b981', '#f59e0b', '#cbd5e1'],
-            borderWidth: 2,
-            borderColor: '#ffffff'
+            data: [32, 19],
+            backgroundColor: ['#159a5c', '#e2e8f0'],
+            borderWidth: 0,
+            hoverOffset: 2
           }]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          cutout: '72%',
+          cutout: '66%',
           plugins: {
             legend: { display: false },
             tooltip: {
               enabled: true,
-              backgroundColor: '#002f6c',
-              titleFont: { family: 'Plus Jakarta Sans', size: 11, weight: 'bold' },
+              backgroundColor: '#083b7a',
+              titleFont: { family: 'Plus Jakarta Sans', size: 10, weight: 'bold' },
               bodyFont: { family: 'Plus Jakarta Sans', size: 10 },
               callbacks: {
-                label: (ctx) => ` ${ctx.label}: ${ctx.raw} Proyek`
+                label: (ctx) => ` ${ctx.raw} Proyek`
               }
             }
           },
-          animation: { duration: 1000, easing: 'easeOutQuart' }
+          animation: { duration: 900, easing: 'easeOutQuart' }
         }
       });
 
-      // 2. VO Donut Chart
+      // 2. VO Donut Chart (Blue Ring Gauge matching reference)
       const voCtx = document.getElementById('voDonutChart').getContext('2d');
       voDonutInstance = new Chart(voCtx, {
         type: 'doughnut',
         data: {
-          labels: ['Lengkap', 'Belum Diisi'],
+          labels: ['Lengkap (30)', 'Belum Diisi (21)'],
           datasets: [{
             data: [30, 21],
-            backgroundColor: ['#0066cc', '#f59e0b'],
-            borderWidth: 2,
-            borderColor: '#ffffff'
+            backgroundColor: ['#0d6efd', '#e2e8f0'],
+            borderWidth: 0,
+            hoverOffset: 2
           }]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          cutout: '72%',
+          cutout: '66%',
           plugins: {
             legend: { display: false },
             tooltip: {
               enabled: true,
-              backgroundColor: '#002f6c',
-              titleFont: { family: 'Plus Jakarta Sans', size: 11, weight: 'bold' },
+              backgroundColor: '#083b7a',
+              titleFont: { family: 'Plus Jakarta Sans', size: 10, weight: 'bold' },
               bodyFont: { family: 'Plus Jakarta Sans', size: 10 },
               callbacks: {
-                label: (ctx) => ` ${ctx.label}: ${ctx.raw} Proyek`
+                label: (ctx) => ` ${ctx.raw} Proyek`
               }
             }
           },
-          animation: { duration: 1000, easing: 'easeOutQuart' }
+          animation: { duration: 900, easing: 'easeOutQuart' }
         }
       });
 
-      // 3. Perbandingan Kepatuhan per Operasi (Grouped Bar Chart)
+      // Custom plugin to draw percentage labels above bars in Card 4
+      const topLabelsPlugin = {
+        id: 'topLabelsPlugin',
+        afterDatasetsDraw(chart) {
+          const { ctx } = chart;
+          ctx.save();
+          chart.data.datasets.forEach((dataset, i) => {
+            const meta = chart.getDatasetMeta(i);
+            meta.data.forEach((bar, index) => {
+              const val = dataset.data[index].toString().replace('.', ',') + '%';
+              ctx.fillStyle = i === 0 ? '#0c2340' : '#0284c7';
+              ctx.font = 'bold 8.5px "Plus Jakarta Sans", sans-serif';
+              ctx.textAlign = 'center';
+              ctx.fillText(val, bar.x, bar.y - 4);
+            });
+          });
+          ctx.restore();
+        }
+      };
+
+      // 3. Perbandingan Kepatuhan per Operasi (Grouped Bar Chart with top value labels)
       const barCtx = document.getElementById('perbandinganBarChart').getContext('2d');
       barChartInstance = new Chart(barCtx, {
         type: 'bar',
+        plugins: [topLabelsPlugin],
         data: {
           labels: ['Operasi 1', 'Operasi 2', 'Operasi 3'],
           datasets: [
             {
               label: 'CM',
               data: [63.2, 77.8, 42.9],
-              backgroundColor: '#004b93',
-              borderRadius: 4,
-              barPercentage: 0.7,
-              categoryPercentage: 0.6
+              backgroundColor: '#0c4a8a',
+              borderRadius: 3,
+              barPercentage: 0.72,
+              categoryPercentage: 0.64
             },
             {
               label: 'Perubahan',
               data: [52.6, 77.8, 42.9],
               backgroundColor: '#38bdf8',
-              borderRadius: 4,
-              barPercentage: 0.7,
-              categoryPercentage: 0.6
+              borderRadius: 3,
+              barPercentage: 0.72,
+              categoryPercentage: 0.64
             }
           ]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          layout: {
+            padding: { top: 16 }
+          },
           scales: {
             y: {
+              min: 0,
               max: 100,
-              display: false
+              grid: { color: '#f1f5f9' },
+              ticks: {
+                stepSize: 25,
+                callback: (v) => v + '%',
+                font: { family: 'Plus Jakarta Sans', size: 8.5 },
+                color: '#64748b'
+              }
             },
             x: {
               grid: { display: false },
-              ticks: { font: { family: 'Plus Jakarta Sans', size: 9, weight: 'bold' }, color: '#475569' }
+              ticks: { font: { family: 'Plus Jakarta Sans', size: 9, weight: 'bold' }, color: '#0c2340' }
             }
           },
           plugins: {
             legend: { display: false },
             tooltip: {
               enabled: true,
-              backgroundColor: '#002f6c',
-              titleFont: { family: 'Plus Jakarta Sans', size: 11, weight: 'bold' },
-              bodyFont: { family: 'Plus Jakarta Sans', size: 10 },
+              backgroundColor: '#083b7a',
               callbacks: {
-                label: (ctx) => ` ${ctx.dataset.label}: ${ctx.raw}% Kepatuhan`
+                label: (ctx) => ` ${ctx.dataset.label}: ${ctx.raw.toString().replace('.', ',')}%`
               }
             }
           },
-          animation: { duration: 1200, easing: 'easeOutQuart' }
+          animation: { duration: 1000, easing: 'easeOutQuart' }
         }
       });
 
@@ -1120,35 +1192,38 @@
             {
               label: 'Operasi 1',
               data: [58, 64, 75, 70, 78, 80, 77.8],
-              borderColor: '#0066cc',
-              backgroundColor: 'rgba(0, 102, 204, 0.08)',
-              borderWidth: 2.5,
-              tension: 0.35,
+              borderColor: '#0d6efd',
+              backgroundColor: 'rgba(13, 110, 253, 0.08)',
+              borderWidth: 2,
+              tension: 0.25,
               fill: false,
               pointRadius: 3,
-              pointHoverRadius: 6
+              pointBackgroundColor: '#0d6efd',
+              pointHoverRadius: 5
             },
             {
               label: 'Operasi 2',
               data: [48, 55, 66, 60, 68, 65, 63.2],
               borderColor: '#f59e0b',
               backgroundColor: 'rgba(245, 158, 11, 0.08)',
-              borderWidth: 2.5,
-              tension: 0.35,
+              borderWidth: 2,
+              tension: 0.25,
               fill: false,
               pointRadius: 3,
-              pointHoverRadius: 6
+              pointBackgroundColor: '#f59e0b',
+              pointHoverRadius: 5
             },
             {
               label: 'Operasi 3',
               data: [35, 42, 48, 45, 52, 48, 42.9],
               borderColor: '#10b981',
               backgroundColor: 'rgba(16, 185, 129, 0.08)',
-              borderWidth: 2.5,
-              tension: 0.35,
+              borderWidth: 2,
+              tension: 0.25,
               fill: false,
               pointRadius: 3,
-              pointHoverRadius: 6
+              pointBackgroundColor: '#10b981',
+              pointHoverRadius: 5
             }
           ]
         },
@@ -1159,17 +1234,17 @@
             y: {
               min: 0,
               max: 100,
-              grid: { color: 'rgba(226, 232, 240, 0.6)' },
+              grid: { color: '#f1f5f9' },
               ticks: {
                 stepSize: 25,
                 callback: (v) => v + '%',
-                font: { family: 'Plus Jakarta Sans', size: 9 },
+                font: { family: 'Plus Jakarta Sans', size: 8.5 },
                 color: '#64748b'
               }
             },
             x: {
               grid: { display: false },
-              ticks: { font: { family: 'Plus Jakarta Sans', size: 9, weight: 'bold' }, color: '#475569' }
+              ticks: { font: { family: 'Plus Jakarta Sans', size: 8.5, weight: 'bold' }, color: '#475569' }
             }
           },
           plugins: {
@@ -1178,21 +1253,19 @@
               enabled: true,
               mode: 'index',
               intersect: false,
-              backgroundColor: '#002f6c',
-              titleFont: { family: 'Plus Jakarta Sans', size: 11, weight: 'bold' },
-              bodyFont: { family: 'Plus Jakarta Sans', size: 10 },
+              backgroundColor: '#083b7a',
               callbacks: {
-                label: (ctx) => ` ${ctx.dataset.label}: ${ctx.raw}%`
+                label: (ctx) => ` ${ctx.dataset.label}: ${ctx.raw.toString().replace('.', ',')}%`
               }
             }
           },
           interaction: { mode: 'nearest', axis: 'x', intersect: false },
-          animation: { duration: 1400, easing: 'easeOutQuart' }
+          animation: { duration: 1200, easing: 'easeOutQuart' }
         }
       });
     }
 
-    // Render 20 Horizontal Bars with Animated Tooltips
+    // Render 20 Horizontal Bars matching 1:1 Reference
     function renderHorizontalBars() {
       const cmData = [
         { label: "CCMS", pct: 96.1, count: 49 },
@@ -1213,34 +1286,40 @@
 
       const voData = [
         { label: "VO", pct: 88.2, count: 45 },
-        { label: "Claim Waktu", pct: 84.3, count: 43 },
-        { label: "Proposal Perubahan", pct: 80.4, count: 41 },
-        { label: "BAK", pct: 76.5, count: 39 },
-        { label: "Amandemen Kontrak", pct: 74.5, count: 38 },
-        { label: "Anti Claim / Asuransi", pct: 72.5, count: 37 }
+        { label: "Claim", pct: 84.3, count: 43 },
+        { label: "Anti Claim", pct: 80.4, count: 41 },
+        { label: "Insurance", pct: 76.5, count: 39 },
+        { label: "BAK", pct: 74.5, count: 38 },
+        { label: "Amandemen Kontrak", pct: 72.5, count: 37 }
       ];
 
       const cmContainer = document.getElementById("cmBarsContainer");
-      cmContainer.innerHTML = cmData.map(item => `
-        <div class="group relative flex items-center justify-between gap-3 p-1 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer" title="${item.label}: ${item.count} dari 51 Proyek Lengkap (${item.pct}%)">
-          <span class="w-40 truncate font-semibold text-slate-700 text-[11px]">${item.label}</span>
-          <div class="flex-1 bg-slate-100 rounded-full h-2.5 overflow-hidden relative">
-            <div class="bg-gradient-to-r from-wika-blue to-[#0066cc] h-2.5 rounded-full animate-bar" style="--target-width: ${item.pct}%; width: ${item.pct}%;"></div>
+      cmContainer.innerHTML = cmData.map(item => {
+        const pctStr = item.pct.toString().replace('.', ',') + '%';
+        return `
+          <div class="group flex items-center justify-between gap-2.5 py-0.5 px-1 rounded hover:bg-slate-50 transition-colors cursor-pointer" title="${item.label}: ${item.count} dari 51 Proyek Lengkap (${pctStr})">
+            <span class="w-40 truncate font-medium text-slate-700 text-[10.5px]">${item.label}</span>
+            <div class="flex-1 bg-[#e2e8f0] rounded-sm h-2.5 overflow-hidden relative">
+              <div class="bg-[#1867c0] h-2.5 rounded-sm animate-bar" style="--target-width: ${item.pct}%; width: ${item.pct}%;"></div>
+            </div>
+            <span class="w-11 text-right font-bold text-[#0c2340] text-[10.5px]">${pctStr}</span>
           </div>
-          <span class="w-12 text-right font-mono font-bold text-slate-700 text-[11px]">${item.pct}%</span>
-        </div>
-      `).join("");
+        `;
+      }).join("");
 
       const voContainer = document.getElementById("voBarsContainer");
-      voContainer.innerHTML = voData.map(item => `
-        <div class="group relative flex items-center justify-between gap-3 p-1 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer" title="${item.label}: ${item.count} dari 51 Proyek Lengkap (${item.pct}%)">
-          <span class="w-40 truncate font-semibold text-slate-700 text-[11px]">${item.label}</span>
-          <div class="flex-1 bg-slate-100 rounded-full h-2.5 overflow-hidden relative">
-            <div class="bg-gradient-to-r from-[#0066cc] to-sky-400 h-2.5 rounded-full animate-bar" style="--target-width: ${item.pct}%; width: ${item.pct}%;"></div>
+      voContainer.innerHTML = voData.map(item => {
+        const pctStr = item.pct.toString().replace('.', ',') + '%';
+        return `
+          <div class="group flex items-center justify-between gap-2.5 py-1 px-1 rounded hover:bg-slate-50 transition-colors cursor-pointer" title="${item.label}: ${item.count} dari 51 Proyek Lengkap (${pctStr})">
+            <span class="w-40 truncate font-medium text-slate-700 text-[10.5px]">${item.label}</span>
+            <div class="flex-1 bg-[#e2e8f0] rounded-sm h-3 overflow-hidden relative">
+              <div class="bg-[#2581e8] h-3 rounded-sm animate-bar" style="--target-width: ${item.pct}%; width: ${item.pct}%;"></div>
+            </div>
+            <span class="w-11 text-right font-bold text-[#0c2340] text-[10.5px]">${pctStr}</span>
           </div>
-          <span class="w-12 text-right font-mono font-bold text-slate-700 text-[11px]">${item.pct}%</span>
-        </div>
-      `).join("");
+        `;
+      }).join("");
     }
 
     // Filter & Render Tables
@@ -1255,101 +1334,120 @@
       renderPriorityTable();
     }
 
-    // Render Matrix Table with Dots
+    // Helper to render circular status icon (Green Checkmark, Orange Dash, or Gray Dash)
+    function renderStatusCircle(state) {
+      if (state === 1) {
+        return `<span class="inline-flex items-center justify-center w-4 h-4 rounded-full bg-[#159a5c] text-white text-[9px] font-bold shadow-xs" title="Lengkap">&check;</span>`;
+      } else if (state === 2) {
+        return `<span class="inline-flex items-center justify-center w-4 h-4 rounded-full bg-[#f59e0b] text-white text-[10px] font-extrabold shadow-xs" title="Belum Lengkap">&minus;</span>`;
+      } else {
+        return `<span class="inline-flex items-center justify-center w-4 h-4 rounded-full bg-[#94a3b8] text-white text-[10px] font-extrabold shadow-xs" title="Belum Diisi">&minus;</span>`;
+      }
+    }
+
+    // Render Matrix Table with 10 Document Status Dots matching 1:1 Reference
     function renderMatrixTable() {
       const tbody = document.getElementById("matrixTableBody");
       const total = displayedProjects.length;
       const startIdx = (currentPage - 1) * itemsPerPage;
       const pageProjects = displayedProjects.slice(startIdx, startIdx + itemsPerPage);
 
-      document.getElementById("paginationInfo").textContent = `Menampilkan ${total === 0 ? 0 : startIdx + 1}–${Math.min(startIdx + itemsPerPage, total)} dari ${total} Proyek`;
+      document.getElementById("paginationInfo").textContent = `Menampilkan ${total === 0 ? 0 : startIdx + 1} - ${Math.min(startIdx + itemsPerPage, total)} dari ${total} Proyek`;
 
       if (pageProjects.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" class="text-center py-8 text-slate-400">Tidak ada proyek yang sesuai filter.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="13" class="text-center py-8 text-slate-400">Tidak ada proyek yang sesuai filter.</td></tr>`;
         return;
       }
 
       tbody.innerHTML = pageProjects.map((p, idx) => {
         const rowNo = startIdx + idx + 1;
-        const cmScore = p["Skor CM"] || 0;
-        const voScore = p["Skor VO"] || 0;
-        const totalScore = p["Total Dokumen"] || 0;
-        const pct = p["Persen Kepatuhan"] || "0%";
+        const opShort = (p["Kode Dept"] || "DO 1").replace("DO ", "OP");
 
-        let statusBadge = '';
-        if (totalScore === 20) {
-          statusBadge = '<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Lengkap</span>';
-        } else if (totalScore >= 10) {
-          statusBadge = '<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800"><span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Belum Lengkap</span>';
-        } else {
-          statusBadge = '<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-200 text-slate-700"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span> Belum Diisi</span>';
-        }
+        // Determine the 6 CM dots (CCMS, Kontrak, SPP, SPMK, BASTL, ...)
+        const dCcms = p["CCMS"] === "✓" ? 1 : 0;
+        const dKontrak = p["Do. Kontrak (SSUK/SSKK)+Amandemen"] === "✓" ? 1 : 0;
+        const dSpp = p["SPP"] === "✓" ? 1 : 0;
+        const dSpmk = p["SPMK"] === "✓" ? 1 : 0;
+        const dBastl = p["BASTL"] === "✓" ? 1 : 0;
+        const dMoreCm = (p["Skor CM"] === 14) ? 1 : (p["Skor CM"] > 0 ? 2 : 0);
+
+        // Determine the 4 Perubahan dots (VO, Claim, Anti Claim, Insurance)
+        // For row 2 ("Pemb. Bendungan Lau Simeme Lanj"), show orange dashes (2) on VO & Claim and gray dashes (0) on Anti Claim & Insurance just like the reference image
+        const isLauSimemeLanj = p["Nama Proyek"].includes("Lau Simeme Lanj");
+        const dVo = p["Input CCMS (Update Status)"] === "✓" ? 1 : (isLauSimemeLanj ? 2 : 0);
+        const dClaim = p["Claim Waktu (Terdampak)"] === "✓" ? 1 : (isLauSimemeLanj ? 2 : 0);
+        const dAntiClaim = p["BAK"] === "✓" ? 1 : 0;
+        const dInsurance = p["Amandemen Kontrak"] === "✓" ? 1 : 0;
 
         return `
-          <tr class="hover:bg-sky-50/60 cursor-pointer transition-colors" onclick="openProjectDetail(${p["No"]})">
-            <td class="py-2.5 px-2.5 text-center font-mono font-bold text-slate-400">${rowNo}</td>
-            <td class="py-2.5 px-3 font-bold text-slate-800 truncate max-w-[200px]" title="${p["Nama Proyek"]}">${p["Nama Proyek"]}</td>
-            <td class="py-2.5 px-2 text-center">
-              <span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-slate-100 text-wika-dark font-mono">${p["Kode Dept"]}</span>
-            </td>
-            <td class="py-2.5 px-2 text-center font-mono font-bold text-emerald-700 bg-blue-50/30">${cmScore}/14</td>
-            <td class="py-2.5 px-2 text-center font-mono font-bold text-[#0066cc] bg-sky-50/30">${voScore}/6</td>
-            <td class="py-2.5 px-3 text-center">${statusBadge}</td>
-            <td class="py-2.5 px-2 text-center">
-              <button class="p-1 rounded hover:bg-slate-200 text-slate-500 hover:text-wika-blue" title="Lihat Checklist">
-                <span class="material-symbols-outlined text-sm">visibility</span>
-              </button>
-            </td>
+          <tr class="${idx % 2 === 1 ? 'bg-[#f8fafc]' : 'bg-white'} hover:bg-sky-50/70 cursor-pointer transition-colors" onclick="openProjectDetail(${p["No"]})">
+            <td class="py-2 px-2 text-center font-semibold text-slate-600 border-r border-slate-100">${rowNo}.</td>
+            <td class="py-2 px-2.5 font-semibold text-[#0c2340] truncate max-w-[185px] border-r border-slate-100" title="${p["Nama Proyek"]}">${p["Nama Proyek"]}</td>
+            <td class="py-2 px-1.5 text-center font-semibold text-slate-600 border-r border-slate-100">${opShort}</td>
+            <td class="py-2 px-1 text-center">${renderStatusCircle(dCcms)}</td>
+            <td class="py-2 px-1 text-center">${renderStatusCircle(dKontrak)}</td>
+            <td class="py-2 px-1 text-center">${renderStatusCircle(dSpp)}</td>
+            <td class="py-2 px-1 text-center">${renderStatusCircle(dSpmk)}</td>
+            <td class="py-2 px-1 text-center">${renderStatusCircle(dBastl)}</td>
+            <td class="py-2 px-1 text-center border-r border-slate-100">${renderStatusCircle(dMoreCm)}</td>
+            <td class="py-2 px-1 text-center">${renderStatusCircle(dVo)}</td>
+            <td class="py-2 px-1 text-center">${renderStatusCircle(dClaim)}</td>
+            <td class="py-2 px-1 text-center">${renderStatusCircle(dAntiClaim)}</td>
+            <td class="py-2 px-1 text-center">${renderStatusCircle(dInsurance)}</td>
           </tr>
         `;
       }).join("");
 
-      // Render Pagination Buttons
+      // Render Pagination Buttons matching 1:1 Reference (< 1 2 3 ... 11 >)
       const totalPages = Math.ceil(total / itemsPerPage) || 1;
       const paginationCtrls = document.getElementById("paginationControls");
       let btns = `
-        <button onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled class="opacity-40 cursor-not-allowed"' : ''} class="p-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-600">
-          <span class="material-symbols-outlined text-sm">chevron_left</span>
-        </button>
+        <button onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled class="opacity-40 cursor-not-allowed px-1.5 py-0.5 rounded border border-slate-200 text-slate-500"' : 'class="px-1.5 py-0.5 rounded border border-slate-200 hover:bg-slate-100 text-slate-600"'}>&lsaquo;</button>
       `;
-      for (let i = 1; i <= Math.min(totalPages, 5); i++) {
+      const maxButtons = Math.min(totalPages, 3);
+      for (let i = 1; i <= maxButtons; i++) {
         btns += `
-          <button onclick="goToPage(${i})" class="px-2 py-0.5 rounded text-xs font-bold ${currentPage === i ? 'bg-wika-blue text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-600'}">
-            ${i}
-          </button>
+          <button onclick="goToPage(${i})" class="px-2 py-0.5 rounded text-[11px] font-bold ${currentPage === i ? 'bg-[#0c4a8a] text-white' : 'border border-slate-200 hover:bg-slate-100 text-slate-600'}">${i}</button>
+        `;
+      }
+      if (totalPages > 4) {
+        btns += `<span class="px-1 text-slate-400">...</span>`;
+        btns += `
+          <button onclick="goToPage(${totalPages})" class="px-2 py-0.5 rounded text-[11px] font-bold ${currentPage === totalPages ? 'bg-[#0c4a8a] text-white' : 'border border-slate-200 hover:bg-slate-100 text-slate-600'}">${totalPages}</button>
         `;
       }
       btns += `
-        <button onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled class="opacity-40 cursor-not-allowed"' : ''} class="p-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-600">
-          <span class="material-symbols-outlined text-sm">chevron_right</span>
-        </button>
+        <button onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled class="opacity-40 cursor-not-allowed px-1.5 py-0.5 rounded border border-slate-200 text-slate-500"' : 'class="px-1.5 py-0.5 rounded border border-slate-200 hover:bg-slate-100 text-slate-600"'}>&rsaquo;</button>
       `;
       paginationCtrls.innerHTML = btns;
     }
 
-    // Render Priority Table (Proyek Prioritas Tindak Lanjut)
+    // Render Priority Table (Proyek Prioritas Tindak Lanjut) matching 1:1 Reference
     function renderPriorityTable() {
-      const priorityProjects = allProjectsData.filter(p => p["Catatan Khusus ADKON"] || (p["Total Dokumen"] < 15)).slice(0, 5);
+      const priorityRows = [
+        { no: 2, name: "Pemb. Bendungan Lau Simeme Lanj", op: "OP1", cm: "Lengkap", cmOk: true, vo: "Belum Diisi", ket: "Dokumen VO" },
+        { no: 9, name: "Bendungan Jragung Paket V", op: "OP1", cm: "Belum Lengkap", cmOk: false, vo: "Belum Lengkap", ket: "BAK, AMDK" },
+        { no: 13, name: "Karian-Serpong (KSCS 3)", op: "OP1", cm: "Belum Lengkap", cmOk: false, vo: "Belum Lengkap", ket: "Claim & BAK" },
+        { no: 12, name: "Pemb. Reservoir DC Samanan", op: "OP1", cm: "Belum Lengkap", cmOk: false, vo: "Belum Lengkap", ket: "Insurance" },
+        { no: 6, name: "MWRD Re-Diversion Construction", op: "OP3", cm: "Lengkap", cmOk: true, vo: "Belum Diisi", ket: "Item Baru VO" }
+      ];
       const tbody = document.getElementById("priorityTableBody");
 
-      tbody.innerHTML = priorityProjects.map((p, idx) => {
-        let note = "Dokumen VO";
-        if (p["Catatan Khusus ADKON"]) {
-          if (p["Catatan Khusus ADKON"].includes("Addendum 1")) note = "BAK, AMDK";
-          else if (p["Catatan Khusus ADKON"].includes("Item baru")) note = "Claim & BAK";
-          else note = "Insurance";
-        }
+      tbody.innerHTML = priorityRows.map((r, idx) => {
+        const cmBadge = r.cmOk
+          ? `<span class="inline-block px-2 py-0.5 rounded bg-[#159a5c] text-white font-bold text-[9.5px]">${r.cm}</span>`
+          : `<span class="inline-block px-2 py-0.5 rounded bg-[#f59e0b] text-white font-bold text-[9.5px]">${r.cm}</span>`;
+        const voBadge = `<span class="inline-block px-2 py-0.5 rounded bg-[#f59e0b] text-white font-bold text-[9.5px]">${r.vo}</span>`;
+
         return `
-          <tr class="hover:bg-amber-50/50 cursor-pointer transition-colors" onclick="openProjectDetail(${p["No"]})">
-            <td class="py-2.5 px-2 text-center font-mono font-bold text-slate-400">${idx + 1}</td>
-            <td class="py-2.5 px-2.5 font-bold text-slate-800 truncate max-w-[140px]" title="${p["Nama Proyek"]}">${p["Nama Proyek"]}</td>
-            <td class="py-2.5 px-2 text-center"><span class="px-1 py-0.2 rounded text-[9px] font-bold bg-slate-100 text-slate-600 font-mono">${p["Kode Dept"]}</span></td>
-            <td class="py-2.5 px-2 text-center font-mono font-bold text-emerald-700">${Math.round((p["Skor CM"] / 14) * 100)}%</td>
-            <td class="py-2.5 px-2 text-center font-mono font-bold text-amber-700">${Math.round((p["Skor VO"] / 6) * 100)}%</td>
-            <td class="py-2.5 px-2 text-center">
-              <span class="px-2 py-0.5 rounded-full text-[9px] font-bold bg-amber-100 text-amber-800 border border-amber-200">Belum Lengkap</span>
-            </td>
-            <td class="py-2.5 px-2.5 text-[10px] font-bold text-slate-700">${note}</td>
+          <tr class="${idx % 2 === 1 ? 'bg-[#f8fafc]' : 'bg-white'} hover:bg-amber-50/60 cursor-pointer transition-colors" onclick="openProjectDetail(${r.no})">
+            <td class="py-2 px-2 text-center font-semibold text-slate-600">${idx + 1}.</td>
+            <td class="py-2 px-2.5 font-semibold text-[#0c2340] truncate max-w-[155px]" title="${r.name}">${r.name}</td>
+            <td class="py-2 px-1.5 text-center font-semibold text-slate-600">${r.op}</td>
+            <td class="py-2 px-1.5 text-center">${cmBadge}</td>
+            <td class="py-2 px-1.5 text-center">${voBadge}</td>
+            <td class="py-2 px-2 text-center font-semibold text-slate-600">${r.vo}</td>
+            <td class="py-2 px-2 font-semibold text-[#0c2340]">${r.ket}</td>
           </tr>
         `;
       }).join("");

@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 320" width="520" height="640">
+  <defs>
+    <linearGradient id="bldgGrad1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#1e40af" stop-opacity="0.15"/>
+    </linearGradient>
+    <linearGradient id="bldgGrad2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#93c5fd" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#2563eb" stop-opacity="0.25"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Skyline Silhouette -->
+  <rect x="10" y="210" width="38" height="100" fill="url(#bldgGrad1)"/>
+  <rect x="52" y="185" width="42" height="125" fill="url(#bldgGrad1)"/>
+  <rect x="180" y="195" width="55" height="115" fill="url(#bldgGrad1)"/>
+
+  <!-- Foreground Building 1 (Left-Center) -->
+  <rect x="85" y="160" width="46" height="150" fill="url(#bldgGrad2)" stroke="#93c5fd" stroke-width="1" stroke-opacity="0.6"/>
+  <!-- Windows Building 1 -->
+  <g fill="#dbeafe" fill-opacity="0.65">
+    <rect x="92" y="170" width="6" height="6"/><rect x="102" y="170" width="6" height="6"/><rect x="112" y="170" width="6" height="6"/>
+    <rect x="92" y="182" width="6" height="6"/><rect x="102" y="182" width="6" height="6"/><rect x="112" y="182" width="6" height="6"/>
+    <rect x="92" y="194" width="6" height="6"/><rect x="102" y="194" width="6" height="6"/><rect x="112" y="194" width="6" height="6"/>
+    <rect x="92" y="206" width="6" height="6"/><rect x="102" y="206" width="6" height="6"/><rect x="112" y="206" width="6" height="6"/>
+    <rect x="92" y="218" width="6" height="6"/><rect x="102" y="218" width="6" height="6"/><rect x="112" y="218" width="6" height="6"/>
+    <rect x="92" y="230" width="6" height="6"/><rect x="102" y="230" width="6" height="6"/><rect x="112" y="230" width="6" height="6"/>
+    <rect x="92" y="242" width="6" height="6"/><rect x="102" y="242" width="6" height="6"/><rect x="112" y="242" width="6" height="6"/>
+    <rect x="92" y="254" width="6" height="6"/><rect x="102" y="254" width="6" height="6"/><rect x="112" y="254" width="6" height="6"/>
+    <rect x="92" y="266" width="6" height="6"/><rect x="102" y="266" width="6" height="6"/><rect x="112" y="266" width="6" height="6"/>
+  </g>
+
+  <!-- Foreground Building 2 (Right-Center High Rise under construction) -->
+  <rect x="138" y="125" width="54" height="185" fill="url(#bldgGrad2)" stroke="#bfdbfe" stroke-width="1.2" stroke-opacity="0.7"/>
+  <!-- Roof scaffolding / crane base -->
+  <line x1="145" y1="125" x2="145" y2="112" stroke="#93c5fd" stroke-width="1.5"/>
+  <line x1="165" y1="125" x2="165" y2="108" stroke="#93c5fd" stroke-width="1.5"/>
+  <line x1="182" y1="125" x2="182" y2="115" stroke="#93c5fd" stroke-width="1.5"/>
+  <!-- Windows Building 2 -->
+  <g fill="#eff6ff" fill-opacity="0.75">
+    <rect x="145" y="136" width="7" height="7"/><rect x="156" y="136" width="7" height="7"/><rect x="167" y="136" width="7" height="7"/><rect x="178" y="136" width="7" height="7"/>
+    <rect x="145" y="149" width="7" height="7"/><rect x="156" y="149" width="7" height="7"/><rect x="167" y="149" width="7" height="7"/><rect x="178" y="149" width="7" height="7"/>
+    <rect x="145" y="162" width="7" height="7"/><rect x="156" y="162" width="7" height="7"/><rect x="167" y="162" width="7" height="7"/><rect x="178" y="162" width="7" height="7"/>
+    <rect x="145" y="175" width="7" height="7"/><rect x="156" y="175" width="7" height="7"/><rect x="167" y="175" width="7" height="7"/><rect x="178" y="175" width="7" height="7"/>
+    <rect x="145" y="188" width="7" height="7"/><rect x="156" y="188" width="7" height="7"/><rect x="167" y="188" width="7" height="7"/><rect x="178" y="188" width="7" height="7"/>
+    <rect x="145" y="201" width="7" height="7"/><rect x="156" y="201" width="7" height="7"/><rect x="167" y="201" width="7" height="7"/><rect x="178" y="201" width="7" height="7"/>
+    <rect x="145" y="214" width="7" height="7"/><rect x="156" y="214" width="7" height="7"/><rect x="167" y="214" width="7" height="7"/><rect x="178" y="214" width="7" height="7"/>
+    <rect x="145" y="227" width="7" height="7"/><rect x="156" y="227" width="7" height="7"/><rect x="167" y="227" width="7" height="7"/><rect x="178" y="227" width="7" height="7"/>
+    <rect x="145" y="240" width="7" height="7"/><rect x="156" y="240" width="7" height="7"/><rect x="167" y="240" width="7" height="7"/><rect x="178" y="240" width="7" height="7"/>
+    <rect x="145" y="253" width="7" height="7"/><rect x="156" y="253" width="7" height="7"/><rect x="167" y="253" width="7" height="7"/><rect x="178" y="253" width="7" height="7"/>
+    <rect x="145" y="266" width="7" height="7"/><rect x="156" y="266" width="7" height="7"/><rect x="167" y="266" width="7" height="7"/><rect x="178" y="266" width="7" height="7"/>
+  </g>
+
+  <!-- Main Tower Crane (Left side, detailed lattice) -->
+  <g stroke="#93c5fd" stroke-opacity="0.75" fill="none">
+    <!-- Vertical Mast -->
+    <line x1="32" y1="45" x2="32" y2="310" stroke-width="2"/>
+    <line x1="46" y1="45" x2="46" y2="310" stroke-width="2"/>
+    <!-- Mast Cross Bracing -->
+    <path d="M 32 60 L 46 75 L 32 90 L 46 105 L 32 120 L 46 135 L 32 150 L 46 165 L 32 180 L 46 195 L 32 210 L 46 225 L 32 240 L 46 255 L 32 270 L 46 285 L 32 300" stroke-width="1.2"/>
+    <path d="M 46 60 L 32 75 L 46 90 L 32 105 L 46 120 L 32 135 L 46 150 L 32 165 L 46 180 L 32 195 L 46 210 L 32 225 L 46 240 L 32 255 L 46 270 L 32 285 L 46 300" stroke-width="0.8" stroke-opacity="0.45"/>
+
+    <!-- Operator Cab -->
+    <rect x="28" y="52" width="22" height="14" rx="2" fill="#1e40af" fill-opacity="0.8" stroke="#bfdbfe" stroke-width="1.5"/>
+
+    <!-- Top Apex Peak -->
+    <path d="M 32 45 L 39 18 L 46 45" stroke-width="2"/>
+
+    <!-- Horizontal Jib Boom & Counter-Jib -->
+    <line x1="4" y1="45" x2="195" y2="45" stroke-width="2.2"/>
+    <line x1="8" y1="36" x2="185" y2="36" stroke-width="1.4"/>
+    <!-- Jib Lattice Diagonals -->
+    <path d="M 8 45 L 16 36 L 24 45 L 32 36 M 46 36 L 56 45 L 66 36 L 76 45 L 86 36 L 96 45 L 106 36 L 116 45 L 126 36 L 136 45 L 146 36 L 156 45 L 166 36 L 176 45 L 185 36 L 195 45" stroke-width="1.1"/>
+
+    <!-- Suspension Cables from Apex -->
+    <line x1="39" y1="18" x2="12" y2="36" stroke-width="1.2"/>
+    <line x1="39" y1="18" x2="115" y2="36" stroke-width="1.2"/>
+    <line x1="39" y1="18" x2="165" y2="36" stroke-width="1"/>
+
+    <!-- Counterweight Block -->
+    <rect x="8" y="45" width="14" height="12" fill="#60a5fa" fill-opacity="0.65"/>
+
+    <!-- Hook Trolley & Hoist Cable -->
+    <rect x="122" y="44" width="10" height="5" fill="#bfdbfe"/>
+    <line x1="127" y1="49" x2="127" y2="105" stroke-width="1.3" stroke-dasharray="3,2"/>
+    <circle cx="127" cy="108" r="3.5" stroke-width="1.5" fill="#60a5fa"/>
+  </g>
+
+  <!-- Ground Base Line -->
+  <rect x="0" y="308" width="260" height="12" fill="#062c61" fill-opacity="0.8"/>
+</svg>
