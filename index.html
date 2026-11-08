@@ -166,6 +166,18 @@
             <span class="material-symbols-outlined text-sm">category</span>
             <span>Design System Foundations</span>
           </a>
+          <a href="WIKA_CCMS_Monitoring.figcraft" download class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sky-200 hover:text-white hover:bg-white/10 transition-all font-semibold text-[11px]">
+            <span class="material-symbols-outlined text-sm">draw</span>
+            <span>FigCraft Design (.figcraft)</span>
+          </a>
+          <a href="WIKA_CCMS_Monitoring.fig" download class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sky-200 hover:text-white hover:bg-white/10 transition-all font-semibold text-[11px]">
+            <span class="material-symbols-outlined text-sm">layers</span>
+            <span>Figma Native File (.fig)</span>
+          </a>
+          <a href="assets/WIKA_CCMS_Monitoring_render.png" target="_blank" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sky-200 hover:text-white hover:bg-white/10 transition-all font-semibold text-[11px]">
+            <span class="material-symbols-outlined text-sm">image</span>
+            <span>HD Canvas Preview (1920p)</span>
+          </a>
           <button onclick="openDiagnosticsModal()" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sky-200 hover:text-white hover:bg-white/10 transition-all font-semibold text-[11px] text-left">
             <span class="material-symbols-outlined text-sm">cloud_sync</span>
             <span>Live Diagnostics API</span>
@@ -835,11 +847,109 @@
         <h4 class="font-bold text-sm text-wika-blue">2. Ketentuan Perubahan & Addendum 1 (6 Dokumen)</h4>
         <p>Bila terjadi penyesuaian volume atau pekerjaan tambah-kurang akibat Mutual Check 0 (MC-0), Proyek wajib segera memproses Notis Klaim, Proposal Perubahan, Berita Acara Kesepakatan (BAK), dan Naskah Amandemen Kontrak untuk menghindari risiko keterlambatan pembayaran.</p>
       </div>
+  <!-- 3. Export & Design Assets Modal -->
+  <div id="exportDesignModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-xl w-full max-h-[85vh] overflow-hidden shadow-2xl border border-slate-200 flex flex-col">
+      <div class="p-5 bg-wika-dark text-white flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-sky-300">download_for_offline</span>
+          <h3 class="text-base font-bold">Unduh Desain Vector & Laporan Audit</h3>
+        </div>
+        <button onclick="closeModal('exportDesignModal')" class="text-white hover:text-sky-200">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div class="p-6 overflow-y-auto space-y-3.5 text-xs text-slate-700 leading-relaxed">
+        <p class="text-slate-500 text-xs">Pilih format deliverable yang ingin Anda unduh atau buka:</p>
+
+        <!-- FigCraft Native -->
+        <div class="p-3.5 rounded-xl bg-sky-50/70 border border-sky-100 flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-sky-600 text-white flex items-center justify-center font-bold text-sm">
+              FC
+            </div>
+            <div>
+              <div class="font-bold text-slate-800 text-sm">FigCraft Native File (.figcraft)</div>
+              <div class="text-[11px] text-slate-500">Buka langsung di aplikasi FigCraft desktop (--control 3055)</div>
+            </div>
+          </div>
+          <a href="WIKA_CCMS_Monitoring.figcraft" download class="px-3.5 py-2 rounded-lg bg-wika-blue hover:bg-wika-dark text-white font-bold text-xs flex items-center gap-1 shadow-sm transition-all">
+            <span class="material-symbols-outlined text-sm">download</span> Unduh
+          </a>
+        </div>
+
+        <!-- Figma Native -->
+        <div class="p-3.5 rounded-xl bg-purple-50/70 border border-purple-100 flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-purple-600 text-white flex items-center justify-center font-bold text-sm">
+              FIG
+            </div>
+            <div>
+              <div class="font-bold text-slate-800 text-sm">Figma Native File (.fig)</div>
+              <div class="text-[11px] text-slate-500">Impor ke Figma Desktop / Browser untuk kolaborasi tim</div>
+            </div>
+          </div>
+          <a href="WIKA_CCMS_Monitoring.fig" download class="px-3.5 py-2 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs flex items-center gap-1 shadow-sm transition-all">
+            <span class="material-symbols-outlined text-sm">download</span> Unduh
+          </a>
+        </div>
+
+        <!-- HD Canvas Render -->
+        <div class="p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-100 flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-sm">
+              HD
+            </div>
+            <div>
+              <div class="font-bold text-slate-800 text-sm">HD Canvas Vector Render (1920p)</div>
+              <div class="text-[11px] text-slate-500">Tangkapan visual kanvas resolusi tinggi 1920x1080</div>
+            </div>
+          </div>
+          <a href="assets/WIKA_CCMS_Monitoring_render.png" target="_blank" class="px-3.5 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-1 shadow-sm transition-all">
+            <span class="material-symbols-outlined text-sm">open_in_new</span> Buka
+          </a>
+        </div>
+
+        <!-- Print PDF Audit -->
+        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-slate-700 text-white flex items-center justify-center font-bold text-sm">
+              PDF
+            </div>
+            <div>
+              <div class="font-bold text-slate-800 text-sm">Cetak Laporan Audit Lengkap (PDF)</div>
+              <div class="text-[11px] text-slate-500">Cetak lembar rekapitulasi monitoring 51 proyek</div>
+            </div>
+          </div>
+          <button onclick="window.print()" class="px-3.5 py-2 rounded-lg bg-slate-700 hover:bg-slate-800 text-white font-bold text-xs flex items-center gap-1 shadow-sm transition-all">
+            <span class="material-symbols-outlined text-sm">print</span> Cetak
+          </button>
+        </div>
+
+        <!-- CSV Export -->
+        <div class="p-3.5 rounded-xl bg-amber-50/70 border border-amber-100 flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-amber-600 text-white flex items-center justify-center font-bold text-sm">
+              CSV
+            </div>
+            <div>
+              <div class="font-bold text-slate-800 text-sm">Ekspor Data Tabular (51 Proyek & 20 Param)</div>
+              <div class="text-[11px] text-slate-500">Unduh data CSV untuk analisis spreadsheet offline</div>
+            </div>
+          </div>
+          <button onclick="exportDataToCsv()" class="px-3.5 py-2 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs flex items-center gap-1 shadow-sm transition-all">
+            <span class="material-symbols-outlined text-sm">table_view</span> CSV
+          </button>
+        </div>
+      </div>
+
       <div class="p-4 bg-slate-50 border-t border-slate-200 text-right">
-        <button onclick="closeModal('sopModal')" class="px-4 py-2 rounded-lg bg-wika-blue text-white font-bold text-xs">Tutup</button>
+        <button onclick="closeModal('exportDesignModal')" class="px-4 py-2 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs">Tutup</button>
       </div>
     </div>
   </div>
+
 
   <!-- JAVASCRIPT LOGIC & LIVE CHARTS -->
   <script>
@@ -1349,11 +1459,40 @@
     }
 
     function triggerExportModal() {
-      window.print();
+      document.getElementById("exportDesignModal").classList.remove("hidden");
     }
 
     function printAuditReport() {
       window.print();
+    }
+
+    function exportDataToCsv() {
+      const headers = ["No", "Nama Proyek", "Departemen", "Kode Dept", "Skor CM", "Status CM", "Skor VO", "Status VO", "Total Dokumen", "Persen Kepatuhan", "Kategori Status"];
+      let csvContent = "data:text/csv;charset=utf-8," + headers.join(",") + "\n";
+      allProjectsData.forEach(p => {
+        const row = [
+          p["No"],
+          `"${(p["Nama Proyek"] || "").replace(/"/g, '""')}"`,
+          `"${p["Departemen"] || ""}"`,
+          `"${p["Kode Dept"] || ""}"`,
+          p["Skor CM"],
+          `"${p["Status CM"] || ""}"`,
+          p["Skor VO"],
+          `"${p["Status VO"] || ""}"`,
+          p["Total Dokumen"],
+          `"${p["Persen Kepatuhan"] || ""}"`,
+          `"${p["Kategori Status"] || ""}"`
+        ];
+        csvContent += row.join(",") + "\n";
+      });
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "WIKA_CCMS_Monitoring_51_Proyek.csv");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast("Ekspor CSV Berhasil", "51 data proyek berhasil diunduh ke CSV.");
     }
 
     function openDiagnosticsModal() {
