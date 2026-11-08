@@ -251,34 +251,34 @@
     <!-- ======================================================== -->
     <div class="flex-1 flex flex-col min-w-0">
 
-      <!-- TOP HEADER (TITLE & FILTER BAR) -->
-      <header class="bg-white border-b border-slate-200/90 px-6 py-3 sticky top-0 z-30 shadow-sm flex flex-wrap items-center justify-between gap-4 relative overflow-hidden">
+      <!-- TOP HEADER (TITLE & SINGLE-LINE FILTER BAR WITH INLINE RESET + LIGHT/DARK MODE) -->
+      <header class="bg-white border-b border-slate-200/90 px-5 py-2.5 sticky top-0 z-30 shadow-sm flex flex-wrap xl:flex-nowrap items-center justify-between gap-3 relative overflow-hidden">
         <!-- Subtle Top-Right Skyline Illustration matching reference -->
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMjAgOTAiIHdpZHRoPSI0NDAiIGhlaWdodD0iMTgwIj4KICA8ZyBvcGFjaXR5PSIwLjIyIiBmaWxsPSIjOTNjNWZkIj4KICAgIDxyZWN0IHg9IjQwIiB5PSIzMCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjYwIi8+CiAgICA8cmVjdCB4PSI2OCIgeT0iMTgiIHdpZHRoPSIyOCIgaGVpZ2h0PSI3MiIvPgogICAgPHJlY3QgeD0iMTAyIiB5PSIzOCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjUyIi8+CiAgICA8cmVjdCB4PSIxMzIiIHk9IjI1IiB3aWR0aD0iMzAiIGhlaWdodD0iNjUiLz4KICA8L2c+CiAgPGcgb3BhY2l0eT0iMC4yOCIgc3Ryb2tlPSIjNjBhNWZhIiBmaWxsPSJub25lIiBzdHJva2Utd2lkdGg9IjEuMiI+CiAgICA8bGluZSB4MT0iODIiIHkxPSI0IiB4Mj0iODIiIHkyPSI5MCIvPgogICAgPGxpbmUgeDE9Ijg3IiB5MT0iNCIgeDI9Ijg3IiB5Mj0iOTAiLz4KICAgIDxsaW5lIHgxPSI0NSIgeTE9IjEwIiB4Mj0iMTM1IiB5Mj0iMTAiLz4KICAgIDxsaW5lIHgxPSI4NCIgeTE9IjIiIHgyPSI1NSIgeTI9IjEwIi8+CiAgICA8bGluZSB4MT0iODQiIHkxPSIyIiB4Mj0iMTI1IiB5Mj0iMTAiLz4KICA8L2c+Cjwvc3ZnPg==" alt="" class="absolute right-0 top-0 h-full w-auto object-cover pointer-events-none opacity-85 hidden xl:block dark:opacity-20"/>
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMjAgOTAiIHdpZHRoPSI0NDAiIGhlaWdodD0iMTgwIj4KICA8ZyBvcGFjaXR5PSIwLjIyIiBmaWxsPSIjOTNjNWZkIj4KICAgIDxyZWN0IHg9IjQwIiB5PSIzMCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjYwIi8+CiAgICA8cmVjdCB4PSI2OCIgeT0iMTgiIHdpZHRoPSIyOCIgaGVpZ2h0PSI3MiIvPgogICAgPHJlY3QgeD0iMTAyIiB5PSIzOCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjUyIi8+CiAgICA8cmVjdCB4PSIxMzIiIHk9IjI1IiB3aWR0aD0iMzAiIGhlaWdodD0iNjUiLz4KICA8L2c+CiAgPGcgb3BhY2l0eT0iMC4yOCIgc3Ryb2tlPSIjNjBhNWZhIiBmaWxsPSJub25lIiBzdHJva2Utd2lkdGg9IjEuMiI+CiAgICA8bGluZSB4MT0iODIiIHkxPSI0IiB4Mj0iODIiIHkyPSI5MCIvPgogICAgPGxpbmUgeDE9Ijg3IiB5MT0iNCIgeDI9Ijg3IiB5Mj0iOTAiLz4KICAgIDxsaW5lIHgxPSI0NSIgeTE9IjEwIiB4Mj0iMTM1IiB5Mj0iMTAiLz4KICAgIDxsaW5lIHgxPSI4NCIgeTE9IjIiIHgyPSI1NSIgeTI9IjEwIi8+CiAgICA8bGluZSB4MT0iODQiIHkxPSIyIiB4Mj0iMTI1IiB5Mj0iMTAiLz4KICA8L2c+Cjwvc3ZnPg==" alt="" class="absolute right-0 top-0 h-full w-auto object-cover pointer-events-none opacity-85 hidden 2xl:block dark:opacity-20"/>
 
         <!-- Title & Subtitle -->
-        <div class="relative z-10">
-          <div class="flex items-center gap-2.5 flex-wrap">
-            <h1 class="text-xl font-extrabold text-[#083b7a] tracking-tight">
+        <div class="relative z-10 shrink-0">
+          <div class="flex items-center gap-2">
+            <h1 class="text-lg font-extrabold text-[#083b7a] tracking-tight leading-tight">
               CCMS Monitoring Dashboard
             </h1>
-            <span id="periodStatusBadge" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200 flex items-center gap-1">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Terkini (5 Oktober 2026)
+            <span id="periodStatusBadge" class="px-2 py-0.5 rounded-full text-[9.5px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200 inline-flex items-center gap-1 whitespace-nowrap">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Terkini (5 Okt 2026)
             </span>
           </div>
-          <p class="text-xs font-medium text-slate-500">
-            Contract Management Infrastructure 1 Sub Division &bull; Sumber: Google Sheet <span class="font-semibold text-[#0c4a8a]">051026 Cheklist Adkon Dashboard Rev</span>
+          <p class="text-[11px] font-medium text-slate-500 leading-tight mt-0.5">
+            Contract Management Infrastructure 1 Sub Division &bull; <span class="font-semibold text-[#0c4a8a]">051026 Cheklist Adkon</span>
           </p>
         </div>
 
-        <!-- Filter Controls Cluster -->
-        <div class="flex flex-wrap items-center gap-2 text-xs relative z-10">
+        <!-- Single-Line Filter Controls Cluster (Inline with Reset Filter + Light/Dark Mode) -->
+        <div class="flex flex-wrap xl:flex-nowrap items-center gap-1.5 text-[11px] relative z-10">
           
-          <!-- Periode Dropdown (With "Terkini - 5 Okt 2026" Default + Historical Options) -->
-          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-slate-700 shadow-sm">
-            <span class="material-symbols-outlined text-[#0d5cab] text-sm">calendar_month</span>
-            <span class="text-[11px] text-slate-500">Periode:</span>
-            <select id="filterPeriod" onchange="handlePeriodFilter(this.value)" class="bg-transparent font-bold text-slate-800 focus:outline-none cursor-pointer">
+          <!-- Periode Dropdown -->
+          <div class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-slate-300 text-slate-700 shadow-xs whitespace-nowrap">
+            <span class="material-symbols-outlined text-[#0d5cab] text-xs">calendar_month</span>
+            <span class="text-[10.5px] text-slate-500">Periode:</span>
+            <select id="filterPeriod" onchange="handlePeriodFilter(this.value)" class="bg-transparent font-bold text-slate-800 focus:outline-none cursor-pointer text-[11px]">
               <option value="terkini" selected>Terkini (5 Okt 2026)</option>
               <option value="okt-2026">Oktober 2026 (5 Okt)</option>
               <option value="sep-2026">September 2026</option>
@@ -290,9 +290,9 @@
           </div>
 
           <!-- Departemen Operasi Dropdown -->
-          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-slate-700 shadow-sm">
-            <span class="text-[11px] text-slate-500">Departemen Operasi:</span>
-            <select id="filterDepartment" onchange="handleDepartmentFilter(this.value)" class="bg-transparent font-bold text-slate-800 focus:outline-none cursor-pointer">
+          <div class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-slate-300 text-slate-700 shadow-xs whitespace-nowrap">
+            <span class="text-[10.5px] text-slate-500">Operasi:</span>
+            <select id="filterDepartment" onchange="handleDepartmentFilter(this.value)" class="bg-transparent font-bold text-slate-800 focus:outline-none cursor-pointer text-[11px]">
               <option value="all" selected>All (51 Proyek)</option>
               <option value="DO 1">DO 1 (19 Proyek)</option>
               <option value="DO 2">DO 2 (18 Proyek)</option>
@@ -301,43 +301,45 @@
           </div>
 
           <!-- Tahapan Dropdown -->
-          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-slate-700 shadow-sm">
-            <span class="text-[11px] text-slate-500">Tahapan:</span>
-            <select id="filterTahapan" onchange="handleTahapanFilter(this.value)" class="bg-transparent font-bold text-slate-800 focus:outline-none cursor-pointer">
+          <div class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-slate-300 text-slate-700 shadow-xs whitespace-nowrap">
+            <span class="text-[10.5px] text-slate-500">Tahapan:</span>
+            <select id="filterTahapan" onchange="handleTahapanFilter(this.value)" class="bg-transparent font-bold text-slate-800 focus:outline-none cursor-pointer text-[11px]">
               <option value="all" selected>All</option>
-              <option value="cm">Contract Management (14 Dok)</option>
+              <option value="cm">CM (14 Dok)</option>
               <option value="vo">Perubahan / VO (6 Dok)</option>
-              <option value="pelaksanaan">Masa Pelaksanaan (Aktif)</option>
-              <option value="mc-0">MC-0 / Addendum Awal</option>
+              <option value="pelaksanaan">Masa Pelaksanaan</option>
+              <option value="mc-0">MC-0 / Addendum</option>
               <option value="serah-terima">Serah Terima (BASTL)</option>
             </select>
           </div>
 
           <!-- Search Input -->
-          <div class="relative">
-            <span class="material-symbols-outlined absolute left-2.5 top-2 text-slate-400 text-sm">search</span>
-            <input type="text" id="searchInput" oninput="handleSearch(this.value)" placeholder="Cari Nama Proyek..." class="pl-8 pr-7 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-medium text-slate-800 focus:outline-none focus:border-[#0d5cab] w-40 md:w-48 transition-all shadow-sm"/>
-            <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-2 top-2 text-slate-400 hover:text-slate-600">
+          <div class="relative shrink-0">
+            <span class="material-symbols-outlined absolute left-2 top-1.5 text-slate-400 text-sm">search</span>
+            <input type="text" id="searchInput" oninput="handleSearch(this.value)" placeholder="Cari Nama Proyek..." class="pl-7 pr-6 py-1.5 rounded-lg bg-white border border-slate-300 text-[11px] font-medium text-slate-800 focus:outline-none focus:border-[#0d5cab] w-36 2xl:w-44 transition-all shadow-xs"/>
+            <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-1.5 top-1.5 text-slate-400 hover:text-slate-600">
               <span class="material-symbols-outlined text-xs">close</span>
             </button>
           </div>
 
           <!-- Live Sync Google Sheet Button -->
-          <button onclick="syncFromGoogleSheet(true)" class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 font-bold shadow-sm transition-all active:scale-95" title="Sinkronisasi langsung dengan Google Sheet (1_HyDeqYkUB-HdLJwGLEUgx1nOmOoIx-OGDCgZGRvE4w)">
-            <span id="headerSyncIcon" class="material-symbols-outlined text-sm text-emerald-600">sync</span>
-            <span class="hidden sm:inline">Sync Sheet</span>
+          <button onclick="syncFromGoogleSheet(true)" class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 font-bold shadow-xs transition-all active:scale-95 whitespace-nowrap" title="Sinkronisasi langsung dengan Google Sheet (051026)">
+            <span id="headerSyncIcon" class="material-symbols-outlined text-xs text-emerald-600">sync</span>
+            <span>Sync</span>
           </button>
 
-          <!-- Reset Filter Button -->
-          <button onclick="resetFilters()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 font-bold shadow-sm transition-all active:scale-95">
-            <span class="material-symbols-outlined text-sm text-[#0d5cab]">refresh</span>
-            <span>Reset Filter</span>
-          </button>
-
-          <!-- Sun/Moon Theme Toggle Icon Button -->
-          <button onclick="toggleTheme()" id="themeToggleBtn" class="p-1.5 rounded-full bg-white hover:bg-slate-100 text-amber-500 border border-slate-300 shadow-sm transition-all flex items-center justify-center" title="Ubah Mode Terang / Gelap">
-            <span id="themeIcon" class="material-symbols-outlined text-base fill">light_mode</span>
-          </button>
+          <!-- Unified Action Group: Reset Filter + Light/Dark Mode Sebaris -->
+          <div class="inline-flex items-center rounded-lg border border-slate-300 bg-white shadow-xs overflow-hidden shrink-0">
+            <button onclick="resetFilters()" class="flex items-center gap-1 px-2.5 py-1.5 hover:bg-slate-50 text-slate-700 font-bold transition-colors active:bg-slate-100 whitespace-nowrap" title="Reset Seluruh Filter">
+              <span class="material-symbols-outlined text-xs text-[#0d5cab]">refresh</span>
+              <span>Reset Filter</span>
+            </button>
+            <span class="w-[1px] h-4 bg-slate-200 dark:bg-slate-700"></span>
+            <button onclick="toggleTheme()" id="themeToggleBtn" class="flex items-center gap-1 px-2.5 py-1.5 hover:bg-amber-50/70 dark:hover:bg-slate-800 text-slate-700 font-bold transition-colors whitespace-nowrap" title="Ubah Mode Terang (Light) / Gelap (Dark)">
+              <span id="themeIcon" class="material-symbols-outlined text-xs text-amber-500 fill">light_mode</span>
+              <span id="themeModeText" class="text-[10.5px]">Light</span>
+            </button>
+          </div>
 
         </div>
 
@@ -352,7 +354,7 @@
         <div class="grid grid-cols-1 xl:grid-cols-12 gap-3.5 items-stretch">
           
           <!-- LEFT 9 COLUMNS: KPI CARDS (ROW 1) + DEPT SUMMARY & LINE CHART (ROW 2) -->
-          <div class="xl:col-span-9 flex flex-col gap-3.5">
+          <div class="xl:col-span-9 flex flex-col gap-3.5 h-full">
             
             <!-- ROW 1: 4 CARDS (TOTAL PROYEK DI PALING KIRI) -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-3.5">
@@ -489,11 +491,11 @@
 
             </div>
 
-            <!-- ROW 2: RINGKASAN PER DEPARTEMEN OPERASI (7 COLS) + PROGRESS KEPATUHAN TREND (5 COLS) -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5" id="deptSummarySection">
+            <!-- ROW 2: RINGKASAN PER DEPARTEMEN OPERASI (7 COLS) + PROGRESS KEPATUHAN TREND (5 COLS) - STRETCHED FULL HEIGHT -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5 flex-1 items-stretch" id="deptSummarySection">
               
-              <!-- CARD 6: Ringkasan per Departemen Operasi (Distinct Colors per Operasi) (7 cols) -->
-              <div class="lg:col-span-7 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between">
+              <!-- CARD 6: Ringkasan per Departemen Operasi (Expanded Proportional Sub-Cards, 7 cols) -->
+              <div class="lg:col-span-7 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between h-full">
                 <div class="flex items-center justify-between pb-2 border-b border-slate-100">
                   <div class="flex items-center gap-2">
                     <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
@@ -504,107 +506,140 @@
                   <span class="text-[10px] text-slate-400 font-medium">Klik departemen untuk memfilter proyek</span>
                 </div>
 
-                <div class="grid grid-cols-3 divide-x divide-slate-200 pt-2 text-center">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 pt-2.5 flex-1 items-stretch text-center">
                   
                   <!-- Operasi 1 - 19 Proyek (BLUE / CYAN PALETTE) -->
-                  <div onclick="handleDepartmentFilter('DO 1')" class="px-2 py-1 rounded-lg hover:bg-sky-50/50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors space-y-2" title="Klik untuk memfilter Operasi 1">
-                    <div class="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#0c2340]">
-                      <span class="w-2 h-2 rounded-full bg-[#0d6efd]"></span>
-                      <span id="ringOp1Title">Operasi 1 - 19 Proyek</span>
+                  <div onclick="handleDepartmentFilter('DO 1')" class="p-2.5 rounded-xl bg-slate-50/75 hover:bg-sky-50/70 dark:bg-slate-800/45 dark:hover:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 cursor-pointer transition-all flex flex-col justify-between" title="Klik untuk memfilter Operasi 1">
+                    <div class="flex items-center justify-between gap-1 pb-1.5 border-b border-slate-200/70 dark:border-slate-700">
+                      <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold text-[#0c2340]">
+                        <span class="w-2 h-2 rounded-full bg-[#0d6efd]"></span>
+                        <span>Operasi 1</span>
+                      </span>
+                      <span id="ringOp1Title" class="px-1.5 py-0.5 rounded bg-sky-100/90 dark:bg-sky-900/50 text-[#0c4a8a] dark:text-sky-300 text-[9.5px] font-bold">19 Proyek</span>
                     </div>
-                    <div class="flex items-center justify-center gap-3">
+
+                    <div class="flex items-center justify-around gap-2 my-auto py-2">
                       <div class="flex flex-col items-center">
-                        <div class="relative w-16 h-16 flex items-center justify-center">
-                          <svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
-                            <path class="text-slate-200" stroke-width="3.8" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                            <path id="ringOp1CmArc" class="text-[#0d6efd] transition-all duration-700" stroke-dasharray="63.2, 100" stroke-width="3.8" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <div class="relative w-[68px] h-[68px] flex items-center justify-center">
+                          <svg class="w-[68px] h-[68px] transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            <path id="ringOp1CmArc" class="text-[#0d6efd] transition-all duration-700" stroke-dasharray="63.2, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
                           </svg>
-                          <span id="ringOp1CmText" class="absolute text-[10.5px] font-extrabold text-[#0d6efd]">63,2%</span>
+                          <span id="ringOp1CmText" class="absolute text-[11px] font-extrabold text-[#0d6efd]">63,2%</span>
                         </div>
-                        <span class="text-[10px] font-semibold text-slate-600 mt-1">CM</span>
+                        <span class="text-[10px] font-bold text-slate-700 mt-1">CM</span>
+                        <span id="ringOp1CmSub" class="text-[9px] text-slate-500 font-medium">12/19 Lengkap</span>
                       </div>
 
                       <div class="flex flex-col items-center">
-                        <div class="relative w-16 h-16 flex items-center justify-center">
-                          <svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
-                            <path class="text-slate-200" stroke-width="3.8" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                            <path id="ringOp1VoArc" class="text-[#06b6d4] transition-all duration-700" stroke-dasharray="52.6, 100" stroke-width="3.8" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <div class="relative w-[68px] h-[68px] flex items-center justify-center">
+                          <svg class="w-[68px] h-[68px] transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            <path id="ringOp1VoArc" class="text-[#06b6d4] transition-all duration-700" stroke-dasharray="52.6, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
                           </svg>
-                          <span id="ringOp1VoText" class="absolute text-[10.5px] font-extrabold text-[#0891b2]">52,6%</span>
+                          <span id="ringOp1VoText" class="absolute text-[11px] font-extrabold text-[#0891b2]">52,6%</span>
                         </div>
-                        <span class="text-[10px] font-semibold text-slate-600 mt-1">Perubahan</span>
+                        <span class="text-[10px] font-bold text-slate-700 mt-1">Perubahan</span>
+                        <span id="ringOp1VoSub" class="text-[9px] text-slate-500 font-medium">10/19 Lengkap</span>
                       </div>
+                    </div>
+
+                    <div id="ringOp1Footer" class="pt-1.5 border-t border-slate-200/70 dark:border-slate-700 flex items-center justify-between text-[9px] font-semibold text-slate-600">
+                      <span>Skor Dok: <b class="text-[#0c4a8a] dark:text-sky-300">79,5%</b></span>
+                      <span class="text-amber-600 font-bold">9 Tindak Lanjut</span>
                     </div>
                   </div>
 
                   <!-- Operasi 2 - 18 Proyek (AMBER / ORANGE PALETTE) -->
-                  <div onclick="handleDepartmentFilter('DO 2')" class="px-2 py-1 rounded-lg hover:bg-amber-50/50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors space-y-2" title="Klik untuk memfilter Operasi 2">
-                    <div class="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#0c2340]">
-                      <span class="w-2 h-2 rounded-full bg-[#f59e0b]"></span>
-                      <span id="ringOp2Title">Operasi 2 - 18 Proyek</span>
+                  <div onclick="handleDepartmentFilter('DO 2')" class="p-2.5 rounded-xl bg-slate-50/75 hover:bg-amber-50/70 dark:bg-slate-800/45 dark:hover:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 cursor-pointer transition-all flex flex-col justify-between" title="Klik untuk memfilter Operasi 2">
+                    <div class="flex items-center justify-between gap-1 pb-1.5 border-b border-slate-200/70 dark:border-slate-700">
+                      <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold text-[#0c2340]">
+                        <span class="w-2 h-2 rounded-full bg-[#f59e0b]"></span>
+                        <span>Operasi 2</span>
+                      </span>
+                      <span id="ringOp2Title" class="px-1.5 py-0.5 rounded bg-amber-100/90 dark:bg-amber-900/50 text-amber-800 dark:text-amber-300 text-[9.5px] font-bold">18 Proyek</span>
                     </div>
-                    <div class="flex items-center justify-center gap-3">
+
+                    <div class="flex items-center justify-around gap-2 my-auto py-2">
                       <div class="flex flex-col items-center">
-                        <div class="relative w-16 h-16 flex items-center justify-center">
-                          <svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
-                            <path class="text-slate-200" stroke-width="3.8" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                            <path id="ringOp2CmArc" class="text-[#f59e0b] transition-all duration-700" stroke-dasharray="77.8, 100" stroke-width="3.8" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <div class="relative w-[68px] h-[68px] flex items-center justify-center">
+                          <svg class="w-[68px] h-[68px] transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            <path id="ringOp2CmArc" class="text-[#f59e0b] transition-all duration-700" stroke-dasharray="77.8, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
                           </svg>
-                          <span id="ringOp2CmText" class="absolute text-[10.5px] font-extrabold text-[#d97706]">77,8%</span>
+                          <span id="ringOp2CmText" class="absolute text-[11px] font-extrabold text-[#d97706]">77,8%</span>
                         </div>
-                        <span class="text-[10px] font-semibold text-slate-600 mt-1">CM</span>
+                        <span class="text-[10px] font-bold text-slate-700 mt-1">CM</span>
+                        <span id="ringOp2CmSub" class="text-[9px] text-slate-500 font-medium">14/18 Lengkap</span>
                       </div>
 
                       <div class="flex flex-col items-center">
-                        <div class="relative w-16 h-16 flex items-center justify-center">
-                          <svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
-                            <path class="text-slate-200" stroke-width="3.8" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                            <path id="ringOp2VoArc" class="text-[#fb923c] transition-all duration-700" stroke-dasharray="77.8, 100" stroke-width="3.8" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <div class="relative w-[68px] h-[68px] flex items-center justify-center">
+                          <svg class="w-[68px] h-[68px] transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            <path id="ringOp2VoArc" class="text-[#fb923c] transition-all duration-700" stroke-dasharray="77.8, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
                           </svg>
-                          <span id="ringOp2VoText" class="absolute text-[10.5px] font-extrabold text-[#ea580c]">77,8%</span>
+                          <span id="ringOp2VoText" class="absolute text-[11px] font-extrabold text-[#ea580c]">77,8%</span>
                         </div>
-                        <span class="text-[10px] font-semibold text-slate-600 mt-1">Perubahan</span>
+                        <span class="text-[10px] font-bold text-slate-700 mt-1">Perubahan</span>
+                        <span id="ringOp2VoSub" class="text-[9px] text-slate-500 font-medium">14/18 Lengkap</span>
                       </div>
+                    </div>
+
+                    <div id="ringOp2Footer" class="pt-1.5 border-t border-slate-200/70 dark:border-slate-700 flex items-center justify-between text-[9px] font-semibold text-slate-600">
+                      <span>Skor Dok: <b class="text-amber-700 dark:text-amber-300">85,8%</b></span>
+                      <span class="text-emerald-600 font-bold">4 Tindak Lanjut</span>
                     </div>
                   </div>
 
                   <!-- Operasi 3 - 14 Proyek (EMERALD / TEAL PALETTE) -->
-                  <div onclick="handleDepartmentFilter('DO 3')" class="px-2 py-1 rounded-lg hover:bg-emerald-50/50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors space-y-2" title="Klik untuk memfilter Operasi 3">
-                    <div class="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#0c2340]">
-                      <span class="w-2 h-2 rounded-full bg-[#10b981]"></span>
-                      <span id="ringOp3Title">Operasi 3 - 14 Proyek</span>
+                  <div onclick="handleDepartmentFilter('DO 3')" class="p-2.5 rounded-xl bg-slate-50/75 hover:bg-emerald-50/70 dark:bg-slate-800/45 dark:hover:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 cursor-pointer transition-all flex flex-col justify-between" title="Klik untuk memfilter Operasi 3">
+                    <div class="flex items-center justify-between gap-1 pb-1.5 border-b border-slate-200/70 dark:border-slate-700">
+                      <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold text-[#0c2340]">
+                        <span class="w-2 h-2 rounded-full bg-[#10b981]"></span>
+                        <span>Operasi 3</span>
+                      </span>
+                      <span id="ringOp3Title" class="px-1.5 py-0.5 rounded bg-emerald-100/90 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300 text-[9.5px] font-bold">14 Proyek</span>
                     </div>
-                    <div class="flex items-center justify-center gap-3">
+
+                    <div class="flex items-center justify-around gap-2 my-auto py-2">
                       <div class="flex flex-col items-center">
-                        <div class="relative w-16 h-16 flex items-center justify-center">
-                          <svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
-                            <path class="text-slate-200" stroke-width="3.8" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                            <path id="ringOp3CmArc" class="text-[#10b981] transition-all duration-700" stroke-dasharray="42.9, 100" stroke-width="3.8" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <div class="relative w-[68px] h-[68px] flex items-center justify-center">
+                          <svg class="w-[68px] h-[68px] transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            <path id="ringOp3CmArc" class="text-[#10b981] transition-all duration-700" stroke-dasharray="42.9, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
                           </svg>
-                          <span id="ringOp3CmText" class="absolute text-[10.5px] font-extrabold text-[#159a5c]">42,9%</span>
+                          <span id="ringOp3CmText" class="absolute text-[11px] font-extrabold text-[#159a5c]">42,9%</span>
                         </div>
-                        <span class="text-[10px] font-semibold text-slate-600 mt-1">CM</span>
+                        <span class="text-[10px] font-bold text-slate-700 mt-1">CM</span>
+                        <span id="ringOp3CmSub" class="text-[9px] text-slate-500 font-medium">6/14 Lengkap</span>
                       </div>
 
                       <div class="flex flex-col items-center">
-                        <div class="relative w-16 h-16 flex items-center justify-center">
-                          <svg class="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
-                            <path class="text-slate-200" stroke-width="3.8" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                            <path id="ringOp3VoArc" class="text-[#14b8a6] transition-all duration-700" stroke-dasharray="42.9, 100" stroke-width="3.8" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <div class="relative w-[68px] h-[68px] flex items-center justify-center">
+                          <svg class="w-[68px] h-[68px] transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            <path id="ringOp3VoArc" class="text-[#14b8a6] transition-all duration-700" stroke-dasharray="42.9, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
                           </svg>
-                          <span id="ringOp3VoText" class="absolute text-[10.5px] font-extrabold text-[#0d9488]">42,9%</span>
+                          <span id="ringOp3VoText" class="absolute text-[11px] font-extrabold text-[#0d9488]">42,9%</span>
                         </div>
-                        <span class="text-[10px] font-semibold text-slate-600 mt-1">Perubahan</span>
+                        <span class="text-[10px] font-bold text-slate-700 mt-1">Perubahan</span>
+                        <span id="ringOp3VoSub" class="text-[9px] text-slate-500 font-medium">6/14 Lengkap</span>
                       </div>
+                    </div>
+
+                    <div id="ringOp3Footer" class="pt-1.5 border-t border-slate-200/70 dark:border-slate-700 flex items-center justify-between text-[9px] font-semibold text-slate-600">
+                      <span>Skor Dok: <b class="text-emerald-700 dark:text-emerald-300">67,1%</b></span>
+                      <span class="text-rose-600 font-bold">8 Tindak Lanjut</span>
                     </div>
                   </div>
 
                 </div>
               </div>
 
-              <!-- CARD 7: Progress Kepatuhan per Operasi (5 cols) -->
-              <div class="lg:col-span-5 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between">
-                <div class="flex flex-wrap items-center justify-between gap-2 pb-1 border-b border-slate-100">
+              <!-- CARD 7: Progress Kepatuhan per Operasi (Expanded Full Height + Growth Summary Footer, 5 cols) -->
+              <div class="lg:col-span-5 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between h-full">
+                <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-100">
                   <div class="flex items-center gap-1.5">
                     <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
                       <span class="material-symbols-outlined text-xs">show_chart</span>
@@ -619,14 +654,30 @@
                 </div>
 
                 <!-- Line Chart + Right Pill Badges matching reference -->
-                <div class="flex items-center gap-2 pt-1">
-                  <div class="h-32 flex-1 relative">
+                <div class="flex items-center gap-2.5 py-2 flex-1 min-h-[145px]">
+                  <div class="h-full min-h-[140px] flex-1 relative">
                     <canvas id="progressTrendChart"></canvas>
                   </div>
-                  <div class="flex flex-col gap-1.5 shrink-0">
+                  <div class="flex flex-col gap-2 shrink-0">
                     <span id="trendBadgeOp2" class="px-2 py-0.5 rounded-md bg-[#f59e0b] text-white font-bold text-[10px] shadow-sm text-center">77,8%</span>
                     <span id="trendBadgeOp1" class="px-2 py-0.5 rounded-md bg-[#0d6efd] text-white font-bold text-[10px] shadow-sm text-center">63,2%</span>
                     <span id="trendBadgeOp3" class="px-2 py-0.5 rounded-md bg-[#10b981] text-white font-bold text-[10px] shadow-sm text-center">42,9%</span>
+                  </div>
+                </div>
+
+                <!-- Bottom Trend Growth Strip (Aligns with Department Cards Footer) -->
+                <div class="pt-2 border-t border-slate-100 grid grid-cols-3 gap-2 text-center text-[9.5px]">
+                  <div class="px-2 py-1 rounded-lg bg-sky-50/70 dark:bg-slate-800/60 border border-sky-100 dark:border-slate-700 flex items-center justify-between">
+                    <span class="font-bold text-slate-600">OP 1</span>
+                    <span class="font-extrabold text-emerald-600">&uarr; +13,2%</span>
+                  </div>
+                  <div class="px-2 py-1 rounded-lg bg-amber-50/70 dark:bg-slate-800/60 border border-amber-100 dark:border-slate-700 flex items-center justify-between">
+                    <span class="font-bold text-slate-600">OP 2</span>
+                    <span class="font-extrabold text-emerald-600">&uarr; +15,8%</span>
+                  </div>
+                  <div class="px-2 py-1 rounded-lg bg-emerald-50/70 dark:bg-slate-800/60 border border-emerald-100 dark:border-slate-700 flex items-center justify-between">
+                    <span class="font-bold text-slate-600">OP 3</span>
+                    <span class="font-extrabold text-emerald-600">&uarr; +12,9%</span>
                   </div>
                 </div>
               </div>
@@ -636,7 +687,7 @@
           </div>
 
           <!-- RIGHT 3 COLUMNS: KALENDER + AGENDA PENTING + QUICK ACCESS 2x2 -->
-          <div class="xl:col-span-3 flex flex-col gap-3.5">
+          <div class="xl:col-span-3 flex flex-col gap-3.5 h-full">
             
             <!-- CARD 5: Kalender & Agenda Penting (Multi-Year Interactive Calendar + Manual Agenda Creator) -->
             <div class="dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between flex-1">
@@ -677,14 +728,14 @@
                     <span>+ Buat Agenda</span>
                   </button>
                 </div>
-                <div id="calendarAgendaList" class="space-y-1 max-h-[68px] overflow-y-auto pr-0.5">
+                <div id="calendarAgendaList" class="space-y-1 max-h-[64px] overflow-y-auto pr-0.5">
                   <!-- Populated dynamically via renderCalendar() -->
                 </div>
               </div>
             </div>
 
             <!-- CARD 8: Quick Access (2x2 Grid without truncation) -->
-            <div class="dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm space-y-2.5">
+            <div class="dashboard-card p-3 rounded-xl bg-white border border-slate-200/90 shadow-sm space-y-2">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-1.5">
                   <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
@@ -695,7 +746,7 @@
                 <span class="text-slate-400 text-xs font-bold">&bull;&bull;&bull;</span>
               </div>
 
-              <div class="grid grid-cols-2 gap-2">
+              <div class="grid grid-cols-2 gap-1.5">
                 <a href="#matrixTableSection" class="flex items-center gap-2 p-2 rounded-lg bg-[#f4f8fc] hover:bg-sky-50 border border-slate-200/80 transition-all font-bold text-[10.5px] text-[#0c2340]">
                   <div class="w-6 h-6 rounded bg-[#0d6efd] text-white flex items-center justify-center shrink-0">
                     <span class="material-symbols-outlined text-xs">search</span>
@@ -731,7 +782,7 @@
         </div>
 
         <!-- ======================================================== -->
-        <!-- ROW 3: KELENGKAPAN DOKUMEN (COMPACT SPACING & REAL SHEET COUNTS) -->
+        <!-- ROW 3: KELENGKAPAN DOKUMEN (COMPACT SPACING & BALANCED TWO-COLUMN ANALYTICS) -->
         <!-- ======================================================== -->
         <div class="dashboard-card p-3 rounded-xl bg-white border border-slate-200/90 shadow-sm space-y-1.5" id="kelengkapanDokumenSection">
           <div class="flex flex-wrap items-center justify-between gap-2">
@@ -750,27 +801,62 @@
             </div>
           </div>
 
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 items-stretch">
             
             <!-- Left: Contract Management (14 Dokumen) -->
-            <div class="space-y-1">
-              <div class="px-3 py-1 rounded bg-[#083c75] text-white text-[11px] font-bold flex items-center justify-between">
-                <span>Contract Management (14 Dokumen)</span>
-                <span class="text-[9.5px] text-sky-200 font-normal">Klik baris untuk filter</span>
-              </div>
-              <div class="space-y-0.5 pt-0.5" id="cmBarsContainer">
-                <!-- Populated via JS -->
+            <div class="space-y-1 flex flex-col justify-between">
+              <div>
+                <div class="px-3 py-1 rounded bg-[#083c75] text-white text-[11px] font-bold flex items-center justify-between">
+                  <span>Contract Management (14 Dokumen)</span>
+                  <span class="text-[9.5px] text-sky-200 font-normal">Klik baris untuk filter</span>
+                </div>
+                <div class="space-y-0.5 pt-0.5" id="cmBarsContainer">
+                  <!-- Populated via JS -->
+                </div>
               </div>
             </div>
 
-            <!-- Right: Perubahan (6 Dokumen) -->
-            <div class="space-y-1">
-              <div class="px-3 py-1 rounded bg-[#1d70d6] text-white text-[11px] font-bold flex items-center justify-between">
-                <span>Perubahan (6 Dokumen)</span>
-                <span class="text-[9.5px] text-sky-100 font-normal">Klik baris untuk filter</span>
+            <!-- Right: Perubahan (6 Dokumen) + Ringkasan Evaluasi 20 Parameter (Eliminates Empty Bottom Space) -->
+            <div class="flex flex-col justify-between gap-2">
+              <div class="space-y-1">
+                <div class="px-3 py-1 rounded bg-[#1d70d6] text-white text-[11px] font-bold flex items-center justify-between">
+                  <span>Perubahan (6 Dokumen)</span>
+                  <span class="text-[9.5px] text-sky-100 font-normal">Klik baris untuk filter</span>
+                </div>
+                <div class="space-y-0.5 pt-0.5" id="voBarsContainer">
+                  <!-- Populated via JS -->
+                </div>
               </div>
-              <div class="space-y-1 pt-0.5" id="voBarsContainer">
-                <!-- Populated via JS -->
+
+              <!-- Ringkasan Evaluasi & Analitik 20 Parameter Dokumen (Fills right column symmetrically) -->
+              <div class="p-2.5 rounded-xl bg-slate-50/90 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700 space-y-2">
+                <div class="flex items-center justify-between border-b border-slate-200/70 dark:border-slate-700 pb-1.5">
+                  <div class="flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-xs text-[#0c4a8a] dark:text-sky-400">analytics</span>
+                    <span class="text-[10.5px] font-bold text-[#0c2340]">Ikhtisar Verifikasi 20 Parameter Dokumen</span>
+                  </div>
+                  <span id="docSummaryVerifiedTotal" class="px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300 font-extrabold text-[9.5px]">800 / 1.020 Dokumen (78,4%)</span>
+                </div>
+
+                <div class="grid grid-cols-3 gap-2 text-center">
+                  <div class="p-1.5 rounded-lg bg-white dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-700">
+                    <div class="text-[9px] text-slate-500 font-semibold">Rata-rata CM (14 Dok)</div>
+                    <div id="docSummaryAvgCm" class="text-xs font-extrabold text-[#159a5c] mt-0.5">86,8%</div>
+                  </div>
+                  <div class="p-1.5 rounded-lg bg-white dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-700">
+                    <div class="text-[9px] text-slate-500 font-semibold">Rata-rata VO (6 Dok)</div>
+                    <div id="docSummaryAvgVo" class="text-xs font-extrabold text-[#0d6efd] mt-0.5">58,8%</div>
+                  </div>
+                  <div class="p-1.5 rounded-lg bg-white dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-700">
+                    <div class="text-[9px] text-slate-500 font-semibold">Parameter Terendah</div>
+                    <div id="docSummaryLowestParam" class="text-[10px] font-extrabold text-amber-600 mt-0.5 truncate" title="Perubahan / VO & Checklist Progress">VO &amp; MoM (58,8%)</div>
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-between text-[9.5px] text-slate-600 pt-0.5">
+                  <span><strong class="text-emerald-700 dark:text-emerald-400">Tertinggi:</strong> CCMS, SPP, BASTL, Exec. Summary, EoT (94,1%)</span>
+                  <button onclick="openAlertsModal('belum_lengkap')" class="font-bold text-[#0d6efd] hover:underline">Lihat Kekurangan &rsaquo;</button>
+                </div>
               </div>
             </div>
 
@@ -1772,10 +1858,17 @@
         const n = arr.length || 1;
         const cL = arr.filter(p => p["Skor CM"] === 14 || p["Status CM"] === "Lengkap").length;
         const vL = arr.filter(p => p["Skor VO"] === 6 || p["Status VO"] === "Lengkap").length;
+        const totalDocsObtained = arr.reduce((acc, p) => acc + (Number(p["Total Dokumen"]) || 0), 0);
+        const avgDocPct = Number(((totalDocsObtained / (n * 20)) * 100).toFixed(1));
+        const prioCount = arr.filter(p => (Number(p["Total Dokumen"]) || 0) < 20).length;
         return {
           count: arr.length,
+          cmLengkap: cL,
+          voLengkap: vL,
           cmPct: Number(((cL / n) * 100).toFixed(1)),
-          voPct: Number(((vL / n) * 100).toFixed(1))
+          voPct: Number(((vL / n) * 100).toFixed(1)),
+          avgDocPct,
+          prioCount
         };
       };
 
@@ -1790,22 +1883,30 @@
         barChartInstance.update();
       }
 
-      // Update Card 6 Ringkasan per Departemen Operasi
-      const setRing = (opNum, stats) => {
+      // Update Card 6 Ringkasan per Departemen Operasi (Proportional Sub-Cards)
+      const setRing = (opNum, stats, accentClass) => {
         const titleEl = document.getElementById(`ringOp${opNum}Title`);
-        if (titleEl) titleEl.textContent = `Operasi ${opNum} - ${stats.count} Proyek`;
+        if (titleEl) titleEl.textContent = `${stats.count} Proyek`;
         const cmArc = document.getElementById(`ringOp${opNum}CmArc`);
         if (cmArc) cmArc.setAttribute("stroke-dasharray", `${stats.cmPct}, 100`);
         const cmTxt = document.getElementById(`ringOp${opNum}CmText`);
         if (cmTxt) cmTxt.textContent = formatPctComma(stats.cmPct);
+        const cmSub = document.getElementById(`ringOp${opNum}CmSub`);
+        if (cmSub) cmSub.textContent = `${stats.cmLengkap}/${stats.count} Lengkap`;
         const voArc = document.getElementById(`ringOp${opNum}VoArc`);
         if (voArc) voArc.setAttribute("stroke-dasharray", `${stats.voPct}, 100`);
         const voTxt = document.getElementById(`ringOp${opNum}VoText`);
         if (voTxt) voTxt.textContent = formatPctComma(stats.voPct);
+        const voSub = document.getElementById(`ringOp${opNum}VoSub`);
+        if (voSub) voSub.textContent = `${stats.voLengkap}/${stats.count} Lengkap`;
+        const footerEl = document.getElementById(`ringOp${opNum}Footer`);
+        if (footerEl) {
+          footerEl.innerHTML = `<span>Skor Dok: <b class="${accentClass}">${formatPctComma(stats.avgDocPct)}</b></span><span class="text-amber-600 font-bold">${stats.prioCount} Tindak Lanjut</span>`;
+        }
       };
-      setRing(1, op1);
-      setRing(2, op2);
-      setRing(3, op3);
+      setRing(1, op1, "text-[#0c4a8a] dark:text-sky-300");
+      setRing(2, op2, "text-amber-700 dark:text-amber-300");
+      setRing(3, op3, "text-emerald-700 dark:text-emerald-300");
 
       // Update Card 7 Trend Chart latest point & right badges
       if (trendChartInstance) {
@@ -1859,10 +1960,12 @@
         }
       }
 
+      let sumCmChecks = 0;
       const cmContainer = document.getElementById("cmBarsContainer");
       if (cmContainer) {
         cmContainer.innerHTML = CM_LABELS.map(item => {
           const count = baseProjects.filter(p => p[item.key] === "✓").length;
+          sumCmChecks += count;
           const pct = Number(((count / denom) * 100).toFixed(1));
           const pctStr = pct.toFixed(1).replace('.', ',') + '%';
           const isSelected = activeDocParam === item.key;
@@ -1878,10 +1981,12 @@
         }).join("");
       }
 
+      let sumVoChecks = 0;
       const voContainer = document.getElementById("voBarsContainer");
       if (voContainer) {
         voContainer.innerHTML = VO_LABELS.map(item => {
           const count = baseProjects.filter(p => p[item.key] === "✓").length;
+          sumVoChecks += count;
           const pct = Number(((count / denom) * 100).toFixed(1));
           const pctStr = pct.toFixed(1).replace('.', ',') + '%';
           const isSelected = activeDocParam === item.key;
@@ -1896,6 +2001,20 @@
           `;
         }).join("");
       }
+
+      // Update Right-Column Document Verification Summary Box
+      const totalPossibleDocs = denom * 20;
+      const totalVerifiedDocs = sumCmChecks + sumVoChecks;
+      const totalVerifiedPct = ((totalVerifiedDocs / (totalPossibleDocs || 1)) * 100).toFixed(1).replace('.', ',') + '%';
+      const avgCmPct = ((sumCmChecks / ((denom * 14) || 1)) * 100).toFixed(1).replace('.', ',') + '%';
+      const avgVoPct = ((sumVoChecks / ((denom * 6) || 1)) * 100).toFixed(1).replace('.', ',') + '%';
+
+      const elDocTotal = document.getElementById("docSummaryVerifiedTotal");
+      if (elDocTotal) elDocTotal.textContent = `${totalVerifiedDocs} / ${totalPossibleDocs} Dokumen (${totalVerifiedPct})`;
+      const elAvgCm = document.getElementById("docSummaryAvgCm");
+      if (elAvgCm) elAvgCm.textContent = avgCmPct;
+      const elAvgVo = document.getElementById("docSummaryAvgVo");
+      if (elAvgVo) elAvgVo.textContent = avgVoPct;
     }
 
     function clearDocParamFilter() {
@@ -2796,6 +2915,10 @@
       const icon = document.getElementById('themeIcon');
       if (icon) {
         icon.textContent = isDark ? 'dark_mode' : 'light_mode';
+      }
+      const modeTxt = document.getElementById('themeModeText');
+      if (modeTxt) {
+        modeTxt.textContent = isDark ? 'Dark' : 'Light';
       }
       updateChartsTheme(isDark);
       if (isDark) {
