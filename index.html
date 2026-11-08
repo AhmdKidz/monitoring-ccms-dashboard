@@ -166,88 +166,82 @@
 </head>
 <body class="bg-[#f0f5fc] text-slate-800 antialiased min-h-screen selection:bg-wika-cyan/20 selection:text-wika-dark transition-colors duration-200">
 
-  <!-- Toast Notification -->
-  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3 px-4 py-3 rounded-xl bg-white shadow-2xl border border-slate-200">
-    <span id="toastIcon" class="material-symbols-outlined text-wika-cyan text-xl">check_circle</span>
-    <div>
-      <div id="toastTitle" class="text-xs font-bold text-slate-900">Notifikasi</div>
-      <div id="toastMessage" class="text-[11px] text-slate-600">Pesan konfirmasi</div>
-    </div>
-  </div>
-
-  <div class="flex min-h-screen">
+  <div class="flex min-h-screen items-start">
 
     <!-- ======================================================== -->
-    <!-- LEFT SIDEBAR (WIKA BRANDING & NAVIGATION) -->
+    <!-- LEFT SIDEBAR (FROZEN / STICKY ON SCROLL + WIKA BRANDING) -->
     <!-- ======================================================== -->
-    <aside class="w-60 bg-gradient-to-b from-[#0c488c] via-[#0a4285] to-[#062d5e] text-white flex flex-col justify-between shrink-0 relative overflow-hidden shadow-xl z-20 select-none">
+    <aside class="w-60 bg-gradient-to-b from-[#0c488c] via-[#0a4285] to-[#062d5e] text-white flex flex-col justify-between shrink-0 sticky top-0 h-screen overflow-hidden shadow-xl z-30 select-none">
       
       <!-- Top Section -->
-      <div class="p-4 space-y-5 relative z-10">
+      <div class="p-3.5 space-y-3.5 relative z-10">
         
         <!-- Transparent White WIKA Logo (NO white background box) -->
-        <div class="pt-1 pb-3 text-center border-b border-white/15">
-          <img src="assets/wika-logo-white.svg" alt="Logo PT Wijaya Karya (Persero) Tbk" class="h-14 w-auto mx-auto object-contain drop-shadow-sm"/>
-          <p class="text-[9.5px] font-medium text-sky-100/90 tracking-wide leading-snug mt-2 px-1">
+        <div class="pt-0.5 pb-2.5 text-center border-b border-white/15">
+          <img src="assets/wika-logo-white.svg" alt="Logo PT Wijaya Karya (Persero) Tbk" class="h-12 w-auto mx-auto object-contain drop-shadow-sm"/>
+          <p class="text-[9px] font-medium text-sky-100/90 tracking-wide leading-snug mt-1.5 px-1">
             The Leading EPCC &amp; Green Contractor In Indonesia
           </p>
         </div>
 
         <!-- Navigation Menu -->
-        <nav class="space-y-1.5" id="sidebarNav">
+        <nav class="space-y-1" id="sidebarNav">
           <!-- Overview (Active Pill) -->
-          <a href="javascript:void(0)" onclick="setActiveNav(this, 'overview')" id="nav-overview" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-bold text-xs bg-[#1859a3] text-white border border-sky-400/40 shadow-sm transition-all relative">
+          <a href="javascript:void(0)" onclick="setActiveNav(this, 'overview')" id="nav-overview" class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg font-bold text-xs bg-[#1859a3] text-white border border-sky-400/40 shadow-sm transition-all relative">
             <span class="nav-indicator w-1 h-5 rounded-full bg-white absolute left-1"></span>
             <span class="material-symbols-outlined text-base ml-1">home</span>
             <span>Overview</span>
           </a>
 
           <!-- Contract Management (14 Dokumen) -->
-          <a href="javascript:void(0)" onclick="setActiveNav(this, 'cm')" id="nav-cm" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-xs text-sky-100 hover:text-white hover:bg-white/10 transition-all relative">
+          <a href="javascript:void(0)" onclick="setActiveNav(this, 'cm')" id="nav-cm" class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg font-medium text-xs text-sky-100 hover:text-white hover:bg-white/10 transition-all relative">
             <span class="nav-indicator hidden w-1 h-5 rounded-full bg-white absolute left-1"></span>
             <span class="material-symbols-outlined text-base text-sky-300 ml-1">description</span>
             <span class="leading-tight">Contract Management<br/><span class="text-[10px] text-sky-200/80">(14 Dokumen)</span></span>
           </a>
 
           <!-- Perubahan (VO, Claim, Anti Claim & Insurance) -->
-          <a href="javascript:void(0)" onclick="setActiveNav(this, 'vo')" id="nav-vo" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-xs text-sky-100 hover:text-white hover:bg-white/10 transition-all relative">
+          <a href="javascript:void(0)" onclick="setActiveNav(this, 'vo')" id="nav-vo" class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg font-medium text-xs text-sky-100 hover:text-white hover:bg-white/10 transition-all relative">
             <span class="nav-indicator hidden w-1 h-5 rounded-full bg-white absolute left-1"></span>
             <span class="material-symbols-outlined text-base text-sky-300 ml-1">autorenew</span>
             <span class="leading-tight">Perubahan (VO, Claim,<br/><span class="text-[10px] text-sky-200/80">Anti Claim &amp; Insurance)</span></span>
           </a>
 
           <!-- Per Departemen Operasi -->
-          <a href="javascript:void(0)" onclick="setActiveNav(this, 'do')" id="nav-do" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-xs text-sky-100 hover:text-white hover:bg-white/10 transition-all relative">
+          <a href="javascript:void(0)" onclick="setActiveNav(this, 'do')" id="nav-do" class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg font-medium text-xs text-sky-100 hover:text-white hover:bg-white/10 transition-all relative">
             <span class="nav-indicator hidden w-1 h-5 rounded-full bg-white absolute left-1"></span>
             <span class="material-symbols-outlined text-base text-sky-300 ml-1">pie_chart</span>
             <span>Per Departemen Operasi</span>
           </a>
 
           <!-- Detail Proyek -->
-          <a href="javascript:void(0)" onclick="setActiveNav(this, 'detail')" id="nav-detail" class="nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-xs text-sky-100 hover:text-white hover:bg-white/10 transition-all relative">
+          <a href="javascript:void(0)" onclick="setActiveNav(this, 'detail')" id="nav-detail" class="nav-item flex items-center gap-3 px-3 py-2 rounded-lg font-medium text-xs text-sky-100 hover:text-white hover:bg-white/10 transition-all relative">
             <span class="nav-indicator hidden w-1 h-5 rounded-full bg-white absolute left-1"></span>
             <span class="material-symbols-outlined text-base text-sky-300 ml-1">assignment</span>
             <span>Detail Proyek</span>
           </a>
         </nav>
 
-        <!-- Subtle Live Sync Status Card -->
-        <div class="p-3 rounded-xl bg-white/10 border border-white/15 text-[11px] space-y-1">
+        <!-- Live Google Sheet Sync Status Card -->
+        <div onclick="syncFromGoogleSheet(true)" class="p-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-[11px] space-y-1 cursor-pointer transition-all" title="Klik untuk sinkronisasi langsung dengan Google Sheet terbaru (051026)">
           <div class="flex items-center justify-between text-white font-bold">
             <span class="flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span id="sidebarSyncLabel">Data Terkini</span>
+              <span id="sidebarSyncDot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span id="sidebarSyncLabel">Update: 5 Okt 2026</span>
             </span>
-            <span class="text-[10px] text-sky-200 font-mono">51 Proyek</span>
+            <span id="sidebarTotalCount" class="text-[10px] text-sky-200 font-mono">51 Proyek</span>
           </div>
-          <p class="text-sky-100/80 text-[10px] leading-snug">Sub Divisi Infrastruktur 1</p>
+          <div class="flex items-center justify-between text-sky-100/80 text-[9.5px] leading-snug">
+            <span>Google Sheet Live Sync</span>
+            <span class="material-symbols-outlined text-xs">sync</span>
+          </div>
         </div>
 
       </div>
 
-      <!-- Bottom Architectural Skyline & Lattice Tower Crane Illustration (Crisp Vector) -->
-      <div class="relative w-full mt-auto pt-2 pointer-events-none">
-        <img src="assets/sidebar-skyline.svg" alt="Architectural Buildings and Tower Crane Vector" class="w-full h-auto object-bottom object-contain opacity-95"/>
+      <!-- Bottom Architectural Skyline & Lattice Tower Crane Illustration (Always visible at bottom of sticky sidebar) -->
+      <div class="relative w-full mt-auto pt-1 pointer-events-none shrink-0">
+        <img src="assets/sidebar-skyline.svg" alt="Architectural Buildings and Tower Crane Vector" class="w-full max-h-[185px] object-bottom object-contain opacity-95"/>
       </div>
 
     </aside>
@@ -258,34 +252,37 @@
     <div class="flex-1 flex flex-col min-w-0">
 
       <!-- TOP HEADER (TITLE & FILTER BAR) -->
-      <header class="bg-white border-b border-slate-200/90 px-6 py-3.5 sticky top-0 z-30 shadow-sm flex flex-wrap items-center justify-between gap-4 relative overflow-hidden">
+      <header class="bg-white border-b border-slate-200/90 px-6 py-3 sticky top-0 z-30 shadow-sm flex flex-wrap items-center justify-between gap-4 relative overflow-hidden">
         <!-- Subtle Top-Right Skyline Illustration matching reference -->
         <img src="assets/header-skyline.svg" alt="" class="absolute right-0 top-0 h-full w-auto object-cover pointer-events-none opacity-85 hidden xl:block dark:opacity-20"/>
 
         <!-- Title & Subtitle -->
         <div class="relative z-10">
-          <div class="flex items-center gap-2.5">
+          <div class="flex items-center gap-2.5 flex-wrap">
             <h1 class="text-xl font-extrabold text-[#083b7a] tracking-tight">
               CCMS Monitoring Dashboard
             </h1>
-            <span id="periodStatusBadge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200 flex items-center gap-1">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Terkini
+            <span id="periodStatusBadge" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Terkini (5 Oktober 2026)
             </span>
           </div>
           <p class="text-xs font-medium text-slate-500">
-            Contract Management Infrastructure 1 Sub Division
+            Contract Management Infrastructure 1 Sub Division &bull; Sumber: Google Sheet <span class="font-semibold text-[#0c4a8a]">051026 Cheklist Adkon Dashboard Rev</span>
           </p>
         </div>
 
         <!-- Filter Controls Cluster -->
         <div class="flex flex-wrap items-center gap-2 text-xs relative z-10">
           
-          <!-- Periode Dropdown (With "Terkini" Default + Historical Options) -->
+          <!-- Periode Dropdown (With "Terkini - 5 Okt 2026" Default + Historical Options) -->
           <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-slate-700 shadow-sm">
             <span class="material-symbols-outlined text-[#0d5cab] text-sm">calendar_month</span>
             <span class="text-[11px] text-slate-500">Periode:</span>
             <select id="filterPeriod" onchange="handlePeriodFilter(this.value)" class="bg-transparent font-bold text-slate-800 focus:outline-none cursor-pointer">
-              <option value="terkini" selected>Terkini (Terbaru)</option>
+              <option value="terkini" selected>Terkini (5 Okt 2026)</option>
+              <option value="okt-2026">Oktober 2026 (5 Okt)</option>
+              <option value="sep-2026">September 2026</option>
+              <option value="agu-2026">Agustus 2026</option>
               <option value="jul-2026">Juli 2026</option>
               <option value="jun-2026">Juni 2026</option>
               <option value="mei-2026">Mei 2026</option>
@@ -308,7 +305,9 @@
             <span class="text-[11px] text-slate-500">Tahapan:</span>
             <select id="filterTahapan" onchange="handleTahapanFilter(this.value)" class="bg-transparent font-bold text-slate-800 focus:outline-none cursor-pointer">
               <option value="all" selected>All</option>
-              <option value="pelaksanaan">Pelaksanaan (Aktif)</option>
+              <option value="cm">Contract Management (14 Dok)</option>
+              <option value="vo">Perubahan / VO (6 Dok)</option>
+              <option value="pelaksanaan">Masa Pelaksanaan (Aktif)</option>
               <option value="mc-0">MC-0 / Addendum Awal</option>
               <option value="serah-terima">Serah Terima (BASTL)</option>
             </select>
@@ -317,11 +316,17 @@
           <!-- Search Input -->
           <div class="relative">
             <span class="material-symbols-outlined absolute left-2.5 top-2 text-slate-400 text-sm">search</span>
-            <input type="text" id="searchInput" oninput="handleSearch(this.value)" placeholder="Cari Nama Proyek..." class="pl-8 pr-7 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-medium text-slate-800 focus:outline-none focus:border-[#0d5cab] w-44 md:w-52 transition-all shadow-sm"/>
+            <input type="text" id="searchInput" oninput="handleSearch(this.value)" placeholder="Cari Nama Proyek..." class="pl-8 pr-7 py-1.5 rounded-lg bg-white border border-slate-300 text-xs font-medium text-slate-800 focus:outline-none focus:border-[#0d5cab] w-40 md:w-48 transition-all shadow-sm"/>
             <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-2 top-2 text-slate-400 hover:text-slate-600">
               <span class="material-symbols-outlined text-xs">close</span>
             </button>
           </div>
+
+          <!-- Live Sync Google Sheet Button -->
+          <button onclick="syncFromGoogleSheet(true)" class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 font-bold shadow-sm transition-all active:scale-95" title="Sinkronisasi langsung dengan Google Sheet (1_HyDeqYkUB-HdLJwGLEUgx1nOmOoIx-OGDCgZGRvE4w)">
+            <span id="headerSyncIcon" class="material-symbols-outlined text-sm text-emerald-600">sync</span>
+            <span class="hidden sm:inline">Sync Sheet</span>
+          </button>
 
           <!-- Reset Filter Button -->
           <button onclick="resetFilters()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 font-bold shadow-sm transition-all active:scale-95">
@@ -371,16 +376,16 @@
                 </div>
 
                 <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[9px] text-slate-600 font-bold relative z-10 whitespace-nowrap">
-                  <button onclick="handleDepartmentFilter('DO 1')" class="hover:text-[#0d6efd] transition-colors" title="Filter DO 1">DO 1: <b>19</b></button>
+                  <button onclick="handleDepartmentFilter('DO 1')" class="hover:text-[#0d6efd] transition-colors" title="Filter DO 1">DO 1: <b id="kpiDo1Count">19</b></button>
                   <span class="text-slate-300">|</span>
-                  <button onclick="handleDepartmentFilter('DO 2')" class="hover:text-[#f59e0b] transition-colors" title="Filter DO 2">DO 2: <b>18</b></button>
+                  <button onclick="handleDepartmentFilter('DO 2')" class="hover:text-[#f59e0b] transition-colors" title="Filter DO 2">DO 2: <b id="kpiDo2Count">18</b></button>
                   <span class="text-slate-300">|</span>
-                  <button onclick="handleDepartmentFilter('DO 3')" class="hover:text-[#10b981] transition-colors" title="Filter DO 3">DO 3: <b>14</b></button>
+                  <button onclick="handleDepartmentFilter('DO 3')" class="hover:text-[#10b981] transition-colors" title="Filter DO 3">DO 3: <b id="kpiDo3Count">14</b></button>
                 </div>
               </div>
 
               <!-- CARD 2: Kepatuhan Contract Management (14 Dokumen) (3 cols) -->
-              <div class="lg:col-span-3 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between">
+              <div id="cardCmSection" class="lg:col-span-3 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between">
                 <div class="flex items-start gap-2">
                   <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0 mt-0.5">
                     <span class="material-symbols-outlined text-xs">description</span>
@@ -423,7 +428,7 @@
               </div>
 
               <!-- CARD 3: Kepatuhan Perubahan (VO, Claim, Anti Claim & Insurance) (3 cols) -->
-              <div class="lg:col-span-3 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between">
+              <div id="cardVoSection" class="lg:col-span-3 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between">
                 <div class="flex items-start gap-2">
                   <div class="w-5 h-5 rounded bg-[#0d6efd] text-white flex items-center justify-center shrink-0 mt-0.5">
                     <span class="material-symbols-outlined text-xs">autorenew</span>
@@ -502,10 +507,10 @@
                 <div class="grid grid-cols-3 divide-x divide-slate-200 pt-2 text-center">
                   
                   <!-- Operasi 1 - 19 Proyek (BLUE / CYAN PALETTE) -->
-                  <div onclick="handleDepartmentFilter('DO 1')" class="px-2 py-1 rounded-lg hover:bg-sky-50/50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors space-y-2" title="Klik untuk memfilter Operasi 1 (19 Proyek)">
+                  <div onclick="handleDepartmentFilter('DO 1')" class="px-2 py-1 rounded-lg hover:bg-sky-50/50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors space-y-2" title="Klik untuk memfilter Operasi 1">
                     <div class="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#0c2340]">
                       <span class="w-2 h-2 rounded-full bg-[#0d6efd]"></span>
-                      <span>Operasi 1 - 19 Proyek</span>
+                      <span id="ringOp1Title">Operasi 1 - 19 Proyek</span>
                     </div>
                     <div class="flex items-center justify-center gap-3">
                       <div class="flex flex-col items-center">
@@ -533,10 +538,10 @@
                   </div>
 
                   <!-- Operasi 2 - 18 Proyek (AMBER / ORANGE PALETTE) -->
-                  <div onclick="handleDepartmentFilter('DO 2')" class="px-2 py-1 rounded-lg hover:bg-amber-50/50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors space-y-2" title="Klik untuk memfilter Operasi 2 (18 Proyek)">
+                  <div onclick="handleDepartmentFilter('DO 2')" class="px-2 py-1 rounded-lg hover:bg-amber-50/50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors space-y-2" title="Klik untuk memfilter Operasi 2">
                     <div class="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#0c2340]">
                       <span class="w-2 h-2 rounded-full bg-[#f59e0b]"></span>
-                      <span>Operasi 2 - 18 Proyek</span>
+                      <span id="ringOp2Title">Operasi 2 - 18 Proyek</span>
                     </div>
                     <div class="flex items-center justify-center gap-3">
                       <div class="flex flex-col items-center">
@@ -564,10 +569,10 @@
                   </div>
 
                   <!-- Operasi 3 - 14 Proyek (EMERALD / TEAL PALETTE) -->
-                  <div onclick="handleDepartmentFilter('DO 3')" class="px-2 py-1 rounded-lg hover:bg-emerald-50/50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors space-y-2" title="Klik untuk memfilter Operasi 3 (14 Proyek)">
+                  <div onclick="handleDepartmentFilter('DO 3')" class="px-2 py-1 rounded-lg hover:bg-emerald-50/50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors space-y-2" title="Klik untuk memfilter Operasi 3">
                     <div class="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#0c2340]">
                       <span class="w-2 h-2 rounded-full bg-[#10b981]"></span>
-                      <span>Operasi 3 - 14 Proyek</span>
+                      <span id="ringOp3Title">Operasi 3 - 14 Proyek</span>
                     </div>
                     <div class="flex items-center justify-center gap-3">
                       <div class="flex flex-col items-center">
@@ -619,8 +624,8 @@
                     <canvas id="progressTrendChart"></canvas>
                   </div>
                   <div class="flex flex-col gap-1.5 shrink-0">
-                    <span id="trendBadgeOp2" class="px-2 py-0.5 rounded-md bg-[#0d6efd] text-white font-bold text-[10px] shadow-sm text-center">77,8%</span>
-                    <span id="trendBadgeOp1" class="px-2 py-0.5 rounded-md bg-[#f59e0b] text-white font-bold text-[10px] shadow-sm text-center">63,2%</span>
+                    <span id="trendBadgeOp2" class="px-2 py-0.5 rounded-md bg-[#f59e0b] text-white font-bold text-[10px] shadow-sm text-center">77,8%</span>
+                    <span id="trendBadgeOp1" class="px-2 py-0.5 rounded-md bg-[#0d6efd] text-white font-bold text-[10px] shadow-sm text-center">63,2%</span>
                     <span id="trendBadgeOp3" class="px-2 py-0.5 rounded-md bg-[#10b981] text-white font-bold text-[10px] shadow-sm text-center">42,9%</span>
                   </div>
                 </div>
@@ -633,7 +638,7 @@
           <!-- RIGHT 3 COLUMNS: KALENDER + AGENDA PENTING + QUICK ACCESS 2x2 -->
           <div class="xl:col-span-3 flex flex-col gap-3.5">
             
-            <!-- CARD 5: Kalender & Agenda Penting (Interactive Month Switcher) -->
+            <!-- CARD 5: Kalender & Agenda Penting (Multi-Year Interactive Calendar + Manual Agenda Creator) -->
             <div class="dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between flex-1">
               <div>
                 <div class="flex items-center justify-between pb-1.5 border-b border-slate-100">
@@ -641,33 +646,39 @@
                     <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
                       <span class="material-symbols-outlined text-xs">calendar_month</span>
                     </div>
-                    <h2 class="text-xs font-bold text-[#0c2340]">Kalender</h2>
+                    <div>
+                      <h2 class="text-xs font-bold text-[#0c2340] leading-none">Kalender</h2>
+                      <span class="text-[8.5px] text-slate-400">Klik tanggal untuk buat agenda</span>
+                    </div>
                   </div>
-                  <div class="flex items-center gap-2 text-xs text-[#0c2340] font-bold">
-                    <button onclick="changeCalendarMonth(-1)" class="w-5 h-5 rounded hover:bg-slate-100 text-slate-500 hover:text-slate-800 flex items-center justify-center" title="Bulan Sebelumnya">&lsaquo;</button>
-                    <span id="calendarMonthLabel" class="min-w-[65px] text-center">Juli 2026</span>
-                    <button onclick="changeCalendarMonth(1)" class="w-5 h-5 rounded hover:bg-slate-100 text-slate-500 hover:text-slate-800 flex items-center justify-center" title="Bulan Berikutnya">&rsaquo;</button>
+                  <div class="flex items-center gap-1 text-xs text-[#0c2340] font-bold">
+                    <button onclick="changeCalendarMonth(-1)" class="w-5 h-5 rounded hover:bg-slate-100 text-slate-500 hover:text-slate-800 flex items-center justify-center font-extrabold" title="Bulan Sebelumnya">&lsaquo;</button>
+                    <span id="calendarMonthLabel" class="min-w-[86px] text-center text-[11px]">Oktober 2026</span>
+                    <button onclick="changeCalendarMonth(1)" class="w-5 h-5 rounded hover:bg-slate-100 text-slate-500 hover:text-slate-800 flex items-center justify-center font-extrabold" title="Bulan Berikutnya">&rsaquo;</button>
                   </div>
                 </div>
 
+                <!-- Weekday Headers -->
+                <div class="grid grid-cols-7 text-center text-[9px] font-bold text-slate-400 pt-1.5">
+                  <span>Sen</span><span>Sel</span><span>Rab</span><span>Kam</span><span>Jum</span><span>Sab</span><span class="text-rose-500">Min</span>
+                </div>
+
                 <!-- Calendar Grid -->
-                <div id="calendarDaysGrid" class="grid grid-cols-7 gap-y-1 text-center text-[10px] font-medium text-slate-700 my-2">
+                <div id="calendarDaysGrid" class="grid grid-cols-7 gap-y-0.5 text-center text-[10px] font-medium text-slate-700 my-1">
                   <!-- Populated dynamically via renderCalendar() -->
                 </div>
               </div>
 
-              <!-- Agenda Penting Banner -->
+              <!-- Agenda Penting Banner (Dynamic List + Add Button) -->
               <div class="pt-1.5 border-t border-slate-100">
                 <div class="flex items-center justify-between text-[10px] font-bold text-[#0c2340] mb-1">
                   <span>Agenda Penting</span>
-                  <span class="text-slate-400">&bull;&bull;&bull;</span>
+                  <button onclick="openCalendarAgendaModal()" class="text-[9.5px] font-bold text-[#0d6efd] hover:underline flex items-center gap-0.5">
+                    <span>+ Buat Agenda</span>
+                  </button>
                 </div>
-                <div onclick="openSopModal()" class="px-2.5 py-1.5 rounded-lg bg-[#fff8eb] border border-[#fde68a] flex items-center justify-between text-[10.5px] cursor-pointer hover:opacity-90 transition-opacity">
-                  <div class="flex items-center gap-1.5 text-[#0c2340] font-bold">
-                    <span class="material-symbols-outlined text-xs text-amber-500 fill">notifications</span>
-                    <span id="calendarAgendaText">27 Jul - Cut Off Monitoring</span>
-                  </div>
-                  <span class="text-slate-400 font-bold">&rsaquo;</span>
+                <div id="calendarAgendaList" class="space-y-1 max-h-[68px] overflow-y-auto pr-0.5">
+                  <!-- Populated dynamically via renderCalendar() -->
                 </div>
               </div>
             </div>
@@ -720,45 +731,45 @@
         </div>
 
         <!-- ======================================================== -->
-        <!-- ROW 3: KELENGKAPAN DOKUMEN (DUAL HEADER BANNERS & BARS) -->
+        <!-- ROW 3: KELENGKAPAN DOKUMEN (COMPACT SPACING & REAL SHEET COUNTS) -->
         <!-- ======================================================== -->
-        <div class="dashboard-card p-4 rounded-xl bg-white border border-slate-200/90 shadow-sm space-y-3" id="kelengkapanDokumenSection">
+        <div class="dashboard-card p-3 rounded-xl bg-white border border-slate-200/90 shadow-sm space-y-1.5" id="kelengkapanDokumenSection">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <div class="flex items-center gap-2">
-              <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
-                <span class="material-symbols-outlined text-xs">description</span>
+              <div class="w-4 h-4 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[11px]">description</span>
               </div>
               <h2 class="text-xs font-bold text-[#0c2340]">Kelengkapan Dokumen</h2>
             </div>
             <div class="flex items-center gap-2">
-              <span id="activeDocParamBadge" class="hidden px-2.5 py-0.5 rounded-full bg-sky-100 text-[#0c4a8a] font-bold text-[10px] items-center gap-1">
+              <span id="activeDocParamBadge" class="hidden px-2 py-0.5 rounded-full bg-sky-100 text-[#0c4a8a] font-bold text-[10px] items-center gap-1">
                 <span id="activeDocParamText">Filter: CCMS</span>
                 <button onclick="clearDocParamFilter()" class="hover:text-rose-600 font-extrabold ml-1">&times;</button>
               </span>
-              <span class="text-[11px] text-slate-400 font-medium">Klik batang dokumen untuk memfilter proyek di matriks bawah</span>
+              <span class="text-[10px] text-slate-400 font-medium">Klik batang dokumen untuk memfilter proyek di matriks bawah</span>
             </div>
           </div>
 
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
             
             <!-- Left: Contract Management (14 Dokumen) -->
-            <div class="space-y-1.5">
-              <div class="px-3.5 py-1.5 rounded-md bg-[#083c75] text-white text-xs font-bold flex items-center justify-between">
+            <div class="space-y-1">
+              <div class="px-3 py-1 rounded bg-[#083c75] text-white text-[11px] font-bold flex items-center justify-between">
                 <span>Contract Management (14 Dokumen)</span>
-                <span class="text-[10px] text-sky-200 font-normal">Klik baris untuk filter</span>
+                <span class="text-[9.5px] text-sky-200 font-normal">Klik baris untuk filter</span>
               </div>
-              <div class="space-y-1 pt-1" id="cmBarsContainer">
+              <div class="space-y-0.5 pt-0.5" id="cmBarsContainer">
                 <!-- Populated via JS -->
               </div>
             </div>
 
             <!-- Right: Perubahan (6 Dokumen) -->
-            <div class="space-y-1.5">
-              <div class="px-3.5 py-1.5 rounded-md bg-[#1d70d6] text-white text-xs font-bold flex items-center justify-between">
+            <div class="space-y-1">
+              <div class="px-3 py-1 rounded bg-[#1d70d6] text-white text-[11px] font-bold flex items-center justify-between">
                 <span>Perubahan (6 Dokumen)</span>
-                <span class="text-[10px] text-sky-100 font-normal">Klik baris untuk filter</span>
+                <span class="text-[9.5px] text-sky-100 font-normal">Klik baris untuk filter</span>
               </div>
-              <div class="space-y-2 pt-1" id="voBarsContainer">
+              <div class="space-y-1 pt-0.5" id="voBarsContainer">
                 <!-- Populated via JS -->
               </div>
             </div>
@@ -906,7 +917,7 @@
 
             <!-- Footer Summary -->
             <div class="px-3 py-2 rounded-lg bg-[#fff8eb] border border-[#fde68a] flex items-center justify-between text-[10.5px] text-amber-900">
-              <span class="font-semibold"><strong>Catatan ADKON:</strong> 18 Proyek memerlukan kelengkapan VO / Addendum 1</span>
+              <span id="priorityFooterNote" class="font-semibold"><strong>Catatan ADKON:</strong> 21 Proyek memerlukan kelengkapan VO / Addendum 1</span>
               <button onclick="openAlertsModal('all')" class="font-bold text-[#0c4a8a] hover:underline shrink-0 ml-2">Buka Popup Lengkap &rsaquo;</button>
             </div>
           </div>
@@ -1149,6 +1160,71 @@
     </div>
   </div>
 
+  <!-- 5. Calendar Manual Agenda Creator Modal -->
+  <div id="calendarAgendaModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="modal-surface bg-white rounded-2xl max-w-md w-full overflow-hidden shadow-2xl border border-slate-200 flex flex-col">
+      <div class="p-4 bg-gradient-to-r from-[#072b57] to-[#0c4a8a] text-white flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-sky-300">event_Available</span>
+          <div>
+            <h3 class="text-sm font-bold text-white">Kelola Agenda Kalender</h3>
+            <p id="agendaModalDateSubtitle" class="text-[11px] text-sky-200">5 Oktober 2026</p>
+          </div>
+        </div>
+        <button onclick="closeModal('calendarAgendaModal')" class="p-1 rounded-lg bg-white/10 hover:bg-white/20 text-white">
+          <span class="material-symbols-outlined text-base">close</span>
+        </button>
+      </div>
+
+      <div class="p-5 space-y-4 text-xs">
+        <!-- Date Picker -->
+        <div>
+          <label class="block text-[11px] font-bold text-slate-700 mb-1">Tanggal Agenda</label>
+          <input type="date" id="agendaDateInput" onchange="onAgendaDateInputChange(this.value)" min="2026-01-01" max="2028-12-31" class="w-full px-3 py-2 rounded-lg bg-slate-50 border border-slate-300 font-bold text-slate-800 focus:outline-none focus:border-[#0c4a8a]"/>
+        </div>
+
+        <!-- Manual Text Input -->
+        <div>
+          <label class="block text-[11px] font-bold text-slate-700 mb-1">Nama / Keterangan Agenda (Ketik Manual)</label>
+          <input type="text" id="agendaTitleInput" placeholder="Contoh: Cut-Off Evaluasi Addendum 1 DO 1..." onkeydown="if(event.key==='Enter') saveCalendarAgenda()" class="w-full px-3 py-2 rounded-lg bg-white border border-slate-300 font-medium text-slate-800 focus:outline-none focus:border-[#0c4a8a]"/>
+        </div>
+
+        <!-- Marker Color Picker -->
+        <div>
+          <label class="block text-[11px] font-bold text-slate-700 mb-1.5">Pilih Warna Mark Kalender</label>
+          <div class="flex items-center gap-2.5" id="agendaColorPicker">
+            <button type="button" onclick="selectAgendaColor('#0d6efd')" data-color="#0d6efd" class="agenda-color-btn w-7 h-7 rounded-full bg-[#0d6efd] ring-2 ring-offset-2 ring-[#0d6efd] flex items-center justify-center text-white shadow-sm transition-all" title="Biru (Sinkronisasi / Rapat)">
+              <span class="material-symbols-outlined text-xs">check</span>
+            </button>
+            <button type="button" onclick="selectAgendaColor('#f59e0b')" data-color="#f59e0b" class="agenda-color-btn w-7 h-7 rounded-full bg-[#f59e0b] flex items-center justify-center text-white shadow-sm transition-all" title="Oranye / Kuning (Cut-Off / Penting)">
+            </button>
+            <button type="button" onclick="selectAgendaColor('#dc2626')" data-color="#dc2626" class="agenda-color-btn w-7 h-7 rounded-full bg-[#dc2626] flex items-center justify-center text-white shadow-sm transition-all" title="Merah (Deadline / Mendesak)">
+            </button>
+            <button type="button" onclick="selectAgendaColor('#159a5c')" data-color="#159a5c" class="agenda-color-btn w-7 h-7 rounded-full bg-[#159a5c] flex items-center justify-center text-white shadow-sm transition-all" title="Hijau (Verifikasi / Selesai)">
+            </button>
+            <button type="button" onclick="selectAgendaColor('#7c3aed')" data-color="#7c3aed" class="agenda-color-btn w-7 h-7 rounded-full bg-[#7c3aed] flex items-center justify-center text-white shadow-sm transition-all" title="Ungu (Audit Eksternal)">
+            </button>
+          </div>
+        </div>
+
+        <!-- Existing Agendas on Selected Date -->
+        <div class="pt-2 border-t border-slate-200">
+          <div class="text-[11px] font-bold text-slate-700 mb-1.5">Daftar Agenda pada Tanggal Ini:</div>
+          <div id="modalDateAgendasList" class="space-y-1.5 max-h-32 overflow-y-auto">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+
+      <div class="px-5 py-3 bg-slate-50 border-t border-slate-200 flex items-center justify-end gap-2">
+        <button onclick="closeModal('calendarAgendaModal')" class="px-3.5 py-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs">Tutup</button>
+        <button onclick="saveCalendarAgenda()" class="px-4 py-1.5 rounded-lg bg-[#0c4a8a] hover:bg-[#083b7a] text-white font-bold text-xs flex items-center gap-1 shadow-sm">
+          <span class="material-symbols-outlined text-sm">add_task</span> Simpan Agenda
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Floating Toast Notification -->
   <div id="toastNotification" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3 px-4 py-3 rounded-xl bg-[#072b57] text-white shadow-xl border border-sky-400/30 max-w-sm">
     <span class="material-symbols-outlined text-sky-300 text-xl">info</span>
@@ -1162,8 +1238,12 @@
   <script>
     // Initial Snapshot of 51 Projects from Google Sheet CCMS Monitoring Divisi 1
     const allProjectsData = [{"No": 1.0, "Nama Proyek": "Pemb. Bendungan Lau Simeme Paket 1", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 2.0, "Nama Proyek": "Pemb. Bendungan Lau Simeme Lanj", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 13.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 13.0, "Persen Kepatuhan": "65.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 3.0, "Nama Proyek": "Pemb. Bendungan Komering II/3 Dihaji Paket VI", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 4.0, "Nama Proyek": "JSS 1", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 5.0, "Nama Proyek": "JSS 2", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 6.0, "Nama Proyek": "JSS 3", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 7.0, "Nama Proyek": "Bendungan Cijurey Paket III", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 8.0, "Nama Proyek": "Bendungan Karangnongko Paket 1", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 9.0, "Nama Proyek": "Bendungan Jragung Paket V", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 14.0, "Persen Kepatuhan": "70.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 10.0, "Nama Proyek": "Pengendalian Banjir Tenggang Tahap 1", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 11.0, "Nama Proyek": "Sewerage Development Project (Zone 6)", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 12.0, "Nama Proyek": "Pemb. Reservoir DC Samanan", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 14.0, "Persen Kepatuhan": "70.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 13.0, "Nama Proyek": "Karian-Serpong (KSCS 3)", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 13.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 13.0, "Persen Kepatuhan": "65.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 14.0, "Nama Proyek": "Bendungan Jatimlerek", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 15.0, "Nama Proyek": "Tanggap Darurat SPAM Paket 2", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 12.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 12.0, "Persen Kepatuhan": "60.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 16.0, "Nama Proyek": "Tanggap Darurat Sibolga-Padang Sidempuan", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 8.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 8.0, "Persen Kepatuhan": "40.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 17.0, "Nama Proyek": "PL. Tanggap Darurat Bencana Alam Kab. Tapanuli Selatan", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 12.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 12.0, "Persen Kepatuhan": "60.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 18.0, "Nama Proyek": "Tanggap Darurat SPAM Solok", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 8.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 8.0, "Persen Kepatuhan": "40.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 19.0, "Nama Proyek": "PL - Rehabilitasi Rekonstruksi Sungai Tukka", "Departemen": "Departemen Operasi 1", "Kode Dept": "DO 1", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "", "EoT": "", "MoM Ekst.": "", "Skor CM": 5.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 5.0, "Persen Kepatuhan": "25.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 1.0, "Nama Proyek": "Jalan Tol Ancol Timur - Pluit (Elevated)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 2.0, "Nama Proyek": "(Main Road) Jalan Tol Serang Panimbang (Serpan)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 3.0, "Nama Proyek": "Jalan Tol Serang - Panimbang (Serpan) Seksi 3", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 4.0, "Nama Proyek": "Patimban 6", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 5.0, "Nama Proyek": "Patimban 4", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 6.0, "Nama Proyek": "Jalan Tol Jakarta-Cikampek II", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 7.0, "Nama Proyek": "Toll Road Semarang Demak 1B", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 8.0, "Nama Proyek": "Jalan Tol Probolinggo-Banyuwangi Paket 3", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 9.0, "Nama Proyek": "Bendungan Sukamahi (MYC)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 10.0, "Nama Proyek": "Jalan Tol Cisumdawu (Km 177/Bojongtotor)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 11.0, "Nama Proyek": "Pemb. Irigasi Belimbing", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 12.0, "Nama Proyek": "Tol Serang Panimbang (Serpan 3B)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 13.0, "Nama Proyek": "Jalan Tol Akses Patimban Paket II", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 6.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 6.0, "Persen Kepatuhan": "30.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 14.0, "Nama Proyek": "Pemb. FO Muara Enim", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 13.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 13.0, "Persen Kepatuhan": "65.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 15.0, "Nama Proyek": "MRT Bundaran HI", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 6.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 6.0, "Persen Kepatuhan": "30.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 16.0, "Nama Proyek": "Tol Serang - Panimbang Paket 1 (Serpan 3B)", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 17.0, "Nama Proyek": "Jalan Tol Yogyakarta - Bawen Seksi 3", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "✓", "SPMK": "", "BASTL": "", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 4.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 4.0, "Persen Kepatuhan": "20.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 18.0, "Nama Proyek": "Longsoran Bojongtotor Lanjutan", "Departemen": "Departemen Operasi 2", "Kode Dept": "DO 2", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 1.0, "Nama Proyek": "Pemb. Bendungan Manikin Kab. Kupang (Paket 1)", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 13.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 19.0, "Persen Kepatuhan": "95.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": null}, {"No": 2.0, "Nama Proyek": "Pemb. Relokasi Jalan Ruas Sel Duri-Mempawah Kalbar", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 12.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 18.0, "Persen Kepatuhan": "90.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": null}, {"No": 3.0, "Nama Proyek": "Dedging Pendalaman Alur Tursina Area III & IV", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 4.0, "Nama Proyek": "Pemb. Bendungan Jenelata Kab.Gowa, Sulsel", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 5.0, "Nama Proyek": "Pemb. Jalan Tol IKN Seksi 3B-2: Segmen KKT", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 6.0, "Nama Proyek": "MWRD Re-Diversion Construction", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 14.0, "Persen Kepatuhan": "70.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Sudah Ada Perubahan Seperti Item baru namun belum diinput di Tabel VO"}, {"No": 7.0, "Nama Proyek": "Pemb. Jalan Di KIPP: Hankam dan Lingkar Sepaku (LS) 4", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "✓", "Notis": "✓", "Claim Waktu (Terdampak)": "✓", "Proposal Perubahan": "✓", "BAK": "✓", "Amandemen Kontrak": "✓", "Skor VO": 6.0, "Status VO": "Lengkap", "Total Dokumen": 20.0, "Persen Kepatuhan": "100.0%", "Kategori Status": "Lengkap 100%", "Catatan Khusus ADKON": null}, {"No": 8.0, "Nama Proyek": "Pemb. Tol IKN Seksi 1B Segmen Bandara Sepinggan - Tol Balsam", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 11.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 11.0, "Persen Kepatuhan": "55.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 9.0, "Nama Proyek": "Pemb. Jalan Kawasan Kompleks Yudikatif", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "✓", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 14.0, "Status CM": "Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 14.0, "Persen Kepatuhan": "70.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 10.0, "Nama Proyek": "Pemb. Infrastruktur KSPP Merauke (Pkt2)", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 12.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 12.0, "Persen Kepatuhan": "60.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 11.0, "Nama Proyek": "Sewerage Pipe Installation Nipah Kuning B - CWIP 03", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "✓", "SPP": "✓", "SPMK": "✓", "BASTL": "✓", "Jaminan UM": "✓", "Jaminan Pelaksanaan": "✓", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "✓", "Skor CM": 13.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 13.0, "Persen Kepatuhan": "65.0%", "Kategori Status": "Perlu Tindak Lanjut", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}, {"No": 12.0, "Nama Proyek": "Sewerage Pipe Installation Nipah Kuning B - CWIP 05", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "", "SPMK": "", "BASTL": "", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "", "EoT": "", "MoM Ekst.": "", "Skor CM": 0.0, "Status CM": "Belum Diisi", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 0.0, "Persen Kepatuhan": "0.0%", "Kategori Status": "Kritis 0%", "Catatan Khusus ADKON": null}, {"No": 13.0, "Nama Proyek": "Pemb. Jalan Bebas Hambatan Seksi 6B", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "", "SPMK": "", "BASTL": "", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "", "TDK": "", "RKP Bab 12": "", "Cheklist Progress": "", "Executive Summary": "", "EoT": "", "MoM Ekst.": "", "Skor CM": 0.0, "Status CM": "Belum Diisi", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 0.0, "Persen Kepatuhan": "0.0%", "Kategori Status": "Kritis 0%", "Catatan Khusus ADKON": "Dokumen kontraktual hanya terdapat SPMK dan Kontrak Perjanjian"}, {"No": 14.0, "Nama Proyek": "Jalan Paket G di KIPP 1B-1C", "Departemen": "Departemen Operasi 3", "Kode Dept": "DO 3", "CCMS": "✓", "Do. Kontrak (SSUK/SSKK)+Amandemen": "", "SPP": "", "SPMK": "", "BASTL": "✓", "Jaminan UM": "", "Jaminan Pelaksanaan": "", "Polis Asuransi": "✓", "TDK": "✓", "RKP Bab 12": "✓", "Cheklist Progress": "", "Executive Summary": "✓", "EoT": "✓", "MoM Ekst.": "", "Skor CM": 7.0, "Status CM": "Belum Lengkap", "Input CCMS (Update Status)": "", "Notis": "", "Claim Waktu (Terdampak)": "", "Proposal Perubahan": "", "BAK": "", "Amandemen Kontrak": "", "Skor VO": 0.0, "Status VO": "Belum Diisi", "Total Dokumen": 7.0, "Persen Kepatuhan": "35.0%", "Kategori Status": "Kritis (<50%)", "Catatan Khusus ADKON": "Apakah belum ada perubahan Addendum 1? Minimal Ada Pekerjaan Tambah kurang MC0/ Item Baru/ CCO- Balanced Budget"}];
-    // Assign unique _id (1..51) so DO 1, DO 2, and DO 3 projects with duplicate "No" never collide
+    // Assign unique _id (1..N) so DO 1, DO 2, and DO 3 projects with duplicate "No" never collide
     allProjectsData.forEach((p, idx) => { p._id = idx + 1; });
+
+    // Live Google Sheet Configuration (051026 Cheklist Adkon Dashboard Rev - 5 Oktober 2026)
+    const GOOGLE_SHEET_ID = "1_HyDeqYkUB-HdLJwGLEUgx1nOmOoIx-OGDCgZGRvE4w";
+    const GOOGLE_SHEET_NAME = "Cheklist";
 
     let displayedProjects = [...allProjectsData];
     let currentPage = 1;
@@ -1182,8 +1262,54 @@
     let modalPriorityFilter = 'all';
     let modalPriorityDept = 'all';
 
-    // Calendar state (0 = Mei 2026, 1 = Juni 2026, 2 = Juli 2026, 3 = Agustus 2026)
-    let calendarMonthIndex = 2;
+    // Multi-Year Interactive Calendar State (Default: Oktober 2026 = month index 9)
+    let calYear = 2026;
+    let calMonth = 9; // 0 = Jan, ..., 9 = Oktober
+    let selectedAgendaColor = '#0d6efd';
+    let selectedAgendaDateStr = '2026-10-05';
+
+    const MONTH_NAMES_ID = [
+      "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+      "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+    ];
+    const MONTH_SHORT_ID = [
+      "Jan", "Feb", "Mar", "Apr", "Mei", "Jun",
+      "Jul", "Agu", "Sep", "Okt", "Nov", "Des"
+    ];
+
+    // Default + User Custom Calendar Agendas (persisted in localStorage)
+    const DEFAULT_CALENDAR_AGENDAS = [
+      { id: "ag-1", date: "2026-10-05", title: "Cut-Off Data Terkini CCMS (5 Okt)", color: "#f59e0b" },
+      { id: "ag-2", date: "2026-10-15", title: "Evaluasi Dokumen VO & Addendum 1", color: "#0d6efd" },
+      { id: "ag-3", date: "2026-10-27", title: "Cut-Off Monitoring Bulanan ADKON", color: "#159a5c" },
+      { id: "ag-4", date: "2026-11-05", title: "Sinkronisasi Checklist CCMS", color: "#0d6efd" },
+      { id: "ag-5", date: "2026-11-27", title: "Cut-Off Monitoring November", color: "#f59e0b" },
+      { id: "ag-6", date: "2026-12-22", title: "Audit Akhir Tahun ADKON Divisi 1", color: "#dc2626" },
+      { id: "ag-7", date: "2026-09-30", title: "Cut-Off Data September 2026", color: "#f59e0b" },
+      { id: "ag-8", date: "2026-08-27", title: "Cut-Off Monitoring Agustus", color: "#0d6efd" },
+      { id: "ag-9", date: "2026-07-27", title: "Cut-Off Monitoring Juli", color: "#f59e0b" }
+    ];
+
+    let calendarAgendas = [];
+    function loadCalendarAgendas() {
+      try {
+        const saved = localStorage.getItem("wika_ccms_custom_agendas_v2");
+        if (saved) {
+          calendarAgendas = JSON.parse(saved);
+        } else {
+          calendarAgendas = [...DEFAULT_CALENDAR_AGENDAS];
+          localStorage.setItem("wika_ccms_custom_agendas_v2", JSON.stringify(calendarAgendas));
+        }
+      } catch (e) {
+        calendarAgendas = [...DEFAULT_CALENDAR_AGENDAS];
+      }
+    }
+
+    function persistCalendarAgendas() {
+      try {
+        localStorage.setItem("wika_ccms_custom_agendas_v2", JSON.stringify(calendarAgendas));
+      } catch (e) {}
+    }
 
     // Chart.js Instances
     let cmDonutInstance = null;
@@ -1198,49 +1324,137 @@
       "Cheklist Progress", "Executive Summary", "EoT", "MoM Ekst."
     ];
 
+    const CM_LABELS = [
+      { label: "CCMS", key: "CCMS" },
+      { label: "Do. Kontrak + Amandemen", key: "Do. Kontrak (SSUK/SSKK)+Amandemen" },
+      { label: "SPP", key: "SPP" },
+      { label: "SPMK", key: "SPMK" },
+      { label: "BASTL", key: "BASTL" },
+      { label: "Jaminan UM", key: "Jaminan UM" },
+      { label: "Jaminan Pelaksanaan", key: "Jaminan Pelaksanaan" },
+      { label: "Polis Asuransi", key: "Polis Asuransi" },
+      { label: "TDK", key: "TDK" },
+      { label: "RKP Bab 12", key: "RKP Bab 12" },
+      { label: "Checklist Progress", key: "Cheklist Progress" },
+      { label: "Executive Summary", key: "Executive Summary" },
+      { label: "EoT", key: "EoT" },
+      { label: "MoM Ekst.", key: "MoM Ekst." }
+    ];
+
     // 6 VO Parameter Keys
     const VO_KEYS = [
       "Input CCMS (Update Status)", "Notis", "Claim Waktu (Terdampak)", 
       "Proposal Perubahan", "BAK", "Amandemen Kontrak"
     ];
 
+    const VO_LABELS = [
+      { label: "Input CCMS (Update Status)", key: "Input CCMS (Update Status)" },
+      { label: "Notis", key: "Notis" },
+      { label: "Claim Waktu (Terdampak)", key: "Claim Waktu (Terdampak)" },
+      { label: "Proposal Perubahan", key: "Proposal Perubahan" },
+      { label: "BAK", key: "BAK" },
+      { label: "Amandemen Kontrak", key: "Amandemen Kontrak" }
+    ];
+
     // DOM Ready
     document.addEventListener("DOMContentLoaded", () => {
-      // Restore saved theme if user previously toggled dark mode
       if (localStorage.getItem('wika_ccms_theme') === 'dark') {
         document.documentElement.classList.add('dark');
         const icon = document.getElementById('themeIcon');
         if (icon) icon.textContent = 'dark_mode';
       }
+      loadCalendarAgendas();
       initCharts();
-      renderHorizontalBars();
+      recalculateDashboardMetrics();
       renderCalendar();
-      filterAndRender();
-      fetchLiveGoogleSheets();
+      syncFromGoogleSheet(false);
+      // Auto-poll Google Sheet every 60 seconds so edits in Google Sheet automatically update web
+      setInterval(() => syncFromGoogleSheet(false), 60000);
     });
 
-    // Initialize Chart.js with 1:1 Reference Styling & Dark Mode awareness
+    // ========================================================
+    // SIDEBAR NAVIGATION HANDLER (Interactive Menu Response)
+    // ========================================================
+    function setActiveNav(el, section) {
+      document.querySelectorAll('#sidebarNav .nav-item').forEach(item => {
+        item.className = "nav-item flex items-center gap-3 px-3 py-2 rounded-lg font-medium text-xs text-sky-100 hover:text-white hover:bg-white/10 transition-all relative";
+        const ind = item.querySelector('.nav-indicator');
+        if (ind) ind.classList.add('hidden');
+      });
+
+      if (el) {
+        el.className = "nav-item flex items-center gap-3 px-3 py-2 rounded-lg font-bold text-xs bg-[#1859a3] text-white border border-sky-400/40 shadow-sm transition-all relative";
+        const activeInd = el.querySelector('.nav-indicator');
+        if (activeInd) activeInd.classList.remove('hidden');
+      }
+
+      const pulseElement = (targetId) => {
+        const target = document.getElementById(targetId);
+        if (!target) return;
+        target.classList.add('ring-2', 'ring-[#0d6efd]', 'ring-offset-2');
+        setTimeout(() => target.classList.remove('ring-2', 'ring-[#0d6efd]', 'ring-offset-2'), 1800);
+      };
+
+      if (section === 'overview') {
+        selectedTahapan = 'all';
+        const tahapanEl = document.getElementById("filterTahapan");
+        if (tahapanEl) tahapanEl.value = 'all';
+        filterAndRender();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        showToast("Menu Overview", "Menampilkan ringkasan eksekutif seluruh 51 proyek (Data 5 Oktober 2026).");
+      } else if (section === 'cm') {
+        selectedTahapan = 'cm';
+        const tahapanEl = document.getElementById("filterTahapan");
+        if (tahapanEl) tahapanEl.value = 'cm';
+        filterAndRender();
+        document.getElementById('kelengkapanDokumenSection')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        pulseElement('cardCmSection');
+        pulseElement('kelengkapanDokumenSection');
+        showToast("Contract Management (14 Dokumen)", "Menampilkan kelengkapan 14 dokumen CM & memfilter proyek yang belum lengkap CM.");
+      } else if (section === 'vo') {
+        selectedTahapan = 'vo';
+        const tahapanEl = document.getElementById("filterTahapan");
+        if (tahapanEl) tahapanEl.value = 'vo';
+        filterAndRender();
+        document.getElementById('kelengkapanDokumenSection')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        pulseElement('cardVoSection');
+        pulseElement('kelengkapanDokumenSection');
+        showToast("Perubahan (VO, Claim, Anti Claim & Insurance)", "Menampilkan kelengkapan 6 dokumen Perubahan & memfilter proyek yang belum lengkap VO.");
+      } else if (section === 'do') {
+        document.getElementById('deptSummarySection')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        pulseElement('deptSummarySection');
+        showToast("Per Departemen Operasi", "Menampilkan perbandingan kepatuhan Operasi 1 (19), Operasi 2 (18), dan Operasi 3 (14).");
+      } else if (section === 'detail') {
+        document.getElementById('matrixTableSection')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        pulseElement('matrixTableSection');
+        showToast("Detail & Matriks Proyek", "Klik baris proyek pada tabel untuk membuka rincian verifikasi 20 dokumen.");
+      }
+    }
+
+    // ========================================================
+    // INITIALIZE CHART.JS (3-Color CM Donut & Matched VO Donut)
+    // ========================================================
     function initCharts() {
       const isDark = document.documentElement.classList.contains('dark');
-      const emptyRingColor = isDark ? '#334155' : '#e2e8f0';
 
-      // 1. CM Donut Chart (Green Ring Gauge)
+      // 1. CM Donut Chart: 3 Distinct Colors (Lengkap = #159a5c, Belum Lengkap = #f59e0b, Nihil = #94a3b8)
       const cmCtx = document.getElementById('cmDonutChart').getContext('2d');
       cmDonutInstance = new Chart(cmCtx, {
         type: 'doughnut',
         data: {
-          labels: ['Lengkap (32)', 'Belum Lengkap / Nihil (19)'],
+          labels: ['Lengkap', 'Belum Lengkap', 'Nihil'],
           datasets: [{
-            data: [32, 19],
-            backgroundColor: ['#159a5c', emptyRingColor],
-            borderWidth: 0,
-            hoverOffset: 2
+            data: [32, 17, 2],
+            backgroundColor: ['#159a5c', '#f59e0b', '#94a3b8'],
+            borderWidth: 1.5,
+            borderColor: isDark ? '#0f1f38' : '#ffffff',
+            hoverOffset: 3
           }]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          cutout: '66%',
+          cutout: '64%',
           plugins: {
             legend: { display: false },
             tooltip: {
@@ -1249,7 +1463,7 @@
               titleFont: { family: 'Plus Jakarta Sans', size: 10, weight: 'bold' },
               bodyFont: { family: 'Plus Jakarta Sans', size: 10 },
               callbacks: {
-                label: (ctx) => ` ${ctx.raw} Proyek`
+                label: (ctx) => ` ${ctx.label}: ${ctx.raw} Proyek`
               }
             }
           },
@@ -1257,23 +1471,24 @@
         }
       });
 
-      // 2. VO Donut Chart (Blue Ring Gauge)
+      // 2. VO Donut Chart: Matched Colors (Lengkap = #0d6efd, Belum Diisi = #f59e0b matching legend dot)
       const voCtx = document.getElementById('voDonutChart').getContext('2d');
       voDonutInstance = new Chart(voCtx, {
         type: 'doughnut',
         data: {
-          labels: ['Lengkap (30)', 'Belum Diisi (21)'],
+          labels: ['Lengkap', 'Belum Diisi'],
           datasets: [{
             data: [30, 21],
-            backgroundColor: ['#0d6efd', emptyRingColor],
-            borderWidth: 0,
-            hoverOffset: 2
+            backgroundColor: ['#0d6efd', '#f59e0b'],
+            borderWidth: 1.5,
+            borderColor: isDark ? '#0f1f38' : '#ffffff',
+            hoverOffset: 3
           }]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          cutout: '66%',
+          cutout: '64%',
           plugins: {
             legend: { display: false },
             tooltip: {
@@ -1282,7 +1497,7 @@
               titleFont: { family: 'Plus Jakarta Sans', size: 10, weight: 'bold' },
               bodyFont: { family: 'Plus Jakarta Sans', size: 10 },
               callbacks: {
-                label: (ctx) => ` ${ctx.raw} Proyek`
+                label: (ctx) => ` ${ctx.label}: ${ctx.raw} Proyek`
               }
             }
           },
@@ -1312,7 +1527,7 @@
         }
       };
 
-      // 3. Perbandingan Kepatuhan per Operasi (Grouped Bar Chart with non-overlapping top labels)
+      // 3. Perbandingan Kepatuhan per Operasi (Grouped Bar Chart)
       const barCtx = document.getElementById('perbandinganBarChart').getContext('2d');
       barChartInstance = new Chart(barCtx, {
         type: 'bar',
@@ -1375,28 +1590,16 @@
         }
       });
 
-      // 4. Progress Kepatuhan Trend Multi-Line Chart
+      // 4. Progress Kepatuhan Trend Multi-Line Chart (Up to Okt 2026 - 5 Oktober 2026)
       const trendCtx = document.getElementById('progressTrendChart').getContext('2d');
       trendChartInstance = new Chart(trendCtx, {
         type: 'line',
         data: {
-          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul'],
+          labels: ['Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt'],
           datasets: [
             {
-              label: 'Operasi 1',
-              data: [58, 64, 75, 70, 78, 80, 77.8],
-              borderColor: '#0d6efd',
-              backgroundColor: 'rgba(13, 110, 253, 0.08)',
-              borderWidth: 2,
-              tension: 0.25,
-              fill: false,
-              pointRadius: 3,
-              pointBackgroundColor: '#0d6efd',
-              pointHoverRadius: 5
-            },
-            {
               label: 'Operasi 2',
-              data: [48, 55, 66, 60, 68, 65, 63.2],
+              data: [62, 66.7, 72.2, 74.5, 76.0, 77.8, 77.8],
               borderColor: '#f59e0b',
               backgroundColor: 'rgba(245, 158, 11, 0.08)',
               borderWidth: 2,
@@ -1407,8 +1610,20 @@
               pointHoverRadius: 5
             },
             {
+              label: 'Operasi 1',
+              data: [50, 52.6, 57.9, 60.0, 61.5, 63.2, 63.2],
+              borderColor: '#0d6efd',
+              backgroundColor: 'rgba(13, 110, 253, 0.08)',
+              borderWidth: 2,
+              tension: 0.25,
+              fill: false,
+              pointRadius: 3,
+              pointBackgroundColor: '#0d6efd',
+              pointHoverRadius: 5
+            },
+            {
               label: 'Operasi 3',
-              data: [35, 42, 48, 45, 52, 48, 42.9],
+              data: [30, 28.6, 35.7, 38.0, 40.5, 42.9, 42.9],
               borderColor: '#10b981',
               backgroundColor: 'rgba(16, 185, 129, 0.08)',
               borderWidth: 2,
@@ -1458,70 +1673,237 @@
       });
     }
 
-    // Render 20 Horizontal Bars with interactive click-to-filter support
-    function renderHorizontalBars() {
-      const cmData = [
-        { label: "CCMS", key: "CCMS", pct: 96.1, count: 49 },
-        { label: "Do. Kontrak + Amandemen", key: "Do. Kontrak (SSUK/SSKK)+Amandemen", pct: 94.1, count: 48 },
-        { label: "SPP", key: "SPP", pct: 92.2, count: 47 },
-        { label: "SPMK", key: "SPMK", pct: 90.2, count: 46 },
-        { label: "BASTL", key: "BASTL", pct: 88.2, count: 45 },
-        { label: "Jaminan UM", key: "Jaminan UM", pct: 84.3, count: 43 },
-        { label: "Jaminan Pelaksanaan", key: "Jaminan Pelaksanaan", pct: 82.4, count: 42 },
-        { label: "Polis Asuransi", key: "Polis Asuransi", pct: 80.4, count: 41 },
-        { label: "TDK", key: "TDK", pct: 78.4, count: 40 },
-        { label: "RKP Bab 12", key: "RKP Bab 12", pct: 74.5, count: 38 },
-        { label: "Checklist Progress", key: "Cheklist Progress", pct: 70.6, count: 36 },
-        { label: "Executive Summary", key: "Executive Summary", pct: 68.6, count: 35 },
-        { label: "EoT", key: "EoT", pct: 64.7, count: 33 },
-        { label: "MoM Ekst.", key: "MoM Ekst.", pct: 58.8, count: 30 }
-      ];
-
-      const voData = [
-        { label: "VO", key: "Input CCMS (Update Status)", pct: 88.2, count: 45 },
-        { label: "Claim", key: "Notis", pct: 84.3, count: 43 },
-        { label: "Anti Claim", key: "Claim Waktu (Terdampak)", pct: 80.4, count: 41 },
-        { label: "Insurance", key: "Proposal Perubahan", pct: 76.5, count: 39 },
-        { label: "BAK", key: "BAK", pct: 74.5, count: 38 },
-        { label: "Amandemen Kontrak", key: "Amandemen Kontrak", pct: 72.5, count: 37 }
-      ];
-
-      const cmContainer = document.getElementById("cmBarsContainer");
-      cmContainer.innerHTML = cmData.map(item => {
-        const pctStr = item.pct.toString().replace('.', ',') + '%';
-        const isSelected = activeDocParam === item.key;
-        return `
-          <div onclick="toggleDocParamFilter('${item.key}', '${item.label}')" class="group flex items-center justify-between gap-2.5 py-0.5 px-1.5 rounded ${isSelected ? 'bg-sky-100 ring-1 ring-sky-400' : 'hover:bg-slate-50'} transition-colors cursor-pointer" title="Klik untuk filter proyek yang belum lengkap dokumen ${item.label} (${item.count}/51 Lengkap)">
-            <span class="w-40 truncate font-medium text-slate-700 text-[10.5px]">${item.label}</span>
-            <div class="flex-1 bg-[#e2e8f0] rounded-sm h-2.5 overflow-hidden relative">
-              <div class="bg-[#1867c0] h-2.5 rounded-sm animate-bar" style="--target-width: ${item.pct}%; width: ${item.pct}%;"></div>
-            </div>
-            <span class="w-11 text-right font-bold text-[#0c2340] text-[10.5px]">${pctStr}</span>
-          </div>
-        `;
-      }).join("");
-
-      const voContainer = document.getElementById("voBarsContainer");
-      voContainer.innerHTML = voData.map(item => {
-        const pctStr = item.pct.toString().replace('.', ',') + '%';
-        const isSelected = activeDocParam === item.key;
-        return `
-          <div onclick="toggleDocParamFilter('${item.key}', '${item.label}')" class="group flex items-center justify-between gap-2.5 py-1 px-1.5 rounded ${isSelected ? 'bg-sky-100 ring-1 ring-sky-400' : 'hover:bg-slate-50'} transition-colors cursor-pointer" title="Klik untuk filter proyek yang belum lengkap dokumen ${item.label} (${item.count}/51 Lengkap)">
-            <span class="w-40 truncate font-medium text-slate-700 text-[10.5px]">${item.label}</span>
-            <div class="flex-1 bg-[#e2e8f0] rounded-sm h-3 overflow-hidden relative">
-              <div class="bg-[#2581e8] h-3 rounded-sm animate-bar" style="--target-width: ${item.pct}%; width: ${item.pct}%;"></div>
-            </div>
-            <span class="w-11 text-right font-bold text-[#0c2340] text-[10.5px]">${pctStr}</span>
-          </div>
-        `;
-      }).join("");
+    // ========================================================
+    // DYNAMIC RECALCULATION OF ALL DASHBOARD METRICS FROM SHEET
+    // ========================================================
+    function formatPctComma(val) {
+      return val.toFixed(1).replace('.', ',') + '%';
     }
 
-    // Helper to classify a project's overall status for filtering
-    function getProjectStatusCategory(p) {
-      if (p["Total Dokumen"] === 20) return 'lengkap';
-      if (p["Skor VO"] === 0 || p["Skor CM"] === 0) return 'belum_diisi';
-      return 'belum_lengkap';
+    function recalculateDashboardMetrics() {
+      const total = allProjectsData.length || 1;
+      const do1Projects = allProjectsData.filter(p => p["Kode Dept"] === "DO 1");
+      const do2Projects = allProjectsData.filter(p => p["Kode Dept"] === "DO 2");
+      const do3Projects = allProjectsData.filter(p => p["Kode Dept"] === "DO 3");
+
+      // 1. Update Total Proyek Card & Filter Dropdowns
+      const elTotal = document.getElementById("kpiTotalProjects");
+      if (elTotal) elTotal.textContent = allProjectsData.length;
+      const elDo1 = document.getElementById("kpiDo1Count");
+      if (elDo1) elDo1.textContent = do1Projects.length;
+      const elDo2 = document.getElementById("kpiDo2Count");
+      if (elDo2) elDo2.textContent = do2Projects.length;
+      const elDo3 = document.getElementById("kpiDo3Count");
+      if (elDo3) elDo3.textContent = do3Projects.length;
+      const elSidebarTotal = document.getElementById("sidebarTotalCount");
+      if (elSidebarTotal) elSidebarTotal.textContent = `${allProjectsData.length} Proyek`;
+
+      const deptSelect = document.getElementById("filterDepartment");
+      if (deptSelect && deptSelect.options.length >= 4) {
+        deptSelect.options[0].textContent = `All (${allProjectsData.length} Proyek)`;
+        deptSelect.options[1].textContent = `DO 1 (${do1Projects.length} Proyek)`;
+        deptSelect.options[2].textContent = `DO 2 (${do2Projects.length} Proyek)`;
+        deptSelect.options[3].textContent = `DO 3 (${do3Projects.length} Proyek)`;
+      }
+
+      const btnAll = document.getElementById("matrixOpBtn-all");
+      if (btnAll) btnAll.textContent = `Semua (${allProjectsData.length})`;
+      const btnDo1 = document.getElementById("matrixOpBtn-DO1");
+      if (btnDo1) btnDo1.textContent = `OP 1 (${do1Projects.length})`;
+      const btnDo2 = document.getElementById("matrixOpBtn-DO2");
+      if (btnDo2) btnDo2.textContent = `OP 2 (${do2Projects.length})`;
+      const btnDo3 = document.getElementById("matrixOpBtn-DO3");
+      if (btnDo3) btnDo3.textContent = `OP 3 (${do3Projects.length})`;
+
+      // 2. Calculate CM Breakdown (Lengkap, Belum Lengkap, Nihil/Belum Diisi)
+      const cmLengkap = allProjectsData.filter(p => p["Skor CM"] === 14 || p["Status CM"] === "Lengkap").length;
+      const cmNihil = allProjectsData.filter(p => p["Skor CM"] === 0 || p["Status CM"] === "Belum Diisi").length;
+      const cmBelum = Math.max(0, allProjectsData.length - cmLengkap - cmNihil);
+      const cmPct = (cmLengkap / total) * 100;
+
+      const elCmPct = document.getElementById("kpiCmPercent");
+      if (elCmPct) elCmPct.textContent = formatPctComma(cmPct);
+      const elCmRatio = document.getElementById("kpiCmRatio");
+      if (elCmRatio) elCmRatio.textContent = `${cmLengkap} dari ${allProjectsData.length} Proyek`;
+      const elCmLengkap = document.getElementById("cmLengkapCount");
+      if (elCmLengkap) elCmLengkap.textContent = cmLengkap;
+      const elCmBelum = document.getElementById("cmBelumCount");
+      if (elCmBelum) elCmBelum.textContent = cmBelum;
+      const elCmNihil = document.getElementById("cmNihilCount");
+      if (elCmNihil) elCmNihil.textContent = cmNihil;
+
+      if (cmDonutInstance) {
+        cmDonutInstance.data.labels = [
+          `Lengkap (${cmLengkap})`,
+          `Belum Lengkap (${cmBelum})`,
+          `Nihil (${cmNihil})`
+        ];
+        cmDonutInstance.data.datasets[0].data = [cmLengkap, cmBelum, cmNihil];
+        cmDonutInstance.data.datasets[0].backgroundColor = ['#159a5c', '#f59e0b', '#94a3b8'];
+        cmDonutInstance.update();
+      }
+
+      // 3. Calculate Perubahan/VO Breakdown (Lengkap vs Belum Diisi)
+      const voLengkap = allProjectsData.filter(p => p["Skor VO"] === 6 || p["Status VO"] === "Lengkap").length;
+      const voBelum = Math.max(0, allProjectsData.length - voLengkap);
+      const voPct = (voLengkap / total) * 100;
+
+      const elVoPct = document.getElementById("kpiVoPercent");
+      if (elVoPct) elVoPct.textContent = formatPctComma(voPct);
+      const elVoRatio = document.getElementById("kpiVoRatio");
+      if (elVoRatio) elVoRatio.textContent = `${voLengkap} dari ${allProjectsData.length} Proyek`;
+      const elVoLengkap = document.getElementById("voLengkapCount");
+      if (elVoLengkap) elVoLengkap.textContent = voLengkap;
+      const elVoBelum = document.getElementById("voBelumCount");
+      if (elVoBelum) elVoBelum.textContent = voBelum;
+
+      if (voDonutInstance) {
+        voDonutInstance.data.labels = [
+          `Lengkap (${voLengkap})`,
+          `Belum Diisi (${voBelum})`
+        ];
+        voDonutInstance.data.datasets[0].data = [voLengkap, voBelum];
+        voDonutInstance.data.datasets[0].backgroundColor = ['#0d6efd', '#f59e0b'];
+        voDonutInstance.update();
+      }
+
+      // 4. Per-Department Compliance (DO 1, DO 2, DO 3)
+      const calcDeptStats = (arr) => {
+        const n = arr.length || 1;
+        const cL = arr.filter(p => p["Skor CM"] === 14 || p["Status CM"] === "Lengkap").length;
+        const vL = arr.filter(p => p["Skor VO"] === 6 || p["Status VO"] === "Lengkap").length;
+        return {
+          count: arr.length,
+          cmPct: Number(((cL / n) * 100).toFixed(1)),
+          voPct: Number(((vL / n) * 100).toFixed(1))
+        };
+      };
+
+      const op1 = calcDeptStats(do1Projects);
+      const op2 = calcDeptStats(do2Projects);
+      const op3 = calcDeptStats(do3Projects);
+
+      // Update Card 4 Grouped Bar Chart
+      if (barChartInstance) {
+        barChartInstance.data.datasets[0].data = [op1.cmPct, op2.cmPct, op3.cmPct];
+        barChartInstance.data.datasets[1].data = [op1.voPct, op2.voPct, op3.voPct];
+        barChartInstance.update();
+      }
+
+      // Update Card 6 Ringkasan per Departemen Operasi
+      const setRing = (opNum, stats) => {
+        const titleEl = document.getElementById(`ringOp${opNum}Title`);
+        if (titleEl) titleEl.textContent = `Operasi ${opNum} - ${stats.count} Proyek`;
+        const cmArc = document.getElementById(`ringOp${opNum}CmArc`);
+        if (cmArc) cmArc.setAttribute("stroke-dasharray", `${stats.cmPct}, 100`);
+        const cmTxt = document.getElementById(`ringOp${opNum}CmText`);
+        if (cmTxt) cmTxt.textContent = formatPctComma(stats.cmPct);
+        const voArc = document.getElementById(`ringOp${opNum}VoArc`);
+        if (voArc) voArc.setAttribute("stroke-dasharray", `${stats.voPct}, 100`);
+        const voTxt = document.getElementById(`ringOp${opNum}VoText`);
+        if (voTxt) voTxt.textContent = formatPctComma(stats.voPct);
+      };
+      setRing(1, op1);
+      setRing(2, op2);
+      setRing(3, op3);
+
+      // Update Card 7 Trend Chart latest point & right badges
+      if (trendChartInstance) {
+        trendChartInstance.data.datasets[0].data[6] = op2.cmPct;
+        trendChartInstance.data.datasets[1].data[6] = op1.cmPct;
+        trendChartInstance.data.datasets[2].data[6] = op3.cmPct;
+        trendChartInstance.update();
+      }
+      const tb1 = document.getElementById("trendBadgeOp1");
+      if (tb1) tb1.textContent = formatPctComma(op1.cmPct);
+      const tb2 = document.getElementById("trendBadgeOp2");
+      if (tb2) tb2.textContent = formatPctComma(op2.cmPct);
+      const tb3 = document.getElementById("trendBadgeOp3");
+      if (tb3) tb3.textContent = formatPctComma(op3.cmPct);
+
+      // Update Priority Badges & Footer Count
+      const allPrio = getAllPriorityProjects();
+      const prioBadge = document.getElementById("priorityTotalCountBadge");
+      if (prioBadge) prioBadge.textContent = allPrio.length;
+      const modalAllBtn = document.getElementById("modalPrioFilter-all");
+      if (modalAllBtn) modalAllBtn.textContent = `Semua Prioritas (${allPrio.length})`;
+      const footerNote = document.getElementById("priorityFooterNote");
+      if (footerNote) {
+        footerNote.innerHTML = `<strong>Catatan ADKON:</strong> ${voBelum} Proyek memerlukan kelengkapan VO / Addendum 1`;
+      }
+
+      // Render Horizontal Document Bars & Tables
+      renderHorizontalBars();
+      filterAndRender();
+    }
+
+    // ========================================================
+    // COMPACT HORIZONTAL BARS (Calculated Directly from Sheet)
+    // ========================================================
+    function renderHorizontalBars() {
+      const baseProjects = selectedDepartment === 'all'
+        ? allProjectsData
+        : allProjectsData.filter(p => p["Kode Dept"] === selectedDepartment);
+      const denom = baseProjects.length || 1;
+
+      const badge = document.getElementById("activeDocParamBadge");
+      const badgeTxt = document.getElementById("activeDocParamText");
+      if (badge && badgeTxt) {
+        if (activeDocParam) {
+          badge.classList.remove("hidden");
+          badge.classList.add("inline-flex");
+          badgeTxt.textContent = `Filter Belum Lengkap: ${activeDocParam}`;
+        } else {
+          badge.classList.add("hidden");
+          badge.classList.remove("inline-flex");
+        }
+      }
+
+      const cmContainer = document.getElementById("cmBarsContainer");
+      if (cmContainer) {
+        cmContainer.innerHTML = CM_LABELS.map(item => {
+          const count = baseProjects.filter(p => p[item.key] === "✓").length;
+          const pct = Number(((count / denom) * 100).toFixed(1));
+          const pctStr = pct.toFixed(1).replace('.', ',') + '%';
+          const isSelected = activeDocParam === item.key;
+          return `
+            <div onclick="toggleDocParamFilter('${item.key}', '${item.label}')" class="group flex items-center justify-between gap-2 py-[1.5px] px-1.5 rounded ${isSelected ? 'bg-sky-100 ring-1 ring-sky-400 dark:bg-sky-900/40' : 'hover:bg-slate-50'} transition-colors cursor-pointer leading-tight" title="Klik untuk memfilter proyek yang belum lengkap dokumen ${item.label} (${count}/${denom} Proyek Lengkap)">
+              <span class="w-40 truncate font-medium text-slate-700 text-[10px]">${item.label}</span>
+              <div class="flex-1 bg-[#e2e8f0] rounded-sm h-2 overflow-hidden relative">
+                <div class="bg-[#1867c0] h-2 rounded-sm animate-bar" style="--target-width: ${pct}%; width: ${pct}%;"></div>
+              </div>
+              <span class="w-16 text-right font-bold text-[#0c2340] text-[9.5px] whitespace-nowrap">${count}/${denom} (${pctStr})</span>
+            </div>
+          `;
+        }).join("");
+      }
+
+      const voContainer = document.getElementById("voBarsContainer");
+      if (voContainer) {
+        voContainer.innerHTML = VO_LABELS.map(item => {
+          const count = baseProjects.filter(p => p[item.key] === "✓").length;
+          const pct = Number(((count / denom) * 100).toFixed(1));
+          const pctStr = pct.toFixed(1).replace('.', ',') + '%';
+          const isSelected = activeDocParam === item.key;
+          return `
+            <div onclick="toggleDocParamFilter('${item.key}', '${item.label}')" class="group flex items-center justify-between gap-2 py-[2px] px-1.5 rounded ${isSelected ? 'bg-sky-100 ring-1 ring-sky-400 dark:bg-sky-900/40' : 'hover:bg-slate-50'} transition-colors cursor-pointer leading-tight" title="Klik untuk memfilter proyek yang belum lengkap dokumen ${item.label} (${count}/${denom} Proyek Lengkap)">
+              <span class="w-44 truncate font-medium text-slate-700 text-[10px]">${item.label}</span>
+              <div class="flex-1 bg-[#e2e8f0] rounded-sm h-2.5 overflow-hidden relative">
+                <div class="bg-[#2581e8] h-2.5 rounded-sm animate-bar" style="--target-width: ${pct}%; width: ${pct}%;"></div>
+              </div>
+              <span class="w-16 text-right font-bold text-[#0c2340] text-[9.5px] whitespace-nowrap">${count}/${denom} (${pctStr})</span>
+            </div>
+          `;
+        }).join("");
+      }
+    }
+
+    function clearDocParamFilter() {
+      activeDocParam = null;
+      currentPage = 1;
+      renderHorizontalBars();
+      filterAndRender();
+      showToast("Filter Dokumen Direset", "Menampilkan kembali seluruh parameter dokumen.");
     }
 
     // Filter & Render Tables
@@ -1534,16 +1916,20 @@
         if (matrixStatusFilter === 'lengkap') {
           matchesStatus = (p["Total Dokumen"] === 20);
         } else if (matrixStatusFilter === 'belum_lengkap') {
-          matchesStatus = (p["Status CM"] === 'Belum Lengkap') || (p["Total Dokumen"] > 0 && p["Total Dokumen"] < 20 && p["Skor VO"] > 0);
+          matchesStatus = (p["Status CM"] === 'Belum Lengkap') || (p["Total Dokumen"] > 0 && p["Total Dokumen"] < 20);
         } else if (matrixStatusFilter === 'belum_diisi') {
-          matchesStatus = (p["Skor VO"] === 0 || p["Skor CM"] === 0);
+          matchesStatus = (p["Skor VO"] === 0 || p["Skor CM"] === 0 || p["Status CM"] === 'Belum Diisi' || p["Status VO"] === 'Belum Diisi');
         }
 
         let matchesTahapan = true;
         if (selectedTahapan === 'cm') {
           matchesTahapan = (p["Skor CM"] < 14);
-        } else if (selectedTahapan === 'vo') {
+        } else if (selectedTahapan === 'vo' || selectedTahapan === 'mc-0') {
           matchesTahapan = (p["Skor VO"] < 6);
+        } else if (selectedTahapan === 'serah-terima') {
+          matchesTahapan = (p["BASTL"] === "✓");
+        } else if (selectedTahapan === 'pelaksanaan') {
+          matchesTahapan = (p["SPMK"] === "✓");
         }
 
         let matchesDocParam = true;
@@ -1559,16 +1945,21 @@
       renderPriorityTable();
     }
 
-    // Update Matrix Card OP Filter Pills styling
+    // Update Matrix Card OP Filter Pills styling (matching IDs matrixOpBtn-all, matrixOpBtn-DO1, etc.)
     function updateMatrixFilterPills() {
-      const depts = ['all', 'DO 1', 'DO 2', 'DO 3'];
-      depts.forEach(d => {
-        const btn = document.getElementById(`matrixOpBtn-${d}`);
+      const mapIds = {
+        'all': 'matrixOpBtn-all',
+        'DO 1': 'matrixOpBtn-DO1',
+        'DO 2': 'matrixOpBtn-DO2',
+        'DO 3': 'matrixOpBtn-DO3'
+      };
+      Object.entries(mapIds).forEach(([deptKey, btnId]) => {
+        const btn = document.getElementById(btnId);
         if (!btn) return;
-        if (selectedDepartment === d) {
-          btn.className = "px-2 py-0.5 rounded text-[10px] font-bold bg-[#0c4a8a] text-white transition-all";
+        if (selectedDepartment === deptKey) {
+          btn.className = "matrix-op-btn px-2.5 py-1 rounded-md font-bold bg-[#0c4a8a] text-white transition-all";
         } else {
-          btn.className = "px-2 py-0.5 rounded text-[10px] font-semibold text-slate-600 hover:bg-slate-200 transition-all";
+          btn.className = "matrix-op-btn px-2.5 py-1 rounded-md font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all";
         }
       });
     }
@@ -1584,7 +1975,7 @@
       }
     }
 
-    // Render Matrix Table with 10 Document Status Dots matching 1:1 Reference
+    // Render Matrix Table with 10 Document Status Dots matching Google Sheet 100%
     function renderMatrixTable() {
       const tbody = document.getElementById("matrixTableBody");
       const total = displayedProjects.length;
@@ -1599,6 +1990,11 @@
         return;
       }
 
+      const EXTRA_CM_KEYS = [
+        "Jaminan UM", "Jaminan Pelaksanaan", "Polis Asuransi", "TDK",
+        "RKP Bab 12", "Cheklist Progress", "Executive Summary", "EoT", "MoM Ekst."
+      ];
+
       tbody.innerHTML = pageProjects.map((p, idx) => {
         const rowNo = startIdx + idx + 1;
         const opShort = (p["Kode Dept"] || "DO 1").replace("DO ", "OP");
@@ -1608,12 +2004,13 @@
         const dSpp = p["SPP"] === "✓" ? 1 : 0;
         const dSpmk = p["SPMK"] === "✓" ? 1 : 0;
         const dBastl = p["BASTL"] === "✓" ? 1 : 0;
-        const dMoreCm = (p["Skor CM"] === 14) ? 1 : (p["Skor CM"] > 0 ? 2 : 0);
 
-        const isLauSimemeLanj = p["Nama Proyek"].includes("Lau Simeme Lanj");
-        const dVo = p["Input CCMS (Update Status)"] === "✓" ? 1 : (isLauSimemeLanj ? 2 : 0);
-        const dClaim = p["Claim Waktu (Terdampak)"] === "✓" ? 1 : (isLauSimemeLanj ? 2 : 0);
-        const dAntiClaim = p["BAK"] === "✓" ? 1 : 0;
+        const extraCmCount = EXTRA_CM_KEYS.filter(k => p[k] === "✓").length;
+        const dMoreCm = extraCmCount === 9 ? 1 : (extraCmCount > 0 ? 2 : 0);
+
+        const dVo = p["Input CCMS (Update Status)"] === "✓" ? 1 : 0;
+        const dClaim = (p["Notis"] === "✓" && p["Claim Waktu (Terdampak)"] === "✓") ? 1 : ((p["Notis"] === "✓" || p["Claim Waktu (Terdampak)"] === "✓") ? 2 : 0);
+        const dAntiClaim = (p["Proposal Perubahan"] === "✓" && p["BAK"] === "✓") ? 1 : ((p["Proposal Perubahan"] === "✓" || p["BAK"] === "✓") ? 2 : 0);
         const dInsurance = p["Amandemen Kontrak"] === "✓" ? 1 : 0;
 
         return `
@@ -1626,7 +2023,7 @@
             <td class="py-2 px-1 text-center">${renderStatusCircle(dSpp)}</td>
             <td class="py-2 px-1 text-center">${renderStatusCircle(dSpmk)}</td>
             <td class="py-2 px-1 text-center">${renderStatusCircle(dBastl)}</td>
-            <td class="py-2 px-1 text-center border-r border-slate-100">${renderStatusCircle(dMoreCm)}</td>
+            <td class="py-2 px-1 text-center border-r border-slate-100" title="${extraCmCount}/9 Dokumen CM Lainnya">${renderStatusCircle(dMoreCm)}</td>
             <td class="py-2 px-1 text-center">${renderStatusCircle(dVo)}</td>
             <td class="py-2 px-1 text-center">${renderStatusCircle(dClaim)}</td>
             <td class="py-2 px-1 text-center">${renderStatusCircle(dAntiClaim)}</td>
@@ -1658,12 +2055,12 @@
       paginationCtrls.innerHTML = btns;
     }
 
-    // Build all 21 Priority Projects dynamically from allProjectsData
+    // Build all Priority Projects dynamically from allProjectsData
     function getAllPriorityProjects() {
       return allProjectsData.filter(p => p["Total Dokumen"] < 20 || p["Catatan Khusus ADKON"]).map(p => {
         const opShort = (p["Kode Dept"] || "DO 1").replace("DO ", "OP");
         const cmStatus = p["Status CM"] || (p["Skor CM"] === 14 ? "Lengkap" : (p["Skor CM"] === 0 ? "Belum Diisi" : "Belum Lengkap"));
-        const voStatus = p["Status VO"] || (p["Skor VO"] === 6 ? "Lengkap" : "Belum Diisi");
+        const voStatus = p["Status VO"] || (p["Skor VO"] === 6 ? "Lengkap" : (p["Skor VO"] === 0 ? "Belum Diisi" : "Belum Lengkap"));
         let shortKet = "Dokumen VO / Addendum 1";
         if (p["Nama Proyek"].includes("Jragung")) shortKet = "BAK, AMDK";
         else if (p["Nama Proyek"].includes("Karian-Serpong")) shortKet = "Checklist & VO";
@@ -1691,24 +2088,34 @@
       });
     }
 
-    // Filter Priority Projects according to filter type ('all' | 'belum_lengkap' | 'belum_diisi')
+    // Filter Priority Projects ('all' | 'belum_lengkap' | 'belum_diisi')
     function filterPriorityItems(items, filterType, deptFilter = 'all', query = '') {
       return items.filter(item => {
         if (deptFilter !== 'all' && item.deptCode !== deptFilter) return false;
         if (query && !item.name.toLowerCase().includes(query.toLowerCase())) return false;
         if (filterType === 'belum_lengkap') {
-          // Projects that have partial documents filled (Belum Lengkap CM or partial total > 0)
           return item.cm === 'Belum Lengkap' || (item.cmScore > 0 && item.cmScore < 14);
         }
         if (filterType === 'belum_diisi') {
-          // Projects where VO or CM is completely empty (Belum Diisi)
           return item.vo === 'Belum Diisi' || item.cm === 'Belum Diisi';
         }
         return true;
       });
     }
 
-    // Render Priority Table on Card (Proyek Prioritas Tindak Lanjut) with Filter & Pagination
+    // Helper: Render Status Badge with RED (#dc2626) for "Belum Diisi", AMBER (#f59e0b) for "Belum Lengkap", GREEN (#159a5c) for "Lengkap"
+    function renderStatusBadgeBox(statusText, customLabel = null) {
+      const label = customLabel || statusText;
+      if (statusText === 'Lengkap') {
+        return `<span class="inline-block px-2 py-0.5 rounded bg-[#159a5c] text-white font-bold text-[9.5px] whitespace-nowrap">${label}</span>`;
+      } else if (statusText === 'Belum Diisi') {
+        return `<span class="inline-block px-2 py-0.5 rounded bg-[#dc2626] text-white font-bold text-[9.5px] whitespace-nowrap shadow-xs">${label}</span>`;
+      } else {
+        return `<span class="inline-block px-2 py-0.5 rounded bg-[#f59e0b] text-white font-bold text-[9.5px] whitespace-nowrap">${label}</span>`;
+      }
+    }
+
+    // Render Priority Table on Card (Proyek Prioritas Tindak Lanjut) with Red "Belum Diisi" Badge
     function renderPriorityTable() {
       const allPrio = getAllPriorityProjects();
       const filtered = filterPriorityItems(allPrio, priorityCardFilter, selectedDepartment, '');
@@ -1719,20 +2126,20 @@
       const startIdx = (priorityCardPage - 1) * priorityCardPageSize;
       const pageRows = filtered.slice(startIdx, startIdx + priorityCardPageSize);
 
-      // Update Filter Pill Buttons on Priority Card
+      // Update Filter Pill Buttons on Priority Card (matching IDs prioFilterBtn-*)
       ['all', 'belum_lengkap', 'belum_diisi'].forEach(f => {
-        const btn = document.getElementById(`prioFilter-${f}`);
+        const btn = document.getElementById(`prioFilterBtn-${f}`);
         if (!btn) return;
         if (priorityCardFilter === f) {
-          btn.className = "px-2 py-0.5 rounded text-[10px] font-bold bg-[#0c4a8a] text-white transition-all";
+          btn.className = "px-2.5 py-1 rounded-md font-bold bg-[#0c4a8a] text-white transition-all";
         } else {
-          btn.className = "px-2 py-0.5 rounded text-[10px] font-semibold text-slate-600 hover:bg-slate-200 transition-all";
+          btn.className = "px-2.5 py-1 rounded-md font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all";
         }
       });
 
-      const pageInfo = document.getElementById("prioPageInfo");
+      const pageInfo = document.getElementById("prioCardPageInfo");
       if (pageInfo) {
-        pageInfo.textContent = total === 0 ? "0/0" : `${startIdx + 1}-${Math.min(startIdx + priorityCardPageSize, total)} / ${total}`;
+        pageInfo.textContent = total === 0 ? "0/0" : `${startIdx + 1}-${Math.min(startIdx + priorityCardPageSize, total)} dari ${total}`;
       }
 
       const tbody = document.getElementById("priorityTableBody");
@@ -1743,13 +2150,10 @@
 
       tbody.innerHTML = pageRows.map((r, idx) => {
         const rowNum = startIdx + idx + 1;
-        const cmBadge = r.cmOk
-          ? `<span class="inline-block px-2 py-0.5 rounded bg-[#159a5c] text-white font-bold text-[9.5px]">${r.cm}</span>`
-          : `<span class="inline-block px-2 py-0.5 rounded ${r.cm === 'Belum Diisi' ? 'bg-rose-600' : 'bg-[#f59e0b]'} text-white font-bold text-[9.5px]">${r.cm}</span>`;
-        const voBadge = r.voOk
-          ? `<span class="inline-block px-2 py-0.5 rounded bg-[#159a5c] text-white font-bold text-[9.5px]">${r.vo}</span>`
-          : `<span class="inline-block px-2 py-0.5 rounded bg-[#f59e0b] text-white font-bold text-[9.5px]">${r.vo}</span>`;
-        const overallStatus = (!r.voOk && r.vo === 'Belum Diisi') ? 'Belum Diisi' : 'Belum Lengkap';
+        const cmBadge = renderStatusBadgeBox(r.cm);
+        const voBadge = renderStatusBadgeBox(r.vo);
+        const overallStatus = (!r.voOk && r.vo === 'Belum Diisi') || r.cm === 'Belum Diisi' ? 'Belum Diisi' : 'Belum Lengkap';
+        const overallBadge = renderStatusBadgeBox(overallStatus);
 
         return `
           <tr class="${idx % 2 === 1 ? 'bg-[#f8fafc]' : 'bg-white'} hover:bg-amber-50/60 cursor-pointer transition-colors" onclick="openProjectDetail(${r._id})">
@@ -1758,7 +2162,7 @@
             <td class="py-2 px-1.5 text-center font-semibold text-slate-600">${r.op}</td>
             <td class="py-2 px-1.5 text-center">${cmBadge}</td>
             <td class="py-2 px-1.5 text-center">${voBadge}</td>
-            <td class="py-2 px-2 text-center font-semibold text-slate-600">${overallStatus}</td>
+            <td class="py-2 px-2 text-center">${overallBadge}</td>
             <td class="py-2 px-2 font-semibold text-[#0c2340] truncate max-w-[120px]" title="${r.fullNotes}">${r.ket}</td>
           </tr>
         `;
@@ -1838,12 +2242,8 @@
       }
 
       tbody.innerHTML = filtered.map((r, idx) => {
-        const cmBadge = r.cmOk
-          ? `<span class="inline-block px-2 py-0.5 rounded bg-[#159a5c] text-white font-bold text-[10px]">${r.cmScore}/14 Lengkap</span>`
-          : `<span class="inline-block px-2 py-0.5 rounded ${r.cm === 'Belum Diisi' ? 'bg-rose-600' : 'bg-[#f59e0b]'} text-white font-bold text-[10px]">${r.cmScore}/14 (${r.cm})</span>`;
-        const voBadge = r.voOk
-          ? `<span class="inline-block px-2 py-0.5 rounded bg-[#159a5c] text-white font-bold text-[10px]">${r.voScore}/6 Lengkap</span>`
-          : `<span class="inline-block px-2 py-0.5 rounded bg-[#f59e0b] text-white font-bold text-[10px]">${r.voScore}/6 (${r.vo})</span>`;
+        const cmBadge = renderStatusBadgeBox(r.cm, `${r.cmScore}/14 (${r.cm})`);
+        const voBadge = renderStatusBadgeBox(r.vo, `${r.voScore}/6 (${r.vo})`);
 
         return `
           <tr class="${idx % 2 === 1 ? 'bg-[#f8fafc]' : 'bg-white'} hover:bg-sky-50/80 transition-colors">
@@ -1880,8 +2280,9 @@
       priorityCardPage = 1;
       const topSelect = document.getElementById("filterDepartment");
       if (topSelect && topSelect.value !== dept) topSelect.value = dept;
+      renderHorizontalBars();
       filterAndRender();
-      showToast("Filter Operasi Diperbarui", `Menampilkan proyek untuk ${dept === 'all' ? 'Semua Departemen Operasi (51 Proyek)' : dept}`);
+      showToast("Filter Operasi Diperbarui", `Menampilkan proyek untuk ${dept === 'all' ? `Semua Departemen Operasi (${allProjectsData.length} Proyek)` : dept}`);
     }
 
     function handleMatrixStatusFilter(status) {
@@ -1905,8 +2306,11 @@
       filterAndRender();
       const labelMap = {
         all: 'Semua Tahapan (CM & Perubahan)',
-        cm: 'Perlu Melengkapi Contract Management (CM)',
-        vo: 'Perlu Melengkapi Perubahan / VO'
+        cm: 'Perlu Melengkapi Contract Management (14 Dok)',
+        vo: 'Perlu Melengkapi Perubahan / VO (6 Dok)',
+        pelaksanaan: 'Masa Pelaksanaan (SPMK Aktif)',
+        'mc-0': 'MC-0 / Addendum Awal',
+        'serah-terima': 'Serah Terima (BASTL)'
       };
       showToast("Filter Tahapan", labelMap[tahapan] || tahapan);
     }
@@ -1924,84 +2328,84 @@
       filterAndRender();
     }
 
-    // Period Filter ("Terkini", "Juli 2026", "Juni 2026", "Mei 2026")
+    // Period Filter ("terkini" = 5 Oktober 2026 + Historical Periods)
     function handlePeriodFilter(period) {
       selectedPeriod = period;
+      if (period === 'terkini' || period === 'okt-2026' || period === 'sep-2026') {
+        recalculateDashboardMetrics();
+        const badge = document.getElementById("periodStatusBadge");
+        if (badge) {
+          const labelTxt = period === 'sep-2026' ? 'Cut-Off September 2026' : 'Terkini (5 Oktober 2026)';
+          badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> ${labelTxt}`;
+        }
+        showToast("Periode Data Terkini", "Menampilkan data Google Sheet terbaru (5 Oktober 2026).");
+        return;
+      }
+
       const snapshots = {
-        'terkini': {
-          label: 'Terkini (Terbaru)',
-          cmLengkap: 32, cmTidak: 19, cmPct: '62,7%',
-          voLengkap: 30, voTidak: 21, voPct: '58,8%',
-          barCm: [63.2, 77.8, 42.9],
-          barVo: [52.6, 77.8, 42.9],
-          trend1: [58, 64, 75, 70, 78, 80, 77.8],
-          trend2: [48, 55, 66, 60, 68, 65, 63.2],
-          trend3: [35, 42, 48, 45, 52, 48, 42.9]
+        'agu-2026': {
+          label: 'Agustus 2026 (Historis)',
+          cmLengkap: 31, cmBelum: 18, cmNihil: 2, cmPct: '60,8%',
+          voLengkap: 29, voBelum: 22, voPct: '56,9%',
+          barCm: [61.5, 76.0, 40.5],
+          barVo: [50.0, 75.0, 40.5]
         },
         'jul-2026': {
-          label: 'Juli 2026',
-          cmLengkap: 32, cmTidak: 19, cmPct: '62,7%',
-          voLengkap: 30, voTidak: 21, voPct: '58,8%',
-          barCm: [63.2, 77.8, 42.9],
-          barVo: [52.6, 77.8, 42.9],
-          trend1: [58, 64, 75, 70, 78, 80, 77.8],
-          trend2: [48, 55, 66, 60, 68, 65, 63.2],
-          trend3: [35, 42, 48, 45, 52, 48, 42.9]
+          label: 'Juli 2026 (Historis)',
+          cmLengkap: 30, cmBelum: 19, cmNihil: 2, cmPct: '58,8%',
+          voLengkap: 28, voBelum: 23, voPct: '54,9%',
+          barCm: [60.0, 74.5, 38.0],
+          barVo: [48.5, 72.2, 38.0]
         },
         'jun-2026': {
           label: 'Juni 2026 (Historis)',
-          cmLengkap: 29, cmTidak: 22, cmPct: '56,9%',
-          voLengkap: 27, voTidak: 24, voPct: '52,9%',
+          cmLengkap: 29, cmBelum: 20, cmNihil: 2, cmPct: '56,9%',
+          voLengkap: 27, voBelum: 24, voPct: '52,9%',
           barCm: [57.9, 72.2, 35.7],
-          barVo: [47.4, 66.7, 35.7],
-          trend1: [58, 64, 75, 70, 78, 75, 72.2],
-          trend2: [48, 55, 66, 60, 64, 60, 57.9],
-          trend3: [35, 42, 48, 45, 46, 40, 35.7]
+          barVo: [47.4, 66.7, 35.7]
         },
         'mei-2026': {
           label: 'Mei 2026 (Historis)',
-          cmLengkap: 26, cmTidak: 25, cmPct: '51,0%',
-          voLengkap: 24, voTidak: 27, voPct: '47,1%',
+          cmLengkap: 26, cmBelum: 22, cmNihil: 3, cmPct: '51,0%',
+          voLengkap: 24, voBelum: 27, voPct: '47,1%',
           barCm: [52.6, 66.7, 28.6],
-          barVo: [42.1, 61.1, 28.6],
-          trend1: [54, 60, 68, 65, 70, 68, 66.7],
-          trend2: [44, 50, 58, 55, 58, 55, 52.6],
-          trend3: [30, 35, 40, 38, 36, 32, 28.6]
+          barVo: [42.1, 61.1, 28.6]
         }
       };
 
-      const snap = snapshots[period] || snapshots['terkini'];
-      const isDark = document.documentElement.classList.contains('dark');
-      const emptyColor = isDark ? '#334155' : '#e2e8f0';
+      const snap = snapshots[period];
+      if (!snap) return;
 
-      // Update Donut Charts & Center Labels
+      const badge = document.getElementById("periodStatusBadge");
+      if (badge) {
+        badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> ${snap.label}`;
+      }
+
+      document.getElementById("kpiCmPercent").textContent = snap.cmPct;
+      document.getElementById("kpiCmRatio").textContent = `${snap.cmLengkap} dari 51 Proyek`;
+      document.getElementById("cmLengkapCount").textContent = snap.cmLengkap;
+      document.getElementById("cmBelumCount").textContent = snap.cmBelum;
+      document.getElementById("cmNihilCount").textContent = snap.cmNihil;
+
+      document.getElementById("kpiVoPercent").textContent = snap.voPct;
+      document.getElementById("kpiVoRatio").textContent = `${snap.voLengkap} dari 51 Proyek`;
+      document.getElementById("voLengkapCount").textContent = snap.voLengkap;
+      document.getElementById("voBelumCount").textContent = snap.voBelum;
+
       if (cmDonutInstance) {
-        cmDonutInstance.data.datasets[0].data = [snap.cmLengkap, snap.cmTidak];
-        cmDonutInstance.data.datasets[0].backgroundColor = ['#159a5c', emptyColor];
+        cmDonutInstance.data.datasets[0].data = [snap.cmLengkap, snap.cmBelum, snap.cmNihil];
+        cmDonutInstance.data.datasets[0].backgroundColor = ['#159a5c', '#f59e0b', '#94a3b8'];
         cmDonutInstance.update();
       }
       if (voDonutInstance) {
-        voDonutInstance.data.datasets[0].data = [snap.voLengkap, snap.voTidak];
-        voDonutInstance.data.datasets[0].backgroundColor = ['#0d6efd', emptyColor];
+        voDonutInstance.data.datasets[0].data = [snap.voLengkap, snap.voBelum];
+        voDonutInstance.data.datasets[0].backgroundColor = ['#0d6efd', '#f59e0b'];
         voDonutInstance.update();
       }
-
-      const cmCenter = document.querySelector('#cmDonutChart')?.parentElement?.querySelector('span');
-      if (cmCenter) cmCenter.textContent = snap.cmPct;
-      const voCenter = document.querySelector('#voDonutChart')?.parentElement?.querySelector('span');
-      if (voCenter) voCenter.textContent = snap.voPct;
-
       if (barChartInstance) {
         barChartInstance.data.datasets[0].data = snap.barCm;
         barChartInstance.data.datasets[1].data = snap.barVo;
         barChartInstance.update();
-      }
-
-      if (trendChartInstance) {
-        trendChartInstance.data.datasets[0].data = snap.trend1;
-        trendChartInstance.data.datasets[1].data = snap.trend2;
-        trendChartInstance.data.datasets[2].data = snap.trend3;
-        trendChartInstance.update();
       }
 
       showToast("Periode Data Diperbarui", `Menampilkan data dashboard periode: ${snap.label}`);
@@ -2042,56 +2446,240 @@
       document.getElementById("clearSearchBtn")?.classList.add("hidden");
 
       currentPage = 1;
-      handlePeriodFilter('terkini');
-      renderHorizontalBars();
-      filterAndRender();
-      showToast("Filter Direset", "Menampilkan data Terkini untuk seluruh 51 proyek infrastruktur.");
+      recalculateDashboardMetrics();
+      showToast("Filter Direset", `Menampilkan data Terkini (5 Okt 2026) untuk seluruh ${allProjectsData.length} proyek infrastruktur.`);
     }
 
-    // Interactive Calendar Widget (Mei 2026 - Agustus 2026)
-    const CALENDAR_MONTHS = [
-      { title: "Mei 2026", startOffset: 4, days: 31, highlightDays: [15, 28], badgeDay: 20, prevDays: [27, 28, 29, 30] },
-      { title: "Juni 2026", startOffset: 0, days: 30, highlightDays: [12, 25], badgeDay: 19, prevDays: [] },
-      { title: "Juli 2026", startOffset: 2, days: 31, highlightDays: [8, 22], badgeDay: 16, prevDays: [29, 30] },
-      { title: "Agustus 2026", startOffset: 5, days: 31, highlightDays: [10, 24], badgeDay: 17, prevDays: [27, 28, 29, 30, 31] }
-    ];
+    // ========================================================
+    // MULTI-YEAR INTERACTIVE CALENDAR & MANUAL AGENDA CREATOR
+    // (Supports Jan 2026 - Des 2028+ without affecting other cards)
+    // ========================================================
+    function pad2(n) {
+      return String(n).padStart(2, '0');
+    }
+
+    function formatDateTitleID(dateStr) {
+      const parts = (dateStr || "").split("-");
+      if (parts.length !== 3) return dateStr;
+      const y = parseInt(parts[0], 10);
+      const m = parseInt(parts[1], 10) - 1;
+      const d = parseInt(parts[2], 10);
+      return `${d} ${MONTH_NAMES_ID[m] || ""} ${y}`;
+    }
 
     function renderCalendar() {
-      const cal = CALENDAR_MONTHS[calendarMonthIndex] || CALENDAR_MONTHS[2];
-      const titleEl = document.getElementById("calendarMonthTitle");
-      if (titleEl) titleEl.textContent = cal.title;
+      const labelEl = document.getElementById("calendarMonthLabel");
+      if (labelEl) {
+        labelEl.textContent = `${MONTH_NAMES_ID[calMonth]} ${calYear}`;
+      }
       const gridEl = document.getElementById("calendarDaysGrid");
       if (!gridEl) return;
 
+      const firstDayOfMonth = new Date(calYear, calMonth, 1);
+      // Convert JS Sunday=0..Saturday=6 into Monday=0..Sunday=6
+      const startOffset = (firstDayOfMonth.getDay() + 6) % 7;
+      const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+      const daysInPrevMonth = new Date(calYear, calMonth, 0).getDate();
+
       let cells = [];
-      cal.prevDays.forEach(d => {
-        cells.push(`<span class="py-1 text-slate-300">${d}</span>`);
-      });
-      for (let d = 1; d <= cal.days; d++) {
-        const colIdx = (cal.prevDays.length + d - 1) % 7;
+      // Previous month trailing days
+      for (let i = startOffset - 1; i >= 0; i--) {
+        const prevD = daysInPrevMonth - i;
+        cells.push(`<span class="py-1 text-slate-300 dark:text-slate-600 select-none">${prevD}</span>`);
+      }
+
+      // Current month days
+      for (let d = 1; d <= daysInMonth; d++) {
+        const dateStr = `${calYear}-${pad2(calMonth + 1)}-${pad2(d)}`;
+        const colIdx = (startOffset + d - 1) % 7;
         const isSunday = colIdx === 6;
-        if (d === cal.badgeDay) {
-          cells.push(`<span onclick="showToast('Jadwal Cut-Off ADKON', 'Tanggal ${d} ${cal.title}: Evaluasi Kepatuhan CCMS Divisi 1')" class="py-1 rounded bg-[#f59e0b] text-white font-bold shadow-xs cursor-pointer" title="Cut-Off Evaluasi Bulanan">${d}</span>`);
-        } else if (cal.highlightDays.includes(d)) {
-          cells.push(`<span onclick="showToast('Sinkronisasi CCMS', 'Tanggal ${d} ${cal.title}: Pemeriksaan Berkala Dokumen Kontrak')" class="py-1 rounded bg-[#0d6efd] text-white font-bold shadow-xs cursor-pointer" title="Sinkronisasi Berkala">${d}</span>`);
+        const dayAgendas = calendarAgendas.filter(a => a.date === dateStr);
+
+        if (dayAgendas.length > 0) {
+          const primary = dayAgendas[0];
+          const tooltipText = dayAgendas.map(a => a.title).join(" • ").replace(/"/g, '&quot;');
+          cells.push(`
+            <button type="button" onclick="openCalendarAgendaModal('${dateStr}')" style="background-color: ${primary.color};" class="py-1 rounded text-white font-bold shadow-xs cursor-pointer hover:opacity-90 transition-transform active:scale-95 relative" title="${tooltipText}">
+              ${d}
+              ${dayAgendas.length > 1 ? `<span class="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-white ring-1 ring-slate-700"></span>` : ''}
+            </button>
+          `);
         } else if (isSunday) {
-          cells.push(`<span class="py-1 text-rose-500 font-bold">${d}</span>`);
+          cells.push(`
+            <button type="button" onclick="openCalendarAgendaModal('${dateStr}')" class="py-1 text-rose-500 font-bold hover:bg-rose-50 dark:hover:bg-slate-800 rounded cursor-pointer transition-colors" title="Klik untuk tambah agenda tanggal ${d} ${MONTH_NAMES_ID[calMonth]} ${calYear}">
+              ${d}
+            </button>
+          `);
         } else {
-          cells.push(`<span class="py-1 hover:bg-slate-100 rounded cursor-pointer">${d}</span>`);
+          cells.push(`
+            <button type="button" onclick="openCalendarAgendaModal('${dateStr}')" class="py-1 hover:bg-sky-50 dark:hover:bg-slate-800 rounded cursor-pointer transition-colors" title="Klik untuk tambah agenda tanggal ${d} ${MONTH_NAMES_ID[calMonth]} ${calYear}">
+              ${d}
+            </button>
+          `);
         }
       }
+
       gridEl.innerHTML = cells.join("");
+      renderCalendarAgendaList();
     }
 
-    function changeCalendarMonth(delta) {
-      const next = calendarMonthIndex + delta;
-      if (next >= 0 && next < CALENDAR_MONTHS.length) {
-        calendarMonthIndex = next;
-        renderCalendar();
+    function renderCalendarAgendaList() {
+      const listEl = document.getElementById("calendarAgendaList");
+      if (!listEl) return;
+
+      const monthPrefix = `${calYear}-${pad2(calMonth + 1)}-`;
+      const monthAgendas = calendarAgendas
+        .filter(a => a.date && a.date.startsWith(monthPrefix))
+        .sort((a, b) => a.date.localeCompare(b.date));
+
+      if (monthAgendas.length === 0) {
+        const sampleDate = `${calYear}-${pad2(calMonth + 1)}-05`;
+        listEl.innerHTML = `
+          <div onclick="openCalendarAgendaModal('${sampleDate}')" class="px-2.5 py-1.5 rounded-lg bg-slate-50 border border-dashed border-slate-300 text-slate-500 text-[10px] flex items-center justify-between cursor-pointer hover:border-[#0d6efd] hover:text-[#0d6efd] transition-colors">
+            <span>Belum ada agenda di ${MONTH_NAMES_ID[calMonth]} ${calYear}. Klik tanggal untuk membuat.</span>
+            <span class="font-bold">+</span>
+          </div>
+        `;
+        return;
       }
+
+      listEl.innerHTML = monthAgendas.map(item => {
+        const dayNum = parseInt(item.date.split("-")[2], 10);
+        const shortMonth = MONTH_SHORT_ID[calMonth];
+        return `
+          <div onclick="openCalendarAgendaModal('${item.date}')" class="px-2.5 py-1 rounded-lg bg-[#fff8eb] border border-[#fde68a] flex items-center justify-between text-[10px] cursor-pointer hover:opacity-90 transition-opacity gap-2">
+            <div class="flex items-center gap-1.5 text-[#0c2340] font-bold truncate">
+              <span class="w-2.5 h-2.5 rounded-full shrink-0" style="background-color: ${item.color};"></span>
+              <span class="truncate">${dayNum} ${shortMonth} - ${item.title}</span>
+            </div>
+            <span class="text-slate-400 font-bold shrink-0">&rsaquo;</span>
+          </div>
+        `;
+      }).join("");
     }
 
-    // Open Project Detail Modal using unique _id (or fallback to No)
+    // Navigate Calendar Across Multiple Years (2025 - 2029) Independently
+    function changeCalendarMonth(delta) {
+      let nextMonth = calMonth + delta;
+      let nextYear = calYear;
+      if (nextMonth > 11) {
+        nextMonth = 0;
+        nextYear += 1;
+      } else if (nextMonth < 0) {
+        nextMonth = 11;
+        nextYear -= 1;
+      }
+      // Allow navigation from Jan 2025 through Dec 2028 (more than 2+ years ahead)
+      if (nextYear < 2025 || nextYear > 2028) return;
+      calMonth = nextMonth;
+      calYear = nextYear;
+      renderCalendar();
+    }
+
+    function openCalendarAgendaModal(dateStr = null) {
+      if (!dateStr) {
+        dateStr = `${calYear}-${pad2(calMonth + 1)}-05`;
+      }
+      selectedAgendaDateStr = dateStr;
+      const dateInput = document.getElementById("agendaDateInput");
+      if (dateInput) dateInput.value = dateStr;
+      const subEl = document.getElementById("agendaModalDateSubtitle");
+      if (subEl) subEl.textContent = formatDateTitleID(dateStr);
+      const titleIn = document.getElementById("agendaTitleInput");
+      if (titleIn) titleIn.value = "";
+
+      selectAgendaColor(selectedAgendaColor || '#0d6efd');
+      renderModalDateAgendas(dateStr);
+      document.getElementById("calendarAgendaModal").classList.remove("hidden");
+      setTimeout(() => document.getElementById("agendaTitleInput")?.focus(), 80);
+    }
+
+    function onAgendaDateInputChange(newDateStr) {
+      if (!newDateStr) return;
+      selectedAgendaDateStr = newDateStr;
+      const subEl = document.getElementById("agendaModalDateSubtitle");
+      if (subEl) subEl.textContent = formatDateTitleID(newDateStr);
+      renderModalDateAgendas(newDateStr);
+    }
+
+    function selectAgendaColor(colorHex) {
+      selectedAgendaColor = colorHex;
+      document.querySelectorAll('#agendaColorPicker .agenda-color-btn').forEach(btn => {
+        const c = btn.getAttribute('data-color');
+        if (c === colorHex) {
+          btn.className = "agenda-color-btn w-7 h-7 rounded-full flex items-center justify-center text-white shadow-sm ring-2 ring-offset-2 transition-all";
+          btn.style.backgroundColor = c;
+          btn.style.setProperty('--tw-ring-color', c);
+          btn.innerHTML = `<span class="material-symbols-outlined text-xs">check</span>`;
+        } else {
+          btn.className = "agenda-color-btn w-7 h-7 rounded-full flex items-center justify-center text-white shadow-sm opacity-75 hover:opacity-100 transition-all";
+          btn.style.backgroundColor = c;
+          btn.innerHTML = "";
+        }
+      });
+    }
+
+    function renderModalDateAgendas(dateStr) {
+      const container = document.getElementById("modalDateAgendasList");
+      if (!container) return;
+      const items = calendarAgendas.filter(a => a.date === dateStr);
+      if (items.length === 0) {
+        container.innerHTML = `<div class="text-[11px] text-slate-400 italic py-1">Belum ada agenda pada tanggal ini. Silakan ketik di atas lalu klik Simpan Agenda.</div>`;
+        return;
+      }
+      container.innerHTML = items.map(item => `
+        <div class="flex items-center justify-between gap-2 px-2.5 py-1.5 rounded-lg bg-slate-50 border border-slate-200">
+          <div class="flex items-center gap-2 truncate">
+            <span class="w-3 h-3 rounded-full shrink-0" style="background-color: ${item.color};"></span>
+            <span class="font-bold text-slate-800 text-[11px] truncate">${item.title}</span>
+          </div>
+          <button type="button" onclick="deleteCalendarAgenda('${item.id}')" class="text-rose-500 hover:text-rose-700 font-bold text-xs px-1" title="Hapus agenda">&times;</button>
+        </div>
+      `).join("");
+    }
+
+    function saveCalendarAgenda() {
+      const dateVal = document.getElementById("agendaDateInput")?.value || selectedAgendaDateStr;
+      const titleVal = (document.getElementById("agendaTitleInput")?.value || "").trim();
+      if (!titleVal) {
+        showToast("Input Agenda Kosong", "Silakan ketik nama atau keterangan agenda terlebih dahulu.");
+        document.getElementById("agendaTitleInput")?.focus();
+        return;
+      }
+
+      const newAgenda = {
+        id: "ag-" + Date.now(),
+        date: dateVal,
+        title: titleVal,
+        color: selectedAgendaColor || "#0d6efd"
+      };
+      calendarAgendas.push(newAgenda);
+      persistCalendarAgendas();
+
+      // Jump calendar view to the saved agenda's month/year
+      const parts = dateVal.split("-");
+      if (parts.length === 3) {
+        calYear = parseInt(parts[0], 10);
+        calMonth = parseInt(parts[1], 10) - 1;
+      }
+
+      document.getElementById("agendaTitleInput").value = "";
+      renderModalDateAgendas(dateVal);
+      renderCalendar();
+      showToast("Agenda Tersimpan", `Agenda "${titleVal}" ditambahkan pada ${formatDateTitleID(dateVal)}.`);
+    }
+
+    function deleteCalendarAgenda(agendaId) {
+      calendarAgendas = calendarAgendas.filter(a => a.id !== agendaId);
+      persistCalendarAgendas();
+      renderModalDateAgendas(selectedAgendaDateStr);
+      renderCalendar();
+      showToast("Agenda Dihapus", "Agenda berhasil dihapus dari kalender.");
+    }
+
+    // ========================================================
+    // PROJECT DETAIL MODAL & EXPORT HELPERS
+    // ========================================================
     function openProjectDetail(projectId) {
       const project = allProjectsData.find(p => p._id === projectId) || allProjectsData.find(p => p["No"] == projectId) || allProjectsData[0];
       document.getElementById("modalProjectName").textContent = project["Nama Proyek"];
@@ -2128,7 +2716,6 @@
       document.getElementById("projectDetailModal").classList.remove("hidden");
     }
 
-    // Modal Control Helpers
     function closeModal(id) {
       document.getElementById(id).classList.add("hidden");
     }
@@ -2180,15 +2767,11 @@
       const encodedUri = encodeURI(csvContent);
       const link = document.createElement("a");
       link.setAttribute("href", encodedUri);
-      link.setAttribute("download", "WIKA_CCMS_Monitoring_51_Proyek.csv");
+      link.setAttribute("download", `WIKA_CCMS_Monitoring_${allProjectsData.length}_Proyek_051026.csv`);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      showToast("Ekspor CSV Berhasil", "51 data proyek berhasil diunduh ke CSV.");
-    }
-
-    function openDiagnosticsModal() {
-      showToast("Status Koneksi API", "Google Sheets Live Endpoint: Connected (Latency: 142ms)");
+      showToast("Ekspor CSV Berhasil", `${allProjectsData.length} data proyek berhasil diunduh ke CSV.`);
     }
 
     // Toast Notification helper
@@ -2202,7 +2785,7 @@
       setTimeout(() => {
         toast.classList.remove('translate-y-0', 'opacity-100');
         toast.classList.add('translate-y-20', 'opacity-0');
-      }, 3000);
+      }, 3200);
     }
 
     // Light / Dark Theme Toggle with Chart.js synchronization
@@ -2212,7 +2795,7 @@
       localStorage.setItem('wika_ccms_theme', isDark ? 'dark' : 'light');
       const icon = document.getElementById('themeIcon');
       if (icon) {
-        icon.textContent = isDark ? 'dark_mode' : 'sunny';
+        icon.textContent = isDark ? 'dark_mode' : 'light_mode';
       }
       updateChartsTheme(isDark);
       if (isDark) {
@@ -2223,17 +2806,17 @@
     }
 
     function updateChartsTheme(isDark) {
-      const emptyRing = isDark ? '#334155' : '#e2e8f0';
       const gridColor = isDark ? '#1e293b' : '#f1f5f9';
       const tickColor = isDark ? '#94a3b8' : '#64748b';
       const xTickColor = isDark ? '#e2e8f0' : '#0c2340';
+      const borderCol = isDark ? '#0f1f38' : '#ffffff';
 
       if (cmDonutInstance) {
-        cmDonutInstance.data.datasets[0].backgroundColor[1] = emptyRing;
+        cmDonutInstance.data.datasets[0].borderColor = borderCol;
         cmDonutInstance.update();
       }
       if (voDonutInstance) {
-        voDonutInstance.data.datasets[0].backgroundColor[1] = emptyRing;
+        voDonutInstance.data.datasets[0].borderColor = borderCol;
         voDonutInstance.update();
       }
       if (barChartInstance) {
@@ -2250,19 +2833,163 @@
       }
     }
 
-    // Live Google Sheets Fetch (Silent Sync)
-    async function fetchLiveGoogleSheets() {
-      const url = "https://docs.google.com/spreadsheets/d/139JB1xkZd9jp44Xrb6FrT4vgamycWJAvxVwnjCskzzg/gviz/tq?tqx=out:json&sheet=Cheklist_20_Dokumen";
+    // ========================================================
+    // LIVE GOOGLE SHEET SYNCHRONIZATION ENGINE
+    // Spreadsheet ID: 1_HyDeqYkUB-HdLJwGLEUgx1nOmOoIx-OGDCgZGRvE4w (Sheet: Cheklist)
+    // Automatically parses any added, deleted, or modified project rows!
+    // ========================================================
+    function parseSheetMatrixRows(rawRows) {
+      const parsedProjects = [];
+      let deptName = "";
+      let deptCode = "";
+
+      for (let i = 0; i < rawRows.length; i++) {
+        const cells = rawRows[i];
+        if (!cells || cells.length === 0) continue;
+        const c0 = String(cells[0] ?? "").trim();
+        const c1 = String(cells[1] ?? "").trim();
+
+        // Stop if we hit the bottom summary text section below the main project table
+        if (c0.toUpperCase().includes("CONTRACT MANAGEMENT") || c0.toUpperCase() === "LENGKAP") {
+          break;
+        }
+        if (c0.includes("Departemen Operasi 1")) {
+          deptName = "Departemen Operasi 1";
+          deptCode = "DO 1";
+          continue;
+        }
+        if (c0.includes("Departemen Operasi 2")) {
+          deptName = "Departemen Operasi 2";
+          deptCode = "DO 2";
+          continue;
+        }
+        if (c0.includes("Departemen Operasi 3")) {
+          deptName = "Departemen Operasi 3";
+          deptCode = "DO 3";
+          continue;
+        }
+
+        const isNumberedRow = /^\d+/.test(c0);
+        if (deptCode && c1 && (isNumberedRow || cells[16] !== null && cells[16] !== undefined && cells[16] !== "")) {
+          const noNum = parseFloat(c0.replace(/[^\d.]/g, "")) || (parsedProjects.length + 1);
+          const p = {
+            _id: parsedProjects.length + 1,
+            "No": noNum,
+            "Nama Proyek": c1,
+            "Departemen": deptName,
+            "Kode Dept": deptCode
+          };
+
+          let cmScore = 0;
+          for (let kIdx = 0; kIdx < CM_KEYS.length; kIdx++) {
+            const cellVal = String(cells[2 + kIdx] ?? "").trim();
+            const isChecked = (cellVal === "✓" || cellVal === "v" || cellVal === "V" || cellVal === "✔" || cellVal === "1" || cellVal.toUpperCase() === "TRUE");
+            p[CM_KEYS[kIdx]] = isChecked ? "✓" : "";
+            if (isChecked) cmScore++;
+          }
+          if (typeof cells[16] === "number" && !isNaN(cells[16])) {
+            cmScore = Math.round(cells[16]);
+          }
+          p["Skor CM"] = cmScore;
+          p["Status CM"] = cmScore === 14 ? "Lengkap" : (cmScore === 0 ? "Belum Diisi" : "Belum Lengkap");
+
+          let voScore = 0;
+          for (let vIdx = 0; vIdx < VO_KEYS.length; vIdx++) {
+            const cellVal = String(cells[19 + vIdx] ?? "").trim();
+            const isChecked = (cellVal === "✓" || cellVal === "v" || cellVal === "V" || cellVal === "✔" || cellVal === "1" || cellVal.toUpperCase() === "TRUE");
+            p[VO_KEYS[vIdx]] = isChecked ? "✓" : "";
+            if (isChecked) voScore++;
+          }
+          if (typeof cells[25] === "number" && !isNaN(cells[25])) {
+            voScore = Math.round(cells[25]);
+          }
+          p["Skor VO"] = voScore;
+          p["Status VO"] = voScore === 6 ? "Lengkap" : (voScore === 0 ? "Belum Diisi" : "Belum Lengkap");
+
+          const tot = cmScore + voScore;
+          p["Total Dokumen"] = tot;
+          const pct = (tot / 20.0) * 100.0;
+          p["Persen Kepatuhan"] = `${pct.toFixed(1)}%`;
+          p["Kategori Status"] = tot === 20 ? "Lengkap 100%" : (tot === 0 ? "Kritis 0%" : (pct < 50 ? "Kritis (<50%)" : "Perlu Tindak Lanjut"));
+          p["Catatan Khusus ADKON"] = cells[30] ? String(cells[30]).trim() : null;
+
+          parsedProjects.push(p);
+        }
+      }
+      return parsedProjects;
+    }
+
+    function applyLiveProjectsUpdate(newProjects, showUserToast = false) {
+      if (!Array.isArray(newProjects) || newProjects.length === 0) return;
+      allProjectsData.length = 0;
+      newProjects.forEach((p, idx) => {
+        p._id = idx + 1;
+        allProjectsData.push(p);
+      });
+      if (selectedPeriod === 'terkini' || selectedPeriod === 'okt-2026' || selectedPeriod === 'sep-2026') {
+        recalculateDashboardMetrics();
+      }
+      const nowStr = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+      const syncLbl = document.getElementById("sidebarSyncLabel");
+      if (syncLbl) syncLbl.textContent = `Live: 5 Okt (${nowStr})`;
+      if (showUserToast) {
+        showToast("Google Sheet Tersinkronisasi", `Berhasil memuat ${allProjectsData.length} proyek terbaru dari Google Sheet (051026).`);
+      }
+    }
+
+    // Global JSONP Callback for Google Visualization API (bypasses CORS in all browsers)
+    window.__wikaGvizCallback = function(response) {
       try {
-        const resp = await fetch(url);
-        if (!resp.ok) return;
-        const text = await resp.text();
-        const match = text.match(/setResponse\((.*)\);?/s);
-        if (match && match[1]) {
-          console.log("Live Google Sheets data synchronized successfully.");
+        if (!response || response.status !== "ok" || !response.table || !response.table.rows) return;
+        const rawRows = response.table.rows.map(r => {
+          const cArr = r.c || [];
+          const out = [];
+          for (let i = 0; i < 31; i++) {
+            out.push(cArr[i] && cArr[i].v !== undefined ? cArr[i].v : null);
+          }
+          return out;
+        });
+        const parsed = parseSheetMatrixRows(rawRows);
+        if (parsed.length > 0) {
+          applyLiveProjectsUpdate(parsed, window.__wikaManualSyncRequested === true);
+          window.__wikaManualSyncRequested = false;
         }
       } catch (err) {
-        console.warn("Using offline snapshot fallback:", err);
+        console.warn("GViz callback parse warning:", err);
+      }
+    };
+
+    function syncFromGoogleSheet(isManual = false) {
+      window.__wikaManualSyncRequested = isManual;
+      const syncIcon = document.getElementById("headerSyncIcon");
+      if (syncIcon && isManual) {
+        syncIcon.classList.add("animate-spin");
+        setTimeout(() => syncIcon.classList.remove("animate-spin"), 1200);
+      }
+
+      // 1. If running inside Google Apps Script Web App, also call server-side SpreadsheetApp
+      if (typeof google !== "undefined" && google.script && google.script.run) {
+        google.script.run
+          .withSuccessHandler((serverProjects) => {
+            if (Array.isArray(serverProjects) && serverProjects.length > 0) {
+              applyLiveProjectsUpdate(serverProjects, isManual);
+            }
+          })
+          .withFailureHandler((err) => console.warn("Apps Script sync fallback:", err))
+          .getCCMSDataFromSheet();
+      }
+
+      // 2. Inject JSONP script to Google Visualization API for live browser sync
+      try {
+        const oldScript = document.getElementById("wikaGvizJsonpScript");
+        if (oldScript) oldScript.remove();
+        const script = document.createElement("script");
+        script.id = "wikaGvizJsonpScript";
+        script.src = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/gviz/tq?tqx=responseHandler:__wikaGvizCallback&sheet=${encodeURIComponent(GOOGLE_SHEET_NAME)}&_ts=${Date.now()}`;
+        script.async = true;
+        document.body.appendChild(script);
+      } catch (err) {
+        console.warn("Live sheet sync fallback:", err);
       }
     }
   </script>
