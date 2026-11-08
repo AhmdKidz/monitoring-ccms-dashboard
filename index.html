@@ -305,7 +305,7 @@
           </div>
 <div>
 <h1 class="font-headline-sm text-headline-sm font-bold text-on-surface dark:text-on-surface tracking-tight">CCMS &amp; ADKON Monitor | Divisi Infrastruktur 1</h1>
-<p class="font-body-xs text-body-xs text-text-muted hidden md:block">Contract Administration &amp; Statutory Risk Compliance</p>
+<p class="font-body-xs text-text-muted hidden md:block">Divisi Infrastruktur 1 — Real-time Google Sheets</p>
 </div>
 </div>
 <!-- Live Sync Pill Badge -->
@@ -375,98 +375,73 @@
 </div>
 </div>
 <!-- Executive KPI Summary (Top Row - 6 Cards Grid) -->
-<section class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-space-sm" id="executive">
-<!-- Card 1: Total Proyek -->
-<div class="p-space-md rounded-xl bg-surface-glass border border-border-glass backdrop-blur-md shadow-md flex flex-col justify-between hover:border-primary/40 transition-all">
-<div class="flex items-center justify-between text-text-muted mb-2">
-<span class="font-label-md text-label-md uppercase tracking-wider">Total Proyek</span>
-<span class="material-symbols-outlined text-lg text-primary" data-icon="folder_open">folder_open</span>
-</div>
-<div>
-<div class="font-headline-xl text-headline-xl font-extrabold text-on-surface">51</div>
-<div class="font-body-xs text-body-xs text-text-muted mt-1 flex items-center gap-1">
-<span class="material-symbols-outlined text-xs text-primary" data-icon="check_circle">check_circle</span>
-              3 Departemen Operasi Aktif
-            </div>
-</div>
-</div>
-<!-- Card 2: Kepatuhan Divisi -->
-<div class="p-space-md rounded-xl bg-surface-glass border border-border-glass backdrop-blur-md shadow-md flex flex-col justify-between hover:border-primary/40 transition-all">
-<div class="flex items-center justify-between text-text-muted mb-2">
-<span class="font-label-md text-label-md uppercase tracking-wider">Kepatuhan Divisi</span>
-<span class="material-symbols-outlined text-lg text-primary" data-icon="monitoring">monitoring</span>
-</div>
-<div>
-<div class="flex items-baseline gap-2">
-<span class="font-headline-xl text-headline-xl font-extrabold text-primary">74.6%</span>
-<span class="font-label-sm text-label-sm text-status-compliance flex items-center">
-<span class="material-symbols-outlined text-xs" data-icon="arrow_upward">arrow_upward</span> +2.4%
-              </span>
-</div>
-<div class="w-full bg-surface-container rounded-full h-1.5 mt-2 overflow-hidden">
-<div class="bg-primary h-full rounded-full" style="width: 74.6%"></div>
-</div>
-<div class="font-body-xs text-body-xs text-text-muted mt-1">vs Triwulan III (72.2%)</div>
-</div>
-</div>
-<!-- Card 3: 100% Patuh (Lengkap) -->
-<div class="p-space-md rounded-xl bg-surface-glass border border-status-compliance/30 backdrop-blur-md shadow-md flex flex-col justify-between hover:border-status-compliance/60 transition-all">
-<div class="flex items-center justify-between text-status-compliance mb-2">
-<span class="font-label-md text-label-md uppercase tracking-wider">100% Patuh (Lengkap)</span>
-<span class="material-symbols-outlined text-lg" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
-</div>
-<div>
-<div class="font-headline-xl text-headline-xl font-extrabold text-status-compliance">27 <span class="font-body-sm text-body-sm text-text-muted font-normal">Proyek</span></div>
-<div class="font-body-xs text-body-xs text-text-muted mt-1 flex items-center gap-1">
-<span class="w-1.5 h-1.5 rounded-full bg-status-compliance"></span>
-              52.9% dari total portofolio
-            </div>
-</div>
-</div>
-<!-- Card 4: Perlu Tindak Lanjut -->
-<div class="p-space-md rounded-xl bg-surface-glass border border-status-followup/30 backdrop-blur-md shadow-md flex flex-col justify-between hover:border-status-followup/60 transition-all">
-<div class="flex items-center justify-between text-status-followup mb-2">
-<span class="font-label-md text-label-md uppercase tracking-wider">Perlu Tindak Lanjut</span>
-<span class="material-symbols-outlined text-lg" data-icon="pending_actions">pending_actions</span>
-</div>
-<div>
-<div class="font-headline-xl text-headline-xl font-extrabold text-status-followup">17 <span class="font-body-sm text-body-sm text-text-muted font-normal">Proyek</span></div>
-<div class="font-body-xs text-body-xs text-text-muted mt-1 flex items-center gap-1">
-<span class="w-1.5 h-1.5 rounded-full bg-status-followup"></span>
-              Kepatuhan 50% - 95%
-            </div>
-</div>
-</div>
-<!-- Card 5: Kritis (<50%) -->
-<div class="p-space-md rounded-xl bg-surface-glass border border-status-critical/30 backdrop-blur-md shadow-md flex flex-col justify-between hover:border-status-critical/60 transition-all relative overflow-hidden">
-<div class="flex items-center justify-between text-status-critical mb-2">
-<span class="font-label-md text-label-md uppercase tracking-wider">Kritis (&lt;50%)</span>
-<span class="material-symbols-outlined text-lg" data-icon="warning" style="font-variation-settings: 'FILL' 1;">warning</span>
-</div>
-<div>
-<div class="font-headline-xl text-headline-xl font-extrabold text-status-critical">7 <span class="font-body-sm text-body-sm text-text-muted font-normal">Proyek</span></div>
-<div class="font-body-xs text-body-xs text-text-muted mt-1 flex items-center gap-1">
-<span class="w-1.5 h-1.5 rounded-full bg-status-critical live-pulse"></span>
-              Intervensi darurat ADKON
-            </div>
-</div>
-</div>
-<!-- Card 6: Addendum 1 Risk Alerts -->
-<div class="p-space-md rounded-xl bg-surface-glass border border-status-critical/40 backdrop-blur-md shadow-md flex flex-col justify-between hover:border-status-critical transition-all bg-gradient-to-br from-status-critical/5 to-transparent">
-<div class="flex items-center justify-between text-status-critical mb-2">
-<span class="font-label-md text-label-md uppercase tracking-wider">Addendum 1 Risk Alerts</span>
-<span class="material-symbols-outlined text-lg live-pulse" data-icon="notification_important">notification_important</span>
-</div>
-<div>
-<div class="font-headline-xl text-headline-xl font-extrabold text-status-critical flex items-center gap-2">
-              18 <span class="font-body-sm text-body-sm text-text-muted font-normal">Proyek</span>
-</div>
-<div class="font-body-xs text-body-xs text-text-muted mt-1 flex items-center gap-1">
-<span class="w-1.5 h-1.5 rounded-full bg-status-critical"></span>
-              CCO Balanced Budget Pending
-            </div>
-</div>
-</div>
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="executive">
+  <!-- Card 1: Total Proyek -->
+  <div class="p-4 rounded-xl bg-surface-glass border border-border-glass backdrop-blur-md shadow-sm flex flex-col justify-between hover:border-primary/40 transition-all">
+    <div class="flex items-center justify-between text-text-muted mb-2">
+      <span class="font-label-md text-xs uppercase tracking-wider font-semibold">Total Portofolio</span>
+      <span class="material-symbols-outlined text-lg text-primary">folder_open</span>
+    </div>
+    <div>
+      <div class="text-3xl font-extrabold text-on-surface">51 <span class="text-xs text-text-muted font-normal">Proyek</span></div>
+      <div class="text-xs text-text-muted mt-2 flex items-center gap-2">
+        <span class="px-2 py-0.5 rounded bg-surface-container font-semibold">DO 1: 19</span>
+        <span class="px-2 py-0.5 rounded bg-surface-container font-semibold">DO 2: 18</span>
+        <span class="px-2 py-0.5 rounded bg-surface-container font-semibold">DO 3: 14</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 2: Kepatuhan Rata-Rata -->
+  <div class="p-4 rounded-xl bg-surface-glass border border-border-glass backdrop-blur-md shadow-sm flex flex-col justify-between hover:border-primary/40 transition-all">
+    <div class="flex items-center justify-between text-text-muted mb-2">
+      <span class="font-label-md text-xs uppercase tracking-wider font-semibold">Rata-rata Kepatuhan</span>
+      <span class="material-symbols-outlined text-lg text-primary">insights</span>
+    </div>
+    <div>
+      <div class="text-3xl font-extrabold text-primary">52.4%</div>
+      <div class="w-full bg-surface-container rounded-full h-2 mt-2.5 overflow-hidden">
+        <div class="bg-primary h-full rounded-full" style="width: 52.4%"></div>
+      </div>
+      <div class="text-[11px] text-text-muted mt-1.5 flex justify-between">
+        <span>Target Divisi: 80%</span>
+        <span>20 Parameter</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 3: Status Dokumen -->
+  <div class="p-4 rounded-xl bg-surface-glass border border-border-glass backdrop-blur-md shadow-sm flex flex-col justify-between hover:border-border-glass/80 transition-all">
+    <div class="flex items-center justify-between text-text-muted mb-2">
+      <span class="font-label-md text-xs uppercase tracking-wider font-semibold">Kategori Status</span>
+      <span class="material-symbols-outlined text-lg text-status-followup">donut_large</span>
+    </div>
+    <div>
+      <div class="text-xl font-bold text-on-surface flex items-center gap-2">
+        <span class="text-status-followup">34 Monitoring</span>
+        <span class="text-text-muted font-normal">•</span>
+        <span class="text-status-critical">17 Kritis</span>
+      </div>
+      <div class="text-xs text-text-muted mt-2">
+        Prioritas evaluasi berkas triwulanan
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 4: Perhatian Khusus (Addendum 1) -->
+  <div class="p-4 rounded-xl bg-surface-glass border border-status-critical/30 backdrop-blur-md shadow-sm flex flex-col justify-between hover:border-status-critical/60 transition-all cursor-pointer" onclick="filterTableByAddendum()" title="Klik untuk filter 18 proyek">
+    <div class="flex items-center justify-between text-status-critical mb-2">
+      <span class="font-label-md text-xs uppercase tracking-wider font-semibold">Risiko Addendum 1</span>
+      <span class="material-symbols-outlined text-lg">warning</span>
+    </div>
+    <div>
+      <div class="text-3xl font-extrabold text-status-critical">18 <span class="text-xs text-text-muted font-normal">Proyek</span></div>
+      <div class="text-xs text-text-muted mt-2 flex items-center justify-between">
+        <span>Pekerjaan Tambah-Kurang</span>
+        <span class="text-status-critical font-bold hover:underline">Filter &rarr;</span>
+      </div>
+    </div>
+  </div>
 </section>
 <!-- Analytics & Decision Support (Middle Row: 3 Column Layout) -->
 <section class="grid grid-cols-1 lg:grid-cols-3 gap-space-md" id="matrix">
@@ -480,7 +455,7 @@
 </div>
 <span class="font-label-sm text-label-sm text-text-muted">Target: 80%</span>
 </div>
-<p class="font-body-xs text-body-xs text-text-muted mb-4">Peringkat kepatuhan administratif dan mitigasi sengketa klaim antar DO.</p>
+
 <div class="space-y-4">
 <!-- DO 2 -->
 <div class="space-y-1.5 p-2 rounded-lg bg-surface-container/60 border border-border-glass/40">
@@ -556,7 +531,7 @@
 </div>
 <span class="font-label-sm text-label-sm text-status-critical bg-status-critical/10 px-2 py-0.5 rounded border border-status-critical/30">Top 5 Missing</span>
 </div>
-<p class="font-body-xs text-body-xs text-text-muted mb-4">Parameter kontraktual dengan tingkat kegagalan unggah tertinggi.</p>
+
 <div class="space-y-3 font-body-xs text-body-xs">
 <!-- Item 1: Checklist Progres Bulanan -->
 <div>
