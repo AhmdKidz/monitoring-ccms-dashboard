@@ -1,8 +1,8 @@
 /**
  * GOOGLE APPS SCRIPT - WEB APP MONITORING ADKON & CCMS (WIKA DIVISI 1)
- * Terhubung Langsung ke Google Sheet: CCMS Monitoring Data
- * Spreadsheet ID: 1XQ-IuSesAKrggw6w2sGTXox8W3LRNFzRnmc3vlZCX6Y
- * URL: https://docs.google.com/spreadsheets/d/1XQ-IuSesAKrggw6w2sGTXox8W3LRNFzRnmc3vlZCX6Y/edit?usp=sharing
+ * Terhubung Langsung ke Google Sheet: (05 Oktober 26) Cheklist Adkon Dashboard
+ * Spreadsheet ID: 19xjUPnxwUDVDQlltJUQnYzqRNi26MUWQgn-zug8dQzo
+ * URL: https://docs.google.com/spreadsheets/d/19xjUPnxwUDVDQlltJUQnYzqRNi26MUWQgn-zug8dQzo/edit?usp=sharing
  *
  * Cara Pakai:
  * 1. Buat file `Code.gs` di Google Apps Script dan tempelkan kode ini.
@@ -10,7 +10,7 @@
  * 3. Klik Deploy -> New deployment -> Web app (Execute as: Me, Who has access: Anyone).
  */
 
-const SPREADSHEET_ID = '1XQ-IuSesAKrggw6w2sGTXox8W3LRNFzRnmc3vlZCX6Y';
+const SPREADSHEET_ID = '19xjUPnxwUDVDQlltJUQnYzqRNi26MUWQgn-zug8dQzo';
 const SHEET_NAME = 'Cheklist';
 
 const CM_KEYS = [
