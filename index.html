@@ -87,6 +87,28 @@
     }
 
     /* ======================================================== */
+    /* INTERACTIVE ROTATING DONUT & PIE CHARTS                  */
+    /* ======================================================== */
+    .donut-spin-wrap {
+      transition: transform 0.85s cubic-bezier(0.34, 1.35, 0.64, 1), filter 0.35s ease;
+      transform-origin: center center;
+      will-change: transform;
+      border-radius: 9999px;
+      cursor: pointer;
+    }
+    .donut-spin-wrap:hover {
+      filter: drop-shadow(0 6px 16px rgba(13, 110, 253, 0.28));
+    }
+    html.dark .donut-spin-wrap:hover {
+      filter: drop-shadow(0 6px 18px rgba(56, 189, 248, 0.35));
+    }
+    .pie-gauge-spin {
+      transition: transform 0.85s cubic-bezier(0.34, 1.35, 0.64, 1);
+      transform-origin: center center;
+      will-change: transform;
+    }
+
+    /* ======================================================== */
     /* COMPREHENSIVE DARK MODE THEME OVERRIDES (.dark)          */
     /* ======================================================== */
     html.dark body {
@@ -407,7 +429,7 @@
                     <div class="text-3xl font-extrabold text-[#159a5c] tracking-tight leading-none" id="kpiCmPercent">62,7%</div>
                     <div class="text-[11px] font-medium text-slate-600 mt-1" id="kpiCmRatio">32 dari 51 Proyek</div>
                   </div>
-                  <div class="w-16 h-16 relative shrink-0">
+                  <div id="cmDonutWrap" class="w-16 h-16 relative shrink-0 donut-spin-wrap" title="Arahkan kursor atau klik untuk memutar">
                     <canvas id="cmDonutChart"></canvas>
                   </div>
                 </div>
@@ -450,7 +472,7 @@
                     <div class="text-3xl font-extrabold text-[#0d6efd] tracking-tight leading-none" id="kpiVoPercent">58,8%</div>
                     <div class="text-[11px] font-medium text-slate-600 mt-1" id="kpiVoRatio">30 dari 51 Proyek</div>
                   </div>
-                  <div class="w-16 h-16 relative shrink-0">
+                  <div id="voDonutWrap" class="w-16 h-16 relative shrink-0 donut-spin-wrap" title="Arahkan kursor atau klik untuk memutar">
                     <canvas id="voDonutChart"></canvas>
                   </div>
                 </div>
@@ -515,7 +537,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2 flex-1 items-stretch text-center">
                   
                   <!-- Operasi 1 - 19 Proyek (BLUE / CYAN PALETTE) -->
-                  <div onclick="handleDepartmentFilter('DO 1')" class="p-2 sm:p-2.5 rounded-xl bg-slate-50/75 hover:bg-sky-50/70 dark:bg-slate-800/45 dark:hover:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 cursor-pointer transition-all flex flex-col justify-between overflow-hidden" title="Klik untuk memfilter Operasi 1">
+                  <div id="cardOp1Section" onclick="handleDepartmentFilter('DO 1')" class="p-2 sm:p-2.5 rounded-xl bg-slate-50/75 hover:bg-sky-50/70 dark:bg-slate-800/45 dark:hover:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 cursor-pointer transition-all flex flex-col justify-between overflow-hidden" title="Klik untuk memfilter Operasi 1">
                     <div class="flex items-center justify-between gap-1 pb-1.5 border-b border-slate-200/70 dark:border-slate-700 min-w-0">
                       <span class="inline-flex items-center gap-1 text-[10.5px] font-extrabold text-[#0c2340] dark:text-slate-100 whitespace-nowrap">
                         <span class="w-2 h-2 rounded-full bg-[#0d6efd] shrink-0"></span>
@@ -527,12 +549,14 @@
                     <div class="grid grid-cols-2 gap-1 my-auto py-2 items-center justify-items-center">
                       <!-- CM Gauge -->
                       <div class="flex flex-col items-center w-full min-w-0">
-                        <div class="relative w-12 h-12 xl:w-13 xl:h-13 2xl:w-14 2xl:h-14 flex items-center justify-center shrink-0">
-                          <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
-                            <path class="text-slate-200 dark:text-slate-700" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                            <path id="ringOp1CmArc" class="text-[#0d6efd] transition-all duration-700" stroke-dasharray="63.2, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                          </svg>
-                          <span id="ringOp1CmText" class="absolute text-[10px] xl:text-[10.5px] font-extrabold text-[#0d6efd]">63,2%</span>
+                        <div class="relative w-12 h-12 xl:w-13 xl:h-13 2xl:w-14 2xl:h-14 flex items-center justify-center shrink-0 cursor-pointer" title="Arahkan kursor untuk memutar">
+                          <div class="pie-gauge-spin gauge-ring-op1 w-full h-full absolute inset-0">
+                            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                              <path class="text-slate-200 dark:text-slate-700" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                              <path id="ringOp1CmArc" class="text-[#0d6efd] transition-all duration-700" stroke-dasharray="63.2, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            </svg>
+                          </div>
+                          <span id="ringOp1CmText" class="relative z-10 text-[10px] xl:text-[10.5px] font-extrabold text-[#0d6efd] pointer-events-none">63,2%</span>
                         </div>
                         <span class="text-[9.5px] font-bold text-slate-700 dark:text-slate-200 mt-1 whitespace-nowrap">CM</span>
                         <span id="ringOp1CmSub" class="text-[8.5px] text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap truncate max-w-full">12/19 Lengkap</span>
@@ -540,12 +564,14 @@
 
                       <!-- VO Gauge -->
                       <div class="flex flex-col items-center w-full min-w-0">
-                        <div class="relative w-12 h-12 xl:w-13 xl:h-13 2xl:w-14 2xl:h-14 flex items-center justify-center shrink-0">
-                          <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
-                            <path class="text-slate-200 dark:text-slate-700" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                            <path id="ringOp1VoArc" class="text-[#06b6d4] transition-all duration-700" stroke-dasharray="52.6, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                          </svg>
-                          <span id="ringOp1VoText" class="absolute text-[10px] xl:text-[10.5px] font-extrabold text-[#0891b2]">52,6%</span>
+                        <div class="relative w-12 h-12 xl:w-13 xl:h-13 2xl:w-14 2xl:h-14 flex items-center justify-center shrink-0 cursor-pointer" title="Arahkan kursor untuk memutar">
+                          <div class="pie-gauge-spin gauge-ring-op1 w-full h-full absolute inset-0">
+                            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                              <path class="text-slate-200 dark:text-slate-700" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                              <path id="ringOp1VoArc" class="text-[#06b6d4] transition-all duration-700" stroke-dasharray="52.6, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            </svg>
+                          </div>
+                          <span id="ringOp1VoText" class="relative z-10 text-[10px] xl:text-[10.5px] font-extrabold text-[#0891b2] pointer-events-none">52,6%</span>
                         </div>
                         <span class="text-[9.5px] font-bold text-slate-700 dark:text-slate-200 mt-1 whitespace-nowrap">Perubahan</span>
                         <span id="ringOp1VoSub" class="text-[8.5px] text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap truncate max-w-full">10/19 Lengkap</span>
@@ -559,7 +585,7 @@
                   </div>
 
                   <!-- Operasi 2 - 18 Proyek (AMBER / ORANGE PALETTE) -->
-                  <div onclick="handleDepartmentFilter('DO 2')" class="p-2 sm:p-2.5 rounded-xl bg-slate-50/75 hover:bg-amber-50/70 dark:bg-slate-800/45 dark:hover:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 cursor-pointer transition-all flex flex-col justify-between overflow-hidden" title="Klik untuk memfilter Operasi 2">
+                  <div id="cardOp2Section" onclick="handleDepartmentFilter('DO 2')" class="p-2 sm:p-2.5 rounded-xl bg-slate-50/75 hover:bg-amber-50/70 dark:bg-slate-800/45 dark:hover:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 cursor-pointer transition-all flex flex-col justify-between overflow-hidden" title="Klik untuk memfilter Operasi 2">
                     <div class="flex items-center justify-between gap-1 pb-1.5 border-b border-slate-200/70 dark:border-slate-700 min-w-0">
                       <span class="inline-flex items-center gap-1 text-[10.5px] font-extrabold text-[#0c2340] dark:text-slate-100 whitespace-nowrap">
                         <span class="w-2 h-2 rounded-full bg-[#f59e0b] shrink-0"></span>
@@ -571,12 +597,14 @@
                     <div class="grid grid-cols-2 gap-1 my-auto py-2 items-center justify-items-center">
                       <!-- CM Gauge -->
                       <div class="flex flex-col items-center w-full min-w-0">
-                        <div class="relative w-12 h-12 xl:w-13 xl:h-13 2xl:w-14 2xl:h-14 flex items-center justify-center shrink-0">
-                          <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
-                            <path class="text-slate-200 dark:text-slate-700" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                            <path id="ringOp2CmArc" class="text-[#f59e0b] transition-all duration-700" stroke-dasharray="77.8, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                          </svg>
-                          <span id="ringOp2CmText" class="absolute text-[10px] xl:text-[10.5px] font-extrabold text-[#d97706]">77,8%</span>
+                        <div class="relative w-12 h-12 xl:w-13 xl:h-13 2xl:w-14 2xl:h-14 flex items-center justify-center shrink-0 cursor-pointer" title="Arahkan kursor untuk memutar">
+                          <div class="pie-gauge-spin gauge-ring-op2 w-full h-full absolute inset-0">
+                            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                              <path class="text-slate-200 dark:text-slate-700" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                              <path id="ringOp2CmArc" class="text-[#f59e0b] transition-all duration-700" stroke-dasharray="77.8, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            </svg>
+                          </div>
+                          <span id="ringOp2CmText" class="relative z-10 text-[10px] xl:text-[10.5px] font-extrabold text-[#d97706] pointer-events-none">77,8%</span>
                         </div>
                         <span class="text-[9.5px] font-bold text-slate-700 dark:text-slate-200 mt-1 whitespace-nowrap">CM</span>
                         <span id="ringOp2CmSub" class="text-[8.5px] text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap truncate max-w-full">14/18 Lengkap</span>
@@ -584,12 +612,14 @@
 
                       <!-- VO Gauge -->
                       <div class="flex flex-col items-center w-full min-w-0">
-                        <div class="relative w-12 h-12 xl:w-13 xl:h-13 2xl:w-14 2xl:h-14 flex items-center justify-center shrink-0">
-                          <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
-                            <path class="text-slate-200 dark:text-slate-700" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                            <path id="ringOp2VoArc" class="text-[#fb923c] transition-all duration-700" stroke-dasharray="77.8, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                          </svg>
-                          <span id="ringOp2VoText" class="absolute text-[10px] xl:text-[10.5px] font-extrabold text-[#ea580c]">77,8%</span>
+                        <div class="relative w-12 h-12 xl:w-13 xl:h-13 2xl:w-14 2xl:h-14 flex items-center justify-center shrink-0 cursor-pointer" title="Arahkan kursor untuk memutar">
+                          <div class="pie-gauge-spin gauge-ring-op2 w-full h-full absolute inset-0">
+                            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                              <path class="text-slate-200 dark:text-slate-700" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                              <path id="ringOp2VoArc" class="text-[#fb923c] transition-all duration-700" stroke-dasharray="77.8, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            </svg>
+                          </div>
+                          <span id="ringOp2VoText" class="relative z-10 text-[10px] xl:text-[10.5px] font-extrabold text-[#ea580c] pointer-events-none">77,8%</span>
                         </div>
                         <span class="text-[9.5px] font-bold text-slate-700 dark:text-slate-200 mt-1 whitespace-nowrap">Perubahan</span>
                         <span id="ringOp2VoSub" class="text-[8.5px] text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap truncate max-w-full">14/18 Lengkap</span>
@@ -603,7 +633,7 @@
                   </div>
 
                   <!-- Operasi 3 - 14 Proyek (EMERALD / TEAL PALETTE) -->
-                  <div onclick="handleDepartmentFilter('DO 3')" class="p-2 sm:p-2.5 rounded-xl bg-slate-50/75 hover:bg-emerald-50/70 dark:bg-slate-800/45 dark:hover:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 cursor-pointer transition-all flex flex-col justify-between overflow-hidden" title="Klik untuk memfilter Operasi 3">
+                  <div id="cardOp3Section" onclick="handleDepartmentFilter('DO 3')" class="p-2 sm:p-2.5 rounded-xl bg-slate-50/75 hover:bg-emerald-50/70 dark:bg-slate-800/45 dark:hover:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 cursor-pointer transition-all flex flex-col justify-between overflow-hidden" title="Klik untuk memfilter Operasi 3">
                     <div class="flex items-center justify-between gap-1 pb-1.5 border-b border-slate-200/70 dark:border-slate-700 min-w-0">
                       <span class="inline-flex items-center gap-1 text-[10.5px] font-extrabold text-[#0c2340] dark:text-slate-100 whitespace-nowrap">
                         <span class="w-2 h-2 rounded-full bg-[#10b981] shrink-0"></span>
@@ -615,12 +645,14 @@
                     <div class="grid grid-cols-2 gap-1 my-auto py-2 items-center justify-items-center">
                       <!-- CM Gauge -->
                       <div class="flex flex-col items-center w-full min-w-0">
-                        <div class="relative w-12 h-12 xl:w-13 xl:h-13 2xl:w-14 2xl:h-14 flex items-center justify-center shrink-0">
-                          <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
-                            <path class="text-slate-200 dark:text-slate-700" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                            <path id="ringOp3CmArc" class="text-[#10b981] transition-all duration-700" stroke-dasharray="42.9, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                          </svg>
-                          <span id="ringOp3CmText" class="absolute text-[10px] xl:text-[10.5px] font-extrabold text-[#159a5c]">42,9%</span>
+                        <div class="relative w-12 h-12 xl:w-13 xl:h-13 2xl:w-14 2xl:h-14 flex items-center justify-center shrink-0 cursor-pointer" title="Arahkan kursor untuk memutar">
+                          <div class="pie-gauge-spin gauge-ring-op3 w-full h-full absolute inset-0">
+                            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                              <path class="text-slate-200 dark:text-slate-700" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                              <path id="ringOp3CmArc" class="text-[#10b981] transition-all duration-700" stroke-dasharray="42.9, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            </svg>
+                          </div>
+                          <span id="ringOp3CmText" class="relative z-10 text-[10px] xl:text-[10.5px] font-extrabold text-[#159a5c] pointer-events-none">42,9%</span>
                         </div>
                         <span class="text-[9.5px] font-bold text-slate-700 dark:text-slate-200 mt-1 whitespace-nowrap">CM</span>
                         <span id="ringOp3CmSub" class="text-[8.5px] text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap truncate max-w-full">6/14 Lengkap</span>
@@ -628,12 +660,14 @@
 
                       <!-- VO Gauge -->
                       <div class="flex flex-col items-center w-full min-w-0">
-                        <div class="relative w-12 h-12 xl:w-13 xl:h-13 2xl:w-14 2xl:h-14 flex items-center justify-center shrink-0">
-                          <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
-                            <path class="text-slate-200 dark:text-slate-700" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                            <path id="ringOp3VoArc" class="text-[#14b8a6] transition-all duration-700" stroke-dasharray="42.9, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                          </svg>
-                          <span id="ringOp3VoText" class="absolute text-[10px] xl:text-[10.5px] font-extrabold text-[#0d9488]">42,9%</span>
+                        <div class="relative w-12 h-12 xl:w-13 xl:h-13 2xl:w-14 2xl:h-14 flex items-center justify-center shrink-0 cursor-pointer" title="Arahkan kursor untuk memutar">
+                          <div class="pie-gauge-spin gauge-ring-op3 w-full h-full absolute inset-0">
+                            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                              <path class="text-slate-200 dark:text-slate-700" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                              <path id="ringOp3VoArc" class="text-[#14b8a6] transition-all duration-700" stroke-dasharray="42.9, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            </svg>
+                          </div>
+                          <span id="ringOp3VoText" class="relative z-10 text-[10px] xl:text-[10.5px] font-extrabold text-[#0d9488] pointer-events-none">42,9%</span>
                         </div>
                         <span class="text-[9.5px] font-bold text-slate-700 dark:text-slate-200 mt-1 whitespace-nowrap">Perubahan</span>
                         <span id="ringOp3VoSub" class="text-[8.5px] text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap truncate max-w-full">6/14 Lengkap</span>
@@ -1933,6 +1967,129 @@
           interaction: { mode: 'nearest', axis: 'x', intersect: false },
           animation: { duration: 1100, easing: 'easeOutQuart' }
         }
+      });
+
+      // Initialize interactive hover/approach animations on donut charts & gauges
+      setupDonutHoverRotations();
+    }
+
+    // ========================================================
+    // INTERACTIVE ROTATING DONUT & PIE CHARTS ON HOVER/APPROACH
+    // ========================================================
+    function setupDonutHoverRotations() {
+      // 1. Main KPI Donut Charts (CM Donut & VO Donut)
+      const donutItems = [
+        {
+          wrapId: 'cmDonutWrap',
+          cardId: 'cardCmSection',
+          glowColor: 'rgba(21, 154, 92, 0.35)'
+        },
+        {
+          wrapId: 'voDonutWrap',
+          cardId: 'cardVoSection',
+          glowColor: 'rgba(13, 110, 253, 0.35)'
+        }
+      ];
+
+      donutItems.forEach(item => {
+        const wrap = document.getElementById(item.wrapId);
+        const card = document.getElementById(item.cardId);
+        if (!wrap) return;
+
+        let rotation = 0;
+        let isDirectHovered = false;
+        let lastSpinTime = 0;
+
+        const triggerSpin = (scale = 1.0) => {
+          const now = Date.now();
+          if (now - lastSpinTime < 650) return; // Cooldown for smooth physics
+          lastSpinTime = now;
+          rotation += 360;
+          wrap.style.transform = `rotate(${rotation}deg) scale(${scale})`;
+          if (isDirectHovered) {
+            wrap.style.filter = `drop-shadow(0 6px 14px ${item.glowColor})`;
+          }
+        };
+
+        // When cursor directly enters the Donut Chart
+        wrap.addEventListener('mouseenter', () => {
+          isDirectHovered = true;
+          triggerSpin(1.12);
+        });
+
+        // When cursor leaves the Donut Chart
+        wrap.addEventListener('mouseleave', () => {
+          isDirectHovered = false;
+          wrap.style.transform = `rotate(${rotation}deg) scale(1.0)`;
+          wrap.style.filter = 'none';
+        });
+
+        // When clicked: playful extra spin
+        wrap.addEventListener('click', (e) => {
+          e.stopPropagation();
+          rotation += 360;
+          wrap.style.transform = `rotate(${rotation}deg) scale(1.16)`;
+          setTimeout(() => {
+            if (!isDirectHovered) {
+              wrap.style.transform = `rotate(${rotation}deg) scale(1.0)`;
+              wrap.style.filter = 'none';
+            } else {
+              wrap.style.transform = `rotate(${rotation}deg) scale(1.12)`;
+            }
+          }, 800);
+        });
+
+        // "Ketika kursor mendekat": When cursor enters the parent card / approaching area
+        if (card) {
+          card.addEventListener('mouseenter', () => {
+            if (!isDirectHovered) {
+              triggerSpin(1.0);
+            }
+          });
+        }
+      });
+
+      // 2. Card 6 Department Ring Gauges (Operasi 1, 2, 3)
+      const opCards = [
+        { cardId: 'cardOp1Section', ringClass: 'gauge-ring-op1' },
+        { cardId: 'cardOp2Section', ringClass: 'gauge-ring-op2' },
+        { cardId: 'cardOp3Section', ringClass: 'gauge-ring-op3' }
+      ];
+
+      opCards.forEach(op => {
+        const cardEl = document.getElementById(op.cardId);
+        const rings = document.querySelectorAll(`.${op.ringClass}`);
+
+        let cardRotation = 0;
+        let lastCardSpin = 0;
+
+        const spinRings = () => {
+          const now = Date.now();
+          if (now - lastCardSpin < 650) return;
+          lastCardSpin = now;
+          cardRotation += 360;
+          rings.forEach(r => {
+            r.style.transform = `rotate(${cardRotation}deg)`;
+          });
+        };
+
+        if (cardEl) {
+          cardEl.addEventListener('mouseenter', spinRings);
+        }
+
+        rings.forEach(r => {
+          const parent = r.parentElement;
+          if (parent) {
+            parent.addEventListener('mouseenter', (e) => {
+              e.stopPropagation();
+              cardRotation += 360;
+              r.style.transform = `rotate(${cardRotation}deg) scale(1.1)`;
+            });
+            parent.addEventListener('mouseleave', () => {
+              r.style.transform = `rotate(${cardRotation}deg) scale(1.0)`;
+            });
+          }
+        });
       });
     }
 
