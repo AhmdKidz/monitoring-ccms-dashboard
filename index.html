@@ -497,153 +497,160 @@
             </div>
 
             <!-- ROW 2: RINGKASAN PER DEPARTEMEN OPERASI (7 COLS) + PROGRESS KEPATUHAN TREND (5 COLS) - STRETCHED FULL HEIGHT -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5 flex-1 items-stretch" id="deptSummarySection">
+            <!-- ROW 2: RINGKASAN PER DEPARTEMEN OPERASI + PROGRESS KEPATUHAN TREND - RESPONSIVE & ANTI-OFFSIDE -->
+            <div class="grid grid-cols-1 xl:grid-cols-12 gap-3.5 flex-1 items-stretch" id="deptSummarySection">
               
-              <!-- CARD 6: Ringkasan per Departemen Operasi (Balanced 6 cols) -->
-              <div class="lg:col-span-6 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between h-full">
-                <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+              <!-- CARD 6: Ringkasan per Departemen Operasi (7 cols on xl, 6 cols on 2xl) -->
+              <div class="xl:col-span-7 2xl:col-span-6 dashboard-card p-3 sm:p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-sm flex flex-col justify-between h-full overflow-hidden">
+                <div class="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
                   <div class="flex items-center gap-2">
                     <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
                       <span class="material-symbols-outlined text-xs">pie_chart</span>
                     </div>
-                    <h2 class="text-xs font-bold text-[#0c2340]">Ringkasan per Departemen Operasi</h2>
+                    <h2 class="text-xs font-bold text-[#0c2340] dark:text-slate-100">Ringkasan per Departemen Operasi</h2>
                   </div>
-                  <span class="text-[10px] text-slate-400 font-medium">Klik departemen untuk memfilter proyek</span>
+                  <span class="text-[9.5px] text-slate-400 font-medium hidden sm:inline">Klik departemen untuk memfilter proyek</span>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 pt-2.5 flex-1 items-stretch text-center">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2 flex-1 items-stretch text-center">
                   
                   <!-- Operasi 1 - 19 Proyek (BLUE / CYAN PALETTE) -->
-                  <div onclick="handleDepartmentFilter('DO 1')" class="p-2.5 rounded-xl bg-slate-50/75 hover:bg-sky-50/70 dark:bg-slate-800/45 dark:hover:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 cursor-pointer transition-all flex flex-col justify-between" title="Klik untuk memfilter Operasi 1">
-                    <div class="flex items-center justify-between gap-1 pb-1.5 border-b border-slate-200/70 dark:border-slate-700">
-                      <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold text-[#0c2340]">
-                        <span class="w-2 h-2 rounded-full bg-[#0d6efd]"></span>
+                  <div onclick="handleDepartmentFilter('DO 1')" class="p-2 sm:p-2.5 rounded-xl bg-slate-50/75 hover:bg-sky-50/70 dark:bg-slate-800/45 dark:hover:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 cursor-pointer transition-all flex flex-col justify-between overflow-hidden" title="Klik untuk memfilter Operasi 1">
+                    <div class="flex items-center justify-between gap-1 pb-1.5 border-b border-slate-200/70 dark:border-slate-700 min-w-0">
+                      <span class="inline-flex items-center gap-1 text-[10.5px] font-extrabold text-[#0c2340] dark:text-slate-100 whitespace-nowrap">
+                        <span class="w-2 h-2 rounded-full bg-[#0d6efd] shrink-0"></span>
                         <span>Operasi 1</span>
                       </span>
-                      <span id="ringOp1Title" class="px-1.5 py-0.5 rounded bg-sky-100/90 dark:bg-sky-900/50 text-[#0c4a8a] dark:text-sky-300 text-[9.5px] font-bold">19 Proyek</span>
+                      <span id="ringOp1Title" class="px-1.5 py-0.5 rounded bg-sky-100/90 dark:bg-sky-900/50 text-[#0c4a8a] dark:text-sky-300 text-[9px] font-bold shrink-0 whitespace-nowrap">19 Proyek</span>
                     </div>
 
-                    <div class="flex items-center justify-around gap-2 my-auto py-2">
-                      <div class="flex flex-col items-center">
-                        <div class="relative w-[68px] h-[68px] flex items-center justify-center">
-                          <svg class="w-[68px] h-[68px] transform -rotate-90" viewBox="0 0 36 36">
-                            <path class="text-slate-200" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                    <div class="grid grid-cols-2 gap-1 my-auto py-2 items-center justify-items-center">
+                      <!-- CM Gauge -->
+                      <div class="flex flex-col items-center w-full min-w-0">
+                        <div class="relative w-12 h-12 xl:w-13 xl:h-13 2xl:w-14 2xl:h-14 flex items-center justify-center shrink-0">
+                          <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200 dark:text-slate-700" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
                             <path id="ringOp1CmArc" class="text-[#0d6efd] transition-all duration-700" stroke-dasharray="63.2, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
                           </svg>
-                          <span id="ringOp1CmText" class="absolute text-[11px] font-extrabold text-[#0d6efd]">63,2%</span>
+                          <span id="ringOp1CmText" class="absolute text-[10px] xl:text-[10.5px] font-extrabold text-[#0d6efd]">63,2%</span>
                         </div>
-                        <span class="text-[10px] font-bold text-slate-700 mt-1">CM</span>
-                        <span id="ringOp1CmSub" class="text-[9px] text-slate-500 font-medium">12/19 Lengkap</span>
+                        <span class="text-[9.5px] font-bold text-slate-700 dark:text-slate-200 mt-1 whitespace-nowrap">CM</span>
+                        <span id="ringOp1CmSub" class="text-[8.5px] text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap truncate max-w-full">12/19 Lengkap</span>
                       </div>
 
-                      <div class="flex flex-col items-center">
-                        <div class="relative w-[68px] h-[68px] flex items-center justify-center">
-                          <svg class="w-[68px] h-[68px] transform -rotate-90" viewBox="0 0 36 36">
-                            <path class="text-slate-200" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                      <!-- VO Gauge -->
+                      <div class="flex flex-col items-center w-full min-w-0">
+                        <div class="relative w-12 h-12 xl:w-13 xl:h-13 2xl:w-14 2xl:h-14 flex items-center justify-center shrink-0">
+                          <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200 dark:text-slate-700" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
                             <path id="ringOp1VoArc" class="text-[#06b6d4] transition-all duration-700" stroke-dasharray="52.6, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
                           </svg>
-                          <span id="ringOp1VoText" class="absolute text-[11px] font-extrabold text-[#0891b2]">52,6%</span>
+                          <span id="ringOp1VoText" class="absolute text-[10px] xl:text-[10.5px] font-extrabold text-[#0891b2]">52,6%</span>
                         </div>
-                        <span class="text-[10px] font-bold text-slate-700 mt-1">Perubahan</span>
-                        <span id="ringOp1VoSub" class="text-[9px] text-slate-500 font-medium">10/19 Lengkap</span>
+                        <span class="text-[9.5px] font-bold text-slate-700 dark:text-slate-200 mt-1 whitespace-nowrap">Perubahan</span>
+                        <span id="ringOp1VoSub" class="text-[8.5px] text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap truncate max-w-full">10/19 Lengkap</span>
                       </div>
                     </div>
 
-                    <div id="ringOp1Footer" class="pt-1.5 border-t border-slate-200/70 dark:border-slate-700 flex items-center justify-between text-[9px] font-semibold text-slate-600">
-                      <span>Skor Dok: <b class="text-[#0c4a8a] dark:text-sky-300">79,5%</b></span>
-                      <span class="text-amber-600 font-bold">9 Tindak Lanjut</span>
+                    <div id="ringOp1Footer" class="pt-1.5 border-t border-slate-200/70 dark:border-slate-700 flex items-center justify-between gap-1 text-[8.5px] sm:text-[9px] font-semibold text-slate-600 dark:text-slate-300">
+                      <span class="truncate">Skor: <b class="text-[#0c4a8a] dark:text-sky-300">79,5%</b></span>
+                      <span class="text-amber-600 dark:text-amber-400 font-bold truncate">9 Tindak Lanjut</span>
                     </div>
                   </div>
 
                   <!-- Operasi 2 - 18 Proyek (AMBER / ORANGE PALETTE) -->
-                  <div onclick="handleDepartmentFilter('DO 2')" class="p-2.5 rounded-xl bg-slate-50/75 hover:bg-amber-50/70 dark:bg-slate-800/45 dark:hover:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 cursor-pointer transition-all flex flex-col justify-between" title="Klik untuk memfilter Operasi 2">
-                    <div class="flex items-center justify-between gap-1 pb-1.5 border-b border-slate-200/70 dark:border-slate-700">
-                      <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold text-[#0c2340]">
-                        <span class="w-2 h-2 rounded-full bg-[#f59e0b]"></span>
+                  <div onclick="handleDepartmentFilter('DO 2')" class="p-2 sm:p-2.5 rounded-xl bg-slate-50/75 hover:bg-amber-50/70 dark:bg-slate-800/45 dark:hover:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 cursor-pointer transition-all flex flex-col justify-between overflow-hidden" title="Klik untuk memfilter Operasi 2">
+                    <div class="flex items-center justify-between gap-1 pb-1.5 border-b border-slate-200/70 dark:border-slate-700 min-w-0">
+                      <span class="inline-flex items-center gap-1 text-[10.5px] font-extrabold text-[#0c2340] dark:text-slate-100 whitespace-nowrap">
+                        <span class="w-2 h-2 rounded-full bg-[#f59e0b] shrink-0"></span>
                         <span>Operasi 2</span>
                       </span>
-                      <span id="ringOp2Title" class="px-1.5 py-0.5 rounded bg-amber-100/90 dark:bg-amber-900/50 text-amber-800 dark:text-amber-300 text-[9.5px] font-bold">18 Proyek</span>
+                      <span id="ringOp2Title" class="px-1.5 py-0.5 rounded bg-amber-100/90 dark:bg-amber-900/50 text-amber-800 dark:text-amber-300 text-[9px] font-bold shrink-0 whitespace-nowrap">18 Proyek</span>
                     </div>
 
-                    <div class="flex items-center justify-around gap-2 my-auto py-2">
-                      <div class="flex flex-col items-center">
-                        <div class="relative w-[68px] h-[68px] flex items-center justify-center">
-                          <svg class="w-[68px] h-[68px] transform -rotate-90" viewBox="0 0 36 36">
-                            <path class="text-slate-200" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                    <div class="grid grid-cols-2 gap-1 my-auto py-2 items-center justify-items-center">
+                      <!-- CM Gauge -->
+                      <div class="flex flex-col items-center w-full min-w-0">
+                        <div class="relative w-12 h-12 xl:w-13 xl:h-13 2xl:w-14 2xl:h-14 flex items-center justify-center shrink-0">
+                          <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200 dark:text-slate-700" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
                             <path id="ringOp2CmArc" class="text-[#f59e0b] transition-all duration-700" stroke-dasharray="77.8, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
                           </svg>
-                          <span id="ringOp2CmText" class="absolute text-[11px] font-extrabold text-[#d97706]">77,8%</span>
+                          <span id="ringOp2CmText" class="absolute text-[10px] xl:text-[10.5px] font-extrabold text-[#d97706]">77,8%</span>
                         </div>
-                        <span class="text-[10px] font-bold text-slate-700 mt-1">CM</span>
-                        <span id="ringOp2CmSub" class="text-[9px] text-slate-500 font-medium">14/18 Lengkap</span>
+                        <span class="text-[9.5px] font-bold text-slate-700 dark:text-slate-200 mt-1 whitespace-nowrap">CM</span>
+                        <span id="ringOp2CmSub" class="text-[8.5px] text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap truncate max-w-full">14/18 Lengkap</span>
                       </div>
 
-                      <div class="flex flex-col items-center">
-                        <div class="relative w-[68px] h-[68px] flex items-center justify-center">
-                          <svg class="w-[68px] h-[68px] transform -rotate-90" viewBox="0 0 36 36">
-                            <path class="text-slate-200" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                      <!-- VO Gauge -->
+                      <div class="flex flex-col items-center w-full min-w-0">
+                        <div class="relative w-12 h-12 xl:w-13 xl:h-13 2xl:w-14 2xl:h-14 flex items-center justify-center shrink-0">
+                          <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200 dark:text-slate-700" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
                             <path id="ringOp2VoArc" class="text-[#fb923c] transition-all duration-700" stroke-dasharray="77.8, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
                           </svg>
-                          <span id="ringOp2VoText" class="absolute text-[11px] font-extrabold text-[#ea580c]">77,8%</span>
+                          <span id="ringOp2VoText" class="absolute text-[10px] xl:text-[10.5px] font-extrabold text-[#ea580c]">77,8%</span>
                         </div>
-                        <span class="text-[10px] font-bold text-slate-700 mt-1">Perubahan</span>
-                        <span id="ringOp2VoSub" class="text-[9px] text-slate-500 font-medium">14/18 Lengkap</span>
+                        <span class="text-[9.5px] font-bold text-slate-700 dark:text-slate-200 mt-1 whitespace-nowrap">Perubahan</span>
+                        <span id="ringOp2VoSub" class="text-[8.5px] text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap truncate max-w-full">14/18 Lengkap</span>
                       </div>
                     </div>
 
-                    <div id="ringOp2Footer" class="pt-1.5 border-t border-slate-200/70 dark:border-slate-700 flex items-center justify-between text-[9px] font-semibold text-slate-600">
-                      <span>Skor Dok: <b class="text-amber-700 dark:text-amber-300">85,8%</b></span>
-                      <span class="text-emerald-600 font-bold">4 Tindak Lanjut</span>
+                    <div id="ringOp2Footer" class="pt-1.5 border-t border-slate-200/70 dark:border-slate-700 flex items-center justify-between gap-1 text-[8.5px] sm:text-[9px] font-semibold text-slate-600 dark:text-slate-300">
+                      <span class="truncate">Skor: <b class="text-amber-700 dark:text-amber-300">85,8%</b></span>
+                      <span class="text-emerald-600 dark:text-emerald-400 font-bold truncate">4 Tindak Lanjut</span>
                     </div>
                   </div>
 
                   <!-- Operasi 3 - 14 Proyek (EMERALD / TEAL PALETTE) -->
-                  <div onclick="handleDepartmentFilter('DO 3')" class="p-2.5 rounded-xl bg-slate-50/75 hover:bg-emerald-50/70 dark:bg-slate-800/45 dark:hover:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 cursor-pointer transition-all flex flex-col justify-between" title="Klik untuk memfilter Operasi 3">
-                    <div class="flex items-center justify-between gap-1 pb-1.5 border-b border-slate-200/70 dark:border-slate-700">
-                      <span class="inline-flex items-center gap-1.5 text-[11px] font-extrabold text-[#0c2340]">
-                        <span class="w-2 h-2 rounded-full bg-[#10b981]"></span>
+                  <div onclick="handleDepartmentFilter('DO 3')" class="p-2 sm:p-2.5 rounded-xl bg-slate-50/75 hover:bg-emerald-50/70 dark:bg-slate-800/45 dark:hover:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 cursor-pointer transition-all flex flex-col justify-between overflow-hidden" title="Klik untuk memfilter Operasi 3">
+                    <div class="flex items-center justify-between gap-1 pb-1.5 border-b border-slate-200/70 dark:border-slate-700 min-w-0">
+                      <span class="inline-flex items-center gap-1 text-[10.5px] font-extrabold text-[#0c2340] dark:text-slate-100 whitespace-nowrap">
+                        <span class="w-2 h-2 rounded-full bg-[#10b981] shrink-0"></span>
                         <span>Operasi 3</span>
                       </span>
-                      <span id="ringOp3Title" class="px-1.5 py-0.5 rounded bg-emerald-100/90 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300 text-[9.5px] font-bold">14 Proyek</span>
+                      <span id="ringOp3Title" class="px-1.5 py-0.5 rounded bg-emerald-100/90 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300 text-[9px] font-bold shrink-0 whitespace-nowrap">14 Proyek</span>
                     </div>
 
-                    <div class="flex items-center justify-around gap-2 my-auto py-2">
-                      <div class="flex flex-col items-center">
-                        <div class="relative w-[68px] h-[68px] flex items-center justify-center">
-                          <svg class="w-[68px] h-[68px] transform -rotate-90" viewBox="0 0 36 36">
-                            <path class="text-slate-200" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                    <div class="grid grid-cols-2 gap-1 my-auto py-2 items-center justify-items-center">
+                      <!-- CM Gauge -->
+                      <div class="flex flex-col items-center w-full min-w-0">
+                        <div class="relative w-12 h-12 xl:w-13 xl:h-13 2xl:w-14 2xl:h-14 flex items-center justify-center shrink-0">
+                          <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200 dark:text-slate-700" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
                             <path id="ringOp3CmArc" class="text-[#10b981] transition-all duration-700" stroke-dasharray="42.9, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
                           </svg>
-                          <span id="ringOp3CmText" class="absolute text-[11px] font-extrabold text-[#159a5c]">42,9%</span>
+                          <span id="ringOp3CmText" class="absolute text-[10px] xl:text-[10.5px] font-extrabold text-[#159a5c]">42,9%</span>
                         </div>
-                        <span class="text-[10px] font-bold text-slate-700 mt-1">CM</span>
-                        <span id="ringOp3CmSub" class="text-[9px] text-slate-500 font-medium">6/14 Lengkap</span>
+                        <span class="text-[9.5px] font-bold text-slate-700 dark:text-slate-200 mt-1 whitespace-nowrap">CM</span>
+                        <span id="ringOp3CmSub" class="text-[8.5px] text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap truncate max-w-full">6/14 Lengkap</span>
                       </div>
 
-                      <div class="flex flex-col items-center">
-                        <div class="relative w-[68px] h-[68px] flex items-center justify-center">
-                          <svg class="w-[68px] h-[68px] transform -rotate-90" viewBox="0 0 36 36">
-                            <path class="text-slate-200" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                      <!-- VO Gauge -->
+                      <div class="flex flex-col items-center w-full min-w-0">
+                        <div class="relative w-12 h-12 xl:w-13 xl:h-13 2xl:w-14 2xl:h-14 flex items-center justify-center shrink-0">
+                          <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-200 dark:text-slate-700" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
                             <path id="ringOp3VoArc" class="text-[#14b8a6] transition-all duration-700" stroke-dasharray="42.9, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
                           </svg>
-                          <span id="ringOp3VoText" class="absolute text-[11px] font-extrabold text-[#0d9488]">42,9%</span>
+                          <span id="ringOp3VoText" class="absolute text-[10px] xl:text-[10.5px] font-extrabold text-[#0d9488]">42,9%</span>
                         </div>
-                        <span class="text-[10px] font-bold text-slate-700 mt-1">Perubahan</span>
-                        <span id="ringOp3VoSub" class="text-[9px] text-slate-500 font-medium">6/14 Lengkap</span>
+                        <span class="text-[9.5px] font-bold text-slate-700 dark:text-slate-200 mt-1 whitespace-nowrap">Perubahan</span>
+                        <span id="ringOp3VoSub" class="text-[8.5px] text-slate-500 dark:text-slate-400 font-medium whitespace-nowrap truncate max-w-full">6/14 Lengkap</span>
                       </div>
                     </div>
 
-                    <div id="ringOp3Footer" class="pt-1.5 border-t border-slate-200/70 dark:border-slate-700 flex items-center justify-between text-[9px] font-semibold text-slate-600">
-                      <span>Skor Dok: <b class="text-emerald-700 dark:text-emerald-300">67,1%</b></span>
-                      <span class="text-rose-600 font-bold">8 Tindak Lanjut</span>
+                    <div id="ringOp3Footer" class="pt-1.5 border-t border-slate-200/70 dark:border-slate-700 flex items-center justify-between gap-1 text-[8.5px] sm:text-[9px] font-semibold text-slate-600 dark:text-slate-300">
+                      <span class="truncate">Skor: <b class="text-emerald-700 dark:text-emerald-300">67,1%</b></span>
+                      <span class="text-rose-600 dark:text-rose-400 font-bold truncate">8 Tindak Lanjut</span>
                     </div>
                   </div>
 
                 </div>
               </div>
 
-              <!-- CARD 7: Progress Kepatuhan per Operasi (Styled to match reference image.png with Waves, Badges & Month Pills, 6 cols) -->
-              <div class="lg:col-span-6 dashboard-card p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-sm flex flex-col justify-between h-full relative overflow-hidden">
+              <!-- CARD 7: Progress Kepatuhan per Operasi (5 cols on xl, 6 cols on 2xl) -->
+              <div class="xl:col-span-5 2xl:col-span-6 dashboard-card p-3 sm:p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-sm flex flex-col justify-between h-full relative overflow-hidden">
                 
                 <!-- Top Header: Title, Metric "Total 61,3%", Filter Pills & Legend -->
                 <div class="flex flex-wrap items-center justify-between gap-2.5 pb-2.5 border-b border-slate-100 dark:border-slate-800">
