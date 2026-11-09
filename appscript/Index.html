@@ -267,7 +267,7 @@
             </span>
           </div>
           <p class="text-[11px] font-medium text-slate-500 leading-tight mt-0.5">
-            Contract Management Infrastructure 1 Sub Division &bull; <span class="font-semibold text-[#0c4a8a]">051026 Cheklist Adkon</span>
+            Contract Management Infrastructure 1 Sub Division &bull; Sumber: <a href="https://docs.google.com/spreadsheets/d/1XQ-IuSesAKrggw6w2sGTXox8W3LRNFzRnmc3vlZCX6Y/edit?usp=sharing" target="_blank" class="font-semibold text-[#0c4a8a] hover:underline" title="Buka Spreadsheet Database Google Sheets">CCMS Monitoring Data</a>
           </p>
         </div>
 
@@ -1327,8 +1327,9 @@
     // Assign unique _id (1..N) so DO 1, DO 2, and DO 3 projects with duplicate "No" never collide
     allProjectsData.forEach((p, idx) => { p._id = idx + 1; });
 
-    // Live Google Sheet Configuration (051026 Cheklist Adkon Dashboard Rev - 5 Oktober 2026)
-    const GOOGLE_SHEET_ID = "1_HyDeqYkUB-HdLJwGLEUgx1nOmOoIx-OGDCgZGRvE4w";
+    // Live Google Sheet Configuration (CCMS Monitoring Data)
+    // URL: https://docs.google.com/spreadsheets/d/1XQ-IuSesAKrggw6w2sGTXox8W3LRNFzRnmc3vlZCX6Y/edit?usp=sharing
+    const GOOGLE_SHEET_ID = "1XQ-IuSesAKrggw6w2sGTXox8W3LRNFzRnmc3vlZCX6Y";
     const GOOGLE_SHEET_NAME = "Cheklist";
 
     let displayedProjects = [...allProjectsData];
@@ -3108,7 +3109,7 @@
         if (oldScript) oldScript.remove();
         const script = document.createElement("script");
         script.id = "wikaGvizJsonpScript";
-        script.src = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/gviz/tq?tqx=responseHandler:__wikaGvizCallback&sheet=${encodeURIComponent(GOOGLE_SHEET_NAME)}&_ts=${Date.now()}`;
+        script.src = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/gviz/tq?tqx=responseHandler:__wikaGvizCallback&gid=0&_ts=${Date.now()}`;
         script.async = true;
         document.body.appendChild(script);
       } catch (err) {

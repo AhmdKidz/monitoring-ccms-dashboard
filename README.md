@@ -27,7 +27,7 @@ Seluruh hasil kerja dalam proyek ini siap pakai dan terbagi dalam 5 kategori del
 |:--:|:---|:---|:---|
 | 1 | **Web Dashboard Utama** | `index.html` + folder `assets/` | File web frontend responsif dengan Tailwind CSS, Chart.js, Sidebar Freeze, Kalender Agenda Multi-tahun, Mode Light/Dark sebaris, dan auto-sync Google Sheet. |
 | 2 | **Single-File Apps Script** | `appscript/Index.html` + `appscript/Code.gs` | Versi mandiri *(self-contained)* dengan semua logo dan vektor SVG di-embed langsung sebagai data URI Base64. Siap di-deploy langsung pada Google Apps Script. |
-| 3 | **Database Spreadsheet** | [Google Sheets (051026 Cheklist Adkon)](https://docs.google.com/spreadsheets/d/1_HyDeqYkUB-HdLJwGLEUgx1nOmOoIx-OGDCgZGRvE4w/edit?usp=drive_link) | Sumber data kebenaran (*single source of truth*) 51 proyek dengan 20 kolom parameter dokumen checklist. |
+| 3 | **Database Spreadsheet** | [Google Sheets (CCMS Monitoring Data)](https://docs.google.com/spreadsheets/d/1XQ-IuSesAKrggw6w2sGTXox8W3LRNFzRnmc3vlZCX6Y/edit?usp=sharing) | Sumber data kebenaran (*single source of truth*) 51 proyek dengan 20 kolom parameter dokumen checklist. |
 | 4 | **File Desain & Vektor UI** | `WIKA_CCMS_Monitoring.fig`<br>`WIKA_CCMS_Monitoring.figcraft`<br>`assets/*.svg` | Berkas mentahan Figma & FigCraft yang telah dirapikan sesuai standar Atomic Design System WIKA. |
 | 5 | **Repositori Kode (Git)** | [GitHub Repository](https://github.com/AhmdKidz/monitoring-ccms-dashboard.git) | Repositori pusat version control untuk memudahkan pembaruan kode secara kolaboratif. |
 
@@ -51,7 +51,7 @@ Seluruh hasil kerja dalam proyek ini siap pakai dan terbagi dalam 5 kategori del
 Bila Anda ingin menyerahkan proyek ini kepada orang lain (rekan kerja, atasan, tim IT, atau klien), lakukan 5 langkah berikut:
 
 ### 1. Serahkan Hak Akses Google Sheet
-1. Buka spreadsheet: [051026 Cheklist Adkon Dashboard Rev](https://docs.google.com/spreadsheets/d/1_HyDeqYkUB-HdLJwGLEUgx1nOmOoIx-OGDCgZGRvE4w/edit?usp=drive_link).
+1. Buka spreadsheet: [CCMS Monitoring Data (Google Sheets)](https://docs.google.com/spreadsheets/d/1XQ-IuSesAKrggw6w2sGTXox8W3LRNFzRnmc3vlZCX6Y/edit?usp=sharing).
 2. Klik tombol **Share (Bagikan)** di pojok kanan atas.
 3. Masukkan email orang yang dituju, pilih peran **Editor** (atau jadikan **Owner / Pemilik** jika pengalihan penuh).
 4. Pastikan akses umum (*General Access*) minimal **"Anyone with the link can view"** agar API pembacaan dashboard tetap aktif.
@@ -108,9 +108,10 @@ Ini adalah cara termudah untuk kalangan internal WIKA karena tidak memerlukan se
 
 ## 📊 Struktur Database Google Sheet & Pemeliharaan
 
-- **Spreadsheet ID**: `1_HyDeqYkUB-HdLJwGLEUgx1nOmOoIx-OGDCgZGRvE4w`
-- **Tab Utama**: `Cheklist`
-- **Data Per**: 5 Oktober 2026 (51 Proyek)
+- **Spreadsheet ID**: `1XQ-IuSesAKrggw6w2sGTXox8W3LRNFzRnmc3vlZCX6Y`
+- **Spreadsheet URL**: [https://docs.google.com/spreadsheets/d/1XQ-IuSesAKrggw6w2sGTXox8W3LRNFzRnmc3vlZCX6Y/edit?usp=sharing](https://docs.google.com/spreadsheets/d/1XQ-IuSesAKrggw6w2sGTXox8W3LRNFzRnmc3vlZCX6Y/edit?usp=sharing)
+- **Tab Utama**: `Cheklist` (atau tab pertama / gid `0`)
+- **Data Per**: Cut-Off September/Oktober 2026 (51 Proyek)
 
 ### Aturan Pengisian Kolom:
 - **Kolom A (No)**: Nomor urut proyek (1, 2, 3...)
