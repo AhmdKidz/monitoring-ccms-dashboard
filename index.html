@@ -494,8 +494,8 @@
             <!-- ROW 2: RINGKASAN PER DEPARTEMEN OPERASI (7 COLS) + PROGRESS KEPATUHAN TREND (5 COLS) - STRETCHED FULL HEIGHT -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-3.5 flex-1 items-stretch" id="deptSummarySection">
               
-              <!-- CARD 6: Ringkasan per Departemen Operasi (Expanded Proportional Sub-Cards, 7 cols) -->
-              <div class="lg:col-span-7 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between h-full">
+              <!-- CARD 6: Ringkasan per Departemen Operasi (Balanced 6 cols) -->
+              <div class="lg:col-span-6 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between h-full">
                 <div class="flex items-center justify-between pb-2 border-b border-slate-100">
                   <div class="flex items-center gap-2">
                     <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
@@ -637,49 +637,99 @@
                 </div>
               </div>
 
-              <!-- CARD 7: Progress Kepatuhan per Operasi (Expanded Full Height + Growth Summary Footer, 5 cols) -->
-              <div class="lg:col-span-5 dashboard-card p-3.5 rounded-xl bg-white border border-slate-200/90 shadow-sm flex flex-col justify-between h-full">
-                <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-100">
-                  <div class="flex items-center gap-1.5">
-                    <div class="w-5 h-5 rounded bg-[#0c4a8a] text-white flex items-center justify-center shrink-0">
-                      <span class="material-symbols-outlined text-xs">show_chart</span>
+              <!-- CARD 7: Progress Kepatuhan per Operasi (Styled to match reference image.png with Waves, Badges & Month Pills, 6 cols) -->
+              <div class="lg:col-span-6 dashboard-card p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-sm flex flex-col justify-between h-full relative overflow-hidden">
+                
+                <!-- Top Header: Title, Metric "Total 61,3%", Filter Pills & Legend -->
+                <div class="flex flex-wrap items-center justify-between gap-2.5 pb-2.5 border-b border-slate-100 dark:border-slate-800">
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <div class="w-6 h-6 rounded-lg bg-gradient-to-tr from-[#003B70] to-[#00a3e0] text-white flex items-center justify-center shadow-xs">
+                        <span class="material-symbols-outlined text-sm">show_chart</span>
+                      </div>
+                      <h2 class="text-xs font-bold text-slate-800 dark:text-white">Progress Kepatuhan per Operasi</h2>
+                      <span class="px-2 py-0.5 rounded-full bg-violet-50 dark:bg-violet-950/60 border border-violet-200 dark:border-violet-800 text-[9.5px] font-bold text-violet-700 dark:text-violet-300">Live Wave</span>
                     </div>
-                    <h2 class="text-xs font-bold text-[#0c2340]">Progress Kepatuhan per Operasi</h2>
+
+                    <!-- Sub-metric matching "Total $976,000" in reference image.png -->
+                    <div class="flex items-baseline gap-2.5 mt-1.5 pl-0.5">
+                      <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Rata-rata</span>
+                      <span id="trendTotalScore" class="text-xl font-extrabold text-[#7c3aed] dark:text-[#a78bfa] tracking-tight">61,3%</span>
+                      <span class="inline-flex items-center gap-0.5 text-[9.5px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/50 px-1.5 py-0.5 rounded border border-emerald-200/70 dark:border-emerald-800/60">
+                        &uarr; +13,8% vs Apr
+                      </span>
+                    </div>
                   </div>
-                  <div class="flex items-center gap-2.5 text-[9.5px] font-bold text-slate-600">
-                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#0d6efd]"></span> Operasi 1</span>
-                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#f59e0b]"></span> Operasi 2</span>
-                    <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#10b981]"></span> Operasi 3</span>
+
+                  <!-- Filter Pills & Legend matching Point 1, Point 2, Point 3 in image.png -->
+                  <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                    <div class="inline-flex p-0.5 rounded-lg bg-slate-100 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 text-[10px] font-semibold" id="trendFilterPillsGroup">
+                      <button type="button" onclick="setTrendChartFilter('all')" id="btnTrendFilterAll" class="px-2.5 py-1 rounded-md bg-white dark:bg-slate-700 text-[#0c4a8a] dark:text-white shadow-xs font-bold transition-all">Semua</button>
+                      <button type="button" onclick="setTrendChartFilter('do1')" id="btnTrendFilterDo1" class="px-2 py-1 rounded-md text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all">Operasi 1</button>
+                      <button type="button" onclick="setTrendChartFilter('do2')" id="btnTrendFilterDo2" class="px-2 py-1 rounded-md text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all">Operasi 2</button>
+                      <button type="button" onclick="setTrendChartFilter('do3')" id="btnTrendFilterDo3" class="px-2 py-1 rounded-md text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all">Operasi 3</button>
+                    </div>
+
+                    <!-- Glowing Legend Dots -->
+                    <div class="hidden xl:flex items-center gap-2 text-[9.5px] font-bold text-slate-600 dark:text-slate-300 pl-1 border-l border-slate-200 dark:border-slate-700">
+                      <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-[#8b5cf6] ring-2 ring-purple-200 dark:ring-purple-900"></span> OP 1</span>
+                      <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-[#06b6d4] ring-2 ring-cyan-200 dark:ring-cyan-900"></span> OP 2</span>
+                      <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-[#10b981] ring-2 ring-emerald-200 dark:ring-emerald-900"></span> OP 3</span>
+                    </div>
                   </div>
                 </div>
 
-                <!-- Line Chart + Right Pill Badges matching reference -->
-                <div class="flex items-center gap-2.5 py-2 flex-1 min-h-[145px]">
-                  <div class="h-full min-h-[140px] flex-1 relative">
+                <!-- Center Area: Wave Chart + Right Metric Badges (matching reference) -->
+                <div class="flex items-stretch gap-3 py-2 flex-1 min-h-[165px]">
+                  <div class="h-full min-h-[160px] flex-1 relative">
                     <canvas id="progressTrendChart"></canvas>
                   </div>
-                  <div class="flex flex-col gap-2 shrink-0">
-                    <span id="trendBadgeOp2" class="px-2 py-0.5 rounded-md bg-[#f59e0b] text-white font-bold text-[10px] shadow-sm text-center">77,8%</span>
-                    <span id="trendBadgeOp1" class="px-2 py-0.5 rounded-md bg-[#0d6efd] text-white font-bold text-[10px] shadow-sm text-center">63,2%</span>
-                    <span id="trendBadgeOp3" class="px-2 py-0.5 rounded-md bg-[#10b981] text-white font-bold text-[10px] shadow-sm text-center">42,9%</span>
+
+                  <!-- Right Side Status Column -->
+                  <div class="flex flex-col justify-around gap-1.5 shrink-0 py-1 border-l border-slate-100 dark:border-slate-800 pl-2.5 text-right">
+                    <div class="group cursor-pointer" onclick="setTrendChartFilter('do2')" title="Klik untuk fokus Operasi 2">
+                      <div class="text-[9px] font-bold text-slate-400">DO 2 (Tertinggi)</div>
+                      <span id="trendBadgeOp2" class="inline-block px-2 py-0.5 rounded-md bg-[#06b6d4] text-white font-extrabold text-[10px] shadow-xs text-center">77,8%</span>
+                    </div>
+                    <div class="group cursor-pointer" onclick="setTrendChartFilter('do1')" title="Klik untuk fokus Operasi 1">
+                      <div class="text-[9px] font-bold text-slate-400">DO 1 (19 Proyek)</div>
+                      <span id="trendBadgeOp1" class="inline-block px-2 py-0.5 rounded-md bg-[#8b5cf6] text-white font-extrabold text-[10px] shadow-xs text-center">63,2%</span>
+                    </div>
+                    <div class="group cursor-pointer" onclick="setTrendChartFilter('do3')" title="Klik untuk fokus Operasi 3">
+                      <div class="text-[9px] font-bold text-slate-400">DO 3 (Kritis)</div>
+                      <span id="trendBadgeOp3" class="inline-block px-2 py-0.5 rounded-md bg-[#10b981] text-white font-extrabold text-[10px] shadow-xs text-center">42,9%</span>
+                    </div>
                   </div>
                 </div>
 
-                <!-- Bottom Trend Growth Strip (Aligns with Department Cards Footer) -->
-                <div class="pt-2 border-t border-slate-100 grid grid-cols-3 gap-2 text-center text-[9.5px]">
-                  <div class="px-2 py-1 rounded-lg bg-sky-50/70 dark:bg-slate-800/60 border border-sky-100 dark:border-slate-700 flex items-center justify-between">
-                    <span class="font-bold text-slate-600">OP 1</span>
+                <!-- Bottom Timeline Month Pills (Matching JAN, FEB, MAR ... [AUG] [SEP] [OCT] in image.png) -->
+                <div class="pt-2 pb-1 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-1 overflow-x-auto text-[9.5px] font-bold select-none">
+                  <span class="px-2 py-1 rounded text-slate-400">APR</span>
+                  <span class="px-2 py-1 rounded text-slate-400">MEI</span>
+                  <span class="px-2 py-1 rounded text-slate-400">JUN</span>
+                  <span class="px-2 py-1 rounded text-slate-400">JUL</span>
+                  <!-- Highlighted active months matching reference -->
+                  <span class="px-2.5 py-0.5 rounded-md bg-purple-100 dark:bg-purple-950/60 text-[#7c3aed] dark:text-[#c4b5fd] font-extrabold border border-purple-200 dark:border-purple-800">AGU</span>
+                  <span class="px-2.5 py-0.5 rounded-md bg-purple-100 dark:bg-purple-950/60 text-[#7c3aed] dark:text-[#c4b5fd] font-extrabold border border-purple-200 dark:border-purple-800">SEP</span>
+                  <span class="px-3 py-1 rounded-lg bg-[#8b5cf6] text-white font-black shadow-sm shadow-purple-500/30 ring-2 ring-purple-300 dark:ring-purple-700 animate-pulse">OKT (5 OKT)</span>
+                </div>
+
+                <!-- Bottom Trend Growth Strip -->
+                <div class="pt-2 border-t border-slate-100 dark:border-slate-800 grid grid-cols-3 gap-2 text-center text-[9.5px]">
+                  <div class="px-2 py-1 rounded-lg bg-purple-50/70 dark:bg-slate-800/60 border border-purple-100 dark:border-slate-700 flex items-center justify-between">
+                    <span class="font-bold text-slate-600 dark:text-slate-300">OP 1</span>
                     <span class="font-extrabold text-emerald-600">&uarr; +13,2%</span>
                   </div>
-                  <div class="px-2 py-1 rounded-lg bg-amber-50/70 dark:bg-slate-800/60 border border-amber-100 dark:border-slate-700 flex items-center justify-between">
-                    <span class="font-bold text-slate-600">OP 2</span>
+                  <div class="px-2 py-1 rounded-lg bg-cyan-50/70 dark:bg-slate-800/60 border border-cyan-100 dark:border-slate-700 flex items-center justify-between">
+                    <span class="font-bold text-slate-600 dark:text-slate-300">OP 2</span>
                     <span class="font-extrabold text-emerald-600">&uarr; +15,8%</span>
                   </div>
                   <div class="px-2 py-1 rounded-lg bg-emerald-50/70 dark:bg-slate-800/60 border border-emerald-100 dark:border-slate-700 flex items-center justify-between">
-                    <span class="font-bold text-slate-600">OP 3</span>
+                    <span class="font-bold text-slate-600 dark:text-slate-300">OP 3</span>
                     <span class="font-extrabold text-emerald-600">&uarr; +12,9%</span>
                   </div>
                 </div>
+
               </div>
 
             </div>
@@ -1677,59 +1727,169 @@
         }
       });
 
-      // 4. Progress Kepatuhan Trend Multi-Line Chart (Up to Okt 2026 - 5 Oktober 2026)
+      // 4. Progress Kepatuhan Trend Multi-Line Chart (Styled after reference image.png with Waves, Dotted Drop-lines & Floating Badges)
       const trendCtx = document.getElementById('progressTrendChart').getContext('2d');
+
+      // Custom Plugin to render vertical dotted drop-lines & floating callout badges directly on the canvas!
+      const figcraftTrendChartPlugin = {
+        id: 'figcraftTrendChartPlugin',
+        afterDatasetsDraw(chart, args, options) {
+          const { ctx, chartArea, scales: { x, y } } = chart;
+          if (!chartArea) return;
+          const isDark = document.documentElement.classList.contains('dark');
+
+          // 1. Dotted vertical lines dropped from key points (index 4: Agu, 5: Sep, 6: Okt)
+          const highlightIndices = [4, 5, 6];
+          highlightIndices.forEach(idx => {
+            let highestY = chartArea.bottom;
+            chart.data.datasets.forEach((ds, dsIdx) => {
+              const meta = chart.getDatasetMeta(dsIdx);
+              if (!meta.hidden && meta.data[idx]) {
+                highestY = Math.min(highestY, meta.data[idx].y);
+              }
+            });
+            if (highestY < chartArea.bottom) {
+              const xPos = x.getPixelForTick(idx);
+              ctx.save();
+              ctx.beginPath();
+              ctx.setLineDash([3, 4]);
+              ctx.strokeStyle = isDark ? 'rgba(148, 163, 184, 0.40)' : 'rgba(100, 116, 139, 0.50)';
+              ctx.lineWidth = 1.2;
+              ctx.moveTo(xPos, highestY);
+              ctx.lineTo(xPos, chartArea.bottom);
+              ctx.stroke();
+              ctx.restore();
+            }
+          });
+
+          // 2. Floating Callout Badges above peak points (matching "215 K", "183 K" in reference image)
+          const badgeConfigs = [
+            { dsIndex: 0, ptIndex: 4 }, // OP 2 Agu
+            { dsIndex: 0, ptIndex: 5 }, // OP 2 Sep
+            { dsIndex: 0, ptIndex: 6 }, // OP 2 Okt
+            { dsIndex: 1, ptIndex: 6 }  // OP 1 Okt
+          ];
+
+          badgeConfigs.forEach(b => {
+            const meta = chart.getDatasetMeta(b.dsIndex);
+            if (meta.hidden || !meta.data[b.ptIndex]) return;
+            const pt = meta.data[b.ptIndex];
+            const val = chart.data.datasets[b.dsIndex].data[b.ptIndex];
+            if (val === undefined || val === null) return;
+            const text = (typeof val === 'number' ? val.toFixed(1).replace('.', ',') : String(val)) + '%';
+
+            ctx.save();
+            ctx.font = 'bold 9px "Plus Jakarta Sans", sans-serif';
+            const textWidth = ctx.measureText(text).width;
+            const badgeW = textWidth + 10;
+            const badgeH = 17;
+            const badgeX = pt.x - badgeW / 2;
+            const badgeY = pt.y - 23;
+
+            // Rounded badge background
+            ctx.beginPath();
+            if (ctx.roundRect) {
+              ctx.roundRect(badgeX, badgeY, badgeW, badgeH, 4);
+            } else {
+              ctx.rect(badgeX, badgeY, badgeW, badgeH);
+            }
+            ctx.fillStyle = isDark ? '#1e293b' : '#ffffff';
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.18)';
+            ctx.shadowBlur = 5;
+            ctx.shadowOffsetY = 2;
+            ctx.fill();
+            ctx.shadowColor = 'transparent';
+
+            // Border matching dataset color
+            ctx.strokeStyle = chart.data.datasets[b.dsIndex].borderColor;
+            ctx.lineWidth = 1.4;
+            ctx.stroke();
+
+            // Text
+            ctx.fillStyle = isDark ? '#f8fafc' : '#0f172a';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(text, pt.x, badgeY + badgeH / 2);
+            ctx.restore();
+          });
+        }
+      };
+
+      // Helper to generate soft vertical area gradients
+      function createAreaGradient(ctx, topRgba, bottomRgba) {
+        return (context) => {
+          const chart = context.chart;
+          const { ctx, chartArea } = chart;
+          if (!chartArea) return null;
+          const grad = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+          grad.addColorStop(0, topRgba);
+          grad.addColorStop(0.7, topRgba.replace(/[\d\.]+\)$/, '0.10)'));
+          grad.addColorStop(1, bottomRgba);
+          return grad;
+        };
+      }
+
       trendChartInstance = new Chart(trendCtx, {
         type: 'line',
+        plugins: [figcraftTrendChartPlugin],
         data: {
           labels: ['Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt'],
           datasets: [
             {
               label: 'Operasi 2',
               data: [62, 66.7, 72.2, 74.5, 76.0, 77.8, 77.8],
-              borderColor: '#f59e0b',
-              backgroundColor: 'rgba(245, 158, 11, 0.08)',
-              borderWidth: 2,
-              tension: 0.25,
-              fill: false,
-              pointRadius: 3,
-              pointBackgroundColor: '#f59e0b',
-              pointHoverRadius: 5
+              borderColor: '#06b6d4', // Cyan / Turquoise matching reference!
+              backgroundColor: createAreaGradient(trendCtx, 'rgba(6, 182, 212, 0.42)', 'rgba(6, 182, 212, 0.0)'),
+              borderWidth: 2.8,
+              tension: 0.42,
+              fill: true,
+              pointRadius: (ctx) => [4, 5, 6].includes(ctx.dataIndex) ? 5.5 : 2.5,
+              pointHoverRadius: 7.5,
+              pointBackgroundColor: '#ffffff',
+              pointBorderColor: '#06b6d4',
+              pointBorderWidth: 2.5
             },
             {
               label: 'Operasi 1',
               data: [50, 52.6, 57.9, 60.0, 61.5, 63.2, 63.2],
-              borderColor: '#0d6efd',
-              backgroundColor: 'rgba(13, 110, 253, 0.08)',
-              borderWidth: 2,
-              tension: 0.25,
-              fill: false,
-              pointRadius: 3,
-              pointBackgroundColor: '#0d6efd',
-              pointHoverRadius: 5
+              borderColor: '#8b5cf6', // Lavender / Violet matching reference!
+              backgroundColor: createAreaGradient(trendCtx, 'rgba(139, 92, 246, 0.38)', 'rgba(139, 92, 246, 0.0)'),
+              borderWidth: 2.8,
+              tension: 0.42,
+              fill: true,
+              pointRadius: (ctx) => [4, 5, 6].includes(ctx.dataIndex) ? 5.5 : 2.5,
+              pointHoverRadius: 7.5,
+              pointBackgroundColor: '#ffffff',
+              pointBorderColor: '#8b5cf6',
+              pointBorderWidth: 2.5
             },
             {
               label: 'Operasi 3',
               data: [30, 28.6, 35.7, 38.0, 40.5, 42.9, 42.9],
-              borderColor: '#10b981',
-              backgroundColor: 'rgba(16, 185, 129, 0.08)',
-              borderWidth: 2,
-              tension: 0.25,
-              fill: false,
-              pointRadius: 3,
-              pointBackgroundColor: '#10b981',
-              pointHoverRadius: 5
+              borderColor: '#10b981', // Mint / Emerald
+              backgroundColor: createAreaGradient(trendCtx, 'rgba(16, 185, 129, 0.28)', 'rgba(16, 185, 129, 0.0)'),
+              borderWidth: 2.2,
+              tension: 0.42,
+              fill: true,
+              pointRadius: (ctx) => [4, 5, 6].includes(ctx.dataIndex) ? 5 : 2,
+              pointHoverRadius: 7,
+              pointBackgroundColor: '#ffffff',
+              pointBorderColor: '#10b981',
+              pointBorderWidth: 2
             }
           ]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          layout: {
+            padding: { top: 22, bottom: 4, left: 4, right: 10 }
+          },
           scales: {
             y: {
               min: 0,
               max: 100,
-              grid: { color: isDark ? '#1e293b' : '#f1f5f9' },
+              grid: { color: isDark ? 'rgba(30, 41, 59, 0.6)' : 'rgba(241, 245, 249, 0.9)' },
               ticks: {
                 stepSize: 25,
                 callback: (v) => v + '%',
@@ -1748,16 +1908,65 @@
               enabled: true,
               mode: 'index',
               intersect: false,
-              backgroundColor: '#083b7a',
+              backgroundColor: '#0c2340',
+              padding: 10,
+              cornerRadius: 8,
+              titleFont: { family: 'Plus Jakarta Sans', size: 10, weight: 'bold' },
+              bodyFont: { family: 'Plus Jakarta Sans', size: 10 },
               callbacks: {
                 label: (ctx) => ` ${ctx.dataset.label}: ${ctx.raw.toString().replace('.', ',')}%`
               }
             }
           },
           interaction: { mode: 'nearest', axis: 'x', intersect: false },
-          animation: { duration: 1000, easing: 'easeOutQuart' }
+          animation: { duration: 1100, easing: 'easeOutQuart' }
         }
       });
+    }
+
+    // Interactive filter for Card 7 Trend Chart pills (Semua, OP 1, OP 2, OP 3)
+    let currentTrendFilter = 'all';
+    function setTrendChartFilter(filter) {
+      currentTrendFilter = filter;
+      if (!trendChartInstance) return;
+
+      const btnAll = document.getElementById('btnTrendFilterAll');
+      const btnDo1 = document.getElementById('btnTrendFilterDo1');
+      const btnDo2 = document.getElementById('btnTrendFilterDo2');
+      const btnDo3 = document.getElementById('btnTrendFilterDo3');
+
+      const activeCls = "px-2.5 py-1 rounded-md bg-white dark:bg-slate-700 text-[#0c4a8a] dark:text-white shadow-xs font-bold transition-all";
+      const inactiveCls = "px-2.5 py-1 rounded-md text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all";
+
+      if (btnAll) btnAll.className = (filter === 'all' ? activeCls : inactiveCls);
+      if (btnDo1) btnDo1.className = (filter === 'do1' ? activeCls : inactiveCls);
+      if (btnDo2) btnDo2.className = (filter === 'do2' ? activeCls : inactiveCls);
+      if (btnDo3) btnDo3.className = (filter === 'do3' ? activeCls : inactiveCls);
+
+      if (filter === 'all') {
+        trendChartInstance.data.datasets[0].hidden = false;
+        trendChartInstance.data.datasets[0].borderWidth = 2.8;
+        trendChartInstance.data.datasets[1].hidden = false;
+        trendChartInstance.data.datasets[1].borderWidth = 2.8;
+        trendChartInstance.data.datasets[2].hidden = false;
+        trendChartInstance.data.datasets[2].borderWidth = 2.2;
+      } else if (filter === 'do1') {
+        trendChartInstance.data.datasets[0].hidden = true;  // DO 2
+        trendChartInstance.data.datasets[1].hidden = false; // DO 1
+        trendChartInstance.data.datasets[1].borderWidth = 3.6;
+        trendChartInstance.data.datasets[2].hidden = true;  // DO 3
+      } else if (filter === 'do2') {
+        trendChartInstance.data.datasets[0].hidden = false; // DO 2
+        trendChartInstance.data.datasets[0].borderWidth = 3.6;
+        trendChartInstance.data.datasets[1].hidden = true;  // DO 1
+        trendChartInstance.data.datasets[2].hidden = true;  // DO 3
+      } else if (filter === 'do3') {
+        trendChartInstance.data.datasets[0].hidden = true;  // DO 2
+        trendChartInstance.data.datasets[1].hidden = true;  // DO 1
+        trendChartInstance.data.datasets[2].hidden = false; // DO 3
+        trendChartInstance.data.datasets[2].borderWidth = 3.6;
+      }
+      trendChartInstance.update();
     }
 
     // ========================================================
@@ -1922,6 +2131,11 @@
       if (tb2) tb2.textContent = formatPctComma(op2.cmPct);
       const tb3 = document.getElementById("trendBadgeOp3");
       if (tb3) tb3.textContent = formatPctComma(op3.cmPct);
+      const trendTotEl = document.getElementById("trendTotalScore");
+      if (trendTotEl) {
+        const avgOverall = (op1.cmPct + op2.cmPct + op3.cmPct) / 3;
+        trendTotEl.textContent = formatPctComma(avgOverall);
+      }
 
       // Update Priority Badges & Footer Count
       const allPrio = getAllPriorityProjects();
