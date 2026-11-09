@@ -46,33 +46,39 @@ Seluruh hasil kerja dalam proyek ini siap pakai dan terbagi dalam 5 kategori del
 
 ---
 
-## 📋 Panduan Serah Terima (Handover Checklist)
+## 📋 Panduan Serah Terima Proyek (Handover Guide)
 
-Bila Anda ingin menyerahkan proyek ini kepada orang lain (rekan kerja, atasan, tim IT, atau klien), lakukan 5 langkah berikut:
+Karena **penerima proyek adalah pemilik sah dari Google Spreadsheet tersebut**, tidak diperlukan langkah pengalihan akses database. Serah terima dapat diselesaikan dengan 3 langkah praktis:
 
-### 1. Serahkan Hak Akses Google Sheet
+### 1. Pemasangan Web App di Spreadsheet Penerima (Hanya 3 Menit)
+Penerima (pemilik spreadsheet) dapat mengaktifkan Web App langsung dari spreadsheet mereka sendiri:
 1. Buka spreadsheet: [CCMS Monitoring Data (Google Sheets)](https://docs.google.com/spreadsheets/d/1XQ-IuSesAKrggw6w2sGTXox8W3LRNFzRnmc3vlZCX6Y/edit?usp=sharing).
-2. Klik tombol **Share (Bagikan)** di pojok kanan atas.
-3. Masukkan email orang yang dituju, pilih peran **Editor** (atau jadikan **Owner / Pemilik** jika pengalihan penuh).
-4. Pastikan akses umum (*General Access*) minimal **"Anyone with the link can view"** agar API pembacaan dashboard tetap aktif.
+2. Di menu atas, klik **Extensions (Ekstensi)** > **Apps Script**.
+3. Di editor Apps Script:
+   - Salin isi berkas [`appscript/Code.gs`](appscript/Code.gs) ke file `Code.gs`.
+   - Buat file HTML baru dengan nama `Index.html` (huruf I besar) dan salin isi berkas [`appscript/Index.html`](appscript/Index.html).
+4. Klik tombol **Deploy** di pojok kanan atas > **New deployment**.
+5. Pilih jenis **Web app**:
+   - *Description*: `Dashboard Monitoring CCMS Divisi 1`
+   - *Execute as*: `Me (email pemilik)`
+   - *Who has access*: `Anyone` (atau `Anyone within WIKA` jika Google Workspace perusahaan).
+6. Klik **Deploy** dan salin **Web App URL** yang didapat. Tautan tersebut adalah dashboard resmi milik mereka yang siap dibagikan ke jajaran Direksi, Manajemen, maupun Pengawas Proyek.
 
-### 2. Berikan URL Web App Google Apps Script Aktif
-Agar penerima tidak perlu repot memasang aplikasi atau membuka terminal, berikan URL Web App yang sudah jadi (atau ikuti langkah deploy di bawah). Penerima cukup mengklik link tersebut di browser (Chrome, Edge, Safari, HP/Tablet).
-
-### 3. Berikan Hak Akses ke Repositori GitHub
+### 2. Berikan Hak Akses ke Repositori GitHub
 Jika penerima adalah seorang programmer / tim teknis:
 1. Buka [GitHub AhmdKidz/monitoring-ccms-dashboard](https://github.com/AhmdKidz/monitoring-ccms-dashboard).
 2. Masuk ke **Settings** > **Collaborators** > **Add people**.
 3. Masukkan username/email GitHub penerima agar mereka memiliki akses push/pull.
 
-### 4. Berikan Paket Berkas ZIP (Cadangan Offline)
-Unduh paket arsip `monitoring-ccms-dashboard-release.zip` yang berisi seluruh kode sumber, file desain `.fig`, `.figcraft`, dan manual ini. Simpan sebagai arsip serah terima di Google Drive atau flashdisk.
+### 3. Berikan Paket Berkas ZIP (Cadangan Offline & File Desain)
+Kirimkan paket arsip `monitoring-ccms-dashboard-handover.zip` (786 KB) yang memuat seluruh kode sumber frontend, aset vektor, file desain mentahan Figma (`.fig`), dan FigCraft (`.figcraft`).
 
-### 5. Berikan Pelatihan / Panduan Pengoperasian Singkat
-Jelaskan kepada staf administrasi cara memperbarui checklist:
+### 4. Panduan Singkat Pemeliharaan Data di Spreadsheet
+Jelaskan kepada staf yang bertugas mengupdate checklist:
 - Menambahkan baris proyek baru di tab `Cheklist`.
 - Mengisi tanda centang `✓` (atau huruf `v`) pada kolom dokumen.
 - Memberikan catatan khusus ADKON di kolom keterangan.
+- Dashboard akan otomatis sinkron dalam waktu < 1 menit.
 - Dashboard akan otomatis sinkron dalam waktu < 1 menit.
 
 ---
