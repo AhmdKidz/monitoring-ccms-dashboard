@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "figcraft": {
+      "command": "figcraft-cli",
+      "args": [
+        "mcp"
+      ],
+      "env": {}
+    }
+  }
+}
