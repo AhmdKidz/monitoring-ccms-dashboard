@@ -251,94 +251,99 @@
     <!-- ======================================================== -->
     <div class="flex-1 flex flex-col min-w-0">
 
-      <!-- TOP HEADER (TITLE & SINGLE-LINE FILTER BAR WITH INLINE RESET + LIGHT/DARK MODE) -->
-      <header class="bg-white border-b border-slate-200/90 px-5 py-2.5 sticky top-0 z-30 shadow-sm flex flex-wrap xl:flex-nowrap items-center justify-between gap-3 relative overflow-hidden">
-        <!-- Subtle Top-Right Skyline Illustration matching reference -->
-        <img src="assets/header-skyline.svg" alt="" class="absolute right-0 top-0 h-full w-auto object-cover pointer-events-none opacity-85 hidden 2xl:block dark:opacity-20"/>
+      <!-- TOP HEADER (TITLE & COMPACT RESPONSIVE FILTER BAR WITH SYNC, RESET & THEME TOGGLE) -->
+      <header class="bg-white dark:bg-slate-900 border-b border-slate-200/90 dark:border-slate-800 px-3.5 sm:px-4 py-2 sticky top-0 z-30 shadow-xs flex flex-wrap lg:flex-nowrap items-center justify-between gap-2 relative">
+        <!-- Subtle Background Skyline (Safely Contained in Overflow-Hidden Wrapper) -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden">
+          <img src="assets/header-skyline.svg" alt="" class="absolute right-0 top-0 h-full w-auto object-cover opacity-80 hidden 2xl:block dark:opacity-20"/>
+        </div>
 
-        <!-- Title & Subtitle -->
+        <!-- Left: Title, Status Badge & Subtitle -->
         <div class="relative z-10 shrink-0">
-          <div class="flex items-center gap-2">
-            <h1 class="text-lg font-extrabold text-[#083b7a] tracking-tight leading-tight">
+          <div class="flex items-center gap-1.5 sm:gap-2">
+            <h1 class="text-sm sm:text-base font-extrabold text-[#083b7a] dark:text-sky-400 tracking-tight leading-tight">
               CCMS Monitoring Dashboard
             </h1>
-            <span id="periodStatusBadge" class="px-2 py-0.5 rounded-full text-[9.5px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200 inline-flex items-center gap-1 whitespace-nowrap">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Terkini (5 Okt 2026)
+            <span id="periodStatusBadge" class="px-2 py-0.5 rounded-full text-[9px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 inline-flex items-center gap-1 whitespace-nowrap">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Terkini (5 Okt)
             </span>
           </div>
-          <p class="text-[11px] font-medium text-slate-500 leading-tight mt-0.5">
-            Contract Management Infrastructure 1 Sub Division &bull; Sumber: <a href="https://docs.google.com/spreadsheets/d/19xjUPnxwUDVDQlltJUQnYzqRNi26MUWQgn-zug8dQzo/edit?usp=sharing" target="_blank" class="font-semibold text-[#0c4a8a] hover:underline" title="Buka Spreadsheet Database Google Sheets">(05 Oktober 26) Cheklist Adkon Dashboard</a>
+          <p class="text-[10px] font-medium text-slate-500 dark:text-slate-400 leading-tight mt-0.5 truncate max-w-[280px] sm:max-w-[340px] xl:max-w-none">
+            Infrastruktur 1 &bull; Sumber: <a href="https://docs.google.com/spreadsheets/d/19xjUPnxwUDVDQlltJUQnYzqRNi26MUWQgn-zug8dQzo/edit?usp=sharing" target="_blank" class="font-semibold text-[#0c4a8a] dark:text-sky-300 hover:underline">(05 Okt 26) Cheklist Adkon</a>
           </p>
         </div>
 
-        <!-- Single-Line Filter Controls Cluster (Inline with Reset Filter + Light/Dark Mode) -->
-        <div class="flex flex-wrap xl:flex-nowrap items-center gap-1.5 text-[11px] relative z-10">
+        <!-- Right: Single-Line Filter Controls & Action Buttons (Snug & Never Overflowing) -->
+        <div class="flex items-center flex-wrap gap-1.5 text-[10.5px] relative z-10 min-w-0">
           
           <!-- Periode Dropdown -->
-          <div class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-slate-300 text-slate-700 shadow-xs whitespace-nowrap">
-            <span class="material-symbols-outlined text-[#0d5cab] text-xs">calendar_month</span>
-            <span class="text-[10.5px] text-slate-500">Periode:</span>
-            <select id="filterPeriod" onchange="handlePeriodFilter(this.value)" class="bg-transparent font-bold text-slate-800 focus:outline-none cursor-pointer text-[11px]">
-              <option value="terkini" selected>Terkini (5 Okt 2026)</option>
-              <option value="okt-2026">Oktober 2026 (5 Okt)</option>
-              <option value="sep-2026">September 2026</option>
-              <option value="agu-2026">Agustus 2026</option>
-              <option value="jul-2026">Juli 2026</option>
-              <option value="jun-2026">Juni 2026</option>
-              <option value="mei-2026">Mei 2026</option>
+          <div class="flex items-center gap-1 px-2 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 shadow-2xs whitespace-nowrap">
+            <span class="material-symbols-outlined text-[#0d5cab] dark:text-sky-400 text-xs">calendar_month</span>
+            <span class="text-[9.5px] text-slate-400 hidden sm:inline">Periode:</span>
+            <select id="filterPeriod" onchange="handlePeriodFilter(this.value)" class="bg-transparent font-bold text-slate-800 dark:text-slate-100 focus:outline-none cursor-pointer text-[10.5px]">
+              <option value="terkini" selected class="dark:bg-slate-800">Terkini (5 Okt)</option>
+              <option value="okt-2026" class="dark:bg-slate-800">Oktober 2026</option>
+              <option value="sep-2026" class="dark:bg-slate-800">September 2026</option>
+              <option value="agu-2026" class="dark:bg-slate-800">Agustus 2026</option>
+              <option value="jul-2026" class="dark:bg-slate-800">Juli 2026</option>
+              <option value="jun-2026" class="dark:bg-slate-800">Juni 2026</option>
+              <option value="mei-2026" class="dark:bg-slate-800">Mei 2026</option>
             </select>
           </div>
 
-          <!-- Departemen Operasi Dropdown -->
-          <div class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-slate-300 text-slate-700 shadow-xs whitespace-nowrap">
-            <span class="text-[10.5px] text-slate-500">Operasi:</span>
-            <select id="filterDepartment" onchange="handleDepartmentFilter(this.value)" class="bg-transparent font-bold text-slate-800 focus:outline-none cursor-pointer text-[11px]">
-              <option value="all" selected>All (51 Proyek)</option>
-              <option value="DO 1">DO 1 (19 Proyek)</option>
-              <option value="DO 2">DO 2 (18 Proyek)</option>
-              <option value="DO 3">DO 3 (14 Proyek)</option>
+          <!-- Operasi Dropdown -->
+          <div class="flex items-center gap-1 px-2 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 shadow-2xs whitespace-nowrap">
+            <span class="text-[9.5px] text-slate-400 hidden sm:inline">Operasi:</span>
+            <select id="filterDepartment" onchange="handleDepartmentFilter(this.value)" class="bg-transparent font-bold text-slate-800 dark:text-slate-100 focus:outline-none cursor-pointer text-[10.5px]">
+              <option value="all" selected class="dark:bg-slate-800">All (51)</option>
+              <option value="DO 1" class="dark:bg-slate-800">DO 1 (19)</option>
+              <option value="DO 2" class="dark:bg-slate-800">DO 2 (18)</option>
+              <option value="DO 3" class="dark:bg-slate-800">DO 3 (14)</option>
             </select>
           </div>
 
           <!-- Tahapan Dropdown -->
-          <div class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white border border-slate-300 text-slate-700 shadow-xs whitespace-nowrap">
-            <span class="text-[10.5px] text-slate-500">Tahapan:</span>
-            <select id="filterTahapan" onchange="handleTahapanFilter(this.value)" class="bg-transparent font-bold text-slate-800 focus:outline-none cursor-pointer text-[11px]">
-              <option value="all" selected>All</option>
-              <option value="cm">CM (14 Dok)</option>
-              <option value="vo">Perubahan / VO (6 Dok)</option>
-              <option value="pelaksanaan">Masa Pelaksanaan</option>
-              <option value="mc-0">MC-0 / Addendum</option>
-              <option value="serah-terima">Serah Terima (BASTL)</option>
+          <div class="flex items-center gap-1 px-2 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 shadow-2xs whitespace-nowrap">
+            <span class="text-[9.5px] text-slate-400 hidden sm:inline">Tahap:</span>
+            <select id="filterTahapan" onchange="handleTahapanFilter(this.value)" class="bg-transparent font-bold text-slate-800 dark:text-slate-100 focus:outline-none cursor-pointer text-[10.5px]">
+              <option value="all" selected class="dark:bg-slate-800">All Tahap</option>
+              <option value="cm" class="dark:bg-slate-800">CM (14 Dok)</option>
+              <option value="vo" class="dark:bg-slate-800">Perubahan (6 Dok)</option>
+              <option value="pelaksanaan" class="dark:bg-slate-800">Pelaksanaan</option>
+              <option value="mc-0" class="dark:bg-slate-800">MC-0</option>
+              <option value="serah-terima" class="dark:bg-slate-800">BASTL</option>
             </select>
           </div>
 
-          <!-- Search Input -->
+          <!-- Search Input (Responsive Expand) -->
           <div class="relative shrink-0">
-            <span class="material-symbols-outlined absolute left-2 top-1.5 text-slate-400 text-sm">search</span>
-            <input type="text" id="searchInput" oninput="handleSearch(this.value)" placeholder="Cari Nama Proyek..." class="pl-7 pr-6 py-1.5 rounded-lg bg-white border border-slate-300 text-[11px] font-medium text-slate-800 focus:outline-none focus:border-[#0d5cab] w-36 2xl:w-44 transition-all shadow-xs"/>
-            <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-1.5 top-1.5 text-slate-400 hover:text-slate-600">
-              <span class="material-symbols-outlined text-xs">close</span>
+            <span class="material-symbols-outlined absolute left-2 top-1 text-slate-400 text-xs">search</span>
+            <input type="text" id="searchInput" oninput="handleSearch(this.value)" placeholder="Cari..." class="pl-6 pr-5 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-[10.5px] font-medium text-slate-800 dark:text-slate-100 focus:outline-none focus:border-[#0d5cab] w-24 sm:w-28 lg:w-32 focus:w-44 transition-all shadow-2xs"/>
+            <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-1.5 top-1 text-slate-400 hover:text-slate-600">
+              <span class="material-symbols-outlined text-[11px]">close</span>
             </button>
           </div>
 
-          <!-- Live Sync Google Sheet Button -->
-          <button onclick="syncFromGoogleSheet(true)" class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 font-bold shadow-xs transition-all active:scale-95 whitespace-nowrap" title="Sinkronisasi langsung dengan Google Sheet (051026)">
-            <span id="headerSyncIcon" class="material-symbols-outlined text-xs text-emerald-600">sync</span>
-            <span>Sync</span>
-          </button>
+          <!-- Essential Actions Group: Live Sync, Reset Filter & Light/Dark Mode (Always Protected) -->
+          <div class="flex items-center gap-1 shrink-0">
+            <!-- Live Sync Button -->
+            <button onclick="syncFromGoogleSheet(true)" class="flex items-center gap-1 px-2 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950/60 dark:hover:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700 font-bold shadow-2xs transition-all active:scale-95 whitespace-nowrap" title="Sinkronisasi langsung dengan Google Sheet (051026)">
+              <span id="headerSyncIcon" class="material-symbols-outlined text-xs text-emerald-600 dark:text-emerald-400">sync</span>
+              <span class="text-[10px]">Sync</span>
+            </button>
 
-          <!-- Unified Action Group: Reset Filter + Light/Dark Mode Sebaris -->
-          <div class="inline-flex items-center rounded-lg border border-slate-300 bg-white shadow-xs overflow-hidden shrink-0">
-            <button onclick="resetFilters()" class="flex items-center gap-1 px-2.5 py-1.5 hover:bg-slate-50 text-slate-700 font-bold transition-colors active:bg-slate-100 whitespace-nowrap" title="Reset Seluruh Filter">
-              <span class="material-symbols-outlined text-xs text-[#0d5cab]">refresh</span>
-              <span>Reset Filter</span>
-            </button>
-            <span class="w-[1px] h-4 bg-slate-200 dark:bg-slate-700"></span>
-            <button onclick="toggleTheme()" id="themeToggleBtn" class="flex items-center gap-1 px-2.5 py-1.5 hover:bg-amber-50/70 dark:hover:bg-slate-800 text-slate-700 font-bold transition-colors whitespace-nowrap" title="Ubah Mode Terang (Light) / Gelap (Dark)">
-              <span id="themeIcon" class="material-symbols-outlined text-xs text-amber-500 fill">light_mode</span>
-              <span id="themeModeText" class="text-[10.5px]">Light</span>
-            </button>
+            <!-- Reset Filter & Theme Toggle Unified Group -->
+            <div class="inline-flex items-center rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-2xs overflow-hidden">
+              <button onclick="resetFilters()" class="flex items-center gap-1 px-2 py-1 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold transition-colors active:bg-slate-100 whitespace-nowrap" title="Reset Seluruh Filter">
+                <span class="material-symbols-outlined text-xs text-[#0d5cab] dark:text-sky-400">refresh</span>
+                <span class="text-[10px]">Reset</span>
+              </button>
+              <span class="w-[1px] h-3.5 bg-slate-200 dark:bg-slate-700"></span>
+              <button onclick="toggleTheme()" id="themeToggleBtn" class="flex items-center gap-1 px-2 py-1 hover:bg-amber-50/70 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold transition-colors whitespace-nowrap" title="Ubah Mode Terang / Gelap">
+                <span id="themeIcon" class="material-symbols-outlined text-xs text-amber-500 fill">light_mode</span>
+                <span id="themeModeText" class="text-[10px]">Light</span>
+              </button>
+            </div>
           </div>
 
         </div>
